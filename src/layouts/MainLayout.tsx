@@ -6,7 +6,10 @@ const MainLayout = () => {
 	return (
 		<StyledMainLayout>
 			<Menu />
-			<Outlet />
+			<StyledMainContentLayout>
+				<div>HEADER 자리</div>
+				<Outlet />
+			</StyledMainContentLayout>
 		</StyledMainLayout>
 	);
 };
@@ -15,4 +18,10 @@ export default MainLayout;
 const StyledMainLayout = styled.div`
 	width: 100vw;
 	height: 100vh;
+	display: flex;
+`;
+
+const StyledMainContentLayout = styled.div`
+	width: 100%;
+	padding-left: 3rem;
 `;

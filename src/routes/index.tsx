@@ -7,6 +7,7 @@ import Login from '../pages/Login/Login';
 import SignUp from '../pages/SignUp/SignUp';
 import Waiting from '../pages/Waiting';
 import FindMyPassword from '../pages/FindMyPassword/FindMyPassword';
+import AddProduct from '../pages/Product/AddProduct/AddProduct';
 
 const router = createBrowserRouter([
 	{
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
 		element: <MainLayout />,
 		errorElement: <NotFound />,
 		children: [
-			{ index: true, path: 'add', element: <DashBoard /> },
+			{ index: true, path: 'add', element: <AddProduct /> },
 			{ index: true, path: 'list', element: <DashBoard /> },
 		],
 	},
