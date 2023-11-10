@@ -1,1 +1,1 @@
-export * from "./http.model";
+export * from './http.model';
