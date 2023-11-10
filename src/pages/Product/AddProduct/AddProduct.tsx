@@ -99,7 +99,7 @@ const AddProduct = () => {
 					<Rate character={<LiaWineBottleSolid />} />
 				</Form.Item>
 				<Form.Item<AddProductFieldType>
-					label="주모 소개"
+					label="양조장"
 					name="desc"
 					rules={[{ required: true, message: '주모소개를 입력해주세요.' }]}
 				>
