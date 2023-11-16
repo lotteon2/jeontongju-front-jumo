@@ -18,7 +18,7 @@ const FindMyPassword = () => {
 				>
 					<Input value={email} onChange={(e) => setEmail(e.target.value)} />
 				</Form.Item>
-				<Button content="이메일 발송" Key="findMyPassword" isFull handleClick={onFinish} htmlType="submit" />
+				<Button content="이메일 발송" Key="findMyPassword" isfull handleClick={onFinish} htmlType="submit" />
 			</Form>
 			<span>이메일로 새로 생성된 비밀번호를 발송했어요.</span>
 		</StyledFindContainer>

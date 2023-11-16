@@ -107,7 +107,7 @@ const SignUp = () => {
 						<Radio value={2}>다음생에 인연 맺기</Radio>
 					</Radio.Group>
 				</Form.Item>
-				<Button content="주모 가입 신청하기" Key="loginAdmin" isFull handleClick={onFinish} htmlType="submit" />
+				<Button content="주모 가입 신청하기" Key="loginAdmin" isfull handleClick={onFinish} htmlType="submit" />
 			</Form>
 			<StyledSignUpFooter>
 				<a href="/">설빙고에 대해 더 알고 싶어요.</a>

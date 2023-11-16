@@ -6,7 +6,7 @@ const Waiting = () => {
 		<StyledWaiting>
 			<h1>주모 입점 승인 대기중이에요.</h1>
 			<h3>기타 궁금한 점은 전통주. 고객센터로 문의해주세요.</h3>
-			<Button content="메인으로 가기" Key="goHome" isFull />
+			<Button content="메인으로 가기" Key="goHome" isfull />
 		</StyledWaiting>
 	);
 };
