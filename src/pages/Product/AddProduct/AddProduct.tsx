@@ -3,6 +3,7 @@ import { LiaWineBottleSolid } from 'react-icons/lia';
 import { AddProductFieldType } from '../../../constants/AddProductFieldType';
 import { useAddProduct } from './AddProduct.hooks';
 import Button from '../../../components/common/Button';
+import DaumAddress from '../../../components/common/DaumAddress';
 
 const AddProduct = () => {
 	const { email, setEmail, onFinish, password, setPassword } = useAddProduct();
@@ -12,7 +13,7 @@ const AddProduct = () => {
 				name="basic"
 				labelCol={{ span: 8 }}
 				wrapperCol={{ span: 16 }}
-				style={{ maxWidth: 600, width: '100%' }}
+				style={{ width: '100%' }}
 				onFinish={onFinish}
 				autoComplete="off"
 			>
@@ -61,8 +62,8 @@ const AddProduct = () => {
 						onChange={(e) => setPassword(e.target.value)}
 					/>
 				</Form.Item>
-				<span>상품의 맛을 선택해주세요</span>
-				<span>(5점 만점, 1점:약함, 5점:강함)</span>
+				<strong>상품의 맛을 선택해주세요</strong>
+				<strong>(5점 만점, 1점:약함, 5점:강함)</strong>
 				<Form.Item<AddProductFieldType>
 					label="신맛"
 					name="sour"
@@ -101,24 +102,27 @@ const AddProduct = () => {
 				<Form.Item<AddProductFieldType>
 					label="양조장"
 					name="desc"
-					rules={[{ required: true, message: '주모소개를 입력해주세요.' }]}
+					rules={[{ required: true, message: '양조장 이름을 입력해주세요.' }]}
 				>
 					<Input
-						placeholder="고객들에게 보여질 주모 소개를 입력해주세요."
+						placeholder="양조장 이름을 정확하게 입력해주세요."
 						value={password as string}
 						onChange={(e) => setPassword(e.target.value)}
 					/>
 				</Form.Item>
-				{/* <Form.Item<AddProductFieldType>
-					label="설빙고 가입 여부(추후 수정 불가)"
-					name="isSulbing"
-					rules={[{ required: true, message: '설빙고 가입 여부를 입력해주세요.' }]}
-				> */}
-				{/* <Radio.Group>
-						<Radio value={1}>평생 인연 맺기</Radio>
-						<Radio value={2}>다음생에 인연 맺기</Radio>
-					</Radio.Group> */}
-				{/* </Form.Item> */}
+				<strong>양조장 위치를 입력해주세요.</strong>
+				<DaumAddress />
+				<Form.Item<AddProductFieldType>
+					label="제조사"
+					name="desc"
+					rules={[{ required: true, message: '양조장 이름을 입력해주세요.' }]}
+				>
+					<Input
+						placeholder="양조장 이름을 정확하게 입력해주세요."
+						value={password as string}
+						onChange={(e) => setPassword(e.target.value)}
+					/>
+				</Form.Item>
 				<Button content="상품 등록하기" key="addProduct" isFull handleClick={onFinish} htmlType="submit" />
 			</Form>
 		</div>

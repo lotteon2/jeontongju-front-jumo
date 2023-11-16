@@ -24,4 +24,6 @@ const StyledMainLayout = styled.div`
 const StyledMainContentLayout = styled.div`
 	width: 100%;
 	padding-left: 3rem;
+	display: flex;
+	flex-direction: column;
 `;
