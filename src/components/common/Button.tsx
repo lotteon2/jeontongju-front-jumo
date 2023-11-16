@@ -7,7 +7,7 @@ interface ButtonInterface {
 	loading?: boolean;
 	htmlType?: 'button' | 'submit' | 'reset' | undefined;
 	type?: 'positive' | 'negative' | 'cancel';
-	key: string;
+	Key: string;
 	disabled?: boolean;
 	isFull?: boolean;
 }
@@ -17,15 +17,15 @@ const Button: React.FC<ButtonInterface> = ({
 	handleClick,
 	loading,
 	type = 'positive',
-	key,
+	Key,
 	htmlType = 'button',
 	disabled = false,
 	isFull = false,
 }) => {
 	return (
 		<StyledAntdButton
+			key={Key}
 			disabled={disabled}
-			key={key}
 			htmlType={htmlType}
 			onClick={handleClick}
 			loading={loading}
@@ -38,5 +38,8 @@ const Button: React.FC<ButtonInterface> = ({
 export default Button;
 
 const StyledAntdButton = styled(AntdBtn)<{ isFull: boolean }>`
-	width: ${(props) => (props.isFull ? '100%' : '2rem')};
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: ${(props) => (props.isFull ? '100%' : '4rem')};
 `;

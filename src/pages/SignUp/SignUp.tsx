@@ -27,7 +27,7 @@ const SignUp = () => {
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 					/>
-					<Button content="인증" key="loginAdmin" handleClick={onFinish} htmlType="button" />
+					<Button content="인증" Key="loginAdmin" handleClick={onFinish} htmlType="button" />
 				</Form.Item>
 				<Form.Item<SignUpFieldType>
 					label="이메일 유효코드"
@@ -39,7 +39,7 @@ const SignUp = () => {
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 					/>
-					<Button content="확인" key="checkEmailCode" handleClick={onFinish} htmlType="button" />
+					<Button content="확인" Key="checkEmailCode" handleClick={onFinish} htmlType="button" />
 				</Form.Item>
 
 				<Form.Item<SignUpFieldType>
@@ -107,7 +107,7 @@ const SignUp = () => {
 						<Radio value={2}>다음생에 인연 맺기</Radio>
 					</Radio.Group>
 				</Form.Item>
-				<Button content="주모 가입 신청하기" key="loginAdmin" isFull handleClick={onFinish} htmlType="submit" />
+				<Button content="주모 가입 신청하기" Key="loginAdmin" isFull handleClick={onFinish} htmlType="submit" />
 			</Form>
 			<StyledSignUpFooter>
 				<a href="/">설빙고에 대해 더 알고 싶어요.</a>

@@ -24,7 +24,7 @@ const Login = () => {
 				>
 					<Input.Password value={password as string} onChange={(e) => setPassword(e.target.value)} />
 				</Form.Item>
-				<Button content="로그인" key="loginJumo" isFull handleClick={onFinish} htmlType="submit" />
+				<Button content="로그인" Key="loginJumo" isFull handleClick={onFinish} htmlType="submit" />
 			</Form>
 			<StyledLoginFooter>
 				<a href="/init/findMyPassword">비밀번호 찾기</a>

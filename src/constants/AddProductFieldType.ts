@@ -1,5 +1,5 @@
 export type AddProductFieldType = {
-	productName?: string;
+	productName: string;
 	desc?: string;
 	alcoholPercent?: number;
 	material?: string;

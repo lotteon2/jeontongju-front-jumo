@@ -1,3 +1,7 @@
+import { Input } from 'antd';
+import styled from '@emotion/styled';
+import Button from './Button';
+
 declare global {
 	interface Window {
 		daum: any;
@@ -20,15 +24,30 @@ const DaumAddress = () => {
 		}).open();
 	};
 	return (
-		<>
-			<input id="addr" type="text" readOnly onClick={onClickAddr} />
-			<button type="button" onClick={onClickAddr}>
-				검색
-			</button>
-			<input id="zipNo" type="text" readOnly />
-			<input id="addrDetail" type="text" />
-		</>
+		<StyledDaumAddress>
+			<StyledAddr>
+				<Input id="addr" type="text" readOnly onClick={onClickAddr} />
+				<Button Key="searchAddrBtn" type="positive" handleClick={onClickAddr} content="검색" />
+			</StyledAddr>
+			<Input id="zipNo" type="text" readOnly />
+			<Input id="addrDetail" type="text" />
+		</StyledDaumAddress>
 	);
 };
 
 export default DaumAddress;
+
+const StyledAddr = styled.div`
+	width: 100%;
+	display: flex;
+	gap: 2rem;
+`;
+
+const StyledDaumAddress = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 1rem;
+	margin: 1rem 0;
+`;
