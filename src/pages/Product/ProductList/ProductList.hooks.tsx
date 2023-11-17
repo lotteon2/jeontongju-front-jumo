@@ -1,4 +1,4 @@
-import { ColumnsType } from "antd/es/table";
+import { ColumnProps, ColumnsType } from "antd/es/table";
 import { Avatar, Dropdown } from "antd";
 import { DeleteOutlined, EditOutlined, MoreOutlined } from "@ant-design/icons";
 import { useState } from "react";
@@ -88,7 +88,7 @@ export const useProductListTable = () => {
     });
   };
 
-  const columns: ColumnsType<UpdateProductTableDataType> = [
+  const columns: ColumnProps<UpdateProductTableDataType>[] = [
     {
       title: "대표 이미지",
       dataIndex: "productThumbnail",
