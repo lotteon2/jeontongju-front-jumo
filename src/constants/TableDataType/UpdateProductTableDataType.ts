@@ -1,4 +1,4 @@
-export interface UpdateProductTableDataType {
+export type UpdateProductTableDataType = {
   key: number;
   productThumbnail: string;
   productName: string;
@@ -10,4 +10,4 @@ export interface UpdateProductTableDataType {
   productReviewCount: number;
   productShortsId: number;
   productVisibility: boolean;
-}
+};

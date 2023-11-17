@@ -1,33 +1,24 @@
 import React from "react";
-import Column from "antd/es/table/Column";
-import { Table as AntdTable, Modal } from "antd";
+import { Table as AntdTable } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import styled from "@emotion/styled";
-import { UpdateProductTableDataType } from "../../constants/TableDataType/UpdateProductTableDataType";
 
 interface TableInterface<T> {
-  tableName?: string;
   columns: ColumnsType<T>;
   data: T[];
-  handleClick?: () => void;
+  // tableType: UpdateProductTableDataType | OrderListTableDataType;
+  // handleClick?: () => void;
 }
 
-const Table: React.FC<TableInterface<UpdateProductTableDataType>> = ({
-  columns,
-  data,
-  tableName,
-  handleClick,
-}) => {
+const Table = <T,>({ data, columns }: TableInterface<T>) => {
   return (
-    <div onClick={handleClick && handleClick} role="none">
-      {tableName && <StyledTableName>{tableName}</StyledTableName>}
-      <AntdTable key={tableName} columns={columns} dataSource={data} />
+    <div role="none">
+      <AntdTable
+        key="1"
+        columns={columns as ColumnsType<T>}
+        dataSource={data}
+      />
     </div>
   );
 };
 
 export default React.memo(Table);
-
-const StyledTableName = styled.div`
-  font-size: 2rem;
-`;

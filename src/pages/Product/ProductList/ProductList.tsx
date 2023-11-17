@@ -6,6 +6,7 @@ import {
   useProductUpdateModal,
 } from "./ProductList.hooks";
 import Button from "../../../components/common/Button";
+import { UpdateProductTableDataType } from "../../../constants/TableDataType/UpdateProductTableDataType";
 import { useUpdateProductStore } from "../../../stores/UpdateProduct/UpdateProductStore";
 
 const ProductList = () => {
