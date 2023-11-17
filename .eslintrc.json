@@ -11,6 +11,7 @@
     }
   },
   "rules": {
+    "react/no-unstable-nested-components": ["off", { "allowAsProps": false }],
     "import/no-extraneous-dependencies": ["off", { "devDependencies": true }],
     "react/jsx-props-no-spreading": "off",
     "no-useless-catch": "off",

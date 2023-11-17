@@ -9,6 +9,7 @@ import Waiting from "../pages/Waiting";
 import FindMyPassword from "../pages/FindMyPassword/FindMyPassword";
 import AddProduct from "../pages/Product/AddProduct/AddProduct";
 import ProductList from "../pages/Product/ProductList/ProductList";
+import CashUp from "../pages/Cash/CashUp/CashUp";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +49,7 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     errorElement: <NotFound />,
     children: [
-      { index: true, path: "up", element: <DashBoard /> },
+      { index: true, path: "up", element: <CashUp /> },
       { index: true, path: "list", element: <DashBoard /> },
     ],
   },
