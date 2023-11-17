@@ -154,6 +154,14 @@ body {
   text-align: left !important;
 }
 
+/*Modal Custom*/
+.ant-modal .ant-modal-footer {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
 a {
   text-decoration: none;
   outline: none;

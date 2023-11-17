@@ -8,6 +8,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import Waiting from "../pages/Waiting";
 import FindMyPassword from "../pages/FindMyPassword/FindMyPassword";
 import AddProduct from "../pages/Product/AddProduct/AddProduct";
+import ProductList from "../pages/Product/ProductList/ProductList";
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, path: "add", element: <AddProduct /> },
-      { index: true, path: "list", element: <DashBoard /> },
+      { index: true, path: "list", element: <ProductList /> },
     ],
   },
   {
