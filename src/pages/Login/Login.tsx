@@ -35,8 +35,8 @@ const Login = () => {
         </Form.Item>
         <Button
           content="로그인"
-          key="loginJumo"
-          isFull
+          Key="loginJumo"
+          isfull
           handleClick={onFinish}
           htmlType="submit"
         />

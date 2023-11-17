@@ -26,8 +26,8 @@ const FindMyPassword = () => {
         </Form.Item>
         <Button
           content="이메일 발송"
-          key="findMyPassword"
-          isFull
+          Key="findMyPassword"
+          isfull
           handleClick={onFinish}
           htmlType="submit"
         />

@@ -82,6 +82,12 @@ code {
     monospace;
 }
 
+strong {
+  font-family: "Hahmlet", sans-serif;
+  font-weight: 900;
+  margin: 0;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -156,7 +162,7 @@ a {
 a:hover,
 a:active {
   text-decoration: none;
-  background-color: var(--secondary-violet);
+  color: var(--secondary-violet);
 }
 
 @font-face {

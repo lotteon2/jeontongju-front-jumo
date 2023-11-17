@@ -29,7 +29,7 @@ const SignUp = () => {
           />
           <Button
             content="인증"
-            key="loginAdmin"
+            Key="loginAdmin"
             handleClick={onFinish}
             htmlType="button"
           />
@@ -46,7 +46,7 @@ const SignUp = () => {
           />
           <Button
             content="확인"
-            key="checkEmailCode"
+            Key="checkEmailCode"
             handleClick={onFinish}
             htmlType="button"
           />
@@ -123,8 +123,8 @@ const SignUp = () => {
         </Form.Item>
         <Button
           content="주모 가입 신청하기"
-          key="loginAdmin"
-          isFull
+          Key="loginAdmin"
+          isfull
           handleClick={onFinish}
           htmlType="submit"
         />
