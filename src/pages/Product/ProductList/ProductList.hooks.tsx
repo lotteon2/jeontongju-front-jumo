@@ -45,6 +45,7 @@ export const useProductUpdateModal = () => {
 
   const handleOk = () => {
     console.log("here");
+    // TODO: 상품 수정 api 연동
   };
 
   return {
