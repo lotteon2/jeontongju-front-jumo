@@ -29,7 +29,7 @@ const Button: React.FC<ButtonInterface> = ({
       htmlType={htmlType}
       onClick={handleClick}
       loading={loading}
-      isfull={isfull}
+      width={isfull ? "100%" : "4rem"}
     >
       {content}
     </StyledAntdButton>
@@ -37,9 +37,9 @@ const Button: React.FC<ButtonInterface> = ({
 };
 export default Button;
 
-const StyledAntdButton = styled(AntdBtn)<{ isfull: boolean }>`
+const StyledAntdButton = styled(AntdBtn)<{ width: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: ${(props) => (props.isfull ? "100%" : "4rem")};
+  width: ${(props) => props.width};
 `;

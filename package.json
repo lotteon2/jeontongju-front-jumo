@@ -19,13 +19,16 @@
     "node-sass": "^7.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.48.2",
+    "react-icons": "^4.12.0",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.18.0",
     "react-scripts": "5.0.1",
     "sweetalert2": "^11.9.0",
     "typescript": "^4.9.5",
     "v6": "^0.0.0",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zustand": "^4.4.6"
   },
   "scripts": {
     "start": "eslint --fix . & react-scripts start",
