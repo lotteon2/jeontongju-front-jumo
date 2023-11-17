@@ -43,8 +43,6 @@ const ProductList = () => {
     state.dispatchProductVisibility,
   ]);
 
-  console.log(productVisibility);
-
   return (
     <div>
       <Table columns={columns} data={productData} />

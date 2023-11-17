@@ -8,4 +8,5 @@ export interface UpdateProductStateDispatcher
   dispatchProductName: (value: string) => void;
   dispatchProductPrice: (value: number) => void;
   dispatchProductVisibility: (value: boolean) => void;
+  clear: () => void;
 }

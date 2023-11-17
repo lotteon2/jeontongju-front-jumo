@@ -19,6 +19,7 @@ export const useProductUpdateModal = () => {
     setProductStock,
     setProductThumbnail,
     setProductVisibility,
+    clearValues,
   ] = useUpdateProductStore((state) => [
     state.dispatchProductDetailImg,
     state.dispatchProductName,
@@ -26,6 +27,7 @@ export const useProductUpdateModal = () => {
     state.dispatchProductStock,
     state.dispatchProductThumbnail,
     state.dispatchProductVisibility,
+    state.clear,
   ]);
 
   const showModal = (row: UpdateProductTableDataType) => {
@@ -46,6 +48,8 @@ export const useProductUpdateModal = () => {
   const handleOk = () => {
     console.log("here");
     // TODO: 상품 수정 api 연동
+    clearValues();
+    Toast(true, "상품 수정이 완료되었어요.");
   };
 
   return {

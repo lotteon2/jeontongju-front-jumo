@@ -38,5 +38,6 @@ export const useUpdateProductStore = create(
     dispatchProductVisibility: (value: boolean) => {
       set({ productVisibility: value });
     },
+    clear: () => set({}, true),
   })),
 );
