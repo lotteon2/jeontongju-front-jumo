@@ -57,7 +57,7 @@ const ProductList = () => {
           <Button
             handleClick={handleCancel}
             content="취소"
-            type="cancel"
+            btnType="cancel"
             Key="cancelUpdateProduct"
           />,
           <Button
@@ -65,7 +65,7 @@ const ProductList = () => {
             content="확인"
             loading={isLoading}
             disabled={isDisabled}
-            type="positive"
+            btnType="positive"
             Key="UpdateProduct"
           />,
         ]}

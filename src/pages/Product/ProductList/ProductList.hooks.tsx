@@ -1,6 +1,6 @@
 import { ColumnsType } from "antd/es/table";
-import { Avatar } from "antd";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { Avatar, Dropdown } from "antd";
+import { DeleteOutlined, EditOutlined, MoreOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { UpdateProductTableDataType } from "../../../constants/TableDataType/UpdateProductTableDataType";
 import { Alert } from "../../../components/common/Alert";
@@ -146,31 +146,43 @@ export const useProductListTable = () => {
       align: "center",
     },
     {
-      title: "수정",
-      dataIndex: "key",
-      key: "key",
-      align: "center",
-      render: (text, row) => (
-        <button type="button" onClick={() => showModal(row)}>
-          <EditOutlined /> 수정
-        </button>
-      ),
-    },
-    {
-      title: "삭제",
+      title: "",
       dataIndex: "key",
       key: "delete",
       align: "center",
       render: (text, row) => (
-        <button
-          type="button"
-          onClick={() => handleDelete(row.productId as string)}
+        <Dropdown
+          menu={{
+            items: [
+              {
+                key: "updateProduct",
+                label: (
+                  <button type="button" onClick={() => showModal(row)}>
+                    <EditOutlined /> 수정
+                  </button>
+                ),
+              },
+              {
+                key: "deleteProduct",
+                label: (
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(row.productId as string)}
+                  >
+                    <DeleteOutlined /> 삭제
+                  </button>
+                ),
+              },
+            ],
+          }}
         >
-          <DeleteOutlined /> 삭제
-        </button>
+          <MoreOutlined />
+        </Dropdown>
       ),
     },
   ];
+
+  // onClick={() => handleDelete(row.productId as string)}
 
   const productData: UpdateProductTableDataType[] = [
     {

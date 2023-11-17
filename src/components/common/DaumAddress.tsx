@@ -31,7 +31,7 @@ const DaumAddress = () => {
         <Input id="addr" type="text" readOnly onClick={onClickAddr} />
         <Button
           Key="searchAddrBtn"
-          type="positive"
+          btnType="positive"
           handleClick={onClickAddr}
           content="검색"
         />
