@@ -9,6 +9,7 @@ interface ButtonInterface {
   btntype?: "positive" | "negative" | "cancel";
   Key: string;
   disabled?: boolean;
+  width?: string;
   isfull?: boolean;
 }
 
@@ -21,6 +22,7 @@ const Button: React.FC<ButtonInterface> = ({
   htmlType = "button",
   disabled = false,
   isfull = false,
+  width,
 }) => {
   return (
     <StyledAntdButton
@@ -29,7 +31,7 @@ const Button: React.FC<ButtonInterface> = ({
       htmlType={htmlType}
       onClick={handleClick}
       loading={loading}
-      width={isfull ? "100%" : "4rem"}
+      width={isfull ? "100%" : width}
       btntype={btntype}
     >
       {content}
@@ -52,7 +54,7 @@ const StyledAntdButton = styled(AntdBtn)<{
   border: none;
   background: ${(props) =>
     props.btntype === "positive"
-      ? "#ffa1a1"
+      ? "#99dc79"
       : props.btntype === "negative"
       ? "#F92525"
       : "#F3F3F3"};
