@@ -97,7 +97,8 @@ const Menu = () => {
 export default Menu;
 
 const StyledMenuContainer = styled.div`
-  height: 100%;
+  height: 100vh;
+  border-right: 1px solid var(--primary-silver);
 `;
 
 const StyledCollapseButton = styled.button`
