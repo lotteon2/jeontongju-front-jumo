@@ -12,7 +12,7 @@ const OrderState = ({ state }: { state: keyof typeof ORDER_STATE }) => {
       {state === ORDER_STATE.ORDER ? (
         <StyledOrderInput>
           <Input placeholder="운송장 번호를 입력해주세요." />
-          <Button content="저장" Key="saveOrderNumber" btnType="cancel" />
+          <Button content="저장" Key="saveOrderNumber" btntype="cancel" />
         </StyledOrderInput>
       ) : (
         <StyledOrderState>{translateOrderState(state)}</StyledOrderState>

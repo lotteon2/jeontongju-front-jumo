@@ -11,6 +11,8 @@ import AddProduct from "../pages/Product/AddProduct/AddProduct";
 import ProductList from "../pages/Product/ProductList/ProductList";
 import CashUp from "../pages/Cash/CashUp/CashUp";
 import OrderList from "../pages/Cash/OrderList/OrderList";
+import LiveList from "../pages/LiveList/LiveList";
+import LiveRegister from "../pages/LiveRegister/LiveRegister";
 
 const router = createBrowserRouter([
   {
@@ -51,7 +53,7 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, path: "up", element: <CashUp /> },
-      { index: true, path: "list", element: <OrderList /> },
+      { path: "list", element: <OrderList /> },
     ],
   },
   {
@@ -60,7 +62,8 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, path: "shorts", element: <DashBoard /> },
-      { index: true, path: "live", element: <DashBoard /> },
+      { path: "live", element: <LiveList /> },
+      { path: "live/register", element: <LiveRegister /> },
     ],
   },
 ]);
