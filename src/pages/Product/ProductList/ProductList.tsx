@@ -6,7 +6,6 @@ import {
   useProductUpdateModal,
 } from "./ProductList.hooks";
 import Button from "../../../components/common/Button";
-import { UpdateProductTableDataType } from "../../../constants/TableDataType/UpdateProductTableDataType";
 import { useUpdateProductStore } from "../../../stores/UpdateProduct/UpdateProductStore";
 
 const ProductList = () => {
@@ -58,7 +57,7 @@ const ProductList = () => {
           <Button
             handleClick={handleCancel}
             content="취소"
-            btnType="cancel"
+            btntype="cancel"
             Key="cancelUpdateProduct"
           />,
           <Button
@@ -66,8 +65,8 @@ const ProductList = () => {
             content="확인"
             loading={isLoading}
             disabled={isDisabled}
-            btnType="positive"
-            Key="UpdateProduct"
+            btntype="positive"
+            Key="updateProduct"
           />,
         ]}
       >

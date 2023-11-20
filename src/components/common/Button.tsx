@@ -6,7 +6,7 @@ interface ButtonInterface {
   handleClick?: () => void;
   loading?: boolean;
   htmlType?: "button" | "submit" | "reset" | undefined;
-  btnType?: "positive" | "negative" | "cancel";
+  btntype?: "positive" | "negative" | "cancel";
   Key: string;
   disabled?: boolean;
   isfull?: boolean;
@@ -16,7 +16,7 @@ const Button: React.FC<ButtonInterface> = ({
   content,
   handleClick,
   loading,
-  btnType = "positive",
+  btntype = "positive",
   Key,
   htmlType = "button",
   disabled = false,
@@ -30,7 +30,7 @@ const Button: React.FC<ButtonInterface> = ({
       onClick={handleClick}
       loading={loading}
       width={isfull ? "100%" : "4rem"}
-      btnType={btnType}
+      btntype={btntype}
     >
       {content}
     </StyledAntdButton>
@@ -40,7 +40,7 @@ export default Button;
 
 const StyledAntdButton = styled(AntdBtn)<{
   width: string;
-  btnType: "positive" | "negative" | "cancel";
+  btntype: "positive" | "negative" | "cancel";
 }>`
   display: flex;
   align-items: center;
@@ -51,9 +51,9 @@ const StyledAntdButton = styled(AntdBtn)<{
   border-radius: 10px;
   border: none;
   background: ${(props) =>
-    props.btnType === "positive"
+    props.btntype === "positive"
       ? "#ffa1a1"
-      : props.btnType === "negative"
+      : props.btntype === "negative"
       ? "#F92525"
       : "#F3F3F3"};
 `;
