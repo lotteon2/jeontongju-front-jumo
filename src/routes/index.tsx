@@ -13,6 +13,8 @@ import CashUp from "../pages/Cash/CashUp/CashUp";
 import OrderList from "../pages/Cash/OrderList/OrderList";
 import LiveList from "../pages/LiveList/LiveList";
 import LiveRegister from "../pages/LiveRegister/LiveRegister";
+import EditMyShopInfo from "../pages/Mypage/EditMyShopInfo/EditMyShopInfo";
+import EditMyPassword from "../pages/Mypage/EditMyPassword/EditMyPassword";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +46,7 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, path: "add", element: <AddProduct /> },
-      { index: true, path: "list", element: <ProductList /> },
+      { path: "list", element: <ProductList /> },
     ],
   },
   {
@@ -63,6 +65,16 @@ const router = createBrowserRouter([
     children: [
       { index: true, path: "shorts", element: <DashBoard /> },
       { path: "live", element: <LiveList /> },
+      { path: "live/register", element: <LiveRegister /> },
+    ],
+  },
+  {
+    path: "/edit",
+    element: <MainLayout />,
+    errorElement: <NotFound />,
+    children: [
+      { index: true, path: "myshop", element: <EditMyShopInfo /> },
+      { path: "myPassword", element: <EditMyPassword /> },
       { path: "live/register", element: <LiveRegister /> },
     ],
   },
