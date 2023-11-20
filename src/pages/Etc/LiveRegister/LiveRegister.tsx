@@ -1,8 +1,8 @@
 import { useForm, Controller } from "react-hook-form";
 import { Form, Input } from "antd";
 import styled from "@emotion/styled";
-import { LiveRegisterFieldType } from "../../constants/LiveRegisterFieldType";
-import Button from "../../components/common/Button";
+import { LiveRegisterFieldType } from "../../../constants/LiveRegisterFieldType";
+import Button from "../../../components/common/Button";
 
 const LiveRegister = () => {
   const [form] = Form.useForm();

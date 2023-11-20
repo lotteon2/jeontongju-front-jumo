@@ -1,8 +1,8 @@
 import { Tooltip } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
-import LiveContainer from "../../components/Live/LiveContainer";
-import Table from "../../components/common/Table";
+import LiveContainer from "../../../components/Live/LiveContainer";
+import Table from "../../../components/common/Table";
 import { useLiveTable } from "./LiveList.hooks";
 
 const LiveList = () => {

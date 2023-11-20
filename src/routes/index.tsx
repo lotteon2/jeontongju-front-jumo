@@ -11,10 +11,13 @@ import AddProduct from "../pages/Product/AddProduct/AddProduct";
 import ProductList from "../pages/Product/ProductList/ProductList";
 import CashUp from "../pages/Cash/CashUp/CashUp";
 import OrderList from "../pages/Cash/OrderList/OrderList";
-import LiveList from "../pages/LiveList/LiveList";
-import LiveRegister from "../pages/LiveRegister/LiveRegister";
+import LiveList from "../pages/Etc/LiveList/LiveList";
+import LiveRegister from "../pages/Etc/LiveRegister/LiveRegister";
 import EditMyShopInfo from "../pages/Mypage/EditMyShopInfo/EditMyShopInfo";
 import EditMyPassword from "../pages/Mypage/EditMyPassword/EditMyPassword";
+import ShortsList from "../pages/Etc/Shorts/ShortsList/ShortsList";
+import ShortsDetail from "../pages/Etc/Shorts/ShortsDetail/ShortsDetail";
+import ShortsRegister from "../pages/Etc/Shorts/ShortsRegister/ShortsRegister";
 
 const router = createBrowserRouter([
   {
@@ -63,7 +66,9 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     errorElement: <NotFound />,
     children: [
-      { index: true, path: "shorts", element: <DashBoard /> },
+      { index: true, path: "shorts", element: <ShortsList /> },
+      { path: "shorts/detail/:id", element: <ShortsDetail /> },
+      { path: "register", element: <ShortsRegister /> },
       { path: "live", element: <LiveList /> },
       { path: "live/register", element: <LiveRegister /> },
     ],

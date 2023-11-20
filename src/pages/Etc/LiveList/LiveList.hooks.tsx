@@ -1,5 +1,5 @@
 import { ColumnsType } from "antd/es/table";
-import { LiveListTableDataType } from "../../constants/TableDataType/LiveListTableDataType";
+import { LiveListTableDataType } from "../../../constants/TableDataType/LiveListTableDataType";
 
 export const useLiveTable = () => {
   const columns: ColumnsType<LiveListTableDataType> = [
