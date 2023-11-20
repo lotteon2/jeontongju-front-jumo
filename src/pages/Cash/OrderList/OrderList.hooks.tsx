@@ -52,6 +52,12 @@ export const useOrderList = () => {
       key: "orderState",
       render: (text) => <OrderState state={text} />,
     },
+    {
+      title: "운송장 번호",
+      dataIndex: "waybillNumber",
+      key: "waybillNumber",
+      render: (text) => <span>{text}</span>,
+    },
   ];
 
   const orderListData: OrderListTableDataType[] = [
@@ -62,7 +68,18 @@ export const useOrderList = () => {
       productSellCount: 3,
       totalPrice: 19200,
       orderTime: "2023-11-08 23:00:05",
-      orderState: "배송중",
+      orderState: "SHIPPING",
+      waybillNumber: "123-456",
+      orderPaymentMethod: "Naver",
+    },
+    {
+      orderId: "O123",
+      productId: "P12",
+      productName: "복순도가",
+      productSellCount: 3,
+      totalPrice: 19200,
+      orderTime: "2023-11-08 23:00:05",
+      orderState: "ORDER",
       waybillNumber: "",
       orderPaymentMethod: "Naver",
     },

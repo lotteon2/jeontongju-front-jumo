@@ -1,7 +1,7 @@
 export const ORDER_STATE = {
   ORDER: "ORDER",
   READY: "READY",
-  SHIPING: "SHIPING",
+  SHIPPING: "SHIPPING",
   COMPLETED: "COMPLETED",
   CONFIRMED: "CONFIRMED",
   CANCEL: "CANCEL",
@@ -22,7 +22,7 @@ export const translateOrderState = (status: ORDER_STATE) => {
     case "READY":
       translatedOrderState = "배송 준비";
       break;
-    case "SHIPING":
+    case "SHIPPING":
       translatedOrderState = "배송중";
       break;
     case "COMPLETED":

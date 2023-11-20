@@ -55,15 +55,6 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/sulbing",
-    element: <MainLayout />,
-    errorElement: <NotFound />,
-    children: [
-      { index: true, path: "payfor", element: <DashBoard /> },
-      { index: true, path: "list", element: <DashBoard /> },
-    ],
-  },
-  {
     path: "/etc",
     element: <MainLayout />,
     errorElement: <NotFound />,
