@@ -44,12 +44,13 @@ const StyledAntdButton = styled(AntdBtn)<{
   width: string;
   btntype: "positive" | "negative" | "cancel";
 }>`
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   width: ${(props) => props.width};
   text-align: center;
-  font-weight: 900;
+  font-weight: 800;
   border-radius: 10px;
   border: none;
   background: ${(props) =>
