@@ -17,8 +17,17 @@ export interface SignUpParams {
   imp_uid: string;
 }
 
+export interface UpdateMyInfoParams {
+  storeName?: string;
+  storeDescription?: string;
+  storeImageUrl?: string;
+  storePhoneNUmber?: string;
+}
+
 export type EmailCheckResponse = ApiResponse<{ authCode: string }>;
 
 export type SignUpResponse = ApiResponse<string>;
 
 export type WithDrawResponse = ApiResponse<string>;
+
+export type UpdateMyInfoResponse = ApiResponse<string>;

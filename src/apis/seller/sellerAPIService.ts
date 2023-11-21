@@ -3,6 +3,8 @@ import {
   EmailCheckResponse,
   SignUpParams,
   SignUpResponse,
+  UpdateMyInfoParams,
+  UpdateMyInfoResponse,
   WithDrawResponse,
 } from "./sellerAPIService.types";
 
@@ -29,6 +31,11 @@ class SellerAPIService extends APIService {
 
   async withdraw() {
     const { data } = await this.delete<WithDrawResponse>("/sellers");
+    return data;
+  }
+
+  async updateMyInfo(params: UpdateMyInfoParams) {
+    const { data } = await this.patch<UpdateMyInfoResponse>("/sellers", params);
     return data;
   }
 }

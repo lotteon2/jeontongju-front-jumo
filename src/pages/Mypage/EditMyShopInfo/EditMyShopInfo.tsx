@@ -11,11 +11,7 @@ const EditMyShopInfo = () => {
     mode: "onBlur",
   });
 
-  const { handleWithdraw } = useEditMyShopInfo();
-
-  const onSubmit = handleSubmit((data: EditMyShopInfoFieldType) => {
-    console.log(data);
-  });
+  const { handleWithdraw, onSubmit } = useEditMyShopInfo();
 
   return (
     <StyledEditMyShopInfoPage>
@@ -62,11 +58,11 @@ const EditMyShopInfo = () => {
         </Form.Item>
         <Form.Item<EditMyShopInfoFieldType>
           label="주모 대표 번호"
-          name="storeDescription"
+          name="storePhoneNumber"
           rules={[{ required: true, message: "주모 대표 번호를 입력해주세요" }]}
         >
           <Controller
-            name="storeDescription"
+            name="storePhoneNumber"
             control={control}
             render={({ field }) => (
               <Input
