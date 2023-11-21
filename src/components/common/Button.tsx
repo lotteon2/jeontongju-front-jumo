@@ -44,7 +44,7 @@ const StyledAntdButton = styled(AntdBtn)<{
   width: string;
   btntype: "positive" | "negative" | "cancel";
 }>`
-  color: white;
+  color: ${(props) => (props.btntype === "positive" ? "white" : "black")};
   display: flex;
   align-items: center;
   justify-content: center;

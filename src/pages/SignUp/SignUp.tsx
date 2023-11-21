@@ -104,7 +104,7 @@ const SignUp = () => {
         ]}
       >
         <Input.Password
-          placeholder="영문, 숫자, 특수문자를 모두 포함하여 10자 이내로 입력해주세요."
+          placeholder="영문, 숫자, 특수문자를 모두 포함하여 8자이상 16자 이내로 입력해주세요."
           value={password as string}
           onChange={(e) => setPassword(e.target.value)}
         />

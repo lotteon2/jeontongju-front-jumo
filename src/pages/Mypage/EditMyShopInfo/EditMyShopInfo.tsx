@@ -1,7 +1,9 @@
 import { Form, Input } from "antd";
 import { useForm, Controller } from "react-hook-form";
+import styled from "@emotion/styled";
 import { EditMyShopInfoFieldType } from "../../../constants/EditMyShopInfoFieldType";
 import Button from "../../../components/common/Button";
+import { useEditMyShopInfo } from "./EditMyShopInfo.hooks";
 
 const EditMyShopInfo = () => {
   const [form] = Form.useForm();
@@ -9,12 +11,10 @@ const EditMyShopInfo = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = handleSubmit((data: EditMyShopInfoFieldType) => {
-    console.log(data);
-  });
+  const { handleWithdraw, onSubmit } = useEditMyShopInfo();
 
   return (
-    <div>
+    <StyledEditMyShopInfoPage>
       <Form
         form={form}
         name="basic"
@@ -58,11 +58,11 @@ const EditMyShopInfo = () => {
         </Form.Item>
         <Form.Item<EditMyShopInfoFieldType>
           label="주모 대표 번호"
-          name="storeDescription"
+          name="storePhoneNumber"
           rules={[{ required: true, message: "주모 대표 번호를 입력해주세요" }]}
         >
           <Controller
-            name="storeDescription"
+            name="storePhoneNumber"
             control={control}
             render={({ field }) => (
               <Input
@@ -72,6 +72,8 @@ const EditMyShopInfo = () => {
             )}
           />
         </Form.Item>
+      </Form>
+      <StyledBtnBottom>
         <Button
           content="수정하기"
           width="10rem"
@@ -79,8 +81,30 @@ const EditMyShopInfo = () => {
           handleClick={onSubmit}
           htmlType="submit"
         />
-      </Form>
-    </div>
+        <Button
+          content="탈퇴하기"
+          width="10rem"
+          Key="withdrawMyShop"
+          handleClick={handleWithdraw}
+          btntype="cancel"
+          htmlType="submit"
+        />
+      </StyledBtnBottom>
+    </StyledEditMyShopInfoPage>
   );
 };
 export default EditMyShopInfo;
+
+const StyledEditMyShopInfoPage = styled.div`
+  margin: 0 auto;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StyledBtnBottom = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex-direction: row-reverse;
+`;
