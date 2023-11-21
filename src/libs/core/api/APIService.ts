@@ -27,8 +27,6 @@ class APIService {
     "Access-Control-Allow-Credentials": "true",
   };
 
-  withCredentials = true;
-
   static $instance: APIService;
 
   public static shared<T extends APIService>(): T {
@@ -64,7 +62,7 @@ class APIService {
       method,
       headers,
       url: `${this.baseUrl}/${trimLeftSlash(path)}`,
-      withCredentials: true,
+      withCredentials: false,
     };
 
     if (["POST", "PUT", "DELETE", "PATCH"].includes(method)) {
