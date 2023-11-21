@@ -3,6 +3,7 @@ import {
   EmailCheckResponse,
   SignUpParams,
   SignUpResponse,
+  WithDrawResponse,
 } from "./sellerAPIService.types";
 
 const BASE_URL = `${process.env.REACT_APP_API_URL}/seller-service/api`;
@@ -23,6 +24,11 @@ class SellerAPIService extends APIService {
       "/sign-up/email/auth",
       { email },
     );
+    return data;
+  }
+
+  async withdraw() {
+    const { data } = await this.delete<WithDrawResponse>("/sellers");
     return data;
   }
 }

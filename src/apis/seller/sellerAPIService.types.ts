@@ -20,3 +20,5 @@ export interface SignUpParams {
 export type EmailCheckResponse = ApiResponse<{ authCode: string }>;
 
 export type SignUpResponse = ApiResponse<string>;
+
+export type WithDrawResponse = ApiResponse<string>;
