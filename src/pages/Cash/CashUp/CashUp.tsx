@@ -1,10 +1,22 @@
 import react, { useRef } from "react";
 import styled from "@emotion/styled";
-import ReactToPrint, { useReactToPrint } from "react-to-print";
+import moment from "moment";
+import { useReactToPrint } from "react-to-print";
 import { DatePicker, DatePickerProps } from "antd";
 import Badge from "../../../components/common/Badge";
+import { useCashUpStore } from "../../../stores/Cash/CashUp/CashUpStore";
 
 const CashUp = () => {
+  const monthFormat = "YYYY-MM";
+  const { MonthPicker } = DatePicker;
+  const [searchMonth, setSearchMonth, searchYear, setSearchYear] =
+    useCashUpStore((state) => [
+      state.searchMonth,
+      state.dispatchSearchMonth,
+      state.searchYear,
+      state.dispatchSearchYear,
+    ]);
+
   const ref = useRef();
   const componentRef = useRef(null);
   const handlePrint = useReactToPrint({
@@ -13,18 +25,23 @@ const CashUp = () => {
 
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
     console.log(date, dateString);
+    setSearchYear(dateString.split("-")[0]);
+    setSearchMonth(dateString.split("-")[1]);
+    console.log(dateString.split("-")[0]);
   };
 
   return (
     <div>
       <StyledCashUpHeader>
-        <DatePicker
+        <MonthPicker
           onChange={onChange}
-          picker="month"
-          placeholder="연월을 선택해주세요"
+          format={monthFormat}
+          placeholder={`${searchYear}-${searchMonth}`}
         />
-        <Badge content="11월" />
-        <h3>000주모님의 11월 정산내역이에요.</h3>
+        <Badge content={`${searchMonth}월`} />
+        <h3>
+          000주모님의 {searchYear}-{searchMonth} 정산내역이에요.
+        </h3>
         <button type="button" onClick={handlePrint}>
           인쇄하기
         </button>
