@@ -5,7 +5,27 @@ import { SignUpFieldType } from "../../constants/SignUpFieldType";
 import Button from "../../components/common/Button";
 
 const SignUp = () => {
-  const { email, setEmail, password, setPassword, onFinish } = useSignUp();
+  const {
+    isValidEmail,
+    handleCheckEmail,
+    email,
+    setEmail,
+    emailCode,
+    setEmailCode,
+    password,
+    setPassword,
+    checkPassword,
+    setCheckPassword,
+    storeName,
+    setStoreName,
+    storeDescription,
+    setStoreDescription,
+    storePhoneNumber,
+    setStorePhoneNumber,
+    onFinish,
+    isValidEmailCode,
+    handleCheckEmailCode,
+  } = useSignUp();
 
   return (
     <Form
@@ -30,86 +50,116 @@ const SignUp = () => {
           <Button
             content="인증"
             Key="loginAdmin"
-            handleClick={onFinish}
+            handleClick={handleCheckEmail}
             htmlType="button"
           />
         </StyledInputBtn>
       </Form.Item>
-      <Form.Item<SignUpFieldType>
-        label="이메일 유효코드"
-        name="emailCode"
-        rules={[{ required: true, message: "이메일을 입력해주세요" }]}
-      >
-        <StyledInputBtn>
-          <Input
-            placeholder="이메일로 전송된 유효 코드를 입력해주세요."
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Button
-            content="확인"
-            Key="checkEmailCode"
-            handleClick={onFinish}
-            htmlType="button"
-          />
-        </StyledInputBtn>
-      </Form.Item>
+      {isValidEmail && (
+        <>
+          <StyledMessage>
+            이메일로 유효 코드가 발송되었어요. 확인해주세요.
+          </StyledMessage>
+          <Form.Item<SignUpFieldType>
+            label="이메일 유효코드"
+            name="emailCode"
+            rules={[{ required: true, message: "이메일을 입력해주세요" }]}
+          >
+            <StyledInputBtn>
+              <Input
+                placeholder="이메일로 전송된 유효 코드를 입력해주세요."
+                value={emailCode}
+                onChange={(e) => setEmailCode(e.target.value)}
+              />
+              <Button
+                content="확인"
+                Key="checkEmailCode"
+                handleClick={handleCheckEmailCode}
+                htmlType="button"
+              />
+            </StyledInputBtn>
+          </Form.Item>
+        </>
+      )}
+      {emailCode.length > 0 && isValidEmailCode && (
+        <StyledMessage>이메일 인증이 완료되었어요.</StyledMessage>
+      )}
+      {emailCode.length > 0 && !isValidEmailCode && (
+        <StyledMessage>유효코드가 일치하지 않아요.</StyledMessage>
+      )}
 
       <Form.Item<SignUpFieldType>
         label="비밀번호"
         name="password"
-        rules={[{ required: true, message: "비밀번호를 입력해주세요" }]}
+        rules={[
+          {
+            required: true,
+            message: "비밀번호를 입력해주세요",
+            min: 8,
+            max: 16,
+            pattern: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/,
+          },
+        ]}
       >
         <Input.Password
-          placeholder="비밀번호 조건 추가."
+          placeholder="영문, 숫자, 특수문자를 모두 포함하여 10자 이내로 입력해주세요."
           value={password as string}
           onChange={(e) => setPassword(e.target.value)}
         />
       </Form.Item>
       <Form.Item<SignUpFieldType>
         label="비밀번호 확인"
-        name="passwordCheck"
+        name="checkPassword"
         rules={[
-          { required: true, message: "비밀번호를 다시 한 번 입력해주세요." },
+          {
+            required: true,
+            message: "비밀번호를 다시 한 번 입력해주세요.",
+            min: 8,
+            max: 16,
+            pattern: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/,
+          },
         ]}
       >
         <Input.Password
           placeholder="비밀번호를 다시 한 번 입력해주세요."
-          value={password as string}
-          onChange={(e) => setPassword(e.target.value)}
+          value={checkPassword as string}
+          onChange={(e) => setCheckPassword(e.target.value)}
         />
       </Form.Item>
+      {password !== checkPassword && (
+        <StyledMessage>비밀번호가 일치하지 않아요.</StyledMessage>
+      )}
       <Form.Item<SignUpFieldType>
         label="주모 이름"
-        name="name"
+        name="storeName"
         rules={[{ required: true, message: "주모 이름을 입력해주세요." }]}
       >
         <Input
           placeholder="고객들에게 보여질 주모 이름을 입력해주세요."
-          value={password as string}
-          onChange={(e) => setPassword(e.target.value)}
+          value={storeName}
+          onChange={(e) => setStoreName(e.target.value)}
         />
       </Form.Item>
       <Form.Item<SignUpFieldType>
         label="주모 소개"
-        name="desc"
+        name="storeDescription"
         rules={[{ required: true, message: "주모소개를 입력해주세요." }]}
       >
         <Input
           placeholder="고객들에게 보여질 주모 소개를 입력해주세요."
-          value={password as string}
-          onChange={(e) => setPassword(e.target.value)}
+          value={storeDescription as string}
+          onChange={(e) => setStoreDescription(e.target.value)}
         />
       </Form.Item>
       <Form.Item<SignUpFieldType>
         label="주모 대표 번호"
-        name="tel"
+        name="storePhoneNumber"
         rules={[{ required: true, message: "주모 대표번호를 입력해주세요." }]}
       >
         <Input
           value={password as string}
           placeholder="고객이 문의할 대표 번호를 입력해주세요.(숫자만)"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => setStorePhoneNumber(e.target.value)}
         />
       </Form.Item>
       <Button
@@ -117,6 +167,7 @@ const SignUp = () => {
         Key="loginAdmin"
         isfull
         handleClick={onFinish}
+        disabled={password !== checkPassword}
         htmlType="submit"
       />
     </Form>
@@ -143,4 +194,10 @@ const StyledLogo = styled.div`
 const StyledInputBtn = styled.div`
   display: flex;
   gap: 1rem;
+`;
+
+const StyledMessage = styled.div`
+  color: var(--primary-bronze);
+  margin-top: -1rem;
+  margin-bottom: 1rem;
 `;

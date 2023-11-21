@@ -2,10 +2,9 @@ export type SignUpFieldType = {
   email?: string;
   emailCode?: string;
   password?: string;
-  passwordCheck?: string;
-  name?: string;
-  desc?: string;
-  favicon?: string;
+  checkPassword: string;
+  storeName: string;
+  storeDescription: string;
+  storePhoneNumber: string;
   tel?: string;
-  isSulbing?: boolean;
 };
