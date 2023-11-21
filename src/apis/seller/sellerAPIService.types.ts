@@ -31,3 +31,7 @@ export type SignUpResponse = ApiResponse<string>;
 export type WithDrawResponse = ApiResponse<string>;
 
 export type UpdateMyInfoResponse = ApiResponse<string>;
+
+export type CheckMyPasswordResponse = ApiResponse<string>;
+
+export type UpdateMyPasswordResponse = ApiResponse<string>;
