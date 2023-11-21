@@ -1,6 +1,7 @@
 import react, { useRef } from "react";
 import styled from "@emotion/styled";
 import ReactToPrint, { useReactToPrint } from "react-to-print";
+import { DatePicker, DatePickerProps } from "antd";
 import Badge from "../../../components/common/Badge";
 
 const CashUp = () => {
@@ -10,9 +11,18 @@ const CashUp = () => {
     content: () => componentRef.current,
   });
 
+  const onChange: DatePickerProps["onChange"] = (date, dateString) => {
+    console.log(date, dateString);
+  };
+
   return (
     <div>
       <StyledCashUpHeader>
+        <DatePicker
+          onChange={onChange}
+          picker="month"
+          placeholder="연월을 선택해주세요"
+        />
         <Badge content="11월" />
         <h3>000주모님의 11월 정산내역이에요.</h3>
         <button type="button" onClick={handlePrint}>
