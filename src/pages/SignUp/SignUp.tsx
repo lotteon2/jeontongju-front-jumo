@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { useSignUp } from "./SignUp.hooks";
 import { SignUpFieldType } from "../../constants/SignUpFieldType";
 import Button from "../../components/common/Button";
+import AdultValid from "../../assets/images/adultValid.png";
 
 const SignUp = () => {
   const {
@@ -25,6 +26,7 @@ const SignUp = () => {
     onFinish,
     isValidEmailCode,
     handleCheckEmailCode,
+    handleAdultValid,
   } = useSignUp();
 
   return (
@@ -162,6 +164,7 @@ const SignUp = () => {
           onChange={(e) => setStorePhoneNumber(e.target.value)}
         />
       </Form.Item>
+      <StyledAdultValidContainer onClick={handleAdultValid} />
       <Button
         content="주모 가입 신청하기"
         Key="loginAdmin"
@@ -175,22 +178,6 @@ const SignUp = () => {
 };
 export default SignUp;
 
-const StyledLogo = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 3rem;
-  gap: 2rem;
-
-  .main_logo {
-    font-weight: 700;
-  }
-
-  @media (max-width: 576px) {
-    flex-direction: column;
-  }
-`;
-
 const StyledInputBtn = styled.div`
   display: flex;
   gap: 1rem;
@@ -199,5 +186,21 @@ const StyledInputBtn = styled.div`
 const StyledMessage = styled.div`
   color: var(--primary-bronze);
   margin-top: -1rem;
+  margin-bottom: 1rem;
+`;
+
+const StyledAdultValidContainer = styled.div`
+  width: 100%;
+  height: 20rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url(${AdultValid});
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+  cursor: pointer;
   margin-bottom: 1rem;
 `;

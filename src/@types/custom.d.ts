@@ -22,3 +22,11 @@ declare module "*.mp4" {
   const content: string;
   export default content;
 }
+
+declare global {
+  interface Window {
+    IMP: string;
+  }
+}
+
+const IMP = Window.IMP || null;

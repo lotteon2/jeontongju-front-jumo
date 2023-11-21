@@ -38,6 +38,30 @@ export const useSignUp = () => {
     }
   };
 
+  const callback = (response) => {
+    const { success, error_msg: errorMsg, imp_uid: responseImpUid } = response;
+
+    if (success) {
+      console.log(response);
+      setImpUid(responseImpUid);
+      Toast(true, "성인인증이 완료되었습니다");
+    } else {
+      Toast(false, errorMsg);
+    }
+  };
+
+  const handleAdultValid = async () => {
+    if (!window.IMP) return;
+    const { IMP } = window;
+    IMP.init(process.env.REACT_APP_INICIS);
+    const data = {
+      pg: "inicis_unified",
+      popup: true,
+    };
+
+    IMP.certification(data, callback);
+  };
+
   const onFinish = async () => {
     if (password !== checkPassword) {
       return;
@@ -46,6 +70,17 @@ export const useSignUp = () => {
     if (password !== checkPassword) {
       return;
     }
+
+    if (
+      !email ||
+      !password ||
+      !storeName ||
+      !storeDescription ||
+      !storeImageUrl ||
+      !storePhoneNumber ||
+      !impUid
+    )
+      return;
 
     const data = await sellerApi.signUp({
       email,
@@ -84,5 +119,6 @@ export const useSignUp = () => {
     isValidEmail,
     handleCheckEmailCode,
     isValidEmailCode,
+    handleAdultValid,
   };
 };
