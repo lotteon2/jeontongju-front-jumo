@@ -1,4 +1,6 @@
-import { SNACK } from "../../constants/ProductType/SnackType";
+import { CONCEPT } from '../../constants/ProductType/ConceptType';
+import { RAW_MATERIAL } from '../../constants/ProductType/MaterialType';
+import { SNACK } from '../../constants/ProductType/SnackType';
 
 interface ApiResponse<T> {
   code: number;
@@ -16,22 +18,22 @@ export interface RegisterProductParams {
   breweryName: string;
   breweryZonecode: string;
   breweryAddress: string;
-  breweryAddressDetails: string;
+  breweryAddressDetails?: string;
   manufacturer: string;
   productPrice: number;
   registeredQuantity: number;
   productDetailsImageUrl: string;
   categoryId: number;
-  taste: {
+  taste?: {
     sour: 4;
     sweet: 2;
     scent: 1;
     carbonation: 4;
     body: 1;
   };
-  rawMaterial: ["RICE"];
-  food: (typeof SNACK)[];
-  concept: ["CAMPING"];
+  rawMaterial?: (keyof typeof RAW_MATERIAL)[];
+  food?: (typeof SNACK)[];
+  concept?: (keyof typeof CONCEPT)[];
 }
 
 export type RegisterProductResponse = ApiResponse<string>;

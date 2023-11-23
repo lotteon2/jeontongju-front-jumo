@@ -1,11 +1,9 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 interface BadgeProps {
   content: string;
 }
-const Badge: React.FC<BadgeProps> = ({ content }) => {
-  return <StyledBadge>{content}</StyledBadge>;
-};
+const Badge: React.FC<BadgeProps> = ({ content }) => <StyledBadge>{content}</StyledBadge>;
 export default Badge;
 
 const StyledBadge = styled.div`

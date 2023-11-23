@@ -1,12 +1,14 @@
-import { Form, Input, Modal, Radio } from "antd";
-import styled from "@emotion/styled";
-import Table from "../../../components/common/Table";
+import {
+  Form, Input, Modal, Radio,
+} from 'antd';
+import styled from '@emotion/styled';
+import Table from '../../../components/common/Table';
 import {
   useProductListTable,
   useProductUpdateModal,
-} from "./ProductList.hooks";
-import Button from "../../../components/common/Button";
-import { useUpdateProductStore } from "../../../stores/UpdateProduct/UpdateProductStore";
+} from './ProductList.hooks';
+import Button from '../../../components/common/Button';
+import { useUpdateProductStore } from '../../../stores/UpdateProduct/UpdateProductStore';
 
 const ProductList = () => {
   const {
@@ -82,33 +84,27 @@ const ProductList = () => {
             <div>상품 가격:</div>
             <Input
               value={productPrice}
-              onChange={(e) =>
-                setProductPrice(e.target.value as unknown as number)
-              }
+              onChange={(e) => setProductPrice(e.target.value as unknown as number)}
             />
           </StyledInputContainer>
           <StyledInputContainer>
             <div>상품 재고:</div>
             <Input
               value={productStock}
-              onChange={(e) =>
-                setProductStock(e.target.value as unknown as number)
-              }
+              onChange={(e) => setProductStock(e.target.value as unknown as number)}
             />
           </StyledInputContainer>
           <StyledInputContainer>
             <div>공개 여부:</div>
             <Radio.Group
-              style={{ width: "100%" }}
-              value={productVisibility ? "true" : "value"}
+              style={{ width: '100%' }}
+              value={productVisibility ? 'true' : 'value'}
             >
               <Radio
                 value="true"
                 name="visibility"
                 checked={productVisibility === true}
-                onChange={(e) =>
-                  setProductVisibility(e.target.value === "true")
-                }
+                onChange={(e) => setProductVisibility(e.target.value === 'true')}
               >
                 공개
               </Radio>
@@ -116,9 +112,7 @@ const ProductList = () => {
                 value="false"
                 name="visibility"
                 checked={productVisibility === false}
-                onChange={(e) =>
-                  setProductVisibility(e.target.value === "true")
-                }
+                onChange={(e) => setProductVisibility(e.target.value === 'true')}
               >
                 비공개
               </Radio>

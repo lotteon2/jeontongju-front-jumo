@@ -3,9 +3,9 @@ import {
   useMutation as useOriginalMutation,
   UseMutationOptions,
   UseMutationResult,
-} from "react-query";
+} from 'react-query';
 
-import { ErrorModel } from "../models";
+import { ErrorModel } from '../models';
 
 export function useMutation<
   TData,

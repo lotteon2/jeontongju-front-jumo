@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { sellerApi } from "../../../apis/seller/sellerAPIService";
-import { Toast } from "../../../components/common/Toast";
+import { useState } from 'react';
+import { sellerApi } from '../../../apis/seller/sellerAPIService';
+import { Toast } from '../../../components/common/Toast';
 
 export const useEditMyPassword = () => {
   const [originalPassword, setOriginalPassword] = useState<string>(null);
@@ -12,18 +12,18 @@ export const useEditMyPassword = () => {
 
   const updateMyPassword = async () => {
     if (newPassword !== checkPassword) {
-      Toast(false, "입력한 두 비밀번호가 일치하지 않습니다.");
+      Toast(false, '입력한 두 비밀번호가 일치하지 않습니다.');
       return;
     }
     if (!passwordRegex.test(newPassword)) {
       Toast(
         false,
-        "영문, 숫자, 특수문자를 모두 포함하여 8자이상 16자 이내로 입력해주세요.",
+        '영문, 숫자, 특수문자를 모두 포함하여 8자이상 16자 이내로 입력해주세요.',
       );
     } else {
       await sellerApi.updateMyPassword(newPassword).then((res) => {
         if (res.code === 200) {
-          Toast(true, "비밀번호 수정이 완료되었어요.");
+          Toast(true, '비밀번호 수정이 완료되었어요.');
         }
       });
     }
@@ -31,7 +31,7 @@ export const useEditMyPassword = () => {
 
   const handleCheckMyPassword = async () => {
     if (!originalPassword) {
-      Toast(false, "기존 비밀번호를 입력해주세요");
+      Toast(false, '기존 비밀번호를 입력해주세요');
       return;
     }
 

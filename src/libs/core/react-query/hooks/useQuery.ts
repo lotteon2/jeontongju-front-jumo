@@ -4,9 +4,9 @@ import {
   UseQueryOptions,
   UseQueryResult,
   QueryFunction,
-} from "react-query";
+} from 'react-query';
 
-import { ErrorModel } from "../models";
+import { ErrorModel } from '../models';
 
 export function useQuery<
   TQueryFnData = unknown,

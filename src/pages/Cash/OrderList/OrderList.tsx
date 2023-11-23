@@ -1,8 +1,10 @@
-import { DatePicker, Form, Input, Select, Tooltip } from "antd";
-import styled from "@emotion/styled";
-import { InfoCircleOutlined } from "@ant-design/icons";
-import Table from "../../../components/common/Table";
-import { useOrderList } from "./OrderList.hooks";
+import {
+  DatePicker, Form, Input, Select, Tooltip,
+} from 'antd';
+import styled from '@emotion/styled';
+import { InfoCircleOutlined } from '@ant-design/icons';
+import Table from '../../../components/common/Table';
+import { useOrderList } from './OrderList.hooks';
 
 const OrderList = () => {
   const { orderListData, columns } = useOrderList();

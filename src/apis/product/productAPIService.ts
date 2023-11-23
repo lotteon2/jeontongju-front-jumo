@@ -1,8 +1,8 @@
-import APIService from "../../libs/core/api/APIService";
+import APIService from '../../libs/core/api/APIService';
 import {
   RegisterProductParams,
   RegisterProductResponse,
-} from "./productAPIService.types";
+} from './productAPIService.types';
 
 const BASE_URL = `${process.env.REACT_APP_API_URL}/product-service/api`;
 
@@ -14,7 +14,7 @@ class ProductAPIService extends APIService {
 
   async registerProduct(params: RegisterProductParams) {
     const { data } = await this.post<RegisterProductResponse>(
-      "/products",
+      '/products',
       params,
     );
     return data;

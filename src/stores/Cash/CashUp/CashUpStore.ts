@@ -1,6 +1,6 @@
-import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
-import { CashUpDispatcher, CashUpState } from "./CashUpStore.types";
+import { create } from 'zustand';
+import { immer } from 'zustand/middleware/immer';
+import { CashUpDispatcher, CashUpState } from './CashUpStore.types';
 
 const initialState: CashUpState = {
   searchYear: new Date().getFullYear().toString(),

@@ -1,5 +1,5 @@
-import APIService from "../../libs/core/api/APIService";
-import { LoginParams, LoginResponse } from "./authAPIService.types";
+import APIService from '../../libs/core/api/APIService';
+import { LoginParams, LoginResponse } from './authAPIService.types';
 
 const BASE_URL = `${process.env.REACT_APP_API_URL}/authentication-service/api`;
 
@@ -10,7 +10,7 @@ class AuthAPIService extends APIService {
   }
 
   async login(params: LoginParams) {
-    const { data } = await this.post<LoginResponse>("/sign-in", params);
+    const { data } = await this.post<LoginResponse>('/sign-in', params);
     return data;
   }
 }

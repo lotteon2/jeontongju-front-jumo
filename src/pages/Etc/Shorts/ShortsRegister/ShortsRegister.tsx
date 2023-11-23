@@ -1,4 +1,2 @@
-const ShortsRegister = () => {
-  return <div>SHorts Register</div>;
-};
+const ShortsRegister = () => <div>SHorts Register</div>;
 export default ShortsRegister;

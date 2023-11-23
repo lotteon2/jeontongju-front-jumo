@@ -1,6 +1,6 @@
-import { Input } from "antd";
-import styled from "@emotion/styled";
-import Button from "./Button";
+import { Input } from 'antd';
+import styled from '@emotion/styled';
+import Button from './Button';
 
 declare global {
   interface Window {
@@ -15,13 +15,12 @@ interface IAddr {
 
 const DaumAddress = () => {
   const onClickAddr = () => {
+    console.log(window);
     new window.daum.Postcode({
       oncomplete(data: IAddr) {
-        (document.getElementById("addr") as HTMLInputElement).value =
-          data.address;
-        (document.getElementById("zipNo") as HTMLInputElement).value =
-          data.zonecode;
-        document.getElementById("addrDetail")?.focus();
+        (document.getElementById('addr') as HTMLInputElement).value = data.address;
+        (document.getElementById('zipNo') as HTMLInputElement).value = data.zonecode;
+        document.getElementById('addrDetail')?.focus();
       },
     }).open();
   };

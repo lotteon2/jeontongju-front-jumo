@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
-import { Modal } from "antd";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import Button from "../common/Button";
+import styled from '@emotion/styled';
+import { Modal } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import Button from '../common/Button';
 
 const LiveContainer = ({ id, title }: { id: number; title: string }) => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const LiveContainer = ({ id, title }: { id: number; title: string }) => {
   };
 
   const handleOk = () => {
-    navigate("/etc/live/register");
+    navigate('/etc/live/register');
     setIsModalOpen(false);
     console.log(isModalOpen);
   };

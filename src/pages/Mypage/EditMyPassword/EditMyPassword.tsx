@@ -1,7 +1,7 @@
-import { Input } from "antd";
-import styled from "@emotion/styled";
-import Button from "../../../components/common/Button";
-import { useEditMyPassword } from "./EditMyPassword.hooks";
+import { Input } from 'antd';
+import styled from '@emotion/styled';
+import Button from '../../../components/common/Button';
+import { useEditMyPassword } from './EditMyPassword.hooks';
 
 const EditMyPassword = () => {
   const {

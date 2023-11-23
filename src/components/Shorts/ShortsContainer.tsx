@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { useNavigate } from "react-router-dom";
+import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
 
 interface ShortsContainerProps {
   shortsId: number;
@@ -24,7 +24,12 @@ const ShortsContainer: React.FC<ShortsContainerProps> = ({
         {!isActivate && <StyledInvisibleText>비공개</StyledInvisibleText>}
       </StyledImgContainer>
       <h3>복순이가 복순복순</h3>
-      <div>조회수 {shortsHits} 회</div>
+      <div>
+        조회수
+        {shortsHits}
+        {' '}
+        회
+      </div>
     </StyledShortsContainer>
   );
 };
@@ -43,7 +48,7 @@ const StyledImgContainer = styled.div<{ isActivate: boolean }>`
   width: 10vw;
   height: 30vh;
   background: var(
-    ${(props) => (props.isActivate ? "--primary-violet" : "--primary-gray")}
+    ${(props) => (props.isActivate ? '--primary-violet' : '--primary-gray')}
   );
   border-radius: 12px;
 `;

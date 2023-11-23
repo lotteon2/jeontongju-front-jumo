@@ -39,11 +39,5 @@
       }
     ]
   },
-  "extends": [
-    "prettier",
-    "airbnb",
-    "airbnb/hooks",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
-  ]
+  "extends": ["airbnb", "airbnb/hooks", "plugin:@typescript-eslint/recommended"]
 }

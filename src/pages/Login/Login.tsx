@@ -1,11 +1,13 @@
-import { Input, Form } from "antd";
-import styled from "@emotion/styled";
-import { LoginFieldType } from "../../constants/LoginFieldType";
-import { useLogin } from "./Login.hooks";
-import Button from "../../components/common/Button";
+import { Input, Form } from 'antd';
+import styled from '@emotion/styled';
+import { LoginFieldType } from '../../constants/LoginFieldType';
+import { useLogin } from './Login.hooks';
+import Button from '../../components/common/Button';
 
 const Login = () => {
-  const { email, setEmail, password, setPassword, onFinish } = useLogin();
+  const {
+    email, setEmail, password, setPassword, onFinish,
+  } = useLogin();
   return (
     <>
       <Form
@@ -18,7 +20,7 @@ const Login = () => {
         <Form.Item<LoginFieldType>
           label="이메일"
           name="email"
-          rules={[{ required: true, message: "이메일을 입력해주세요" }]}
+          rules={[{ required: true, message: '이메일을 입력해주세요' }]}
         >
           <Input value={email} onChange={(e) => setEmail(e.target.value)} />
         </Form.Item>
@@ -26,7 +28,7 @@ const Login = () => {
         <Form.Item<LoginFieldType>
           label="비밀번호"
           name="password"
-          rules={[{ required: true, message: "비밀번호를 입력해주세요" }]}
+          rules={[{ required: true, message: '비밀번호를 입력해주세요' }]}
         >
           <Input.Password
             value={password as string}

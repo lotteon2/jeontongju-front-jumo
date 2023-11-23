@@ -1,4 +1,4 @@
-import axios, { HttpStatusCode } from "axios";
+import axios, { HttpStatusCode } from 'axios';
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 // 기본 API 요청 처리
@@ -7,7 +7,7 @@ const axiosApi = (baseURL: any) => {
     baseURL,
     withCredentials: false,
     headers: {
-      "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_URL}`,
+      'Access-Control-Allow-Origin': `${process.env.REACT_APP_API_URL}`,
     },
   });
   return instance;

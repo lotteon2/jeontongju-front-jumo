@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import { Navigate } from "react-router-dom";
-import { useMyInfoStore } from "../stores/MyInfo/MyInfoStore";
-import MainLayout from "../layouts/MainLayout";
-import { useGetMyInfoQuery } from "../queries/useGetMyInfoQuery";
+import { useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
+import { useMyInfoStore } from '../stores/MyInfo/MyInfoStore';
+import MainLayout from '../layouts/MainLayout';
+import { useGetMyInfoQuery } from '../queries/useGetMyInfoQuery';
 
 const AuthRoute = () => {
   const [

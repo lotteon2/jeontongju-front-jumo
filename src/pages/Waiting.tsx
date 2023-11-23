@@ -1,9 +1,9 @@
-import styled from "@emotion/styled";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import Button from "../components/common/Button";
-import { useMyInfoStore } from "../stores/MyInfo/MyInfoStore";
-import { useGetMyInfoQuery } from "../queries/useGetMyInfoQuery";
+import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import Button from '../components/common/Button';
+import { useMyInfoStore } from '../stores/MyInfo/MyInfoStore';
+import { useGetMyInfoQuery } from '../queries/useGetMyInfoQuery';
 
 const Waiting = () => {
   const navigate = useNavigate();
@@ -12,6 +12,8 @@ const Waiting = () => {
   const { data: myInfo } = useGetMyInfoQuery();
 
   useEffect(() => {
+    if (!myInfo) return;
+    console.log(myInfo);
     if (myInfo.data) dispatchIsApproved(myInfo.data.approvalState);
   }, [myInfo]);
   return (
@@ -22,7 +24,7 @@ const Waiting = () => {
         content="메인으로 가기"
         Key="goHome"
         isfull
-        handleClick={() => navigate("/")}
+        handleClick={() => navigate('/')}
       />
     </StyledWaiting>
   );

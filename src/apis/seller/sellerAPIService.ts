@@ -1,4 +1,4 @@
-import APIService from "../../libs/core/api/APIService";
+import APIService from '../../libs/core/api/APIService';
 import {
   CheckMyPasswordResponse,
   EmailCheckResponse,
@@ -9,7 +9,7 @@ import {
   UpdateMyInfoResponse,
   UpdateMyPasswordResponse,
   WithDrawResponse,
-} from "./sellerAPIService.types";
+} from './sellerAPIService.types';
 
 const BASE_URL = `${process.env.REACT_APP_API_URL}/seller-service/api`;
 
@@ -20,31 +20,31 @@ class SellerAPIService extends APIService {
   }
 
   async signUp(params: SignUpParams) {
-    const { data } = await this.post<SignUpResponse>("/sign-up", params);
+    const { data } = await this.post<SignUpResponse>('/sign-up', params);
     return data;
   }
 
   async emailCheck(email: string) {
     const { data } = await this.post<EmailCheckResponse>(
-      "/sign-up/email/auth",
+      '/sign-up/email/auth',
       { email },
     );
     return data;
   }
 
   async withdraw() {
-    const { data } = await this.delete<WithDrawResponse>("/sellers");
+    const { data } = await this.delete<WithDrawResponse>('/sellers');
     return data;
   }
 
   async updateMyInfo(params: UpdateMyInfoParams) {
-    const { data } = await this.patch<UpdateMyInfoResponse>("/sellers", params);
+    const { data } = await this.patch<UpdateMyInfoResponse>('/sellers', params);
     return data;
   }
 
   async checkMyPassword(password: string) {
     const { data } = await this.post<CheckMyPasswordResponse>(
-      "/sellers/password/auth",
+      '/sellers/password/auth',
       { originalPassword: password },
     );
     return data;
@@ -52,14 +52,14 @@ class SellerAPIService extends APIService {
 
   async updateMyPassword(password: string) {
     const { data } = await this.patch<UpdateMyPasswordResponse>(
-      "/sellers/password",
+      '/sellers/password',
       { newPassword: password },
     );
     return data;
   }
 
   async getMyInfo() {
-    const { data } = await this.get<GetMyInfoResponse>("/sellers/info");
+    const { data } = await this.get<GetMyInfoResponse>('/sellers/info');
     return data;
   }
 }

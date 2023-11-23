@@ -1,9 +1,9 @@
-import { LogoutOutlined, SettingOutlined } from "@ant-design/icons";
-import { LiaWineBottleSolid } from "react-icons/lia";
-import { Avatar, Dropdown } from "antd";
-import { useNavigate } from "react-router-dom";
-import styled from "@emotion/styled";
-import { useMyInfoStore } from "../../stores/MyInfo/MyInfoStore";
+import { LogoutOutlined, SettingOutlined } from '@ant-design/icons';
+import { LiaWineBottleSolid } from 'react-icons/lia';
+import { Avatar, Dropdown } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import styled from '@emotion/styled';
+import { useMyInfoStore } from '../../stores/MyInfo/MyInfoStore';
 
 const TopHeader = () => {
   const navigate = useNavigate();
@@ -13,31 +13,36 @@ const TopHeader = () => {
     state.storeImageUrl,
   ]);
   const handleLogout = () => {
-    localStorage.removeItem("accessToken");
+    localStorage.removeItem('accessToken');
     clear();
-    navigate("/init/login");
+    navigate('/init/login');
   };
 
   return (
     <StyledTopHeader>
-      <div>{storeName} 주모님</div>
+      <div>
+        {storeName}
+        {' '}
+        주모님
+      </div>
       <Dropdown
         menu={{
           items: [
             {
-              key: "setMyShopInfo",
+              key: 'setMyShopInfo',
               label: (
-                <button type="button" onClick={() => navigate("/edit/myshop")}>
-                  <SettingOutlined />샵 정보 수정하기
+                <button type="button" onClick={() => navigate('/edit/myshop')}>
+                  <SettingOutlined />
+                  샵 정보 수정하기
                 </button>
               ),
             },
             {
-              key: "setMyPassword",
+              key: 'setMyPassword',
               label: (
                 <button
                   type="button"
-                  onClick={() => navigate("/edit/myPassword")}
+                  onClick={() => navigate('/edit/myPassword')}
                 >
                   <SettingOutlined />
                   비밀번호 변경하기
@@ -45,7 +50,7 @@ const TopHeader = () => {
               ),
             },
             {
-              key: "setLogout",
+              key: 'setLogout',
               label: (
                 <button type="button" onClick={handleLogout}>
                   <LogoutOutlined />

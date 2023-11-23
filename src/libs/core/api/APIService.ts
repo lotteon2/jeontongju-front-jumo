@@ -3,7 +3,7 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
   Method,
-} from "axios";
+} from 'axios';
 
 export type Headers = Record<string, string>;
 
@@ -13,18 +13,17 @@ export interface APIResponse<T> {
   message: T;
 }
 
-const trimSlash = (str = "") => `${str}`.replace(/^\/+|\/+$/g, "");
-const trimLeftSlash = (str = "") =>
-  `${str}`.replace(/^\/+/g, "").replace(/\/+$/g, "/");
+const trimSlash = (str = '') => `${str}`.replace(/^\/+|\/+$/g, '');
+const trimLeftSlash = (str = '') => `${str}`.replace(/^\/+/g, '').replace(/\/+$/g, '/');
 
 class APIService {
   baseUrl: string;
 
   headers: Headers = {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "https://bitbox.kro.kr",
-    Authorization: localStorage.getItem("accessToken") || "",
-    "Access-Control-Allow-Credentials": "true",
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': 'https://bitbox.kro.kr',
+    Authorization: localStorage.getItem('accessToken') || '',
+    'Access-Control-Allow-Credentials': 'true',
   };
 
   static $instance: APIService;
@@ -65,7 +64,7 @@ class APIService {
       withCredentials: false,
     };
 
-    if (["POST", "PUT", "DELETE", "PATCH"].includes(method)) {
+    if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(method)) {
       options.data = params;
     } else {
       options.params = params;
@@ -85,23 +84,23 @@ class APIService {
   }
 
   get<R, P = unknown>(path: string, data?: P, config?: AxiosRequestConfig) {
-    return this.request<R, P>("GET", path, data, config);
+    return this.request<R, P>('GET', path, data, config);
   }
 
   post<R, P = unknown>(path: string, data?: P, config?: AxiosRequestConfig) {
-    return this.request<R, P>("POST", path, data, config);
+    return this.request<R, P>('POST', path, data, config);
   }
 
   put<R, P = unknown>(path: string, data?: P, config?: AxiosRequestConfig) {
-    return this.request<R, P>("PUT", path, data, config);
+    return this.request<R, P>('PUT', path, data, config);
   }
 
   delete<R, P = unknown>(path: string, data?: P, config?: AxiosRequestConfig) {
-    return this.request<R>("DELETE", path, data, config);
+    return this.request<R>('DELETE', path, data, config);
   }
 
   patch<R, P = unknown>(path: string, data?: P, config?: AxiosRequestConfig) {
-    return this.request<R, P>("PATCH", path, data, config);
+    return this.request<R, P>('PATCH', path, data, config);
   }
 }
 
@@ -109,9 +108,9 @@ export default APIService;
 
 /* eslint no-param-reassign: "off" */
 axios.interceptors.request.use((config) => {
-  config.headers["Content-Type"] = "application/json";
+  config.headers['Content-Type'] = 'application/json';
   config.headers.Authorization = `Bearer ${localStorage.getItem(
-    "accessToken",
+    'accessToken',
   )}`;
   return config;
 });

@@ -1,13 +1,13 @@
-import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
+import { create } from 'zustand';
+import { immer } from 'zustand/middleware/immer';
 import {
   MyInfoDispatcher,
   MyInfoState,
   categoryType,
-} from "./MyInfoStore.types";
+} from './MyInfoStore.types';
 
 const initialState: MyInfoState = {
-  isLogin: !!localStorage.getItem("accessToken"),
+  isLogin: !!localStorage.getItem('accessToken'),
   isApproved: false,
   storeImageUrl: null,
   storeName: null,

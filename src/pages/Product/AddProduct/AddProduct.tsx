@@ -1,41 +1,53 @@
-import { Form, Input, Select, Rate, SelectProps } from "antd";
-import { Controller, useForm } from "react-hook-form";
-import { LiaWineBottleSolid } from "react-icons/lia";
-import { AddProductFieldType } from "../../../constants/AddProductFieldType";
-import { useAddProduct } from "./AddProduct.hooks";
-import Button from "../../../components/common/Button";
-import DaumAddress from "../../../components/common/DaumAddress";
-import { SNACK } from "../../../constants/ProductType/SnackType";
+import {
+  Form, Input, Select, Rate, SelectProps,
+} from 'antd';
+import { Controller, useForm } from 'react-hook-form';
+import { LiaWineBottleSolid } from 'react-icons/lia';
+import { AddProductFieldType } from '../../../constants/AddProductFieldType';
+import { useAddProduct } from './AddProduct.hooks';
+import Button from '../../../components/common/Button';
+import DaumAddress from '../../../components/common/DaumAddress';
+import { SNACK } from '../../../constants/ProductType/SnackType';
+import { CONCEPT } from '../../../constants/ProductType/ConceptType';
+import { RAW_MATERIAL } from '../../../constants/ProductType/MaterialType';
+import { RegisterProductParams } from '../../../apis/product/productAPIService.types';
 
 const AddProduct = () => {
   const [form] = Form.useForm();
-  const { register, handleSubmit, control } = useForm<AddProductFieldType>({
-    mode: "onBlur",
+  const { register, handleSubmit, control } = useForm<RegisterProductParams>({
+    mode: 'onBlur',
     defaultValues: {
-      productName: "",
-      desc: "",
-      alcoholPercent: 0,
-      material: "",
-      sour: 0,
-      sweet: 0,
-      scent: 0,
-      body: 0,
-      carbonation: 0,
+      productName: null,
+      productDescription: null,
+      productThumbnailImageUrl: null,
+      productAlcoholDegree: 0,
+      productCapacity: 0,
+      breweryName: '',
+      breweryZonecode: '',
+      breweryAddress: '',
+      manufacturer: '',
+      productPrice: 0,
+      registeredQuantity: 0,
+      productDetailsImageUrl: '',
+      categoryId: 0,
+      rawMaterial: null,
+      food: null,
+      concept: null,
     },
   });
 
-  const onSubmit = handleSubmit((data: AddProductFieldType) => {
+  const onSubmit = handleSubmit((data: RegisterProductParams) => {
     console.log(data);
   });
 
-  const { email, setEmail, onFinish, password, setPassword } = useAddProduct();
-  const options: SelectProps["options"] = [];
-  Object.entries(SNACK).forEach(([key, value]) =>
-    options.push({ key, label: value }),
-  );
+  const {
+    email, setEmail, onFinish, password, setPassword,
+  } = useAddProduct();
+  const options: SelectProps['options'] = [];
+  Object.entries(SNACK).forEach(([key, value]) => options.push({ key, label: value }));
 
   const handleChange = (value: string | string[]) => {
-    console.log("here");
+    console.log('here');
     console.log(`Selected: ${value}`);
   };
 
@@ -45,14 +57,14 @@ const AddProduct = () => {
       name="basic"
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
-      style={{ width: "100%" }}
+      style={{ width: '100%' }}
       onFinish={onSubmit}
       autoComplete="off"
     >
-      <Form.Item<AddProductFieldType>
+      <Form.Item<RegisterProductParams>
         label="상품 이름"
         name="productName"
-        rules={[{ required: true, message: "상품 이름을 입력해주세요" }]}
+        rules={[{ required: true, message: '상품 이름을 입력해주세요' }]}
       >
         <Controller
           name="productName"
@@ -65,13 +77,13 @@ const AddProduct = () => {
           )}
         />
       </Form.Item>
-      <Form.Item<AddProductFieldType>
+      <Form.Item<RegisterProductParams>
         label="상품 설명"
-        name="desc"
-        rules={[{ required: true, message: "상품 설명을 입력해주세요" }]}
+        name="productDescription"
+        rules={[{ required: true, message: '상품 설명을 입력해주세요' }]}
       >
         <Controller
-          name="desc"
+          name="productDescription"
           control={control}
           render={({ field }) => (
             <Input
@@ -81,13 +93,13 @@ const AddProduct = () => {
           )}
         />
       </Form.Item>
-      <Form.Item<AddProductFieldType>
+      <Form.Item<RegisterProductParams>
         label="정확한 도수"
-        name="alcoholPercent"
-        rules={[{ required: true, message: "정확한 도수를 입력해주세요" }]}
+        name="productAlcoholDegree"
+        rules={[{ required: true, message: '정확한 도수를 입력해주세요' }]}
       >
         <Controller
-          name="alcoholPercent"
+          name="productAlcoholDegree"
           control={control}
           render={({ field }) => (
             <Input
@@ -97,7 +109,23 @@ const AddProduct = () => {
           )}
         />
       </Form.Item>
-      <Form.Item<AddProductFieldType>
+      <Form.Item<RegisterProductParams>
+        label="상품 용량(ml)"
+        name="productCapacity"
+        rules={[{ required: true, message: '정확한 용량을 입력해주세요(ml)' }]}
+      >
+        <Controller
+          name="productCapacity"
+          control={control}
+          render={({ field }) => (
+            <Input
+              {...field}
+              placeholder="상품의 정확한 용량을 입력해주세요. (숫자만)"
+            />
+          )}
+        />
+      </Form.Item>
+      {/* <Form.Item<RegisterProductParams>
         label="대표 원료"
         name="material"
         rules={[{ required: true, message: "대표 원료를 선택해주세요." }]}
@@ -107,12 +135,12 @@ const AddProduct = () => {
           value={password as string}
           onChange={(e) => setPassword(e.target.value)}
         />
-      </Form.Item>
+      </Form.Item> */}
       <strong>상품의 맛을 선택해주세요</strong>
       <strong>(5점 만점, 1점:약함, 5점:강함)</strong>
-      <Form.Item<AddProductFieldType>
+      {/* <Form.Item<RegisterProductParams>
         label="신맛"
-        name="sour"
+        name="taste.sour"
         rules={[{ required: true, message: "신맛을 입력해주세요." }]}
       >
         <Rate character={<LiaWineBottleSolid />} />
@@ -145,29 +173,34 @@ const AddProduct = () => {
         rules={[{ required: true, message: "신맛을 입력해주세요." }]}
       >
         <Rate character={<LiaWineBottleSolid />} />
-      </Form.Item>
-      <Form.Item<AddProductFieldType>
+      </Form.Item> */}
+      <Form.Item<RegisterProductParams>
         label="양조장"
-        name="desc"
-        rules={[{ required: true, message: "양조장 이름을 입력해주세요." }]}
+        name="breweryName"
+        rules={[{ required: true, message: '양조장 이름을 입력해주세요.' }]}
       >
-        <Input
-          placeholder="양조장 이름을 정확하게 입력해주세요."
-          value={password as string}
-          onChange={(e) => setPassword(e.target.value)}
+        <Controller
+          name="breweryName"
+          control={control}
+          render={({ field }) => (
+            <Input {...field} placeholder="양조장 이름을 입력해주세요. " />
+          )}
         />
+        {/* <Input placeholder="양조장 이름을 정확하게 입력해주세요." /> */}
       </Form.Item>
       <strong>양조장 위치를 입력해주세요.</strong>
       <DaumAddress />
-      <Form.Item<AddProductFieldType>
+      <Form.Item<RegisterProductParams>
         label="제조사"
-        name="desc"
-        rules={[{ required: true, message: "제조사 이름을 입력해주세요." }]}
+        name="manufacturer"
+        rules={[{ required: true, message: '제조사 이름을 입력해주세요.' }]}
       >
-        <Input
-          placeholder="제조사 이름을 정확하게 입력해주세요."
-          value={password as string}
-          onChange={(e) => setPassword(e.target.value)}
+        <Controller
+          name="manufacturer"
+          control={control}
+          render={({ field }) => (
+            <Input {...field} placeholder="제조사 이름을 입력해주세요. " />
+          )}
         />
       </Form.Item>
       <h3>
@@ -180,8 +213,8 @@ const AddProduct = () => {
         size="middle"
         placeholder="술과 잘 어울리는 안주를 최대 2가지 골라주세요."
         onChange={handleChange}
-        defaultValue={["피자"]}
-        style={{ width: "100%", margin: "1rem 0" }}
+        defaultValue={['피자']}
+        style={{ width: '100%', margin: '1rem 0' }}
         options={options}
       />
       <strong>상품과 어울리는 태그를 최대 2가지 골라주세요.</strong>
@@ -191,7 +224,7 @@ const AddProduct = () => {
         placeholder="상품과 어울리는 태그를 최대 2가지 골라주세요."
         defaultValue={[]}
         onChange={handleChange}
-        style={{ width: "100%", margin: "1rem 0" }}
+        style={{ width: '100%', margin: '1rem 0' }}
         options={options}
       />
       <Button

@@ -1,16 +1,27 @@
-import styled from "@emotion/styled";
-import { Outlet, useNavigate, useNavigation } from "react-router-dom";
-import wallPaper from "../assets/images/login_paper.png";
+import styled from '@emotion/styled';
+import { Outlet, useNavigate, useNavigation } from 'react-router-dom';
+import { useEffect } from 'react';
+import wallPaper from '../assets/images/login_paper.png';
+import { useMyInfoStore } from '../stores/MyInfo/MyInfoStore';
 
 const LoginLayout = () => {
   const navigation = useNavigation();
   const navigate = useNavigate();
+  const [isLogin, isApproved] = useMyInfoStore((state) => [
+    state.isLogin,
+    state.isApproved,
+  ]);
+
+  useEffect(() => {
+    if (isLogin && isApproved) navigate('/');
+  });
+
   return (
     <StyledLoginLayout>
       <StyledLoginContainer
-        state={navigation.state === "loading" ? "loading" : ""}
+        state={navigation.state === 'loading' ? 'loading' : ''}
       >
-        <StyledLogo onClick={() => navigate("/")}>
+        <StyledLogo onClick={() => navigate('/')}>
           <h1 className="main_logo">전통주.</h1>
           <div className="sub_logo">전통주, 마침표를 찍다.</div>
         </StyledLogo>
@@ -39,7 +50,7 @@ const StyledLoginContainer = styled.div<{ state: string }>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  opacity: ${(props) => (props.state === "loading" ? "0%" : "100%")};
+  opacity: ${(props) => (props.state === 'loading' ? '0%' : '100%')};
   background-image: url(${wallPaper});
   background-repeat: no-repeat;
   background-position: center center;

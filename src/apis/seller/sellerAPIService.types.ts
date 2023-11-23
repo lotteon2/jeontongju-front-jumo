@@ -1,4 +1,4 @@
-import { categoryType } from "../../stores/MyInfo/MyInfoStore.types";
+import { categoryType } from '../../stores/MyInfo/MyInfoStore.types';
 
 interface ApiResponse<T> {
   code: number;

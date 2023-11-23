@@ -1,8 +1,8 @@
-import { Form, Input } from "antd";
-import styled from "@emotion/styled";
-import { useFindMyPassword } from "./FindMyPassword.hooks";
-import { LoginFieldType } from "../../constants/LoginFieldType";
-import Button from "../../components/common/Button";
+import { Form, Input } from 'antd';
+import styled from '@emotion/styled';
+import { useFindMyPassword } from './FindMyPassword.hooks';
+import { LoginFieldType } from '../../constants/LoginFieldType';
+import Button from '../../components/common/Button';
 
 const FindMyPassword = () => {
   const { email, setEmail, onFinish } = useFindMyPassword();
@@ -20,7 +20,7 @@ const FindMyPassword = () => {
         <Form.Item<LoginFieldType>
           label="이메일"
           name="email"
-          rules={[{ required: true, message: "이메일을 입력해주세요." }]}
+          rules={[{ required: true, message: '이메일을 입력해주세요.' }]}
         >
           <Input value={email} onChange={(e) => setEmail(e.target.value)} />
         </Form.Item>

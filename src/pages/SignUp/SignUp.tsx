@@ -1,9 +1,9 @@
-import { Input, Form, Radio } from "antd";
-import styled from "@emotion/styled";
-import { useSignUp } from "./SignUp.hooks";
-import { SignUpFieldType } from "../../constants/SignUpFieldType";
-import Button from "../../components/common/Button";
-import AdultValid from "../../assets/images/adultValid.png";
+import { Input, Form, Radio } from 'antd';
+import styled from '@emotion/styled';
+import { useSignUp } from './SignUp.hooks';
+import { SignUpFieldType } from '../../constants/SignUpFieldType';
+import Button from '../../components/common/Button';
+import AdultValid from '../../assets/images/adultValid.png';
 
 const SignUp = () => {
   const {
@@ -34,14 +34,14 @@ const SignUp = () => {
       name="basic"
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
-      style={{ maxWidth: 600, width: "100%" }}
+      style={{ maxWidth: 600, width: '100%' }}
       onFinish={onFinish}
       autoComplete="off"
     >
       <Form.Item<SignUpFieldType>
         label="이메일"
         name="email"
-        rules={[{ required: true, message: "이메일을 입력해주세요" }]}
+        rules={[{ required: true, message: '이메일을 입력해주세요' }]}
       >
         <StyledInputBtn>
           <Input
@@ -65,7 +65,7 @@ const SignUp = () => {
           <Form.Item<SignUpFieldType>
             label="이메일 유효코드"
             name="emailCode"
-            rules={[{ required: true, message: "이메일을 입력해주세요" }]}
+            rules={[{ required: true, message: '이메일을 입력해주세요' }]}
           >
             <StyledInputBtn>
               <Input
@@ -96,7 +96,7 @@ const SignUp = () => {
         rules={[
           {
             required: true,
-            message: "비밀번호를 입력해주세요",
+            message: '비밀번호를 입력해주세요',
             min: 8,
             max: 16,
             pattern: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/,
@@ -115,7 +115,7 @@ const SignUp = () => {
         rules={[
           {
             required: true,
-            message: "비밀번호를 다시 한 번 입력해주세요.",
+            message: '비밀번호를 다시 한 번 입력해주세요.',
             min: 8,
             max: 16,
             pattern: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/,
@@ -134,7 +134,7 @@ const SignUp = () => {
       <Form.Item<SignUpFieldType>
         label="주모 이름"
         name="storeName"
-        rules={[{ required: true, message: "주모 이름을 입력해주세요." }]}
+        rules={[{ required: true, message: '주모 이름을 입력해주세요.' }]}
       >
         <Input
           placeholder="고객들에게 보여질 주모 이름을 입력해주세요."
@@ -145,7 +145,7 @@ const SignUp = () => {
       <Form.Item<SignUpFieldType>
         label="주모 소개"
         name="storeDescription"
-        rules={[{ required: true, message: "주모소개를 입력해주세요." }]}
+        rules={[{ required: true, message: '주모소개를 입력해주세요.' }]}
       >
         <Input
           placeholder="고객들에게 보여질 주모 소개를 입력해주세요."
@@ -156,7 +156,7 @@ const SignUp = () => {
       <Form.Item<SignUpFieldType>
         label="주모 대표 번호"
         name="storePhoneNumber"
-        rules={[{ required: true, message: "주모 대표번호를 입력해주세요." }]}
+        rules={[{ required: true, message: '주모 대표번호를 입력해주세요.' }]}
       >
         <Input
           value={password as string}

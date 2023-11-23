@@ -3,15 +3,15 @@ export {
   Hydrate,
   QueryClient,
   QueryClientProvider,
-} from "react-query";
+} from 'react-query';
 
 export type {
   InfiniteData,
   QueryKey,
   QueryObserverResult,
   RefetchOptions,
-} from "react-query";
+} from 'react-query';
 
-export * from "./core";
-export * from "./hooks";
-export * from "./models";
+export * from './core';
+export * from './hooks';
+export * from './models';
