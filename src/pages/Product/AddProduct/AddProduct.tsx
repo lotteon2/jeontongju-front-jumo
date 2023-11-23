@@ -5,7 +5,7 @@ import { AddProductFieldType } from "../../../constants/AddProductFieldType";
 import { useAddProduct } from "./AddProduct.hooks";
 import Button from "../../../components/common/Button";
 import DaumAddress from "../../../components/common/DaumAddress";
-import { SNACK } from "../../../constants/SnackType";
+import { SNACK } from "../../../constants/ProductType/SnackType";
 
 const AddProduct = () => {
   const [form] = Form.useForm();
