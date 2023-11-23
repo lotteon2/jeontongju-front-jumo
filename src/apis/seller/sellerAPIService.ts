@@ -2,6 +2,7 @@ import APIService from "../../libs/core/api/APIService";
 import {
   CheckMyPasswordResponse,
   EmailCheckResponse,
+  GetMyInfoResponse,
   SignUpParams,
   SignUpResponse,
   UpdateMyInfoParams,
@@ -54,6 +55,11 @@ class SellerAPIService extends APIService {
       "/sellers/password",
       { newPassword: password },
     );
+    return data;
+  }
+
+  async getMyInfo() {
+    const { data } = await this.get<GetMyInfoResponse>("/sellers/info");
     return data;
   }
 }

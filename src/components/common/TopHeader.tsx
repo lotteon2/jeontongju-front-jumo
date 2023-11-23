@@ -8,7 +8,10 @@ import { useMyInfoStore } from "../../stores/MyInfo/MyInfoStore";
 const TopHeader = () => {
   const navigate = useNavigate();
   const { clear } = useMyInfoStore();
-
+  const [storeName, storeImageUrl] = useMyInfoStore((state) => [
+    state.storeName,
+    state.storeImageUrl,
+  ]);
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
     clear();
@@ -17,7 +20,7 @@ const TopHeader = () => {
 
   return (
     <StyledTopHeader>
-      <div>마덤보 주모님</div>
+      <div>{storeName} 주모님</div>
       <Dropdown
         menu={{
           items: [
@@ -53,10 +56,7 @@ const TopHeader = () => {
           ],
         }}
       >
-        <Avatar
-          src="https://avatars.githubusercontent.com/u/79967044?v=4"
-          size="large"
-        />
+        <Avatar src={storeImageUrl} size="large" />
       </Dropdown>
     </StyledTopHeader>
   );

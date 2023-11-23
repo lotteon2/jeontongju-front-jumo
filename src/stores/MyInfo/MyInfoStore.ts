@@ -7,7 +7,7 @@ import {
 } from "./MyInfoStore.types";
 
 const initialState: MyInfoState = {
-  isLogin: false,
+  isLogin: !!localStorage.getItem("accessToken"),
   isApproved: false,
   storeImageUrl: null,
   storeName: null,

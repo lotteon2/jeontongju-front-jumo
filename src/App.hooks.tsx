@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { createQueryClient } from "./libs/core/react-query/core";
 
 export const useAppMount = () => {

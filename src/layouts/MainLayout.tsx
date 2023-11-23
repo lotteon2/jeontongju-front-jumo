@@ -6,9 +6,39 @@ import Menu from "../components/common/Menu";
 import { useMyInfoStore } from "../stores/MyInfo/MyInfoStore";
 import Login from "../pages/Login/Login";
 import LoginLayout from "./LoginLayout";
+import { useGetMyInfoQuery } from "../queries/useGetMyInfoQuery";
 
 const MainLayout = () => {
   const navigate = useNavigation();
+  const [
+    isLogin,
+    isApproved,
+    setIsApproved,
+    setStoreImageUrl,
+    setStoreName,
+    setCategory,
+  ] = useMyInfoStore((state) => [
+    state.isLogin,
+    state.isApproved,
+    state.dispatchIsApproved,
+    state.dispatchStoreImageUrl,
+    state.dispatchStoreName,
+    state.dispatchCategory,
+  ]);
+
+  const { data: myInfo } = useGetMyInfoQuery();
+
+  useEffect(() => {
+    if (isLogin) {
+      if (myInfo.data !== undefined) {
+        setIsApproved(myInfo.data.approvalState);
+        setStoreImageUrl(myInfo.data.storeImageUrl);
+        setStoreName(myInfo.data.storeName);
+        setCategory(myInfo.data.category);
+      }
+    }
+  }, [myInfo]);
+
   return (
     <StyledMainLayout>
       <Menu />
