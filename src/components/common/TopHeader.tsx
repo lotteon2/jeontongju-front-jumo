@@ -3,17 +3,24 @@ import { LiaWineBottleSolid } from "react-icons/lia";
 import { Avatar, Dropdown } from "antd";
 import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
+import { useMyInfoStore } from "../../stores/MyInfo/MyInfoStore";
 
 const TopHeader = () => {
   const navigate = useNavigate();
-  // TODO: LOGOUT
+  const { clear } = useMyInfoStore();
+  const [storeName, storeImageUrl] = useMyInfoStore((state) => [
+    state.storeName,
+    state.storeImageUrl,
+  ]);
   const handleLogout = () => {
-    console.log("logout");
+    localStorage.removeItem("accessToken");
+    clear();
+    navigate("/init/login");
   };
 
   return (
     <StyledTopHeader>
-      <div>마덤보 주모님</div>
+      <div>{storeName} 주모님</div>
       <Dropdown
         menu={{
           items: [
@@ -49,10 +56,7 @@ const TopHeader = () => {
           ],
         }}
       >
-        <Avatar
-          src="https://avatars.githubusercontent.com/u/79967044?v=4"
-          size="large"
-        />
+        <Avatar src={storeImageUrl} size="large" />
       </Dropdown>
     </StyledTopHeader>
   );

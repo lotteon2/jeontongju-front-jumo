@@ -11,4 +11,7 @@ export interface LoginParams {
   password: string;
 }
 
-export type LoginResponse = ApiResponse<string>;
+export type LoginResponseData = {
+  accessToken: string;
+};
+export type LoginResponse = ApiResponse<LoginResponseData>;

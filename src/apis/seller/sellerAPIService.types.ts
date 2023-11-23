@@ -1,5 +1,6 @@
+import { categoryType } from "../../stores/MyInfo/MyInfoStore.types";
+
 interface ApiResponse<T> {
-  isSuccess: boolean;
   code: number;
   message: string;
   detail?: string;
@@ -14,7 +15,7 @@ export interface SignUpParams {
   storeImageUrl: string;
   storePhoneNumber: string;
   businessLicenseDocumentsUrl: string;
-  imp_uid: string;
+  impUid: string;
 }
 
 export interface UpdateMyInfoParams {
@@ -22,6 +23,14 @@ export interface UpdateMyInfoParams {
   storeDescription?: string;
   storeImageUrl?: string;
   storePhoneNUmber?: string;
+}
+
+export interface GetMyInfoResponseData {
+  sellerId: number;
+  storeName: string;
+  storeImageUrl: string;
+  approvalState: boolean;
+  category: categoryType[];
 }
 
 export type EmailCheckResponse = ApiResponse<{ authCode: string }>;
@@ -35,3 +44,5 @@ export type UpdateMyInfoResponse = ApiResponse<string>;
 export type CheckMyPasswordResponse = ApiResponse<string>;
 
 export type UpdateMyPasswordResponse = ApiResponse<string>;
+
+export type GetMyInfoResponse = ApiResponse<GetMyInfoResponseData>;
