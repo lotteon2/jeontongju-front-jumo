@@ -1,5 +1,4 @@
 interface ApiResponse<T> {
-  isSuccess: boolean;
   code: number;
   message: string;
   detail?: string;
@@ -14,7 +13,7 @@ export interface SignUpParams {
   storeImageUrl: string;
   storePhoneNumber: string;
   businessLicenseDocumentsUrl: string;
-  imp_uid: string;
+  impUid: string;
 }
 
 export interface UpdateMyInfoParams {

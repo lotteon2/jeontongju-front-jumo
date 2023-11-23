@@ -1,15 +1,18 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate, useNavigation } from "react-router-dom";
 import styled from "@emotion/styled";
 import TopHeader from "../components/common/TopHeader";
 import Menu from "../components/common/Menu";
 
 const MainLayout = () => {
+  const navigate = useNavigation();
   return (
     <StyledMainLayout>
       <Menu />
       <StyledMainContentLayout>
         <TopHeader />
-        <StyledOutletContainer>
+        <StyledOutletContainer
+          state={navigate.state === "loading" ? "loading" : ""}
+        >
           <Outlet />
         </StyledOutletContainer>
       </StyledMainContentLayout>
@@ -32,6 +35,8 @@ const StyledMainContentLayout = styled.div`
   flex-direction: column;
 `;
 
-const StyledOutletContainer = styled.div`
+const StyledOutletContainer = styled.div<{ state: string }>`
   margin-top: 7rem;
+  background-color: ${(props) =>
+    props.state === "loading" ? "var(--primary-silver)" : "none"};
 `;

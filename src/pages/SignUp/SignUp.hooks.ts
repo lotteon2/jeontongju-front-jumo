@@ -90,7 +90,7 @@ export const useSignUp = () => {
       storeImageUrl,
       storePhoneNumber,
       businessLicenseDocumentsUrl,
-      imp_uid: impUid,
+      impUid,
     });
     if (data.code === 200) {
       Toast(true, "회원가입이 되었어요.");
