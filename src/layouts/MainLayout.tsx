@@ -1,7 +1,11 @@
 import { Outlet, useNavigate, useNavigation } from "react-router-dom";
 import styled from "@emotion/styled";
+import { useEffect } from "react";
 import TopHeader from "../components/common/TopHeader";
 import Menu from "../components/common/Menu";
+import { useMyInfoStore } from "../stores/MyInfo/MyInfoStore";
+import Login from "../pages/Login/Login";
+import LoginLayout from "./LoginLayout";
 
 const MainLayout = () => {
   const navigate = useNavigation();

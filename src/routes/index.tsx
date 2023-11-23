@@ -18,6 +18,7 @@ import EditMyPassword from "../pages/Mypage/EditMyPassword/EditMyPassword";
 import ShortsList from "../pages/Etc/Shorts/ShortsList/ShortsList";
 import ShortsDetail from "../pages/Etc/Shorts/ShortsDetail/ShortsDetail";
 import ShortsRegister from "../pages/Etc/Shorts/ShortsRegister/ShortsRegister";
+import AuthRoute from "./AuthRoute";
 
 const router = createBrowserRouter([
   {
@@ -39,13 +40,13 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <MainLayout />,
+    element: <AuthRoute />,
     errorElement: <NotFound />,
     children: [{ index: true, path: "dashboard", element: <DashBoard /> }],
   },
   {
     path: "/product",
-    element: <MainLayout />,
+    element: <AuthRoute />,
     errorElement: <NotFound />,
     children: [
       { index: true, path: "add", element: <AddProduct /> },
@@ -54,7 +55,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/cash",
-    element: <MainLayout />,
+    element: <AuthRoute />,
     errorElement: <NotFound />,
     children: [
       { index: true, path: "up", element: <CashUp /> },
@@ -63,7 +64,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/etc",
-    element: <MainLayout />,
+    element: <AuthRoute />,
     errorElement: <NotFound />,
     children: [
       { index: true, path: "shorts", element: <ShortsList /> },
@@ -75,7 +76,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/edit",
-    element: <MainLayout />,
+    element: <AuthRoute />,
     errorElement: <NotFound />,
     children: [
       { index: true, path: "myshop", element: <EditMyShopInfo /> },
