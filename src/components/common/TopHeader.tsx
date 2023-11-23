@@ -3,12 +3,16 @@ import { LiaWineBottleSolid } from "react-icons/lia";
 import { Avatar, Dropdown } from "antd";
 import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
+import { useMyInfoStore } from "../../stores/MyInfo/MyInfoStore";
 
 const TopHeader = () => {
   const navigate = useNavigate();
-  // TODO: LOGOUT
+  const { clear } = useMyInfoStore();
+
   const handleLogout = () => {
-    console.log("logout");
+    localStorage.removeItem("accessToken");
+    clear();
+    navigate("/init/login");
   };
 
   return (

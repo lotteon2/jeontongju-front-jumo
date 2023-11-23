@@ -32,6 +32,6 @@ export const useMyInfoStore = create(
     dispatchCategory: (value: categoryType[]) => {
       set({ category: value });
     },
-    clear: () => set({}, true),
+    clear: () => set({ ...initialState }, true),
   })),
 );

@@ -17,4 +17,5 @@ export interface MyInfoDispatcher extends MyInfoState {
   dispatchStoreImageUrl: (value: string) => void;
   dispatchStoreName: (value: string) => void;
   dispatchCategory: (value: categoryType[]) => void;
+  clear: () => void;
 }

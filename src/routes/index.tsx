@@ -23,7 +23,7 @@ import AuthRoute from "./AuthRoute";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: <AuthRoute />,
     errorElement: <NotFound />,
     children: [{ index: true, path: "", element: <DashBoard /> }],
   },

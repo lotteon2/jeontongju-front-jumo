@@ -16,6 +16,7 @@ export const useLogin = () => {
     console.log("email", email);
     console.log("password", password);
     await authApi.login({ email, password }).then((res) => {
+      console.log(res);
       if (res.code === 200) {
         Toast(true, "로그인되었어요");
         dispatchIsLogin(true);
