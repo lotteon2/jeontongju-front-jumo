@@ -1,6 +1,6 @@
-import { CONCEPT } from '../../constants/ProductType/ConceptType';
-import { RAW_MATERIAL } from '../../constants/ProductType/MaterialType';
-import { SNACK } from '../../constants/ProductType/SnackType';
+import { CONCEPT } from "../../constants/ProductType/ConceptType";
+import { RAW_MATERIAL } from "../../constants/ProductType/MaterialType";
+import { SNACK } from "../../constants/ProductType/SnackType";
 
 interface ApiResponse<T> {
   code: number;
@@ -32,7 +32,7 @@ export interface RegisterProductParams {
     body: 1;
   };
   rawMaterial?: (keyof typeof RAW_MATERIAL)[];
-  food?: (typeof SNACK)[];
+  food?: (keyof typeof SNACK)[];
   concept?: (keyof typeof CONCEPT)[];
 }
 

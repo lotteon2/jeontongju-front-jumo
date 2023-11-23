@@ -43,8 +43,9 @@ const AddProduct = () => {
   const {
     email, setEmail, onFinish, password, setPassword,
   } = useAddProduct();
+
   const options: SelectProps['options'] = [];
-  Object.entries(SNACK).forEach(([key, value]) => options.push({ key, label: value }));
+  Object.entries(SNACK).forEach(([key, value]) => options.push({ value: key, label: value }));
 
   const handleChange = (value: string | string[]) => {
     console.log('here');
@@ -104,6 +105,7 @@ const AddProduct = () => {
           render={({ field }) => (
             <Input
               {...field}
+              type="number"
               placeholder="고객들에게 보여질 정확한 도수를 입력해주세요. (숫자만)"
             />
           )}
@@ -120,22 +122,35 @@ const AddProduct = () => {
           render={({ field }) => (
             <Input
               {...field}
+              type="number"
               placeholder="상품의 정확한 용량을 입력해주세요. (숫자만)"
             />
           )}
         />
       </Form.Item>
-      {/* <Form.Item<RegisterProductParams>
+      <Form.Item<RegisterProductParams>
         label="대표 원료"
-        name="material"
-        rules={[{ required: true, message: "대표 원료를 선택해주세요." }]}
+        name="rawMaterial"
+        rules={[
+          { required: true, message: '대표 원료를 최대 2개 선택해주세요.' },
+        ]}
       >
-        <Input
-          placeholder="대표 원료를 입력해주세요."
-          value={password as string}
-          onChange={(e) => setPassword(e.target.value)}
+        <Controller
+          name="rawMaterial"
+          control={control}
+          render={({ field }) => (
+            <Select
+              {...field}
+              mode="tags"
+              size="middle"
+              onChange={handleChange}
+              placeholder="대표 원료를 최대 2가지 골라주세요."
+              style={{ width: '100%', margin: '1rem 0' }}
+              options={options}
+            />
+          )}
         />
-      </Form.Item> */}
+      </Form.Item>
       <strong>상품의 맛을 선택해주세요</strong>
       <strong>(5점 만점, 1점:약함, 5점:강함)</strong>
       {/* <Form.Item<RegisterProductParams>
@@ -208,6 +223,32 @@ const AddProduct = () => {
         괜찮아요.)
       </h3>
       <strong>상품과 잘 어울리는 안주를 최대 2개 골라주세요.</strong>
+      <Form.Item<RegisterProductParams>
+        label="대표 원료"
+        name="food"
+        rules={[
+          {
+            required: true,
+            message: '술과 잘 어울리는 안주를 최대 2가지 골라주세요.',
+          },
+        ]}
+      >
+        <Controller
+          name="food"
+          control={control}
+          render={({ field }) => (
+            <Select
+              {...field}
+              mode="tags"
+              size="middle"
+              onChange={handleChange}
+              placeholder="술과 잘 어울리는 안주를 최대 2가지 골라주세요."
+              style={{ width: '100%', margin: '1rem 0' }}
+              options={options}
+            />
+          )}
+        />
+      </Form.Item>
       <Select
         mode="tags"
         size="middle"
