@@ -13,42 +13,10 @@ import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
 
 const AddProduct = () => {
 	const [form] = Form.useForm();
+	const { selectedCategoryId, handleSelectedCategory, control, handleSubmit, onSubmit } = useAddProduct();
 	const { category } = useMyInfoStore();
 
-	const { register, handleSubmit, control } = useForm<RegisterProductParams>({
-		mode: 'onBlur',
-		defaultValues: {
-			productName: null,
-			productDescription: null,
-			productThumbnailImageUrl: null,
-			productAlcoholDegree: 0,
-			productCapacity: 0,
-			breweryName: '',
-			breweryZonecode: '',
-			breweryAddress: '',
-			manufacturer: '',
-			productPrice: 0,
-			registeredQuantity: 0,
-			productDetailsImageUrl: '',
-			categoryId: 0,
-			rawMaterial: [],
-			food: [],
-			concept: [],
-			taste: {
-				sour: null,
-				sweet: null,
-				scent: null,
-				carbonation: null,
-				body: null,
-			},
-		},
-	});
-
-	const onSubmit = handleSubmit((data: RegisterProductParams) => {
-		console.log(data);
-	});
-
-	const { onFinish } = useAddProduct();
+	console.log(category);
 
 	return (
 		<Form
@@ -60,7 +28,7 @@ const AddProduct = () => {
 			onFinish={onSubmit}
 			autoComplete="off"
 		>
-			<h1> 상품에 대한 설명을 입력해주세요. </h1>
+			<h2> 상품에 대한 설명을 입력해주세요. </h2>
 			<Form.Item<RegisterProductParams>
 				label="상품 이름"
 				name="productName"
@@ -70,50 +38,56 @@ const AddProduct = () => {
 					name="productName"
 					control={control}
 					render={({ field }) => {
-						return <Input {...field} placeholder="고객들에게 보여질 상품 이름을 입력해주세요." />;
+						return (
+							<Input
+								{...field}
+								placeholder="고객들에게 보여질 상품 이름을 입력해주세요."
+								style={{ width: '100%', margin: '1rem 0' }}
+							/>
+						);
 					}}
 				/>
 			</Form.Item>
-			<Form.Item<RegisterProductParams>
-				label="상품 설명"
-				name="productDescription"
-				rules={[{ required: true, message: '상품 설명을 입력해주세요' }]}
-			>
-				<Controller
-					name="productDescription"
-					control={control}
-					render={({ field }) => {
-						return <Input {...field} placeholder="고객들에게 보여질 상품 설명을 입력해주세요." />;
-					}}
-				/>
-			</Form.Item>
+
 			<Controller
-				name="categoryId"
+				name="productDescription"
 				control={control}
 				render={({ field }) => {
 					return (
 						<Form.Item<RegisterProductParams>
-							label="술의 종류"
+							label="상품 설명"
 							{...field}
-							rules={[
-								{
-									required: true,
-									message: '술의 종류를 선택해주세요.',
-								},
-							]}
+							name="productDescription"
+							rules={[{ required: true, message: '상품 설명을 입력해주세요' }]}
 						>
-							<Select
+							<Input
 								{...field}
-								mode="multiple"
-								size="middle"
-								placeholder="술의 종류를 선택해주세요."
+								placeholder="고객들에게 보여질 상품 설명을 입력해주세요."
 								style={{ width: '100%', margin: '1rem 0' }}
-								options={category}
 							/>
 						</Form.Item>
 					);
 				}}
 			/>
+
+			<Form.Item<RegisterProductParams>
+				label="술의 종류"
+				rules={[
+					{
+						required: true,
+						message: '술의 종류를 선택해주세요.',
+					},
+				]}
+			>
+				<Select
+					size="middle"
+					placeholder="술의 종류를 선택해주세요."
+					style={{ width: '100%', margin: '1rem 0' }}
+					value={selectedCategoryId ? category[Number(selectedCategoryId) - 1] : null}
+					options={category}
+					onChange={handleSelectedCategory}
+				/>
+			</Form.Item>
 			<Form.Item<RegisterProductParams>
 				label="정확한 도수"
 				name="productAlcoholDegree"
@@ -320,6 +294,20 @@ const AddProduct = () => {
 					);
 				}}
 			/>
+			<br />
+			<Form.Item<RegisterProductParams>
+				label="제조사"
+				name="manufacturer"
+				rules={[{ required: true, message: '제조사 이름을 입력해주세요.' }]}
+			>
+				<Controller
+					name="manufacturer"
+					control={control}
+					render={({ field }) => {
+						return <Input {...field} placeholder="제조사 이름을 입력해주세요. " />;
+					}}
+				/>
+			</Form.Item>
 			<Form.Item<RegisterProductParams>
 				label="양조장"
 				name="breweryName"
@@ -335,20 +323,9 @@ const AddProduct = () => {
 			</Form.Item>
 			<strong>양조장 위치를 입력해주세요.</strong>
 			<DaumAddress />
-			<Form.Item<RegisterProductParams>
-				label="제조사"
-				name="manufacturer"
-				rules={[{ required: true, message: '제조사 이름을 입력해주세요.' }]}
-			>
-				<Controller
-					name="manufacturer"
-					control={control}
-					render={({ field }) => {
-						return <Input {...field} placeholder="제조사 이름을 입력해주세요. " />;
-					}}
-				/>
-			</Form.Item>
-			<h3>고객들을 위해 상품에 대한 정보를 좀 더 알려주세요. (선택 안 해도 괜찮아요.)</h3>
+
+			<br />
+			<h2>고객들을 위해 상품에 대한 정보를 좀 더 알려주세요. (선택 안 해도 괜찮아요.)</h2>
 			<strong>상품과 잘 어울리는 안주를 최대 2개 골라주세요.</strong>
 
 			<Controller
