@@ -1,48 +1,47 @@
 {
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
-  "settings": {
-    "import/resolver": {
-      "typescript": {},
-      "node": {
-        "paths": ["src"],
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
-    }
-  },
-  "rules": {
-    "react/no-unstable-nested-components": ["off", { "allowAsProps": false }],
-    "import/no-extraneous-dependencies": ["off", { "devDependencies": true }],
-    "react/jsx-props-no-spreading": "off",
-    "no-useless-catch": "off",
-    "no-use-before-define": ["off", { "functions": false, "classes": false }],
-    "no-console": "off",
-    "no-unused-vars": "off",
-    "global-require": 0,
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-unused-vars": "off",
-    "import/prefer-default-export": "off",
-    "import/extensions": ["off"],
-    "react/jsx-filename-extension": "off",
-    "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off",
-    "no-nested-ternary": "off",
-    "react/function-component-definition": [
-      2,
-      { "namedComponents": ["arrow-function", "function-declaration"] }
-    ],
-    "react/require-default-props": "off",
-    "react-hooks/exhaustive-deps": [
-      "off",
-      {
-        "enableDangerousAutofixThisMayCauseInfiniteLoops": true
-      }
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    "settings": {
+        "import/resolver": {
+            "typescript": {}
+        }
+    },
+    "rules": {
+      "import/no-extraneous-dependencies": ["off", {"devDependencies": true}],
+        "react/jsx-props-no-spreading": "off",
+        "no-useless-catch": "off",
+        "no-use-before-define": [
+            "off",
+            { "functions": false, "classes": false }
+        ],
+        "no-console": "off",
+        "no-unused-vars": "off",
+        "global-require": 0,
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "import/prefer-default-export": "off",
+        "import/extensions": ["off"],
+        "react/jsx-filename-extension": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "off",
+        "no-nested-ternary": "off",
+        "react/function-component-definition": [
+            2,
+            { "namedComponents": ["arrow-function", "function-declaration"] }
+        ],
+        "react/require-default-props": "off",
+        "react-hooks/exhaustive-deps": [
+            "off",
+            {
+                "enableDangerousAutofixThisMayCauseInfiniteLoops": true
+            }
+        ]
+    },
+    "extends": [
+        "prettier",
+        "airbnb",
+        "airbnb/hooks",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
     ]
-  },
-  "extends": [
-    "prettier",
-    "airbnb",
-    "airbnb/hooks",
-    "plugin:@typescript-eslint/recommended"
-  ]
 }

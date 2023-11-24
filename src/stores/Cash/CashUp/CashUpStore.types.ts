@@ -1,9 +1,9 @@
 export interface CashUpState {
-  searchMonth: string;
-  searchYear: string;
+	searchMonth: string;
+	searchYear: string;
 }
 
 export interface CashUpDispatcher extends CashUpState {
-  dispatchSearchMonth: (value: string) => void;
-  dispatchSearchYear: (value: string) => void;
+	dispatchSearchMonth: (value: string) => void;
+	dispatchSearchYear: (value: string) => void;
 }

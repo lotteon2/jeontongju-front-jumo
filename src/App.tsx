@@ -12,14 +12,14 @@ import { useMyInfoStore } from './stores/MyInfo/MyInfoStore';
 import { useGetMyInfoQuery } from './queries/useGetMyInfoQuery';
 
 function App() {
-  const { queryClientRef } = useAppMount();
+	const { queryClientRef } = useAppMount();
 
-  return (
-    <QueryClientProvider client={queryClientRef.current}>
-      <RouterProvider router={router} fallbackElement={<Loading />} />
-      <ReactQueryDevtools initialIsOpen />
-    </QueryClientProvider>
-  );
+	return (
+		<QueryClientProvider client={queryClientRef.current}>
+			<RouterProvider router={router} fallbackElement={<Loading />} />
+			<ReactQueryDevtools initialIsOpen />
+		</QueryClientProvider>
+	);
 }
 
 export default App;
