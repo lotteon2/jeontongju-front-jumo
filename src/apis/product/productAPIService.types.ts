@@ -25,11 +25,11 @@ export interface RegisterProductParams {
 	productDetailsImageUrl: string;
 	categoryId: number;
 	taste?: {
-		sour: 4;
-		sweet: 2;
-		scent: 1;
-		carbonation: 4;
-		body: 1;
+		sour: number;
+		sweet: number;
+		scent: number;
+		carbonation: number;
+		body: number;
 	};
 	rawMaterial?: (keyof typeof RAW_MATERIAL)[];
 	food: (keyof typeof SNACK)[];
