@@ -5,8 +5,6 @@ import type { ColumnsType } from 'antd/es/table';
 interface TableInterface<T> {
 	columns: ColumnsType<T>;
 	data: T[];
-	// tableType: UpdateProductTableDataType | OrderListTableDataType;
-	// handleClick?: () => void;
 }
 
 const Table = <T,>({ data, columns }: TableInterface<T>) => (

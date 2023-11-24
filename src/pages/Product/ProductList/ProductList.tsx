@@ -3,10 +3,11 @@ import styled from '@emotion/styled';
 import Table from '../../../components/common/Table';
 import { useProductListTable, useProductUpdateModal } from './ProductList.hooks';
 import Button from '../../../components/common/Button';
-import { useUpdateProductStore } from '../../../stores/UpdateProduct/UpdateProductStore';
+import { useUpdateProductStore } from '../../../stores/Product/UpdateProduct/UpdateProductStore';
 
 const ProductList = () => {
-	const { isModalOpen, isDisabled, isLoading, handleCancel, handleOk, columns, productData } = useProductListTable();
+	const { isModalOpen, isDisabled, isLoading, handleCancel, handleOk, columns, productListData } =
+		useProductListTable();
 
 	const [
 		productName,
@@ -34,7 +35,7 @@ const ProductList = () => {
 
 	return (
 		<div>
-			<Table columns={columns} data={productData} />
+			<Table columns={columns} data={productListData ? productListData.data : []} />
 			<Modal
 				title="상품 수정"
 				open={isModalOpen}

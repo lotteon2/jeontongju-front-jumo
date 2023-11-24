@@ -8,8 +8,6 @@ import Loading from './components/common/Loading';
 import { useAppMount } from './App.hooks';
 import router from './routes';
 import 'antd/dist/reset.css';
-import { useMyInfoStore } from './stores/MyInfo/MyInfoStore';
-import { useGetMyInfoQuery } from './queries/useGetMyInfoQuery';
 
 function App() {
 	const { queryClientRef } = useAppMount();

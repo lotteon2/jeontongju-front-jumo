@@ -1,11 +1,14 @@
 import { ColumnProps, ColumnsType } from 'antd/es/table';
 import { Avatar, Dropdown } from 'antd';
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { UpdateProductTableDataType } from '../../../constants/TableDataType/UpdateProductTableDataType';
 import { Alert } from '../../../components/common/Alert';
 import { Toast } from '../../../components/common/Toast';
-import { useUpdateProductStore } from '../../../stores/UpdateProduct/UpdateProductStore';
+import { useUpdateProductStore } from '../../../stores/Product/UpdateProduct/UpdateProductStore';
+import { useGetMyProductListQuery } from '../../../queries/useGetProductListQuery';
+import { GetProductListResponse, GetProductListResponseData } from '../../../apis/search/searchAPIService.typs';
+import { productApi } from '../../../apis/product/productAPIService';
 
 export const useProductUpdateModal = () => {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -30,15 +33,15 @@ export const useProductUpdateModal = () => {
 		state.clear,
 	]);
 
-	const showModal = (row: UpdateProductTableDataType) => {
+	const showModal = (row: GetProductListResponseData) => {
 		setIsModalOpen(() => true);
 		console.log(row);
-		setProductDetailImg(row.productDetailImg);
+		setProductDetailImg(row.productDetailsImageUrl);
 		setProductName(row.productName);
 		setProductPrice(row.productPrice);
-		setProductStock(row.productStock);
-		setProductThumbnail(row.productThumbnail);
-		setProductVisibility(row.productVisibility);
+		setProductStock(row.stockQuantity);
+		setProductThumbnail(row.productThumbnailImageUrl);
+		setProductVisibility(row.isActivate);
 	};
 
 	const handleCancel = () => {
@@ -66,26 +69,34 @@ export const useProductUpdateModal = () => {
 
 export const useProductListTable = () => {
 	const { showModal, isModalOpen, isDisabled, isLoading, handleCancel, handleOk } = useProductUpdateModal();
+
+	const { data: productListData } = useGetMyProductListQuery();
+
+	const handleDeleteProduct = async (id: string) => {
+		await productApi.deleteProduct(id);
+	};
 	const handleDelete = (id: string) => {
-		// productId
 		Alert({
 			title: '상품을 삭제하시겠어요?',
 			text: '삭제하시면 되돌릴 수 없어요.',
 		}).then((result) => {
 			if (result.isConfirmed) {
-				// TODO: API 연동
-				console.log('삭제됨');
-
-				Toast(true, '상품 정보가 삭제되었어요.');
+				handleDeleteProduct(id)
+					.then((res) => {
+						Toast(true, '상품 정보가 삭제되었어요');
+					})
+					.catch((err) => {
+						Toast(false, '상품 삭제에 실패했어요.');
+					});
 			}
 		});
 	};
 
-	const columns: ColumnProps<UpdateProductTableDataType>[] = [
+	const columns: ColumnProps<GetProductListResponseData>[] = [
 		{
 			title: '대표 이미지',
-			dataIndex: 'productThumbnail',
-			key: 'productThumbnail',
+			dataIndex: 'productThumbnailImageUrl',
+			key: 'productThumbnailImageUrl',
 			width: '5%',
 			render: (text) => <Avatar src={text || null} size="large" />,
 		},
@@ -102,8 +113,8 @@ export const useProductListTable = () => {
 		},
 		{
 			title: '누적 판매개수',
-			dataIndex: 'productSumCount',
-			key: 'productSumCount',
+			dataIndex: 'totalSalesCount',
+			key: 'totalSalesCount',
 			align: 'center',
 		},
 		{
@@ -114,26 +125,27 @@ export const useProductListTable = () => {
 		},
 		{
 			title: '재고',
-			dataIndex: 'productStock',
+			key: 'stockQuantity',
+			dataIndex: 'stockQuantity',
 			align: 'center',
 		},
 		{
 			title: '리뷰',
-			dataIndex: 'productReviewCount',
-			key: 'productReviewCount',
+			dataIndex: 'reviewCount',
+			key: 'reviewCount',
 			align: 'center',
 		},
 		{
 			title: '등록한 쇼츠',
-			dataIndex: 'productShortsId',
-			key: 'productShortsId',
+			dataIndex: 'shortsId',
+			key: 'shortsId',
 			align: 'center',
 		},
 		{
 			title: '공개 여부',
-			dataIndex: 'productVisibility',
-			key: 'productVisibility',
-			render: (text, row) => <div>{row.productVisibility ? '공개' : '비공개'}</div>,
+			dataIndex: 'isActivate',
+			key: 'isActivate',
+			render: (text, row) => <div>{row.isActivate ? '공개' : '비공개'}</div>,
 			align: 'center',
 		},
 		{
@@ -170,43 +182,13 @@ export const useProductListTable = () => {
 		},
 	];
 
-	// onClick={() => handleDelete(row.productId as string)}
-
-	const productData: UpdateProductTableDataType[] = [
-		{
-			key: 1,
-			productId: 'P10123',
-			productThumbnail: 'https://avatars.githubusercontent.com/u/79967044?v=4',
-			productName: '복순도가',
-			productPrice: 3000,
-			productSumCount: 100,
-			productStock: 5,
-			productReviewCount: 3,
-			productShortsId: 12,
-			productVisibility: true,
-			productDetailImg: 'https://avatars.githubusercontent.com/u/79967044?v=4',
-		},
-		{
-			key: 2,
-			productId: 'P10124',
-			productThumbnail: 'https://avatars.githubusercontent.com/u/79967044?v=4',
-			productName: '안동소주',
-			productPrice: 5000,
-			productSumCount: 1,
-			productStock: 2,
-			productReviewCount: 2,
-			productShortsId: 10,
-			productVisibility: false,
-			productDetailImg: 'https://avatars.githubusercontent.com/u/79967044?v=4',
-		},
-	];
 	return {
 		columns,
-		productData,
 		isModalOpen,
 		isDisabled,
 		isLoading,
 		handleCancel,
 		handleOk,
+		productListData,
 	};
 };
