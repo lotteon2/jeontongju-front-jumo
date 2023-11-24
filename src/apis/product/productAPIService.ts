@@ -25,7 +25,7 @@ class ProductAPIService extends APIService {
 		return data;
 	}
 
-	async deleteProduct(productId: number) {
+	async deleteProduct(productId: string) {
 		const { data } = await this.delete<DeleteProductResponse>(`/products/${productId}`);
 		return data;
 	}

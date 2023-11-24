@@ -1,4 +1,4 @@
-import { UpdateProductTableDataType } from '../../constants/TableDataType/UpdateProductTableDataType';
+import { UpdateProductTableDataType } from '../../../constants/TableDataType/UpdateProductTableDataType';
 
 export interface UpdateProductStateDispatcher extends UpdateProductTableDataType {
 	dispatchProductThumbnail: (value: string) => void;

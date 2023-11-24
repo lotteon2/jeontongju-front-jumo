@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-import { UpdateProductTableDataType } from '../../constants/TableDataType/UpdateProductTableDataType';
+import { UpdateProductTableDataType } from '../../../constants/TableDataType/UpdateProductTableDataType';
 import { UpdateProductStateDispatcher } from './UpdateProductStore.types';
 
 const initialState: UpdateProductTableDataType = {
