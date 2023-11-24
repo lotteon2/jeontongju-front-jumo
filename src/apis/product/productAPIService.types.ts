@@ -6,7 +6,7 @@ interface ApiResponse<T> {
 	code: number;
 	message: string;
 	detail?: string;
-	data: T;
+	data?: T;
 }
 
 export interface RegisterProductParams {
@@ -24,16 +24,29 @@ export interface RegisterProductParams {
 	registeredQuantity: number;
 	productDetailsImageUrl: string;
 	categoryId: number;
-	taste?: {
+	taste: {
 		sour: number;
 		sweet: number;
 		scent: number;
 		carbonation: number;
 		body: number;
 	};
-	rawMaterial?: (keyof typeof RAW_MATERIAL)[];
-	food: (keyof typeof SNACK)[];
+	rawMaterial: (keyof typeof RAW_MATERIAL)[];
+	food?: (keyof typeof SNACK)[];
 	concept?: (keyof typeof CONCEPT)[];
 }
 
+export interface UpdateProductParams {
+	productName?: string;
+	productThumbnailImageUrl?: string;
+	productDetailsImageUrl?: string;
+	productPrice?: number;
+	registeredQuantity?: number;
+	isActivate?: boolean;
+}
+
 export type RegisterProductResponse = ApiResponse<string>;
+
+export type UpdateProductResponse = ApiResponse<string>;
+
+export type DeleteProductResponse = ApiResponse<string>;
