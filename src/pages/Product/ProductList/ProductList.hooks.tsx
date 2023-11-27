@@ -1,12 +1,12 @@
-import { ColumnProps, ColumnsType } from 'antd/es/table';
+import { ColumnProps } from 'antd/es/table';
 import { Avatar, Dropdown } from 'antd';
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Alert } from '../../../components/common/Alert';
 import { Toast } from '../../../components/common/Toast';
 import { useUpdateProductStore } from '../../../stores/Product/UpdateProduct/UpdateProductStore';
 import { useGetMyProductListQuery } from '../../../queries/useGetProductListQuery';
-import { GetProductListResponse, GetProductListResponseData } from '../../../apis/search/searchAPIService.typs';
+import { GetProductListResponseData } from '../../../apis/search/searchAPIService.typs';
 import { productApi } from '../../../apis/product/productAPIService';
 import { useUpdateProductMutation } from '../../../mutations/product/useUpdateProductMutation';
 
@@ -53,7 +53,6 @@ export const useProductUpdateModal = () => {
 	};
 
 	const handleOk = async () => {
-		console.log('here');
 		setIsLoading(true);
 		mutateAsync()
 			.then((res) => {
@@ -83,7 +82,7 @@ export const useProductUpdateModal = () => {
 export const useProductListTable = () => {
 	const { showModal, isModalOpen, isDisabled, isLoading, handleCancel, handleOk } = useProductUpdateModal();
 
-	const { data: productListData } = useGetMyProductListQuery();
+	const { data: productListData, refetch } = useGetMyProductListQuery();
 
 	const handleDeleteProduct = async (id: string) => {
 		await productApi
@@ -103,6 +102,7 @@ export const useProductListTable = () => {
 				handleDeleteProduct(id)
 					.then((res) => {
 						Toast(true, '상품 정보가 삭제되었어요');
+						refetch();
 					})
 					.catch((err) => {
 						Toast(false, '상품 삭제에 실패했어요.');
