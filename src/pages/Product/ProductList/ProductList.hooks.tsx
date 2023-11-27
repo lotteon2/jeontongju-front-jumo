@@ -2,20 +2,23 @@ import { ColumnProps, ColumnsType } from 'antd/es/table';
 import { Avatar, Dropdown } from 'antd';
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
-import { UpdateProductTableDataType } from '../../../constants/TableDataType/UpdateProductTableDataType';
 import { Alert } from '../../../components/common/Alert';
 import { Toast } from '../../../components/common/Toast';
 import { useUpdateProductStore } from '../../../stores/Product/UpdateProduct/UpdateProductStore';
 import { useGetMyProductListQuery } from '../../../queries/useGetProductListQuery';
 import { GetProductListResponse, GetProductListResponseData } from '../../../apis/search/searchAPIService.typs';
 import { productApi } from '../../../apis/product/productAPIService';
+import { useUpdateProductMutation } from '../../../mutations/product/useUpdateProductMutation';
 
 export const useProductUpdateModal = () => {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [isDisabled, setIsDisabled] = useState<boolean>(false);
+	const { mutateAsync } = useUpdateProductMutation();
+	const { refetch } = useGetMyProductListQuery();
 
 	const [
+		setProductId,
 		setProductDetailImg,
 		setProductName,
 		setProductPrice,
@@ -24,6 +27,7 @@ export const useProductUpdateModal = () => {
 		setProductVisibility,
 		clearValues,
 	] = useUpdateProductStore((state) => [
+		state.dispatchProductId,
 		state.dispatchProductDetailImg,
 		state.dispatchProductName,
 		state.dispatchProductPrice,
@@ -35,7 +39,7 @@ export const useProductUpdateModal = () => {
 
 	const showModal = (row: GetProductListResponseData) => {
 		setIsModalOpen(() => true);
-		console.log(row);
+		setProductId(row.productId);
 		setProductDetailImg(row.productDetailsImageUrl);
 		setProductName(row.productName);
 		setProductPrice(row.productPrice);
@@ -48,11 +52,20 @@ export const useProductUpdateModal = () => {
 		setIsModalOpen(false);
 	};
 
-	const handleOk = () => {
+	const handleOk = async () => {
 		console.log('here');
-		// TODO: 상품 수정 api 연동
-		clearValues();
-		Toast(true, '상품 수정이 완료되었어요.');
+		setIsLoading(true);
+		mutateAsync()
+			.then((res) => {
+				Toast(true, '상품 수정이 완료되었어요');
+				refetch();
+				clearValues();
+				setIsModalOpen(false);
+			})
+			.catch((err) => Toast(false, err))
+			.finally(() => {
+				setIsLoading(false);
+			});
 	};
 
 	return {
@@ -73,8 +86,14 @@ export const useProductListTable = () => {
 	const { data: productListData } = useGetMyProductListQuery();
 
 	const handleDeleteProduct = async (id: string) => {
-		await productApi.deleteProduct(id);
+		await productApi
+			.deleteProduct(id)
+			.then((res) => {
+				return res;
+			})
+			.catch((err) => Toast(false, '상품 삭제에 실패했어요.'));
 	};
+
 	const handleDelete = (id: string) => {
 		Alert({
 			title: '상품을 삭제하시겠어요?',
@@ -151,7 +170,7 @@ export const useProductListTable = () => {
 		{
 			title: '',
 			dataIndex: 'key',
-			key: 'delete',
+			key: 'key',
 			align: 'center',
 			render: (text, row) => (
 				<Dropdown

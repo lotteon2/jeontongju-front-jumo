@@ -1,7 +1,6 @@
 import { QueryClientProvider } from 'react-query';
 import { RouterProvider } from 'react-router-dom';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { useEffect } from 'react';
 import './App.css';
 import './common.scss';
 import Loading from './components/common/Loading';

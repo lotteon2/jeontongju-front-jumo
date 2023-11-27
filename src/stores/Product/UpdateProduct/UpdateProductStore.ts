@@ -20,6 +20,9 @@ const initialState: UpdateProductTableDataType = {
 export const useUpdateProductStore = create(
 	immer<UpdateProductStateDispatcher>((set) => ({
 		...initialState,
+		dispatchProductId: (value: string) => {
+			set({ productId: value });
+		},
 		dispatchProductThumbnail: (value: string) => {
 			set({ productThumbnail: value });
 		},

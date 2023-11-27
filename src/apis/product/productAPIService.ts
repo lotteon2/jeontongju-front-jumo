@@ -20,7 +20,7 @@ class ProductAPIService extends APIService {
 		return data;
 	}
 
-	async updateProduct(productId: number, params: UpdateProductParams) {
+	async updateProduct(productId: string, params: UpdateProductParams) {
 		const { data } = await this.patch<UpdateProductResponse>(`/products/${productId}`, params);
 		return data;
 	}

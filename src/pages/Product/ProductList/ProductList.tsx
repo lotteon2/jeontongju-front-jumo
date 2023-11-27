@@ -4,6 +4,7 @@ import Table from '../../../components/common/Table';
 import { useProductListTable, useProductUpdateModal } from './ProductList.hooks';
 import Button from '../../../components/common/Button';
 import { useUpdateProductStore } from '../../../stores/Product/UpdateProduct/UpdateProductStore';
+import { GetProductListResponseData } from '../../../apis/search/searchAPIService.typs';
 
 const ProductList = () => {
 	const { isModalOpen, isDisabled, isLoading, handleCancel, handleOk, columns, productListData } =
@@ -70,7 +71,7 @@ const ProductList = () => {
 					</StyledInputContainer>
 					<StyledInputContainer>
 						<div>공개 여부:</div>
-						<Radio.Group style={{ width: '100%' }} value={productVisibility ? 'true' : 'value'}>
+						<Radio.Group style={{ width: '100%' }} value={productVisibility ? 'true' : 'false'}>
 							<Radio
 								value="true"
 								name="visibility"
@@ -83,7 +84,7 @@ const ProductList = () => {
 								value="false"
 								name="visibility"
 								checked={productVisibility === false}
-								onChange={(e) => setProductVisibility(e.target.value === 'true')}
+								onChange={(e) => setProductVisibility(e.target.value === 'false')}
 							>
 								비공개
 							</Radio>
