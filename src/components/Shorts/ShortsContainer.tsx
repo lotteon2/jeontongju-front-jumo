@@ -9,7 +9,7 @@ interface ShortsContainerProps {
 	shortsHits: number;
 	shortsLink: string;
 	isActivate: boolean;
-	shortsExplanation: string;
+	shortsDescription: string;
 	targetId: string;
 }
 const ShortsContainer: React.FC<ShortsContainerProps> = ({
@@ -18,17 +18,17 @@ const ShortsContainer: React.FC<ShortsContainerProps> = ({
 	shortsThumbnailUrl,
 	isActivate,
 	shortsHits,
-	shortsExplanation,
+	shortsDescription,
 	targetId,
 }) => {
 	const navigate = useNavigate();
 	const LIMIT_LENGTH = 9;
 
-	const [setShortsThumbnail, setIsActive, setShortsExplanation, setShortTitle, setShortsId, setTargetId] =
+	const [setShortsThumbnail, setIsActive, setShortsDescription, setShortTitle, setShortsId, setTargetId] =
 		useUpdateShortsStore((state) => [
 			state.dispatchSelectedShortsThumbnail,
-			state.dispatchSelectedIsActive,
-			state.dispatchSelectedShortsExplanation,
+			state.dispatchSelectedIsActivate,
+			state.dispatchSelectedShortsDescription,
 			state.dispatchSelectedShortsTitle,
 			state.dispatchSelectedShortsId,
 			state.dispatchSelectedTargetId,
@@ -39,7 +39,7 @@ const ShortsContainer: React.FC<ShortsContainerProps> = ({
 		setShortTitle(shortsTitle);
 		setShortsId(shortsId);
 		setTargetId(targetId);
-		setShortsExplanation(shortsExplanation);
+		setShortsDescription(shortsDescription);
 		setShortsThumbnail(shortsThumbnailUrl);
 		navigate(`/etc/shorts/detail/${shortsId}`);
 	};

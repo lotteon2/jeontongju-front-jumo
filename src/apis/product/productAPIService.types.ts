@@ -56,16 +56,16 @@ export interface RegisterShortParams {
 }
 
 export interface UpdateShortParams {
-	shortsTitle: string;
-	shortsDescription: string;
-	isActivate: boolean;
+	shortsTitle?: string;
+	shortsDescription?: string;
+	isActivate?: boolean;
 }
 
 export interface GetShortListResponseData {
 	shortsId: number;
 	shortsTitle: string;
 	shortsThumbnailUrl: string;
-	shortsExplanation: string;
+	shortsDescription: string;
 	shortsVideoUrl: string;
 	targetId: string;
 	shortsHits: number;
@@ -81,3 +81,5 @@ export type DeleteProductResponse = ApiResponse<string>;
 export type RegisterShortResponse = ApiResponse<string>;
 
 export type GetShortListResponse = ApiResponse<GetShortListResponseData[]>;
+
+export type UpdateShortsResponse = ApiResponse<string>;

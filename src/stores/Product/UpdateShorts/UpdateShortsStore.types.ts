@@ -1,18 +1,18 @@
 export interface UpdateShortsState {
 	selectedShortsId: number;
 	selectedShortsTitle: string;
-	selectedShortsExplanation: string;
+	selectedShortsDescription: string;
 	selectedTargetId: string;
-	selectedIsActive: boolean;
+	selectedIsActivate: boolean;
 	selectedShortsThumbnail: string;
 }
 
 export interface UpdateShortsDispatcher extends UpdateShortsState {
 	dispatchSelectedShortsId: (value: number) => void;
 	dispatchSelectedShortsTitle: (value: string) => void;
-	dispatchSelectedShortsExplanation: (value: string) => void;
+	dispatchSelectedShortsDescription: (value: string) => void;
 	dispatchSelectedTargetId: (value: string) => void;
-	dispatchSelectedIsActive: (value: boolean) => void;
+	dispatchSelectedIsActivate: (value: boolean) => void;
 	dispatchSelectedShortsThumbnail: (value: string) => void;
 	clear: () => void;
 }

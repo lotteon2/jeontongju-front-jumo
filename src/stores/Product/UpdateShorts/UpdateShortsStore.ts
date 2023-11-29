@@ -5,9 +5,9 @@ import { UpdateShortsDispatcher, UpdateShortsState } from './UpdateShortsStore.t
 const initialState: UpdateShortsState = {
 	selectedShortsId: null,
 	selectedShortsTitle: null,
-	selectedShortsExplanation: null,
+	selectedShortsDescription: null,
 	selectedTargetId: null,
-	selectedIsActive: null,
+	selectedIsActivate: null,
 	selectedShortsThumbnail: null,
 };
 
@@ -20,8 +20,8 @@ export const useUpdateShortsStore = create(
 		dispatchSelectedShortsTitle: (value: string) => {
 			set({ selectedShortsTitle: value });
 		},
-		dispatchSelectedShortsExplanation: (value: string) => {
-			set({ selectedShortsExplanation: value });
+		dispatchSelectedShortsDescription: (value: string) => {
+			set({ selectedShortsDescription: value });
 		},
 		dispatchSelectedTargetId: (value: string) => {
 			set({ selectedTargetId: value });
@@ -29,8 +29,8 @@ export const useUpdateShortsStore = create(
 		dispatchSelectedShortsThumbnail: (value: string) => {
 			set({ selectedShortsThumbnail: value });
 		},
-		dispatchSelectedIsActive: (value: boolean) => {
-			set({ selectedIsActive: value });
+		dispatchSelectedIsActivate: (value: boolean) => {
+			set({ selectedIsActivate: value });
 		},
 		clear: () => set({}, true),
 	})),

@@ -8,6 +8,8 @@ import {
 	RegisterShortResponse,
 	UpdateProductParams,
 	UpdateProductResponse,
+	UpdateShortParams,
+	UpdateShortsResponse,
 } from './productAPIService.types';
 
 const BASE_URL = `${process.env.REACT_APP_API_URL}/product-service/api`;
@@ -45,8 +47,8 @@ class ProductAPIService extends APIService {
 	}
 
 	// TODO : 배포시 url 바뀜
-	async updateShort(shortsId: number) {
-		const { data } = await this.patch(`/sellers/shorts/${shortsId}}`);
+	async updateShort(shortsId: number, params: UpdateShortParams) {
+		const { data } = await this.patch<UpdateShortsResponse>(`/sellers/shorts/${shortsId}}`, params);
 		return data;
 	}
 }

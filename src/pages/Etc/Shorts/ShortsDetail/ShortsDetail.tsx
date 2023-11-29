@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 import { Form, Input, Radio } from 'antd';
-import { useEffect } from 'react';
 import Button from '../../../../components/common/Button';
 import { useUpdateShortsStore } from '../../../../stores/Product/UpdateShorts/UpdateShortsStore';
+import { useUpdateShortsMutation } from '../../../../mutations/product/useUpdateShortMutation';
+import { Toast } from '../../../../components/common/Toast';
 
 const ShortsDetail = () => {
 	const [
@@ -10,8 +11,8 @@ const ShortsDetail = () => {
 		shortsThumbnail,
 		shortsTitle,
 		setShortsTitle,
-		shortsExplanation,
-		setShortsExplanation,
+		shortsDescription,
+		setShortsDescription,
 		isActive,
 		setIsActive,
 	] = useUpdateShortsStore((state) => [
@@ -19,22 +20,27 @@ const ShortsDetail = () => {
 		state.selectedShortsThumbnail,
 		state.selectedShortsTitle,
 		state.dispatchSelectedShortsTitle,
-		state.selectedShortsExplanation,
-		state.dispatchSelectedShortsExplanation,
-		state.selectedIsActive,
-		state.dispatchSelectedIsActive,
+		state.selectedShortsDescription,
+		state.dispatchSelectedShortsDescription,
+		state.selectedIsActivate,
+		state.dispatchSelectedIsActivate,
 	]);
+	const { mutateAsync } = useUpdateShortsMutation();
 
-	useEffect(() => {
-		console.log(isActive);
-	}, [isActive]);
+	const handleUpdateShorts = async () => {
+		await mutateAsync()
+			.then((res) => {
+				Toast(true, '쇼츠 수정이 완료되었어요.');
+			})
+			.catch((err) => Toast(false, '쇼츠 수정에 실패했어요.'));
+	};
 
 	return (
 		<StyledShortsDetailPage>
 			<StyledShortsDetailHeader>
 				<div>쇼츠 수정을 원하시면 수정 버튼을 눌러주세요.</div>
 				<StyledEditBtn>
-					<Button content="수정하기" Key="editShorts" />
+					<Button content="수정하기" Key="editShorts" handleClick={handleUpdateShorts} />
 				</StyledEditBtn>
 			</StyledShortsDetailHeader>
 			<div>
@@ -52,7 +58,7 @@ const ShortsDetail = () => {
 								<Input value={shortsTitle} onChange={(e) => setShortsTitle(e.target.value)} />
 							</Form.Item>
 							<Form.Item label="쇼츠 짧은 설명">
-								<Input value={shortsExplanation} onChange={(e) => setShortsExplanation(e.target.value)} />
+								<Input value={shortsDescription} onChange={(e) => setShortsDescription(e.target.value)} />
 							</Form.Item>
 							<Form.Item>
 								<div>공개 여부:</div>
