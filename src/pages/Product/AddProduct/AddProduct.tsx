@@ -10,13 +10,12 @@ import { RAW_MATERIAL, RawMaterialOptions } from '../../../constants/ProductType
 import { RegisterProductParams } from '../../../apis/product/productAPIService.types';
 import { Toast } from '../../../components/common/Toast';
 import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
+import MyInput from '../../../components/MyInput';
 
 const AddProduct = () => {
 	const [form] = Form.useForm();
 	const { selectedCategoryId, handleSelectedCategory, control, handleSubmit, onSubmit } = useAddProduct();
 	const { category } = useMyInfoStore();
-
-	console.log(category);
 
 	return (
 		<Form
@@ -54,6 +53,13 @@ const AddProduct = () => {
 				control={control}
 				render={({ field }) => {
 					return (
+						// <MyInput
+						// 	label="상품 설명"
+						// 	placeholder="고객들에게 보여질 상품 설명을 입력해주세요."
+						// 	name="productDescription"
+						// 	ref={field.ref}
+						// 	{...field}
+						// />
 						<Form.Item<RegisterProductParams>
 							label="상품 설명"
 							{...field}
@@ -62,6 +68,7 @@ const AddProduct = () => {
 						>
 							<Input
 								{...field}
+								ref={field.ref}
 								placeholder="고객들에게 보여질 상품 설명을 입력해주세요."
 								style={{ width: '100%', margin: '1rem 0' }}
 							/>
@@ -98,7 +105,12 @@ const AddProduct = () => {
 					control={control}
 					render={({ field }) => {
 						return (
-							<Input {...field} type="number" placeholder="고객들에게 보여질 정확한 도수를 입력해주세요. (숫자만)" />
+							<Input
+								ref={field.ref}
+								{...field}
+								type="number"
+								placeholder="고객들에게 보여질 정확한 도수를 입력해주세요. (숫자만)"
+							/>
 						);
 					}}
 				/>
@@ -117,7 +129,14 @@ const AddProduct = () => {
 					name="productCapacity"
 					control={control}
 					render={({ field }) => {
-						return <Input {...field} type="number" placeholder="상품의 정확한 용량을 입력해주세요. (숫자만)" />;
+						return (
+							<Input
+								ref={field.ref}
+								{...field}
+								type="number"
+								placeholder="상품의 정확한 용량을 입력해주세요. (숫자만)"
+							/>
+						);
 					}}
 				/>
 			</Form.Item>
@@ -130,7 +149,7 @@ const AddProduct = () => {
 					name="registeredQuantity"
 					control={control}
 					render={({ field }) => {
-						return <Input {...field} type="number" placeholder="등록 수량을 입력해주세요. (숫자만)" />;
+						return <Input ref={field.ref} {...field} type="number" placeholder="등록 수량을 입력해주세요. (숫자만)" />;
 					}}
 				/>
 			</Form.Item>
@@ -144,7 +163,12 @@ const AddProduct = () => {
 					control={control}
 					render={({ field }) => {
 						return (
-							<Input {...field} type="number" placeholder="고객들에게 보여질 정확한 판매가를 입력해주세요. (숫자만)" />
+							<Input
+								{...field}
+								ref={field.ref}
+								type="number"
+								placeholder="고객들에게 보여질 정확한 판매가를 입력해주세요. (숫자만)"
+							/>
 						);
 					}}
 				/>
@@ -180,6 +204,7 @@ const AddProduct = () => {
 						>
 							<Select
 								{...field}
+								ref={field.ref}
 								mode="multiple"
 								size="middle"
 								placeholder="술의 원료를 최대 2가지 골라주세요."
@@ -209,7 +234,7 @@ const AddProduct = () => {
 								},
 							]}
 						>
-							<Rate {...field} character={<LiaWineBottleSolid />} />
+							<Rate {...field} ref={field.ref} character={<LiaWineBottleSolid />} />
 						</Form.Item>
 					);
 				}}
@@ -229,7 +254,7 @@ const AddProduct = () => {
 								},
 							]}
 						>
-							<Rate {...field} character={<LiaWineBottleSolid />} />
+							<Rate {...field} ref={field.ref} character={<LiaWineBottleSolid />} />
 						</Form.Item>
 					);
 				}}
@@ -249,7 +274,7 @@ const AddProduct = () => {
 								},
 							]}
 						>
-							<Rate {...field} character={<LiaWineBottleSolid />} />
+							<Rate {...field} ref={field.ref} character={<LiaWineBottleSolid />} />
 						</Form.Item>
 					);
 				}}
@@ -269,7 +294,7 @@ const AddProduct = () => {
 								},
 							]}
 						>
-							<Rate {...field} character={<LiaWineBottleSolid />} />
+							<Rate {...field} ref={field.ref} character={<LiaWineBottleSolid />} />
 						</Form.Item>
 					);
 				}}
@@ -289,7 +314,7 @@ const AddProduct = () => {
 								},
 							]}
 						>
-							<Rate {...field} character={<LiaWineBottleSolid />} />
+							<Rate {...field} ref={field.ref} character={<LiaWineBottleSolid />} />
 						</Form.Item>
 					);
 				}}
@@ -304,7 +329,7 @@ const AddProduct = () => {
 					name="manufacturer"
 					control={control}
 					render={({ field }) => {
-						return <Input {...field} placeholder="제조사 이름을 입력해주세요. " />;
+						return <Input {...field} ref={field.ref} placeholder="제조사 이름을 입력해주세요. " />;
 					}}
 				/>
 			</Form.Item>
@@ -317,7 +342,7 @@ const AddProduct = () => {
 					name="breweryName"
 					control={control}
 					render={({ field }) => {
-						return <Input {...field} placeholder="양조장 이름을 입력해주세요. " />;
+						return <Input {...field} ref={field.ref} placeholder="양조장 이름을 입력해주세요. " />;
 					}}
 				/>
 			</Form.Item>
@@ -359,6 +384,7 @@ const AddProduct = () => {
 						>
 							<Select
 								{...field}
+								ref={field.ref}
 								mode="multiple"
 								size="middle"
 								placeholder="술과 잘 어울리는 안주를 최대 2가지 골라주세요."
@@ -393,10 +419,6 @@ const AddProduct = () => {
 													concept: value,
 												});
 												Toast(false, '컨셉은 최대 2개까지 선택할 수 있어요.');
-												// return Promise.reject('Cannot have more than 2 tags');
-											}
-											if (value.length <= 2) {
-												// return Promise.resolve();
 											}
 										}
 									},
@@ -405,6 +427,7 @@ const AddProduct = () => {
 						>
 							<Select
 								{...field}
+								ref={field.ref}
 								mode="tags"
 								size="middle"
 								placeholder="상품과 어울리는 태그를 최대 2가지 골라주세요."

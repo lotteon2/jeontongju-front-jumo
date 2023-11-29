@@ -3,6 +3,8 @@ import {
 	DeleteProductResponse,
 	RegisterProductParams,
 	RegisterProductResponse,
+	RegisterShortParams,
+	RegisterShortResponse,
 	UpdateProductParams,
 	UpdateProductResponse,
 } from './productAPIService.types';
@@ -27,6 +29,23 @@ class ProductAPIService extends APIService {
 
 	async deleteProduct(productId: string) {
 		const { data } = await this.delete<DeleteProductResponse>(`/products/${productId}`);
+		return data;
+	}
+
+	async registerShort(params: RegisterShortParams) {
+		const { data } = await this.post<RegisterShortResponse>(`/shorts`, params);
+		return data;
+	}
+
+	// TODO : 배포시 url 바뀜
+	async getShortList(page: number, sort: number, size: number) {
+		const { data } = await this.get(`/sellers/shorts?page=${page}&sort=${sort}&size=${size}`);
+		return data;
+	}
+
+	// TODO : 배포시 url 바뀜
+	async updateShort(shortsId: number) {
+		const { data } = await this.patch(`/sellers/shorts/${shortsId}}`);
 		return data;
 	}
 }

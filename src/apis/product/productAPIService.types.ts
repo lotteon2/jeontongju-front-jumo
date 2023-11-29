@@ -7,6 +7,7 @@ interface ApiResponse<T> {
 	message: string;
 	detail?: string;
 	data?: T;
+	failure?: string;
 }
 
 export interface RegisterProductParams {
@@ -45,8 +46,39 @@ export interface UpdateProductParams {
 	isActivate?: boolean;
 }
 
+export interface RegisterShortParams {
+	shortsTitle: string;
+	shortsDescription: string;
+	shortsVideoUrl: string;
+	shortsThumbnailImageUrl: string;
+	productId?: string; // 보내면 상품에 등록, 안 보내면 주모 사이트로 연결
+	shortsType: 'PRODUCT' | 'SELLER';
+	isActivate: boolean;
+}
+
+export interface UpdateShortParams {
+	shortsTitle: string;
+	shortsDescription: string;
+	isActivate: boolean;
+}
+
+export interface GetShortListResponseData {
+	shortsId: number;
+	shortsTitle: string;
+	shortsThumbnailUrl: string;
+	shortsExplanation: string;
+	shortsVideoUrl: string;
+	targetId: number;
+	shortsHits: number;
+	isActivate: boolean;
+}
+
 export type RegisterProductResponse = ApiResponse<string>;
 
 export type UpdateProductResponse = ApiResponse<string>;
 
 export type DeleteProductResponse = ApiResponse<string>;
+
+export type RegisterShortResponse = ApiResponse<string>;
+
+export type GetShortListResponse = ApiResponse<GetShortListResponseData[]>;

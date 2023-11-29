@@ -4,7 +4,8 @@ interface ApiResponse<T> {
 	code: number;
 	message: string;
 	detail?: string;
-	data: T;
+	data?: T;
+	failure?: string;
 }
 
 export interface SignUpParams {
