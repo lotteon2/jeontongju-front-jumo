@@ -51,6 +51,11 @@ class ProductAPIService extends APIService {
 		const { data } = await this.patch<UpdateShortsResponse>(`/sellers/shorts/${shortsId}}`, params);
 		return data;
 	}
+
+	async deleteShort(shortsId: number) {
+		const { data } = await this.delete<UpdateShortsResponse>(`${shortsId}`);
+		return data;
+	}
 }
 
 export const productApi: ProductAPIService = ProductAPIService.shared();

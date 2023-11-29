@@ -4,6 +4,7 @@ import Button from '../../../../components/common/Button';
 import { useUpdateShortsStore } from '../../../../stores/Product/UpdateShorts/UpdateShortsStore';
 import { useUpdateShortsMutation } from '../../../../mutations/product/useUpdateShortMutation';
 import { Toast } from '../../../../components/common/Toast';
+import { useDeleteShortsMutation } from '../../../../mutations/product/useDeleteShortMutation';
 
 const ShortsDetail = () => {
 	const [
@@ -25,23 +26,33 @@ const ShortsDetail = () => {
 		state.selectedIsActivate,
 		state.dispatchSelectedIsActivate,
 	]);
-	const { mutateAsync } = useUpdateShortsMutation();
+	const { mutateAsync: mutateUpdateShortsAsync } = useUpdateShortsMutation();
+	const { mutateAsync: mutateDeleteShortsAsync } = useDeleteShortsMutation();
 
 	const handleUpdateShorts = async () => {
-		await mutateAsync()
+		await mutateUpdateShortsAsync()
 			.then((res) => {
 				Toast(true, '쇼츠 수정이 완료되었어요.');
 			})
 			.catch((err) => Toast(false, '쇼츠 수정에 실패했어요.'));
 	};
 
+	const handleDeleteShorts = async () => {
+		await mutateDeleteShortsAsync()
+			.then((res) => {
+				Toast(true, '쇼츠 삭제가 완료되었어요.');
+			})
+			.catch((err) => Toast(false, '쇼츠 삭제에 실패했어요.'));
+	};
+
 	return (
 		<StyledShortsDetailPage>
 			<StyledShortsDetailHeader>
 				<div>쇼츠 수정을 원하시면 수정 버튼을 눌러주세요.</div>
-				<StyledEditBtn>
+				<StyledEditBtns>
 					<Button content="수정하기" Key="editShorts" handleClick={handleUpdateShorts} />
-				</StyledEditBtn>
+					<Button content="삭제하기" Key="deleteShorts" handleClick={handleDeleteShorts} btntype="negative" />
+				</StyledEditBtns>
 			</StyledShortsDetailHeader>
 			<div>
 				<div>
@@ -60,8 +71,7 @@ const ShortsDetail = () => {
 							<Form.Item label="쇼츠 짧은 설명">
 								<Input value={shortsDescription} onChange={(e) => setShortsDescription(e.target.value)} />
 							</Form.Item>
-							<Form.Item>
-								<div>공개 여부:</div>
+							<Form.Item label="공개 여부">
 								<Radio.Group name="isActive" value={isActive ? 'true' : 'false'}>
 									<Radio
 										value="true"
@@ -119,11 +129,13 @@ const StyledShortsInfoContainer = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	margin-right: 0;
+	margin-top: 2rem;
 `;
 
-const StyledEditBtn = styled.div`
+const StyledEditBtns = styled.div`
+	display: flex;
 	margin-right: 0;
-	float: right;
+	gap: 1rem;
 `;
 
 const StyledRightInfoContainer = styled.div`

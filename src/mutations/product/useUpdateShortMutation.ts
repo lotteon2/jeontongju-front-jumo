@@ -1,6 +1,5 @@
 import { useIsMutating } from 'react-query';
 import { productApi } from '../../apis/product/productAPIService';
-import { useUpdateProductStore } from '../../stores/Product/UpdateProduct/UpdateProductStore';
 import { useMutation } from '../../libs/core/react-query';
 import { useUpdateShortsStore } from '../../stores/Product/UpdateShorts/UpdateShortsStore';
 
