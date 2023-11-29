@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
-import { Toast } from '../common/Toast';
+import { useUpdateShortsStore } from '../../stores/Product/UpdateShorts/UpdateShortsStore';
 
 interface ShortsContainerProps {
 	shortsTitle: string;
@@ -9,6 +9,8 @@ interface ShortsContainerProps {
 	shortsHits: number;
 	shortsLink: string;
 	isActivate: boolean;
+	shortsExplanation: string;
+	targetId: string;
 }
 const ShortsContainer: React.FC<ShortsContainerProps> = ({
 	shortsTitle,
@@ -16,22 +18,40 @@ const ShortsContainer: React.FC<ShortsContainerProps> = ({
 	shortsThumbnailUrl,
 	isActivate,
 	shortsHits,
+	shortsExplanation,
+	targetId,
 }) => {
 	const navigate = useNavigate();
 	const LIMIT_LENGTH = 9;
+
+	const [setShortsThumbnail, setIsActive, setShortsExplanation, setShortTitle, setShortsId, setTargetId] =
+		useUpdateShortsStore((state) => [
+			state.dispatchSelectedShortsThumbnail,
+			state.dispatchSelectedIsActive,
+			state.dispatchSelectedShortsExplanation,
+			state.dispatchSelectedShortsTitle,
+			state.dispatchSelectedShortsId,
+			state.dispatchSelectedTargetId,
+		]);
+
+	const handleClick = () => {
+		setIsActive(isActivate);
+		setShortTitle(shortsTitle);
+		setShortsId(shortsId);
+		setTargetId(targetId);
+		setShortsExplanation(shortsExplanation);
+		setShortsThumbnail(shortsThumbnailUrl);
+		navigate(`/etc/shorts/detail/${shortsId}`);
+	};
+
 	return (
-		<StyledShortsContainer
-			onClick={isActivate ? () => navigate(`/etc/shorts/detail/${shortsId}`) : () => Toast(false, '비공개 쇼츠에요.')}
-		>
+		<StyledShortsContainer onClick={handleClick}>
 			<StyledImgContainer isActivate={isActivate}>
 				<StyledImgItem shortsThumbnailUrl={shortsThumbnailUrl} />
 				{!isActivate && <StyledInvisibleText>비공개</StyledInvisibleText>}
 			</StyledImgContainer>
 			<h3>{shortsTitle.length > LIMIT_LENGTH ? `${shortsTitle.substring(0, LIMIT_LENGTH - 1)}...` : shortsTitle}</h3>
-			<div>
-				조회수
-				{shortsHits} 회
-			</div>
+			<div>조회수 {shortsHits} 회</div>
 		</StyledShortsContainer>
 	);
 };

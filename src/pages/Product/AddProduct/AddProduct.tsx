@@ -10,7 +10,6 @@ import { RAW_MATERIAL, RawMaterialOptions } from '../../../constants/ProductType
 import { RegisterProductParams } from '../../../apis/product/productAPIService.types';
 import { Toast } from '../../../components/common/Toast';
 import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
-import MyInput from '../../../components/MyInput';
 
 const AddProduct = () => {
 	const [form] = Form.useForm();

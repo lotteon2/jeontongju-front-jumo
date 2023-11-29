@@ -22,6 +22,8 @@ const ShortsList = () => {
 						shortsThumbnailUrl={it.shortsThumbnailUrl}
 						shortsHits={it.shortsHits}
 						isActivate={it.isActivate}
+						shortsExplanation={it.shortsExplanation}
+						targetId={it.targetId}
 						shortsLink=""
 					/>
 				))}

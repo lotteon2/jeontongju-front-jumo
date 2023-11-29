@@ -1,10 +1,10 @@
 import { Form, Input, Modal, Radio } from 'antd';
 import styled from '@emotion/styled';
+import { useEffect } from 'react';
 import Table from '../../../components/common/Table';
 import { useProductListTable, useProductUpdateModal } from './ProductList.hooks';
 import Button from '../../../components/common/Button';
 import { useUpdateProductStore } from '../../../stores/Product/UpdateProduct/UpdateProductStore';
-import { GetProductListResponseData } from '../../../apis/search/searchAPIService.typs';
 
 const ProductList = () => {
 	const { isModalOpen, isDisabled, isLoading, handleCancel, handleOk, columns, productListData } =
@@ -84,7 +84,7 @@ const ProductList = () => {
 								value="false"
 								name="visibility"
 								checked={productVisibility === false}
-								onChange={(e) => setProductVisibility(e.target.value === 'false')}
+								onChange={(e) => setProductVisibility(e.target.value === 'true')}
 							>
 								비공개
 							</Radio>

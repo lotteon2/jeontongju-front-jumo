@@ -1,50 +1,98 @@
 import styled from '@emotion/styled';
-import { Form, Input } from 'antd';
+import { Form, Input, Radio } from 'antd';
+import { useEffect } from 'react';
 import Button from '../../../../components/common/Button';
+import { useUpdateShortsStore } from '../../../../stores/Product/UpdateShorts/UpdateShortsStore';
 
-const ShortsDetail = ({
-	isActivate = true,
-	shortsThumbnailUrl = 'https://github.com/lotteon2/jeontongju-front-jumo/assets/72402747/18ba0bcc-b3a2-4369-be11-fdaf9b30e5ef',
-}) => (
-	<StyledShortsDetailPage>
-		<div>
-			<StyledImgContainer isActivate={isActivate}>
-				<StyledImgItem shortsThumbnailUrl={shortsThumbnailUrl} />
-			</StyledImgContainer>
-			<div>해당 상품 보러가기</div>
-			<div>해당 쇼츠 보러가기</div>
-			<StyledEditBtn>
-				<Button content="수정하기" Key="editShorts" />
-			</StyledEditBtn>
-		</div>
-		<StyledRightInfoContainer>
-			<StyledShortsInfoContainer>
-				<Form>
-					<Form.Item label="쇼츠 이름" name="sweet" rules={[{ required: true, message: '신맛을 입력해주세요.' }]}>
-						<Input />
-					</Form.Item>
-					<Form.Item label="쇼츠 짧은 설명" name="sweet" rules={[{ required: true, message: '신맛을 입력해주세요.' }]}>
-						<Input />
-					</Form.Item>
-					<Form.Item label="누적 조회수" name="sweet" rules={[{ required: true, message: '신맛을 입력해주세요.' }]}>
-						<Input />
-					</Form.Item>
-				</Form>
-			</StyledShortsInfoContainer>
-		</StyledRightInfoContainer>
-	</StyledShortsDetailPage>
-);
+const ShortsDetail = () => {
+	const [
+		targetId,
+		shortsThumbnail,
+		shortsTitle,
+		setShortsTitle,
+		shortsExplanation,
+		setShortsExplanation,
+		isActive,
+		setIsActive,
+	] = useUpdateShortsStore((state) => [
+		state.selectedTargetId,
+		state.selectedShortsThumbnail,
+		state.selectedShortsTitle,
+		state.dispatchSelectedShortsTitle,
+		state.selectedShortsExplanation,
+		state.dispatchSelectedShortsExplanation,
+		state.selectedIsActive,
+		state.dispatchSelectedIsActive,
+	]);
+
+	useEffect(() => {
+		console.log(isActive);
+	}, [isActive]);
+
+	return (
+		<StyledShortsDetailPage>
+			<StyledShortsDetailHeader>
+				<div>쇼츠 수정을 원하시면 수정 버튼을 눌러주세요.</div>
+				<StyledEditBtn>
+					<Button content="수정하기" Key="editShorts" />
+				</StyledEditBtn>
+			</StyledShortsDetailHeader>
+			<div>
+				<div>
+					<StyledImgContainer isActivate={isActive}>
+						<StyledImgItem shortsThumbnailUrl={shortsThumbnail} />
+					</StyledImgContainer>
+					<a href={targetId}>유저들에게 보이는 페이지 보러가기</a>
+					<div>해당 쇼츠 보러가기</div>
+				</div>
+				<StyledRightInfoContainer>
+					<StyledShortsInfoContainer>
+						<Form>
+							<Form.Item label="쇼츠 이름">
+								<Input value={shortsTitle} onChange={(e) => setShortsTitle(e.target.value)} />
+							</Form.Item>
+							<Form.Item label="쇼츠 짧은 설명">
+								<Input value={shortsExplanation} onChange={(e) => setShortsExplanation(e.target.value)} />
+							</Form.Item>
+							<Form.Item>
+								<div>공개 여부:</div>
+								<Radio.Group name="isActive" value={isActive ? 'true' : 'false'}>
+									<Radio
+										value="true"
+										checked={isActive === true}
+										name="isActive"
+										onChange={(e) => setIsActive(e.target.value === 'true')}
+									>
+										공개
+									</Radio>
+									<Radio
+										value="false"
+										checked={isActive === false}
+										name="isActive"
+										onChange={(e) => setIsActive(e.target.value === 'true')}
+									>
+										비공개
+									</Radio>
+								</Radio.Group>
+							</Form.Item>
+						</Form>
+					</StyledShortsInfoContainer>
+				</StyledRightInfoContainer>
+			</div>
+		</StyledShortsDetailPage>
+	);
+};
 export default ShortsDetail;
 const StyledShortsDetailPage = styled.div`
 	display: flex;
-	align-items: center;
+	flex-direction: column;
 	gap: 2rem;
 `;
 const StyledImgContainer = styled.div<{ isActivate: boolean }>`
 	flex-grow: 1;
 	position: relative;
-	width: 30vw;
-	height: 50vh;
+	width: 20rem;
+	height: 30rem;
 	background: var(${(props) => (props.isActivate ? '--primary-violet' : '--primary-gray')});
 	border-radius: 12px;
 `;
@@ -74,4 +122,10 @@ const StyledEditBtn = styled.div`
 
 const StyledRightInfoContainer = styled.div`
 	flex-grow: 1;
+`;
+
+const StyledShortsDetailHeader = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 `;
