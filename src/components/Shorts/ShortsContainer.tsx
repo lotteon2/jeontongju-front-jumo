@@ -1,22 +1,33 @@
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
+import { Toast } from '../common/Toast';
 
 interface ShortsContainerProps {
+	shortsTitle: string;
 	shortsId: number;
 	shortsThumbnailUrl: string;
 	shortsHits: number;
 	shortsLink: string;
 	isActivate: boolean;
 }
-const ShortsContainer: React.FC<ShortsContainerProps> = ({ shortsId, shortsThumbnailUrl, isActivate, shortsHits }) => {
+const ShortsContainer: React.FC<ShortsContainerProps> = ({
+	shortsTitle,
+	shortsId,
+	shortsThumbnailUrl,
+	isActivate,
+	shortsHits,
+}) => {
 	const navigate = useNavigate();
+	const LIMIT_LENGTH = 9;
 	return (
-		<StyledShortsContainer onClick={() => navigate(`/etc/shorts/detail/${shortsId}`)}>
+		<StyledShortsContainer
+			onClick={isActivate ? () => navigate(`/etc/shorts/detail/${shortsId}`) : () => Toast(false, '비공개 쇼츠에요.')}
+		>
 			<StyledImgContainer isActivate={isActivate}>
 				<StyledImgItem shortsThumbnailUrl={shortsThumbnailUrl} />
 				{!isActivate && <StyledInvisibleText>비공개</StyledInvisibleText>}
 			</StyledImgContainer>
-			<h3>복순이가 복순복순</h3>
+			<h3>{shortsTitle.length > LIMIT_LENGTH ? `${shortsTitle.substring(0, LIMIT_LENGTH - 1)}...` : shortsTitle}</h3>
 			<div>
 				조회수
 				{shortsHits} 회
@@ -36,8 +47,8 @@ const StyledShortsContainer = styled.div`
 
 const StyledImgContainer = styled.div<{ isActivate: boolean }>`
 	position: relative;
-	width: 10vw;
-	height: 30vh;
+	width: 10rem;
+	height: 20rem;
 	background: var(${(props) => (props.isActivate ? '--primary-violet' : '--primary-gray')});
 	border-radius: 12px;
 `;
@@ -55,7 +66,7 @@ const StyledImgItem = styled.div<{ shortsThumbnailUrl: string }>`
 
 const StyledInvisibleText = styled.h2`
 	position: absolute;
-	font-size: 6rem;
+	font-size: 3rem;
 	top: 40%;
 	left: 10%;
 	width: 100%;

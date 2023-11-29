@@ -1,6 +1,7 @@
 import APIService from '../../libs/core/api/APIService';
 import {
 	DeleteProductResponse,
+	GetShortListResponse,
 	RegisterProductParams,
 	RegisterProductResponse,
 	RegisterShortParams,
@@ -38,8 +39,8 @@ class ProductAPIService extends APIService {
 	}
 
 	// TODO : 배포시 url 바뀜
-	async getShortList(page: number, sort: number, size: number) {
-		const { data } = await this.get(`/sellers/shorts?page=${page}&sort=${sort}&size=${size}`);
+	async getShortList(page: number, sort: string, size: number) {
+		const { data } = await this.get<GetShortListResponse>(`/sellers/shorts?page=${page}&sort=${sort}&size=${size}`);
 		return data;
 	}
 

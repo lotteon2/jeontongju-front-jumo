@@ -52,7 +52,6 @@ export interface RegisterShortParams {
 	shortsVideoUrl: string;
 	shortsThumbnailImageUrl: string;
 	productId?: string; // 보내면 상품에 등록, 안 보내면 주모 사이트로 연결
-	shortsType: 'PRODUCT' | 'SELLER';
 	isActivate: boolean;
 }
 
@@ -68,7 +67,7 @@ export interface GetShortListResponseData {
 	shortsThumbnailUrl: string;
 	shortsExplanation: string;
 	shortsVideoUrl: string;
-	targetId: number;
+	targetId: string;
 	shortsHits: number;
 	isActivate: boolean;
 }
