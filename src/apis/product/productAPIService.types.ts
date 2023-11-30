@@ -61,6 +61,11 @@ export interface UpdateShortParams {
 	isActivate?: boolean;
 }
 
+export interface GetMyProductResponseData {
+	value: string;
+	label: string;
+}
+
 export interface GetShortListResponseData {
 	shortsId: number;
 	shortsTitle: string;
@@ -71,6 +76,8 @@ export interface GetShortListResponseData {
 	shortsHits: number;
 	isActivate: boolean;
 }
+
+export type GetMyProductResponse = ApiResponse<GetMyProductResponseData[]>;
 
 export type RegisterProductResponse = ApiResponse<string>;
 

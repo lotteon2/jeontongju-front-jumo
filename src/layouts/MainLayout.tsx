@@ -4,22 +4,25 @@ import { useEffect } from 'react';
 import TopHeader from '../components/common/TopHeader';
 import Menu from '../components/common/Menu';
 import { useMyInfoStore } from '../stores/MyInfo/MyInfoStore';
-import Login from '../pages/Login/Login';
-import LoginLayout from './LoginLayout';
 import { useGetMyInfoQuery } from '../queries/useGetMyInfoQuery';
+import { useGetMyProductQuery } from '../queries/useGetMyProductQuery';
 
 const MainLayout = () => {
 	const navigate = useNavigation();
-	const [isLogin, isApproved, setIsApproved, setStoreImageUrl, setStoreName, setCategory] = useMyInfoStore((state) => [
-		state.isLogin,
-		state.isApproved,
-		state.dispatchIsApproved,
-		state.dispatchStoreImageUrl,
-		state.dispatchStoreName,
-		state.dispatchCategory,
-	]);
+	const [isLogin, isApproved, setIsApproved, setStoreImageUrl, setStoreName, setCategory, setProducts] = useMyInfoStore(
+		(state) => [
+			state.isLogin,
+			state.isApproved,
+			state.dispatchIsApproved,
+			state.dispatchStoreImageUrl,
+			state.dispatchStoreName,
+			state.dispatchCategory,
+			state.dispatchProducts,
+		],
+	);
 
 	const { data: myInfo } = useGetMyInfoQuery();
+	const { data: myProduct } = useGetMyProductQuery();
 
 	useEffect(() => {
 		if (isLogin) {
@@ -31,6 +34,12 @@ const MainLayout = () => {
 			}
 		}
 	}, [myInfo]);
+
+	useEffect(() => {
+		if (myProduct.data !== undefined) {
+			setProducts(myProduct.data);
+		}
+	}, [myProduct]);
 
 	return (
 		<StyledMainLayout>

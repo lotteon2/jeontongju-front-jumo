@@ -69,7 +69,7 @@ const router = createBrowserRouter([
 		children: [
 			{ index: true, path: 'shorts', element: <ShortsList /> },
 			{ path: 'shorts/detail/:id', element: <ShortsDetail /> },
-			{ path: 'register', element: <ShortsRegister /> },
+			{ path: 'shorts/register', element: <ShortsRegister /> },
 			{ path: 'live', element: <LiveList /> },
 			{ path: 'live/register', element: <LiveRegister /> },
 		],

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-import { MyInfoDispatcher, MyInfoState, categoryType } from './MyInfoStore.types';
+import { MyInfoDispatcher, MyInfoState, categoryType, productsType } from './MyInfoStore.types';
 
 const initialState: MyInfoState = {
 	isLogin: !!localStorage.getItem('accessToken'),
@@ -8,6 +8,7 @@ const initialState: MyInfoState = {
 	storeImageUrl: null,
 	storeName: null,
 	category: [],
+	products: [],
 };
 
 export const useMyInfoStore = create(
@@ -27,6 +28,9 @@ export const useMyInfoStore = create(
 		},
 		dispatchCategory: (value: categoryType[]) => {
 			set({ category: value });
+		},
+		dispatchProducts: (value: productsType[]) => {
+			set({ products: value });
 		},
 		clear: () => set({ ...initialState }, true),
 	})),
