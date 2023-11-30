@@ -1,25 +1,31 @@
-import { Form, Input } from 'antd';
+import { Form, Input, Select } from 'antd';
 import { Controller, useForm } from 'react-hook-form';
 import { RegisterShortParams } from '../../../../apis/product/productAPIService.types';
 import Button from '../../../../components/common/Button';
+import { useMyInfoStore } from '../../../../stores/MyInfo/MyInfoStore';
+import { useAddShortsStore } from '../../../../stores/Product/AddShorts/AddShortsStore';
+import { useShortsRegister } from './ShortsRegister.hooks';
 
 const ShortsRegister = () => {
-	const [form] = Form.useForm();
-	const { register, handleSubmit, control } = useForm<RegisterShortParams>({
-		mode: 'onBlur',
-		defaultValues: {
-			shortsTitle: null,
-			shortsDescription: null,
-			shortsVideoUrl: null,
-			shortsThumbnailImageUrl: null,
-			productId: null,
-			isActivate: true,
-		},
-	});
+	const [selectedProductId] = useAddShortsStore((state) => [state.selectedProductId]);
+	const { handleSelectedProduct, products, onSubmit, control, form } = useShortsRegister();
+	// const [form] = Form.useForm();
 
-	const onSubmit = handleSubmit((data: RegisterShortParams) => {
-		console.log(data);
-	});
+	// const { register, handleSubmit, control } = useForm<RegisterShortParams>({
+	// 	mode: 'onBlur',
+	// 	defaultValues: {
+	// 		shortsTitle: null,
+	// 		shortsDescription: null,
+	// 		shortsVideoUrl: null,
+	// 		shortsThumbnailImageUrl: null,
+	// 		productId: null,
+	// 		isActivate: true,
+	// 	},
+	// });
+
+	// const onSubmit = handleSubmit((data: RegisterShortParams) => {
+	// 	console.log(data);
+	// });
 
 	return (
 		<div>
@@ -76,12 +82,13 @@ const ShortsRegister = () => {
 						},
 					]}
 				>
-					<Controller
-						name="productId"
-						control={control}
-						render={({ field }) => (
-							<Input {...field} placeholder="고객들에게 보여질 상품의 정확한 용량(ml)를 입력해주세요." />
-						)}
+					<Select
+						size="middle"
+						placeholder="연관된 상품을 선택해주세요."
+						style={{ width: '100%', margin: '1rem 0' }}
+						value={products ? products[Number(selectedProductId) - 1] : null}
+						options={products}
+						onChange={handleSelectedProduct}
 					/>
 				</Form.Item>
 				{/* <Form.Item<RegisterShortParams>

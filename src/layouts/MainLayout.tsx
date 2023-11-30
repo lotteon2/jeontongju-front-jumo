@@ -36,7 +36,7 @@ const MainLayout = () => {
 	}, [myInfo]);
 
 	useEffect(() => {
-		if (myProduct.data !== undefined) {
+		if (myProduct) {
 			setProducts(myProduct.data);
 		}
 	}, [myProduct]);
