@@ -8,17 +8,6 @@ interface ApiResponse<T> {
 	failure?: string;
 }
 
-export interface SignUpParams {
-	email: string;
-	password: string;
-	storeName: string;
-	storeDescription: string;
-	storeImageUrl: string;
-	storePhoneNumber: string;
-	businessLicenseDocumentsUrl: string;
-	impUid: string;
-}
-
 export interface UpdateMyInfoParams {
 	storeName?: string;
 	storeDescription?: string;
@@ -34,9 +23,6 @@ export interface GetMyInfoResponseData {
 	category: categoryType[];
 }
 
-export type EmailCheckResponse = ApiResponse<{ authCode: string }>;
-
-export type SignUpResponse = ApiResponse<string>;
 
 export type WithDrawResponse = ApiResponse<string>;
 

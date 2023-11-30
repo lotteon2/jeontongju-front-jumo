@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sellerApi } from '../../apis/seller/sellerAPIService';
 import { Toast } from '../../components/common/Toast';
+import { authApi } from '../../apis/authentication/authAPIService';
 
 export const useSignUp = () => {
 	const navigate = useNavigate();
@@ -22,13 +22,16 @@ export const useSignUp = () => {
 	const [impUid, setImpUid] = useState<string>('');
 
 	const handleCheckEmail = async () => {
-		const data = await sellerApi.emailCheck(email);
+		const data = await authApi.emailCheck(email);
 		if (data.code === 200) {
-			console.log('here');
-			setIsValidEmail(true);
-			setAuthCode(data.data.authCode);
+			if (data.failure) {
+				setIsValidEmail(false);
+				Toast(false, '중복된 이메일이에요.');
+			} else {
+				setIsValidEmail(true);
+				setAuthCode(data.data.authCode);
+			}
 		}
-		console.log(data);
 	};
 
 	const handleCheckEmailCode = async () => {
@@ -73,7 +76,7 @@ export const useSignUp = () => {
 		if (!email || !password || !storeName || !storeDescription || !storeImageUrl || !storePhoneNumber || !impUid)
 			return;
 
-		const data = await sellerApi.signUp({
+		const data = await authApi.signUp({
 			email,
 			password,
 			storeName,
@@ -87,7 +90,6 @@ export const useSignUp = () => {
 			Toast(true, '회원가입이 되었어요.');
 			navigate('/init/login');
 		}
-		console.log(data);
 	};
 
 	return {
