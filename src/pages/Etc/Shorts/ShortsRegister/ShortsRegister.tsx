@@ -1,14 +1,13 @@
 import { Form, Input, Select } from 'antd';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 import { RegisterShortParams } from '../../../../apis/product/productAPIService.types';
 import Button from '../../../../components/common/Button';
-import { useMyInfoStore } from '../../../../stores/MyInfo/MyInfoStore';
 import { useAddShortsStore } from '../../../../stores/Product/AddShorts/AddShortsStore';
 import { useShortsRegister } from './ShortsRegister.hooks';
 
 const ShortsRegister = () => {
 	const [selectedProductId] = useAddShortsStore((state) => [state.selectedProductId]);
-	const { handleSelectedProduct, products, onSubmit, control, form } = useShortsRegister();
+	const { handleSelectedProduct, products, onSubmit, control, form, disabled } = useShortsRegister();
 	// const [form] = Form.useForm();
 
 	// const { register, handleSubmit, control } = useForm<RegisterShortParams>({
@@ -72,16 +71,9 @@ const ShortsRegister = () => {
 						render={({ field }) => <Input {...field} placeholder="고객들에게 보여질 쇼츠를 입력해주세요." />}
 					/>
 				</Form.Item>
-				<Form.Item<RegisterShortParams>
-					label="연관 상품"
-					name="productId"
-					rules={[
-						{
-							required: true,
-							message: '연관된 상품이 있다면 선택해주세요.',
-						},
-					]}
-				>
+				<h3>상품에 대한 쇼츠라면 아래에서 해당 상품을 선택해주세요.</h3>
+				<h3>상품을 선택하지 않는다면 주모와 연관된 쇼츠로 보여지게 돼요!</h3>
+				<Form.Item<RegisterShortParams> label="연관 상품" name="productId">
 					<Select
 						size="middle"
 						placeholder="연관된 상품을 선택해주세요."
@@ -91,18 +83,14 @@ const ShortsRegister = () => {
 						onChange={handleSelectedProduct}
 					/>
 				</Form.Item>
-				{/* <Form.Item<RegisterShortParams>
-					label="최소 가격"
-					name="startingPrice"
-					rules={[{ required: true, message: '경매 시작가를 입력해주세요' }]}
-				>
-					<Controller
-						name="startingPrice"
-						control={control}
-						render={({ field }) => <Input {...field} placeholder="경매 시작가를 입력해주세요." />}
-					/>
-				</Form.Item> */}
-				<Button content="쇼츠 등록하기" Key="registerShorts" isfull handleClick={onSubmit} htmlType="submit" />
+				<Button
+					content="쇼츠 등록하기"
+					Key="registerShorts"
+					isfull
+					handleClick={onSubmit}
+					htmlType="submit"
+					disabled={disabled}
+				/>
 			</Form>
 		</div>
 	);

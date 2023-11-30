@@ -191,6 +191,10 @@ button {
   border: none;
 }
 
+.ant-input:placeholder-shown {
+  font-family: "Hahmlet", sans-serif;
+}
+
 @font-face {
   font-family: "thin";
   src: url("/src/assets/fonts/Hahmlet-Thin.ttf");
