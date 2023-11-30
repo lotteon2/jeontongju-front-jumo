@@ -23,13 +23,8 @@ export interface GetMyInfoResponseData {
 	category: categoryType[];
 }
 
-
 export type WithDrawResponse = ApiResponse<string>;
 
 export type UpdateMyInfoResponse = ApiResponse<string>;
-
-export type CheckMyPasswordResponse = ApiResponse<string>;
-
-export type UpdateMyPasswordResponse = ApiResponse<string>;
 
 export type GetMyInfoResponse = ApiResponse<GetMyInfoResponseData>;

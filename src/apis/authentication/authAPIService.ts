@@ -1,5 +1,14 @@
 import APIService from '../../libs/core/api/APIService';
-import { EmailCheckResponse, LoginParams, LoginResponse, SignUpParams, SignUpResponse } from './authAPIService.types';
+import {
+	CheckMyPasswordResponse,
+	EmailCheckResponse,
+	LoginParams,
+	LoginResponse,
+	SignUpParams,
+	SignUpResponse,
+	UpdateMyPasswordResponse,
+	checkMyEmailResponse,
+} from './authAPIService.types';
 
 const BASE_URL = `${process.env.REACT_APP_API_URL}/authentication-service/api`;
 
@@ -21,6 +30,22 @@ class AuthAPIService extends APIService {
 
 	async emailCheck(email: string) {
 		const { data } = await this.post<EmailCheckResponse>('/sign-up/email/auth', { email, memberRole: 'ROLE_SELLER' });
+		return data;
+	}
+
+	async updateMyPassword(password: string) {
+		const { data } = await this.patch<UpdateMyPasswordResponse>('/password', { newPassword: password });
+		return data;
+	}
+
+	async checkMyPassword(password: string) {
+		const { data } = await this.post<CheckMyPasswordResponse>('/password/auth', { originalPassword: password });
+		return data;
+	}
+
+	/* 로그인 전 비밀번호 찾기시 이메일 인증 단계 */
+	async checkMyEmail(email: string) {
+		const { data } = await this.post<checkMyEmailResponse>('/email/auth', { email });
 		return data;
 	}
 }

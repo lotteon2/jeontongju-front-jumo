@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { sellerApi } from '../../../apis/seller/sellerAPIService';
 import { Toast } from '../../../components/common/Toast';
+import { authApi } from '../../../apis/authentication/authAPIService';
 
 export const useEditMyPassword = () => {
 	const [originalPassword, setOriginalPassword] = useState<string>(null);
@@ -18,7 +19,7 @@ export const useEditMyPassword = () => {
 		if (!passwordRegex.test(newPassword)) {
 			Toast(false, '영문, 숫자, 특수문자를 모두 포함하여 8자이상 16자 이내로 입력해주세요.');
 		} else {
-			await sellerApi.updateMyPassword(newPassword).then((res) => {
+			await authApi.updateMyPassword(newPassword).then((res) => {
 				if (res.code === 200) {
 					Toast(true, '비밀번호 수정이 완료되었어요.');
 				}
@@ -32,7 +33,7 @@ export const useEditMyPassword = () => {
 			return;
 		}
 
-		await sellerApi.checkMyPassword(originalPassword).then((res) => {
+		await authApi.checkMyPassword(originalPassword).then((res) => {
 			console.log(res);
 			if (res.code === 200) {
 				setIsRightPassword(true);

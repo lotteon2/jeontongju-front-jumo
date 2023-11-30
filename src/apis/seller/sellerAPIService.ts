@@ -1,10 +1,8 @@
 import APIService from '../../libs/core/api/APIService';
 import {
-	CheckMyPasswordResponse,
 	GetMyInfoResponse,
 	UpdateMyInfoParams,
 	UpdateMyInfoResponse,
-	UpdateMyPasswordResponse,
 	WithDrawResponse,
 } from './sellerAPIService.types';
 
@@ -23,16 +21,6 @@ class SellerAPIService extends APIService {
 
 	async updateMyInfo(params: UpdateMyInfoParams) {
 		const { data } = await this.patch<UpdateMyInfoResponse>('/sellers', params);
-		return data;
-	}
-
-	async checkMyPassword(password: string) {
-		const { data } = await this.post<CheckMyPasswordResponse>('/sellers/password/auth', { originalPassword: password });
-		return data;
-	}
-
-	async updateMyPassword(password: string) {
-		const { data } = await this.patch<UpdateMyPasswordResponse>('/sellers/password', { newPassword: password });
 		return data;
 	}
 

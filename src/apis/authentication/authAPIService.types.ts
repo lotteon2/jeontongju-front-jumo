@@ -29,3 +29,6 @@ export type LoginResponseData = {
 export type LoginResponse = ApiResponse<LoginResponseData>;
 export type SignUpResponse = ApiResponse<string>;
 export type EmailCheckResponse = ApiResponse<{ authCode: string }>;
+export type UpdateMyPasswordResponse = ApiResponse<string>;
+export type CheckMyPasswordResponse = ApiResponse<string>;
+export type checkMyEmailResponse = ApiResponse<{ authCode: string }>;
