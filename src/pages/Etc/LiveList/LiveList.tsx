@@ -6,12 +6,12 @@ import Table from '../../../components/common/Table';
 import { useLiveTable } from './LiveList.hooks';
 
 const LiveList = () => {
-	const { liveData, columns } = useLiveTable();
+	const { liveData, columns, auctionListData } = useLiveTable();
 	return (
 		<StyledLivePage>
 			<StyledLiveTable>
 				<h3>나의 경매 참여 내역</h3>
-				<Table data={liveData} columns={columns} />
+				<Table data={auctionListData ? auctionListData.data : []} columns={columns} />
 			</StyledLiveTable>
 			<div>
 				<StyledInfoContainer>

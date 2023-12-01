@@ -1,48 +1,54 @@
 import { ColumnsType } from 'antd/es/table';
 import { LiveListTableDataType } from '../../../constants/TableDataType/LiveListTableDataType';
+import { useGetMyApplyAuctionListQuery } from '../../../queries/useGetMyApplyAuctionListQuery';
+import { GetMyApplyAuctionListResponseData } from '../../../apis/auction/auctionAPIService.types';
+import ApproveState from '../../../components/Live/ApproveState/ApproveState';
 
 export const useLiveTable = () => {
-	const columns: ColumnsType<LiveListTableDataType> = [
+	const { data: auctionListData } = useGetMyApplyAuctionListQuery();
+	console.log(auctionListData);
+	const columns: ColumnsType<GetMyApplyAuctionListResponseData> = [
 		{
 			title: '경매이름',
-			dataIndex: 'liveId',
-			key: 'liveId',
+			dataIndex: 'title',
+			key: 'title',
 			render: (text) => <span>{text}</span>,
 		},
 		{
 			title: '방송일',
-			dataIndex: 'liveId',
-			key: 'liveId',
+			dataIndex: 'startDate',
+			key: 'startDate',
 			render: (text) => <span>{text}</span>,
 		},
 		{
 			title: '상품이름',
-			dataIndex: 'a',
-			key: 'a',
+			dataIndex: 'auctionProductName',
+			key: 'auctionProductName',
 			render: (text) => <span>{text}</span>,
 		},
 		{
 			title: '낙찰가격',
-			dataIndex: 'b',
-			key: 'b',
+			dataIndex: 'lastBidPrice',
+			key: 'lastBidPrice',
 			render: (text) => <span>{text}</span>,
 		},
 		{
 			title: '시작가',
-			dataIndex: 'c',
-			key: 'c',
+			dataIndex: 'startingPrice',
+			key: 'startingPrice',
 			render: (text) => <span>{text}</span>,
 		},
 		{
 			title: '참여자수',
-			dataIndex: 'd',
-			key: 'd',
+			dataIndex: 'totalBid',
+			key: 'totalBid',
 			render: (text) => <span>{text}</span>,
 		},
 		{
-			title: '',
-			dataIndex: 'key',
-			key: 'key',
+			title: '상태',
+			dataIndex: 'auctionProductStatus',
+			key: 'auctionProductStatus',
+			render: (text) => <ApproveState approveState={text} />,
 		},
 	];
 
@@ -61,5 +67,6 @@ export const useLiveTable = () => {
 	return {
 		columns,
 		liveData,
+		auctionListData,
 	};
 };
