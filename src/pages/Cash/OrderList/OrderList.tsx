@@ -1,17 +1,36 @@
-import { DatePicker, Form, Input, Select, Tooltip } from 'antd';
+import { DatePicker, DatePickerProps, Form, Input, Select, Tooltip } from 'antd';
 import styled from '@emotion/styled';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import Table from '../../../components/common/Table';
 import { useOrderList } from './OrderList.hooks';
+import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
+import { useMyOrderListStore } from '../../../stores/Cash/OrderList/OrderListStore';
+import { useGetMyOrderListQuery } from '../../../queries/useGetMyOrderListQuery';
 
 const OrderList = () => {
-	const { orderListData, columns } = useOrderList();
+	const { data: orderData } = useGetMyOrderListQuery();
+	const { columns } = useOrderList();
+	const products = useMyInfoStore((state) => state.products);
+	const [setPage, isDeliveryCodeNull, setIsDeliveryCodeNull, setProductId, setSelectedDate] = useMyOrderListStore(
+		(state) => [
+			state.dispatchPage,
+			state.isDeliveryCodeNull,
+			state.dispatchIsDeliveryCodeNull,
+			state.dispatchProductId,
+			state.dispatchSelectedDate,
+		],
+	);
+
+	const onChange: DatePickerProps['onChange'] = (date, dateString) => {
+		setSelectedDate(dateString.replaceAll('-', ''));
+	};
+
 	return (
 		<div>
 			<StyledCashListHeader>
 				<StyledCashListLeftHeader>
-					<DatePicker />
-					<Select />
+					<DatePicker onChange={onChange} />
+					<Select options={products} placeholder="전체(기본)" onChange={setProductId} />
 					<Tooltip
 						title="상품별, 기간별, 운송장 입력 여부별 필터링을 해서 주문 내역을
         확인해보세요."
@@ -21,11 +40,15 @@ const OrderList = () => {
 				</StyledCashListLeftHeader>
 				<div>
 					<Form.Item label="운송장 미입력 상품만 보기" name="emailCode">
-						<Input type="checkbox" />
+						<Input
+							type="checkbox"
+							checked={isDeliveryCodeNull}
+							onChange={(e) => setIsDeliveryCodeNull(!!e.target.checked)}
+						/>
 					</Form.Item>
 				</div>
 			</StyledCashListHeader>
-			<Table data={orderListData} columns={columns} />
+			{orderData ? <Table data={orderData.data.content} columns={columns} /> : <div>로딩중</div>}
 		</div>
 	);
 };
