@@ -11,7 +11,7 @@ const LiveList = () => {
 		<StyledLivePage>
 			<StyledLiveTable>
 				<h3>나의 경매 참여 내역</h3>
-				<Table data={auctionListData ? auctionListData.data : []} columns={columns} />
+				<Table data={auctionListData ? auctionListData.data.content : []} columns={columns} />
 			</StyledLiveTable>
 			<div>
 				<StyledInfoContainer>

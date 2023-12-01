@@ -1,4 +1,5 @@
 import { APPROVE } from '../../constants/ApproveType';
+import { Page } from '../order/orderAPIService.types';
 
 interface ApiResponse<T> {
 	code: number;
@@ -40,4 +41,4 @@ export type GetAvailableAuctionListResponse = ApiResponse<GetAvailableAuctionLis
 
 export type ApplyAuctionResponse = ApiResponse<string>;
 
-export type GetMyApplyAuctionListResponse = ApiResponse<GetMyApplyAuctionListResponseData[]>;
+export type GetMyApplyAuctionListResponse = ApiResponse<Page<GetMyApplyAuctionListResponseData[]>>;
