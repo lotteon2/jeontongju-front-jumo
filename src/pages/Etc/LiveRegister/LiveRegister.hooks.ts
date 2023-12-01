@@ -6,6 +6,8 @@ import { LiveRegisterFieldType } from '../../../constants/LiveRegisterFieldType'
 import { auctionApi } from '../../../apis/auction/auctionAPIService';
 import { Toast } from '../../../components/common/Toast';
 import { useApplyAuctionMutation } from '../../../mutations/auction/useApplyAuctionMutation';
+import { ERROR, translateErrorEnumToUserMessage } from '../../../constants/ErrorEnum/ErrorType';
+import { Alert } from '../../../components/common/Alert';
 
 export const useLiveRegister = () => {
 	const { state } = useLocation();
@@ -30,8 +32,17 @@ export const useLiveRegister = () => {
 		const params = { ...data, auctionId: state.auctionId };
 		const result = await mutateAsync(params);
 		if (result.code === 200) {
-			Toast(true, '라이브 경매 신청이 완료되었어요.');
-			navigate('/etc/live');
+			if (result.failure === ERROR.OVER_PARTICIPATION) {
+				Alert({
+					title: '라이브 경매 신청에 실패했어요.',
+					text: translateErrorEnumToUserMessage(result.failure),
+					submitBtnText: '닫기',
+					errorMessage: true,
+				});
+			} else {
+				Toast(true, '라이브 경매 신청이 완료되었어요.');
+				navigate('/etc/live');
+			}
 		} else {
 			Toast(false, '라이브 경매 신청에 실패했어요.');
 		}
