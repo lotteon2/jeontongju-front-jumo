@@ -49,4 +49,9 @@ export type GetMyOrderListResponseData = {
 	isAuction: boolean;
 };
 
+export type RegisterDeliveryCodeParams = {
+	deliveryCode: string;
+};
+
 export type GetMyOrderListResponse = ApiResponse<Page<GetMyOrderListResponseData[]>>;
+export type RegisterDeliveryCodeResponse = ApiResponse<string>;

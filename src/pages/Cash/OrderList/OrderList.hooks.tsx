@@ -1,9 +1,10 @@
 import { ColumnsType } from 'antd/es/table';
 import { OrderListTableDataType } from '../../../constants/TableDataType/OrderListTableDataType';
 import OrderState from '../../../components/OrderList/OrderState';
+import { GetMyOrderListResponseData } from '../../../apis/order/orderAPIService.types';
 
 export const useOrderList = () => {
-	const columns: ColumnsType<OrderListTableDataType> = [
+	const columns: ColumnsType<GetMyOrderListResponseData> = [
 		{
 			title: '주문 번호',
 			dataIndex: 'ordersId',
@@ -56,7 +57,7 @@ export const useOrderList = () => {
 			dataIndex: 'orderStatus',
 			key: 'orderStatus',
 			align: 'center',
-			render: (text) => <OrderState state={text} />,
+			render: (text, record) => <OrderState state={text} deliveryId={record.deliveryId} />,
 		},
 		{
 			title: '운송장 번호',
