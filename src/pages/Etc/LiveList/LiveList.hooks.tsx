@@ -3,9 +3,12 @@ import { LiveListTableDataType } from '../../../constants/TableDataType/LiveList
 import { useGetMyApplyAuctionListQuery } from '../../../queries/useGetMyApplyAuctionListQuery';
 import { GetMyApplyAuctionListResponseData } from '../../../apis/auction/auctionAPIService.types';
 import ApproveState from '../../../components/Live/ApproveState/ApproveState';
+import { useGetAvailableAuctionListQuery } from '../../../queries/useGetAvailableAuctionListQuery';
 
 export const useLiveTable = () => {
 	const { data: auctionListData } = useGetMyApplyAuctionListQuery();
+	const { data: availableAuctionData } = useGetAvailableAuctionListQuery();
+
 	console.log(auctionListData);
 	const columns: ColumnsType<GetMyApplyAuctionListResponseData> = [
 		{
@@ -52,21 +55,9 @@ export const useLiveTable = () => {
 		},
 	];
 
-	const liveData: LiveListTableDataType[] = [
-		{
-			liveId: 1,
-			productId: 2,
-			a: 1,
-			b: 1,
-			c: 1,
-			d: 1,
-			key: 1,
-		},
-	];
-
 	return {
 		columns,
-		liveData,
 		auctionListData,
+		availableAuctionData,
 	};
 };

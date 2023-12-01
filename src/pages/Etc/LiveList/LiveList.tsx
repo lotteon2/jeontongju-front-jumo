@@ -1,4 +1,4 @@
-import { Tooltip } from 'antd';
+import { Tooltip, Card } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import styled from '@emotion/styled';
 import LiveContainer from '../../../components/Live/LiveContainer';
@@ -6,7 +6,7 @@ import Table from '../../../components/common/Table';
 import { useLiveTable } from './LiveList.hooks';
 
 const LiveList = () => {
-	const { liveData, columns, auctionListData } = useLiveTable();
+	const { columns, auctionListData, availableAuctionData } = useLiveTable();
 	return (
 		<StyledLivePage>
 			<StyledLiveTable>
@@ -20,7 +20,25 @@ const LiveList = () => {
 						<InfoCircleOutlined />
 					</Tooltip>
 				</StyledInfoContainer>
-				<LiveContainer id={1} title="11/20 오늘의 경매" />
+				{availableAuctionData ? (
+					<LiveContainer auctionData={availableAuctionData.data} />
+				) : (
+					<Card
+						title="참여가능한 경매가 없어요."
+						bordered={false}
+						style={{
+							width: 300,
+							cursor: 'pointer',
+							boxShadow: '3px 3px 1px 1px light-gray',
+							textAlign: 'center',
+							display: 'flex',
+							alignItems: 'center',
+							flexDirection: 'column',
+						}}
+					>
+						<p>전통주.에 라이브 경매를 요청해보세요!</p>
+					</Card>
+				)}
 			</div>
 		</StyledLivePage>
 	);
@@ -28,6 +46,7 @@ const LiveList = () => {
 export default LiveList;
 
 const StyledInfoContainer = styled.div`
+	margin-top: 2rem;
 	display: flex;
 	align-items: center;
 	gap: 1rem;
@@ -36,6 +55,7 @@ const StyledInfoContainer = styled.div`
 `;
 
 const StyledLiveTable = styled.div`
+	margin-top: 2rem;
 	flex-shrink: 2;
 	flex-grow: 2;
 `;

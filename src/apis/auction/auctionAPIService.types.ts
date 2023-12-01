@@ -21,6 +21,8 @@ export interface ApplyAuctionParams {
 export interface GetAvailableAuctionListResponseData {
 	auctionId: string;
 	title: string;
+	currentParticipants: number;
+	maxParticipants: number;
 }
 
 export interface GetMyApplyAuctionListResponseData {
