@@ -22,6 +22,12 @@ export interface SignUpParams {
 	impUid: string;
 }
 
+export interface UpdateMyPasswordParams {
+	email: string;
+	memberRole: string;
+	newPassword: string;
+}
+
 export type LoginResponseData = {
 	accessToken: string;
 };
@@ -31,4 +37,5 @@ export type SignUpResponse = ApiResponse<string>;
 export type EmailCheckResponse = ApiResponse<{ authCode: string }>;
 export type UpdateMyPasswordResponse = ApiResponse<string>;
 export type CheckMyPasswordResponse = ApiResponse<string>;
-export type checkMyEmailResponse = ApiResponse<{ authCode: string }>;
+export type CheckMyEmailResponse = ApiResponse<{ authCode: string }>;
+export type UpdateMyPasswordBeforeLoginResponse = ApiResponse<string>;

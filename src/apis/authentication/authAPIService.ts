@@ -6,8 +6,10 @@ import {
 	LoginResponse,
 	SignUpParams,
 	SignUpResponse,
+	UpdateMyPasswordParams,
 	UpdateMyPasswordResponse,
-	checkMyEmailResponse,
+	CheckMyEmailResponse,
+	UpdateMyPasswordBeforeLoginResponse,
 } from './authAPIService.types';
 
 const BASE_URL = `${process.env.REACT_APP_API_URL}/authentication-service/api`;
@@ -45,7 +47,13 @@ class AuthAPIService extends APIService {
 
 	/* 로그인 전 비밀번호 찾기시 이메일 인증 단계 */
 	async checkMyEmail(email: string) {
-		const { data } = await this.post<checkMyEmailResponse>('/email/auth', { email });
+		const { data } = await this.post<CheckMyEmailResponse>('/email/auth', { email });
+		return data;
+	}
+
+	/* 로그인 전 비밀번호 재설정 */
+	async updateMyPasswordBeforeLogin(params: UpdateMyPasswordParams) {
+		const { data } = await this.patch<UpdateMyPasswordBeforeLoginResponse>('/password', params);
 		return data;
 	}
 }

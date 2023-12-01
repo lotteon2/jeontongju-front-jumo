@@ -67,7 +67,7 @@ const FindMyPassword = () => {
 						name="newPassword"
 						rules={[{ required: true, message: '유효코드를 입력해주세요.' }]}
 					>
-						<Input value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
+						<Input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
 					</Form.Item>
 					<Button
 						content="비밀번호 제출"
