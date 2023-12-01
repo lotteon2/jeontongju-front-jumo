@@ -3,28 +3,14 @@ import { Form, Input } from 'antd';
 import styled from '@emotion/styled';
 import { LiveRegisterFieldType } from '../../../constants/LiveRegisterFieldType';
 import Button from '../../../components/common/Button';
+import { useLiveRegister } from './LiveRegister.hooks';
 
 const LiveRegister = () => {
-	const [form] = Form.useForm();
-	const { register, handleSubmit, control } = useForm<LiveRegisterFieldType>({
-		mode: 'onBlur',
-		defaultValues: {
-			auctionProductName: '',
-			startingPrice: 0,
-			thumbnailImageUrl: '',
-			description: '',
-			capacity: 0,
-			alcoholDegree: 0,
-		},
-	});
-
-	const onSubmit = handleSubmit((data: LiveRegisterFieldType) => {
-		console.log(data);
-	});
+	const { form, control, onSubmit, title, disabled } = useLiveRegister();
 
 	return (
 		<StyledLiveRegisterPage>
-			<h2>11월 26일 오늘의 경매</h2>
+			<h2>{title}</h2>
 			<Form
 				form={form}
 				name="basic"
@@ -96,7 +82,14 @@ const LiveRegister = () => {
 						render={({ field }) => <Input {...field} placeholder="경매 시작가를 입력해주세요." />}
 					/>
 				</Form.Item>
-				<Button content="경매 신청하기" Key="registerLive" isfull handleClick={onSubmit} htmlType="submit" />
+				<Button
+					content="경매 신청하기"
+					Key="registerLive"
+					isfull
+					handleClick={onSubmit}
+					htmlType="submit"
+					disabled={disabled}
+				/>
 			</Form>
 		</StyledLiveRegisterPage>
 	);
