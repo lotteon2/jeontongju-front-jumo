@@ -80,6 +80,7 @@ export const useProductUpdateModal = () => {
 };
 
 export const useProductListTable = () => {
+	const LIMIT_LENGTH = 6;
 	const { showModal, isModalOpen, isDisabled, isLoading, handleCancel, handleOk } = useProductUpdateModal();
 
 	const { data: productListData, refetch } = useGetMyProductListQuery();
@@ -124,6 +125,7 @@ export const useProductListTable = () => {
 			dataIndex: 'productId',
 			key: 'productId',
 			align: 'center',
+			render: (text) => <span>{text.length > LIMIT_LENGTH ? `${text.substring(0, LIMIT_LENGTH - 1)}...` : text}</span>,
 		},
 		{
 			title: '상품 이름',
