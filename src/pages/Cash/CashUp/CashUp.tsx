@@ -5,6 +5,8 @@ import { useReactToPrint } from 'react-to-print';
 import { DatePicker, DatePickerProps } from 'antd';
 import Badge from '../../../components/common/Badge';
 import { useCashUpStore } from '../../../stores/Cash/CashUp/CashUpStore';
+import { useGetMyCashUpImageQuery } from '../../../queries/useGetMyCashUpImageQuery';
+import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
 
 const CashUp = () => {
 	const monthFormat = 'YYYY-MM';
@@ -16,6 +18,8 @@ const CashUp = () => {
 		state.dispatchSearchYear,
 	]);
 
+	const storeName = useMyInfoStore((state) => state.storeName);
+
 	const ref = useRef();
 	const componentRef = useRef(null);
 	const handlePrint = useReactToPrint({
@@ -23,31 +27,35 @@ const CashUp = () => {
 	});
 
 	const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-		console.log(date, dateString);
 		setSearchYear(dateString.split('-')[0]);
 		setSearchMonth(dateString.split('-')[1]);
-		console.log(dateString.split('-')[0]);
 	};
+
+	const { data } = useGetMyCashUpImageQuery();
 
 	return (
 		<div>
 			<StyledCashUpHeader>
 				<MonthPicker onChange={onChange} format={monthFormat} placeholder={`${searchYear}-${searchMonth}`} />
 				<Badge content={`${searchMonth}월`} />
-				<h3>
-					000주모님의 {searchYear}-{searchMonth} 정산내역이에요.
-				</h3>
+				<div>
+					{storeName} 주모님의 {searchYear} - {searchMonth} 정산내역이에요.
+				</div>
 				<button type="button" onClick={handlePrint}>
 					인쇄하기
 				</button>
 			</StyledCashUpHeader>
-
-			<img
-				ref={componentRef}
-				src="https://github.com/lotteon2/jeontongju-front-jumo/assets/72402747/61ddaee8-dd62-42e2-ba45-aa50ec7c9804"
-				width="100%"
-				alt="정산 이미지"
-			/>
+			{data ? (
+				<img
+					ref={componentRef}
+					src={data ? data.data.settlementImgUrl : null}
+					width="100%"
+					height="100%"
+					alt="정산 이미지"
+				/>
+			) : (
+				<div>정산 내역이 없어요.</div>
+			)}
 		</div>
 	);
 };
