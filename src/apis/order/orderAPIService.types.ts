@@ -55,3 +55,4 @@ export type RegisterDeliveryCodeParams = {
 
 export type GetMyOrderListResponse = ApiResponse<Page<GetMyOrderListResponseData[]>>;
 export type RegisterDeliveryCodeResponse = ApiResponse<string>;
+export type ConfirmDeliveryResponse = ApiResponse<string>;

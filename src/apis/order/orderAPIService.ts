@@ -1,5 +1,6 @@
 import APIService from '../../libs/core/api/APIService';
 import {
+	ConfirmDeliveryResponse,
 	GetMyOrderListResponse,
 	RegisterDeliveryCodeParams,
 	RegisterDeliveryCodeResponse,
@@ -22,6 +23,11 @@ class OrderAPIService extends APIService {
 
 	async registerDeliveryCode(deliveryId: number, params: RegisterDeliveryCodeParams) {
 		const { data } = await this.patch<RegisterDeliveryCodeResponse>(`/delivery/${deliveryId}`, params);
+		return data;
+	}
+
+	async confirmDelivery(deliveryId: number) {
+		const { data } = await this.patch<ConfirmDeliveryResponse>(`/delivery-confirm/${deliveryId}`);
 		return data;
 	}
 }
