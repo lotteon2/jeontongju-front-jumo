@@ -6,9 +6,11 @@ import { useRegisterDeliveryMutation } from '../../mutations/order/useRegisterDe
 import { useRegisterDeliveryStore } from '../../stores/Cash/Delivery/RegisterDeliveryStore';
 import { useGetMyOrderListQuery } from '../../queries/useGetMyOrderListQuery';
 import { Toast } from '../common/Toast';
+import { useConfirmDeliveryMutation } from '../../mutations/order/useConfirmDeliveryMutation';
 
 const OrderState = ({ state, deliveryId }: { state: keyof typeof ORDER_STATE; deliveryId: number }) => {
 	const { mutateAsync } = useRegisterDeliveryMutation();
+	const { mutateAsync: mutateConfirmAsync } = useConfirmDeliveryMutation();
 	const { refetch } = useGetMyOrderListQuery();
 	const [deliveryCode, setDeliveryId, setDeliveryCode] = useRegisterDeliveryStore((states) => [
 		states.deliveryCode,
@@ -26,6 +28,19 @@ const OrderState = ({ state, deliveryId }: { state: keyof typeof ORDER_STATE; de
 		}
 	};
 
+	const handleConfirmDelivery = async () => {
+		setDeliveryId(deliveryId);
+		try {
+			const result = await mutateConfirmAsync();
+			if (result.code === 200) {
+				Toast(true, '배송 확정 되었어요.');
+				refetch();
+			}
+		} catch (err) {
+			Toast(false, '배송 확정에 실패했어요');
+		}
+	};
+
 	return (
 		<div>
 			{state === ORDER_STATE.ORDER ? (
@@ -37,6 +52,8 @@ const OrderState = ({ state, deliveryId }: { state: keyof typeof ORDER_STATE; de
 					/>
 					<Button content="저장" Key="saveOrderNumber" btntype="cancel" handleClick={handleRegisterOrderNumber} />
 				</StyledOrderInput>
+			) : state === ORDER_STATE.SHIPPING ? (
+				<StyledOrderState onClick={handleConfirmDelivery}>배송 확정하기</StyledOrderState>
 			) : (
 				<StyledOrderState>{translateOrderState(state)}</StyledOrderState>
 			)}
@@ -50,6 +67,7 @@ const StyledOrderState = styled.div`
 	text-align: center;
 	background-color: var(--primary-green);
 	color: white;
+	cursor: pointer;
 `;
 
 const StyledOrderInput = styled.div`
