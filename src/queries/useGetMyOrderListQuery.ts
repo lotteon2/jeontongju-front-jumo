@@ -11,6 +11,7 @@ export const useGetMyOrderListQuery = () => {
 		state.productId,
 		state.selectedDate,
 	]);
+	console.log(isDeliveryCodeNull);
 	return useQuery(
 		[GET_PRODUCT_LIST, page, size, isDeliveryCodeNull, productId, selectedDate],
 		() => orderApi.getMyOrderList(page, size, isDeliveryCodeNull, productId, selectedDate),

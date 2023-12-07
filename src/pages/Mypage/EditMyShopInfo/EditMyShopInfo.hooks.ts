@@ -31,7 +31,6 @@ export const useEditMyShopInfo = () => {
 	};
 
 	const onSubmit = handleSubmit(async (data: EditMyShopInfoFieldType) => {
-		console.log(data);
 		await sellerApi.updateMyInfo(data).then((res) => {
 			if (res.code === 200) {
 				Toast(true, '주모 정보가 성공적으로 수정되었어요.');
