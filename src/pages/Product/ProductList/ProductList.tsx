@@ -36,7 +36,7 @@ const ProductList = () => {
 
 	return (
 		<div>
-			<Table columns={columns} data={productListData ? productListData.data : []} />
+			<Table columns={columns} data={productListData ? productListData.data.content : []} />
 			<Modal
 				title="상품 수정"
 				open={isModalOpen}
