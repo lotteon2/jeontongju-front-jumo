@@ -31,7 +31,6 @@ export const useShortsRegister = () => {
 
 	const handleSelectedProduct = (value: any) => {
 		setSelectedProductId(value);
-		console.log(value);
 	};
 	console.log(getValues('shortsTitle'));
 	// TODO  : image, video 추가
