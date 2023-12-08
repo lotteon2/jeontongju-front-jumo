@@ -37,8 +37,6 @@ export const useLogin = () => {
 					setCategory(myInfo.data.category);
 				}
 
-				console.log(isApproved);
-
 				localStorage.setItem('accessToken', res.data.accessToken);
 				navigate('/');
 			}
