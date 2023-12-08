@@ -65,6 +65,24 @@ export const useSignUp = () => {
 	};
 
 	const onFinish = async () => {
+		console.log(
+			email,
+			password,
+			storeName,
+			storeDescription,
+			storeImageUrl,
+			storePhoneNumber,
+			businessLicenseDocumentsUrl,
+			impUid,
+			email,
+			password,
+			storeName,
+			storeDescription,
+			storeImageUrl,
+			storePhoneNumber,
+			businessLicenseDocumentsUrl,
+			impUid,
+		);
 		if (password !== checkPassword) {
 			return;
 		}
