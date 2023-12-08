@@ -18,6 +18,7 @@ class APIService {
 		'Content-Type': 'application/json',
 		'Access-Control-Allow-Origin': 'https://jeontongju-dev.shop',
 		Authorization: localStorage.getItem('accessToken') || '',
+		'Access-Control-Allow-Credentials': 'true',
 	};
 
 	static $instance: APIService;
