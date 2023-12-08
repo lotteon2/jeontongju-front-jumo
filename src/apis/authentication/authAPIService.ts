@@ -21,7 +21,7 @@ class AuthAPIService extends APIService {
 	}
 
 	async login(params: LoginParams) {
-		const { data } = await this.post<LoginResponse>('/sign-in', params);
+		const { data } = await this.post<LoginResponse>('/sign-in', { ...params, memberRole: 'ROLE_SELLER' });
 		return data;
 	}
 

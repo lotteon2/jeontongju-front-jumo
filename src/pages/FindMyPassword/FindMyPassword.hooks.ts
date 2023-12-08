@@ -36,7 +36,7 @@ export const useFindMyPassword = () => {
 			const params = {
 				email,
 				newPassword,
-				memberRole: 'ROLE_CONSUMER',
+				memberRole: 'ROLE_SELLER',
 			};
 			const result = await authApi.updateMyPasswordBeforeLogin(params);
 			if (result.code === 200) {
