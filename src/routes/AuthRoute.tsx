@@ -21,6 +21,7 @@ const AuthRoute = () => {
 		if (isLogin) {
 			// 첫 진입시 받아와야함
 			console.log('here');
+			console.log(approvalState);
 			if (myInfo) {
 				setApprovalState(myInfo.data.approvalState);
 				setStoreImageUrl(myInfo.data.storeImageUrl);
