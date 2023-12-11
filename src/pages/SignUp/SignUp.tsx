@@ -73,6 +73,7 @@ const SignUp = () => {
 								placeholder="이메일로 전송된 유효 코드를 입력해주세요."
 								value={emailCode}
 								onChange={(e) => setEmailCode(e.target.value)}
+								disabled={isValidEmailCode}
 							/>
 							<Button
 								content="확인"
