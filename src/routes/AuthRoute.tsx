@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useMyInfoStore } from '../stores/MyInfo/MyInfoStore';
 import MainLayout from '../layouts/MainLayout';
 import { useGetMyInfoQuery } from '../queries/useGetMyInfoQuery';
+import { APPROVE } from '../constants/ApproveType';
 
 const AuthRoute = () => {
 	const [isLogin, approvalState, setApprovalState, setStoreImageUrl, setStoreName, setCategory] = useMyInfoStore(
@@ -30,9 +31,9 @@ const AuthRoute = () => {
 		}
 	}, []);
 
-	return isLogin && approvalState === 'ALLOW' ? (
+	return isLogin && approvalState === APPROVE.ALLOW ? (
 		<MainLayout />
-	) : isLogin && approvalState === 'WAIT' ? (
+	) : isLogin && approvalState === APPROVE.WAIT ? (
 		<Navigate to="/init/waiting" />
 	) : (
 		<Navigate to="/init/login" />
