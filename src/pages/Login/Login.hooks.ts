@@ -5,6 +5,7 @@ import { Toast } from '../../components/common/Toast';
 
 import { useGetMyInfoQuery } from '../../queries/useGetMyInfoQuery';
 import { useMyInfoStore } from '../../stores/MyInfo/MyInfoStore';
+import { APPROVE } from '../../constants/ApproveType';
 
 export const useLogin = () => {
 	const navigate = useNavigate();
@@ -25,6 +26,7 @@ export const useLogin = () => {
 			state.dispatchCategory,
 		]);
 
+	console.log(APPROVE.ALLOW);
 	const isAbleToLogin = () => {
 		if (!email || !password) return 'disabled';
 		return 'positive';

@@ -3,7 +3,6 @@ import { Outlet, useNavigate, useNavigation } from 'react-router-dom';
 import { useEffect } from 'react';
 import wallPaper from '../assets/images/login_paper.png';
 import { useMyInfoStore } from '../stores/MyInfo/MyInfoStore';
-import { APPROVE } from '../constants/ApproveType';
 
 const LoginLayout = () => {
 	const navigation = useNavigation();
@@ -11,7 +10,7 @@ const LoginLayout = () => {
 	const [isLogin, approvalState] = useMyInfoStore((state) => [state.isLogin, state.approvalState]);
 
 	useEffect(() => {
-		if (isLogin && approvalState === APPROVE.ALLOW) navigate('/');
+		if (isLogin && approvalState === 'ALLOW') navigate('/');
 	});
 
 	return (
