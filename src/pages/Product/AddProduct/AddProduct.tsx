@@ -361,10 +361,7 @@ const AddProduct = () => {
 							label="술과 잘 어울리는 안주"
 							{...field}
 							rules={[
-								{
-									required: true,
-									message: '술과 잘 어울리는 안주를 최대 2가지 골라주세요.',
-								},
+								{ message: '술과 잘 어울리는 안주를 최대 2가지 골라주세요.' },
 								{
 									validator: (rule, value, callback) => {
 										if (value) {
@@ -405,7 +402,6 @@ const AddProduct = () => {
 							{...field}
 							rules={[
 								{
-									required: true,
 									message: '술과 잘 어울리는 컨셉을 최대 2가지 골라주세요.',
 								},
 								{
