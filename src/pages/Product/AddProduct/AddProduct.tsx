@@ -4,9 +4,9 @@ import { LiaWineBottleSolid } from 'react-icons/lia';
 import { useAddProduct } from './AddProduct.hooks';
 import Button from '../../../components/common/Button';
 import DaumAddress from '../../../components/common/DaumAddress';
-import { SNACK, SnackOptions } from '../../../constants/ProductType/SnackType';
-import { CONCEPT, ConceptOptions } from '../../../constants/ProductType/ConceptType';
-import { RAW_MATERIAL, RawMaterialOptions } from '../../../constants/ProductType/MaterialType';
+import { SnackOptions } from '../../../constants/ProductType/SnackType';
+import { ConceptOptions } from '../../../constants/ProductType/ConceptType';
+import { RawMaterialOptions } from '../../../constants/ProductType/MaterialType';
 import { RegisterProductParams } from '../../../apis/product/productAPIService.types';
 import { Toast } from '../../../components/common/Toast';
 import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
@@ -52,13 +52,6 @@ const AddProduct = () => {
 				control={control}
 				render={({ field }) => {
 					return (
-						// <MyInput
-						// 	label="상품 설명"
-						// 	placeholder="고객들에게 보여질 상품 설명을 입력해주세요."
-						// 	name="productDescription"
-						// 	ref={field.ref}
-						// 	{...field}
-						// />
 						<Form.Item<RegisterProductParams>
 							label="상품 설명"
 							{...field}
@@ -85,13 +78,21 @@ const AddProduct = () => {
 					},
 				]}
 			>
-				<Select
-					size="middle"
-					placeholder="술의 종류를 선택해주세요."
-					style={{ width: '100%', margin: '1rem 0' }}
-					value={selectedCategoryId ? category[Number(selectedCategoryId) - 1] : null}
-					options={category}
-					onChange={handleSelectedCategory}
+				<Controller
+					name="categoryId"
+					control={control}
+					render={({ field }) => {
+						return (
+							<Select
+								size="middle"
+								placeholder="술의 종류를 선택해주세요."
+								style={{ width: '100%', margin: '1rem 0' }}
+								value={selectedCategoryId ? category[Number(selectedCategoryId) - 1] : null}
+								options={category}
+								onChange={handleSelectedCategory}
+							/>
+						);
+					}}
 				/>
 			</Form.Item>
 			<Form.Item<RegisterProductParams>

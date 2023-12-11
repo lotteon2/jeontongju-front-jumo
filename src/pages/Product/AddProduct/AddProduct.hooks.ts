@@ -32,7 +32,7 @@ export const useAddProduct = () => {
 			productPrice: 0,
 			registeredQuantity: 0,
 			productDetailsImageUrl: '',
-			categoryId: 0,
+			categoryId: null,
 			rawMaterial: [],
 			food: [],
 			concept: [],
