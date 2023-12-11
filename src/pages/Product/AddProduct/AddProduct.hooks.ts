@@ -22,7 +22,7 @@ export const useAddProduct = () => {
 		defaultValues: {
 			productName: null,
 			productDescription: null,
-			productThumbnailImageUrl: null,
+			productThumbnailImageUrl: '',
 			productAlcoholDegree: 0,
 			productCapacity: 0,
 			breweryName: '',
