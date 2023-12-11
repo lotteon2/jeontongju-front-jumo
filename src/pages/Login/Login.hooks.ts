@@ -31,20 +31,24 @@ export const useLogin = () => {
 	};
 
 	const onFinish = async () => {
-		await authApi.login({ email, password }).then((res) => {
-			if (res.code === 200) {
+		try {
+			const data = await authApi.login({ email, password });
+			if (data.code === 200) {
 				Toast(true, '로그인되었어요');
 				setIsLogin(true);
-				localStorage.setItem('accessToken', res.data.accessToken);
-				navigate('/');
-				if (!myInfo) return;
-				if (myInfo.data) {
-					setApprovalState(myInfo.data.approvalState);
-					setStoreImageUrl(myInfo.data.storeImageUrl);
-					setStoreName(myInfo.data.storeName);
+				localStorage.setItem('accessToken', data.data.accessToken);
+				if (myInfo) {
+					if (myInfo.data) {
+						setApprovalState(myInfo.data.approvalState);
+						setStoreImageUrl(myInfo.data.storeImageUrl);
+						setStoreName(myInfo.data.storeName);
+					}
 				}
+				navigate('/');
 			}
-		});
+		} catch (err) {
+			console.error(err);
+		}
 	};
 
 	return {
