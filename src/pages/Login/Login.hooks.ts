@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authApi } from '../../apis/authentication/authAPIService';
 import { Toast } from '../../components/common/Toast';
@@ -37,19 +37,28 @@ export const useLogin = () => {
 				Toast(true, '로그인되었어요');
 				setIsLogin(true);
 				localStorage.setItem('accessToken', data.data.accessToken);
-				if (myInfo) {
-					if (myInfo.data) {
-						setApprovalState(myInfo.data.approvalState);
-						setStoreImageUrl(myInfo.data.storeImageUrl);
-						setStoreName(myInfo.data.storeName);
-					}
-				}
+				// if (myInfo) {
+				// 	if (myInfo.data) {
+				// 		setApprovalState(myInfo.data.approvalState);
+				// 		setStoreImageUrl(myInfo.data.storeImageUrl);
+				// 		setStoreName(myInfo.data.storeName);
+				// 	}
+				// }
 				navigate('/');
 			}
 		} catch (err) {
 			console.error(err);
 		}
 	};
+
+	useEffect(() => {
+		if (!myInfo) return;
+		if (myInfo.data) {
+			setApprovalState(myInfo.data.approvalState);
+			setStoreImageUrl(myInfo.data.storeImageUrl);
+			setStoreName(myInfo.data.storeName);
+		}
+	}, [myInfo]);
 
 	return {
 		email,
