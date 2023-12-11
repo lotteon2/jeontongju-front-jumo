@@ -1,3 +1,4 @@
+import { Form } from 'antd';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAddressStore } from '../../../stores/Address/AddressStore';
@@ -6,6 +7,7 @@ import { productApi } from '../../../apis/product/productAPIService';
 import { Toast } from '../../../components/common/Toast';
 
 export const useAddProduct = () => {
+	const [form] = Form.useForm();
 	const [clear, selectedCategoryId, setSelectedCategoryId, breweryAddressDetail, breweryZonecode, breweryAddress] =
 		useAddressStore((state) => [
 			state.clear,
@@ -47,8 +49,6 @@ export const useAddProduct = () => {
 
 	const handleSelectedCategory = (value: any) => {
 		setSelectedCategoryId(value);
-		console.log(value);
-		register('categoryId', value);
 	};
 
 	const onSubmit = handleSubmit(async (data: RegisterProductParams) => {
@@ -71,5 +71,6 @@ export const useAddProduct = () => {
 		handleSubmit,
 		control,
 		register,
+		form,
 	};
 };

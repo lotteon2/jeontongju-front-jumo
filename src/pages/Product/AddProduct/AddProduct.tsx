@@ -12,8 +12,8 @@ import { Toast } from '../../../components/common/Toast';
 import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
 
 const AddProduct = () => {
-	const [form] = Form.useForm();
-	const { register, selectedCategoryId, handleSelectedCategory, control, handleSubmit, onSubmit } = useAddProduct();
+	const { form, register, selectedCategoryId, handleSelectedCategory, control, handleSubmit, onSubmit } =
+		useAddProduct();
 	const { category } = useMyInfoStore();
 
 	return (
