@@ -16,7 +16,7 @@ export const useSignUp = () => {
 	const [checkPassword, setCheckPassword] = useState<string>('');
 	const [storeName, setStoreName] = useState<string>(null);
 	const [storeDescription, setStoreDescription] = useState<string>(null);
-	const [storeImageUrl, setStoreImageUrl] = useState<string>(null);
+	const [storeImageUrl, setStoreImageUrl] = useState<string>('');
 	const [storePhoneNumber, setStorePhoneNumber] = useState<string>(null);
 	const [businessLicenseDocumentsUrl, setBusinessLicenseDocumentsUrl] = useState<string>('');
 	const [impUid, setImpUid] = useState<string>('');
