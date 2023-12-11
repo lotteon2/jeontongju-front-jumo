@@ -84,15 +84,11 @@ export const useSignUp = () => {
 			impUid,
 		);
 		if (password !== checkPassword) {
+			Toast(false, '비밀번호가 일치하지않아요.');
 			return;
 		}
 
-		if (password !== checkPassword) {
-			return;
-		}
-
-		if (!email || !password || !storeName || !storeDescription || !storeImageUrl || !storePhoneNumber || !impUid)
-			return;
+		if (!email || !password || !storeName || !storeDescription || !storePhoneNumber || !impUid) return;
 
 		const data = await authApi.signUp({
 			email,

@@ -66,7 +66,13 @@ const SignUp = () => {
 								value={emailCode}
 								onChange={(e) => setEmailCode(e.target.value)}
 							/>
-							<Button content="확인" Key="checkEmailCode" handleClick={handleCheckEmailCode} htmlType="button" />
+							<Button
+								content="확인"
+								Key="checkEmailCode"
+								handleClick={handleCheckEmailCode}
+								htmlType="button"
+								disabled={isValidEmailCode}
+							/>
 						</StyledInputBtn>
 					</Form.Item>
 				</>
