@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { AddProductFieldType } from '../../../constants/AddProductFieldType';
 import { useAddressStore } from '../../../stores/Address/AddressStore';
 import { RegisterProductParams } from '../../../apis/product/productAPIService.types';
 import { productApi } from '../../../apis/product/productAPIService';

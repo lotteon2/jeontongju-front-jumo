@@ -36,6 +36,7 @@ export const useLogin = () => {
 				Toast(true, '로그인되었어요');
 				setIsLogin(true);
 				localStorage.setItem('accessToken', res.data.accessToken);
+				if (!myInfo) return;
 				if (myInfo.data) {
 					setApprovalState(myInfo.data.approvalState);
 					setStoreImageUrl(myInfo.data.storeImageUrl);
