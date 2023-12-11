@@ -46,8 +46,8 @@ export const useEditMyShopInfo = () => {
 			getValues('storeName') === storeName &&
 			getValues('storePhoneNumber') === storePhoneNumber
 		)
-			return true;
-		return false;
+			return 'disabled';
+		return 'positive';
 	};
 
 	const onSubmit = handleSubmit(async (data: EditMyShopInfoFieldType) => {

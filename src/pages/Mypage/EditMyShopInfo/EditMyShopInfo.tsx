@@ -87,7 +87,7 @@ const EditMyShopInfo = () => {
 					content="수정하기"
 					width="10rem"
 					Key="editMyShopInfo"
-					disabled={isAbleToEdit()}
+					btntype={isAbleToEdit()}
 					handleClick={onSubmit}
 					htmlType="submit"
 				/>

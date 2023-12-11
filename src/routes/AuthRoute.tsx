@@ -17,20 +17,17 @@ const AuthRoute = () => {
 	);
 	const { data: myInfo } = useGetMyInfoQuery();
 
-	// useEffect(() => {
-	//   if (isLogin) {
-	//     // 첫 진입시 받아와야함
-	//     console.log("here");
-	//     if (myInfo.data !== undefined) {
-	//       setIsApproved(myInfo.data.approvalState);
-	//       setStoreImageUrl(myInfo.data.storeImageUrl);
-	//       setStoreName(myInfo.data.storeName);
-	//       setCategory(myInfo.data.category);
-	//     }
-
-	//     console.log(isApproved);
-	//   }
-	// }, []);
+	useEffect(() => {
+		if (isLogin) {
+			// 첫 진입시 받아와야함
+			console.log('here');
+			if (myInfo) {
+				setApprovalState(myInfo.data.approvalState);
+				setStoreImageUrl(myInfo.data.storeImageUrl);
+				setStoreName(myInfo.data.storeName);
+			}
+		}
+	}, []);
 
 	return isLogin && approvalState === 'ALLOW' ? (
 		<MainLayout />
