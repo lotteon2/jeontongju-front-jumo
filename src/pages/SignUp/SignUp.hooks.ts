@@ -32,7 +32,9 @@ export const useSignUp = () => {
 					setAuthCode(data.data.authCode);
 				}
 			}
-		} catch (error) {}
+		} catch (error) {
+			Toast(false, '서버 에러');
+		}
 	};
 
 	const handleCheckEmailCode = async () => {

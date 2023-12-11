@@ -156,7 +156,6 @@ const SignUp = () => {
 				<Input
 					value={password as string}
 					placeholder="고객이 문의할 대표 번호를 입력해주세요.(숫자만)"
-					type="number"
 					onChange={(e) => setStorePhoneNumber(e.target.value)}
 				/>
 			</Form.Item>
