@@ -49,11 +49,13 @@ export const useEditMyShopInfo = () => {
 	};
 
 	const onSubmit = handleSubmit(async (data: EditMyShopInfoFieldType) => {
-		if (!data.storeDescription || !data.storeImageUrl || !data.storeName || !data.storePhoneNumber) {
-			Toast(false, '수정 정보를 입력해주세요');
+		console.log(data);
+
+		if (/^[0-9]{2,3}[0-9]{3,4}[0-9]{4}/.test(data.storePhoneNumber)) {
+			Toast(false, '전화번호를 입력해주세요');
 			return;
 		}
-		await sellerApi.updateMyInfo(data).then((res) => {
+		await sellerApi.updateMyInfo({ storeDescription, storeImageUrl, storeName, storePhoneNumber }).then((res) => {
 			if (res.code === 200) {
 				Toast(true, '주모 정보가 성공적으로 수정되었어요.');
 			}

@@ -13,7 +13,7 @@ export interface UpdateMyInfoParams {
 	storeName?: string;
 	storeDescription?: string;
 	storeImageUrl?: string;
-	storePhoneNUmber?: string;
+	storePhoneNumber?: string;
 }
 
 export interface GetMyInfoResponseData {
