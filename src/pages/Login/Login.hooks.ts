@@ -42,7 +42,6 @@ export const useLogin = () => {
 					setStoreImageUrl(myInfo.data.storeImageUrl);
 					setStoreName(myInfo.data.storeName);
 				}
-
 				navigate('/');
 			}
 		});
