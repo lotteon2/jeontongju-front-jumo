@@ -16,7 +16,7 @@ export const useAddProduct = () => {
 			state.breweryAddress,
 		]);
 
-	const { handleSubmit, control } = useForm<RegisterProductParams>({
+	const { handleSubmit, control, register } = useForm<RegisterProductParams>({
 		mode: 'onBlur',
 		defaultValues: {
 			productName: null,
@@ -48,6 +48,7 @@ export const useAddProduct = () => {
 	const handleSelectedCategory = (value: any) => {
 		setSelectedCategoryId(value);
 		console.log(value);
+		register('categoryId', value);
 	};
 
 	const onSubmit = handleSubmit(async (data: RegisterProductParams) => {
