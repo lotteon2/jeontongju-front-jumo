@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authApi } from '../../apis/authentication/authAPIService';
 import { Toast } from '../../components/common/Toast';
-import { useMyInfoStore } from '../../stores/MyInfo/MyInfoStore';
+
 import { useGetMyInfoQuery } from '../../queries/useGetMyInfoQuery';
+import { useMyInfoStore } from '../../stores/MyInfo/MyInfoStore';
 
 export const useLogin = () => {
 	const navigate = useNavigate();
@@ -13,8 +14,8 @@ export const useLogin = () => {
 	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 
-	const [isLogin, setIsLogin, isApproved, setIsApproved, setStoreImageUrl, setStoreName, setCategory] = useMyInfoStore(
-		(state) => [
+	const [isLogin, dispatchIsLogin, isApproved, setIsApproved, setStoreImageUrl, setStoreName, setCategory] =
+		useMyInfoStore((state) => [
 			state.isLogin,
 			state.dispatchIsLogin,
 			state.isApproved,
@@ -22,14 +23,18 @@ export const useLogin = () => {
 			state.dispatchStoreImageUrl,
 			state.dispatchStoreName,
 			state.dispatchCategory,
-		],
-	);
+		]);
+	console.log(isLogin);
+	const isAbleToLogin = () => {
+		if (!email || !password) return 'disabled';
+		return 'positive';
+	};
 
 	const onFinish = async () => {
 		await authApi.login({ email, password }).then((res) => {
 			if (res.code === 200) {
 				Toast(true, '로그인되었어요');
-				setIsLogin(true);
+				dispatchIsLogin(true);
 				if (myInfo.data) {
 					setIsApproved(myInfo.data.approvalState);
 					setStoreImageUrl(myInfo.data.storeImageUrl);
@@ -49,5 +54,6 @@ export const useLogin = () => {
 		password,
 		setPassword,
 		onFinish,
+		isAbleToLogin,
 	};
 };

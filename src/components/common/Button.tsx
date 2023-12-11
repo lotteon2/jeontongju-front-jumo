@@ -51,7 +51,7 @@ const StyledAntdButton = styled(AntdBtn)<{
 	font-weight: 800;
 	border-radius: 10px;
 	border: none;
-	cursor:${(props) => (props.btntype === 'disabled' ? 'none' : 'pointer')}
+	cursor: ${(props) => (props.btntype === 'disabled' ? 'none' : 'pointer')};
 	background: ${(props) =>
 		props.btntype === 'positive'
 			? '#99dc79'
