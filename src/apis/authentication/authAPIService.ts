@@ -47,7 +47,7 @@ class AuthAPIService extends APIService {
 
 	/* 로그인 전 비밀번호 찾기시 이메일 인증 단계 */
 	async checkMyEmail(email: string) {
-		const { data } = await this.post<CheckMyEmailResponse>('/email/auth', { email });
+		const { data } = await this.post<CheckMyEmailResponse>('/email/auth', { email, memberRole: 'ROLE_SELLER' });
 		return data;
 	}
 
