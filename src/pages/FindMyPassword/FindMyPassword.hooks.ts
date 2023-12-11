@@ -46,6 +46,13 @@ export const useFindMyPassword = () => {
 		}
 	};
 
+	const isAbleToCheckEmail = () => {
+		if (!email || authCode) {
+			return 'disabled';
+		}
+		return 'positive';
+	};
+
 	return {
 		email,
 		setEmail,
@@ -58,5 +65,6 @@ export const useFindMyPassword = () => {
 		newPassword,
 		setNewPassword,
 		onSubmitNewPassword,
+		isAbleToCheckEmail,
 	};
 };

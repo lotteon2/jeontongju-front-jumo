@@ -17,6 +17,7 @@ const FindMyPassword = () => {
 		newPassword,
 		setNewPassword,
 		onSubmitNewPassword,
+		isAbleToCheckEmail,
 	} = useFindMyPassword();
 
 	return (
@@ -28,7 +29,7 @@ const FindMyPassword = () => {
 					name="email"
 					rules={[{ required: true, message: '이메일을 입력해주세요.' }]}
 				>
-					<Input value={email} onChange={(e) => setEmail(e.target.value)} />
+					<Input value={email} onChange={(e) => setEmail(e.target.value)} disabled={authCode !== null} />
 				</Form.Item>
 				<Button
 					content="이메일 발송"
@@ -36,7 +37,7 @@ const FindMyPassword = () => {
 					isfull
 					handleClick={onSubmitEmail}
 					htmlType="button"
-					disabled={authCode !== null}
+					btntype={isAbleToCheckEmail()}
 				/>
 			</Form>
 			{authCode && (
