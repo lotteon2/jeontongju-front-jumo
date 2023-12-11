@@ -1,5 +1,5 @@
 export interface OrderListStore {
-	selectedDate: null;
+	selectedDate: string;
 	isDeliveryCodeNull: boolean;
 	page: number;
 	size: number;
