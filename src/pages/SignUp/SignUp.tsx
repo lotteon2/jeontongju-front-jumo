@@ -27,6 +27,7 @@ const SignUp = () => {
 		isValidEmailCode,
 		handleCheckEmailCode,
 		handleAdultValid,
+		checkRegisterDisabled,
 	} = useSignUp();
 
 	return (
@@ -49,7 +50,13 @@ const SignUp = () => {
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 					/>
-					<Button content="인증" Key="loginAdmin" handleClick={handleCheckEmail} htmlType="button" />
+					<Button
+						content="인증"
+						Key="loginAdmin"
+						handleClick={handleCheckEmail}
+						htmlType="button"
+						btntype={!email ? 'disabled' : 'positive'}
+					/>
 				</StyledInputBtn>
 			</Form.Item>
 			{isValidEmail && (
@@ -155,10 +162,10 @@ const SignUp = () => {
 			<StyledAdultValidContainer onClick={handleAdultValid} />
 			<Button
 				content="주모 가입 신청하기"
-				Key="loginAdmin"
+				Key="registerAdmin"
 				isfull
 				handleClick={onFinish}
-				disabled={password !== checkPassword}
+				btntype={checkRegisterDisabled()}
 				htmlType="submit"
 			/>
 		</Form>

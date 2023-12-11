@@ -64,6 +64,12 @@ export const useSignUp = () => {
 		IMP.certification(data, callback);
 	};
 
+	const checkRegisterDisabled = () => {
+		if (password !== checkPassword) return 'disabled';
+		if (!email || !password || !storeName || !storeDescription || !storePhoneNumber || !impUid) return 'disabled';
+		return 'positive';
+	};
+
 	const onFinish = async () => {
 		console.log(
 			email,
@@ -127,5 +133,6 @@ export const useSignUp = () => {
 		handleCheckEmailCode,
 		isValidEmailCode,
 		handleAdultValid,
+		checkRegisterDisabled,
 	};
 };

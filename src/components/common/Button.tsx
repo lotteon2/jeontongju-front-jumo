@@ -6,7 +6,7 @@ interface ButtonInterface {
 	handleClick?: () => void;
 	loading?: boolean;
 	htmlType?: 'button' | 'submit' | 'reset' | undefined;
-	btntype?: 'positive' | 'negative' | 'cancel';
+	btntype?: 'positive' | 'negative' | 'cancel' | 'disabled';
 	Key: string;
 	disabled?: boolean;
 	width?: string;
@@ -40,7 +40,7 @@ export default Button;
 
 const StyledAntdButton = styled(AntdBtn)<{
 	width: string;
-	btntype: 'positive' | 'negative' | 'cancel';
+	btntype: 'positive' | 'negative' | 'cancel' | 'disabled';
 }>`
 	color: ${(props) => (props.btntype === 'positive' ? 'white' : 'black')};
 	display: flex;
@@ -51,6 +51,13 @@ const StyledAntdButton = styled(AntdBtn)<{
 	font-weight: 800;
 	border-radius: 10px;
 	border: none;
+	cursor:${(props) => (props.btntype === 'disabled' ? 'none' : 'pointer')}
 	background: ${(props) =>
-		props.btntype === 'positive' ? '#99dc79' : props.btntype === 'negative' ? '#F92525' : '#F3F3F3'};
+		props.btntype === 'positive'
+			? '#99dc79'
+			: props.btntype === 'negative'
+			  ? '#F92525'
+			  : props.btntype === 'disabled'
+			    ? '#ccc'
+			    : '#F3F3F3'};
 `;
