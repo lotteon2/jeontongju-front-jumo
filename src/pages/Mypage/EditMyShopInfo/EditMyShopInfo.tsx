@@ -7,31 +7,13 @@ import { useEditMyShopInfo } from './EditMyShopInfo.hooks';
 import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
 
 const EditMyShopInfo = () => {
-	const [form] = Form.useForm();
-	const { register, handleSubmit, control } = useForm<EditMyShopInfoFieldType>({
-		mode: 'onBlur',
-	});
+	const { form, register, control, handleWithdraw, onSubmit, isAbleToEdit } = useEditMyShopInfo();
 
-	const { handleWithdraw, onSubmit, isAbleToEdit } = useEditMyShopInfo();
-
-	const [
-		storeName,
-		setStoreName,
-		storeImageUrl,
-		setStoreImageUrl,
-		storeDescription,
-		setStoreDescription,
-		storePhoneNumber,
-		setStorePhoneNumber,
-	] = useMyInfoStore((state) => [
+	const [storeName, storeImageUrl, storeDescription, storePhoneNumber] = useMyInfoStore((state) => [
 		state.storeName,
-		state.dispatchStoreName,
 		state.storeImageUrl,
-		state.dispatchStoreImageUrl,
 		state.storeDescription,
-		state.dispatchStoreDescription,
 		state.storePhoneNumber,
-		state.dispatchStorePhoneNumber,
 	]);
 
 	return (
@@ -56,7 +38,7 @@ const EditMyShopInfo = () => {
 						render={({ field }) => (
 							<Input
 								{...field}
-								onChange={(e) => setStoreName(e.target.value)}
+								{...register('storeName')}
 								defaultValue={storeName}
 								placeholder="고객들에게 보여질 주모 이름을 입력해주세요."
 							/>
@@ -73,8 +55,8 @@ const EditMyShopInfo = () => {
 						control={control}
 						render={({ field }) => (
 							<Input
+								{...register('storeDescription')}
 								{...field}
-								onChange={(e) => setStoreDescription(e.target.value)}
 								defaultValue={storeDescription}
 								placeholder="고객들에게 보여질 주모 소개를 입력해주세요."
 							/>
@@ -92,7 +74,7 @@ const EditMyShopInfo = () => {
 						render={({ field }) => (
 							<Input
 								{...field}
-								onChange={(e) => setStorePhoneNumber(e.target.value)}
+								{...register('storePhoneNumber')}
 								defaultValue={storePhoneNumber}
 								placeholder="고객들에게 보여질 대표 번호를 입력해주세요."
 							/>
