@@ -32,9 +32,9 @@ const AuthRoute = () => {
 		}
 	}, []);
 
-	return isLogin && approvalState === APPROVE.ALLOW ? (
+	return isLogin && approvalState === 'ALLOW' ? (
 		<MainLayout />
-	) : isLogin && approvalState === APPROVE.WAIT ? (
+	) : isLogin && approvalState === 'WAIT' ? (
 		<Navigate to="/init/waiting" />
 	) : (
 		<Navigate to="/init/login" />
