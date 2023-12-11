@@ -35,6 +35,7 @@ export const useLogin = () => {
 			if (res.code === 200) {
 				Toast(true, '로그인되었어요');
 				dispatchIsLogin(true);
+				localStorage.setItem('accessToken', res.data.accessToken);
 				if (myInfo.data) {
 					setIsApproved(myInfo.data.approvalState);
 					setStoreImageUrl(myInfo.data.storeImageUrl);
@@ -42,7 +43,6 @@ export const useLogin = () => {
 					setCategory(myInfo.data.category);
 				}
 
-				localStorage.setItem('accessToken', res.data.accessToken);
 				navigate('/');
 			}
 		});
