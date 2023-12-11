@@ -46,7 +46,7 @@ const MainLayout = () => {
 
 			const categoryData = await productApi.getCategory();
 			if (data.code === 200) {
-				setCategory(categoryData.data.category);
+				setCategory(categoryData.data);
 			} else {
 				console.error('category 조회 오류');
 			}

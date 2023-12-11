@@ -77,9 +77,6 @@ export interface GetShortListResponseData {
 	shortsHits: number;
 	isActivate: boolean;
 }
-export interface GetCategoryResponseData {
-	category: categoryType[];
-}
 
 export type GetMyProductResponse = ApiResponse<GetMyProductResponseData[]>;
 
@@ -95,4 +92,4 @@ export type GetShortListResponse = ApiResponse<GetShortListResponseData[]>;
 
 export type UpdateShortsResponse = ApiResponse<string>;
 
-export type GetCategoryResponse = ApiResponse<GetCategoryResponseData>;
+export type GetCategoryResponse = ApiResponse<categoryType[]>;
