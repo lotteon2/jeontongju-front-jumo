@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Form } from 'antd';
+import { useState } from 'react';
 import { sellerApi } from '../../../apis/seller/sellerAPIService';
 import { Alert } from '../../../components/common/Alert';
 import { Toast } from '../../../components/common/Toast';
@@ -19,6 +20,8 @@ export const useEditMyShopInfo = () => {
 		state.storeDescription,
 		state.storePhoneNumber,
 	]);
+
+	const [imageUrl, setImageUrl] = useState<string>(storeImageUrl);
 
 	const navigate = useNavigate();
 	const handleWithdrawMember = async () => {
@@ -40,6 +43,10 @@ export const useEditMyShopInfo = () => {
 		});
 	};
 
+	const handleChangeImageUrl = (e) => {
+		setImageUrl(e.target.value);
+	};
+
 	const isAbleToEdit = () => {
 		if (
 			getValues('storeDescription') === storeDescription &&
@@ -58,7 +65,12 @@ export const useEditMyShopInfo = () => {
 			return;
 		}
 		try {
-			const res = await sellerApi.updateMyInfo({ storeDescription, storeImageUrl, storeName, storePhoneNumber });
+			const res = await sellerApi.updateMyInfo({
+				storeDescription,
+				storeImageUrl: imageUrl,
+				storeName,
+				storePhoneNumber,
+			});
 			if (res.code === 200) {
 				Toast(true, '주모 정보가 성공적으로 수정되었어요.');
 			} else {
@@ -76,5 +88,6 @@ export const useEditMyShopInfo = () => {
 		form,
 		register,
 		control,
+		handleChangeImageUrl,
 	};
 };

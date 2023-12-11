@@ -5,6 +5,7 @@ import { Avatar, message, Upload } from 'antd';
 import type { UploadChangeParam } from 'antd/es/upload';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import { Toast } from './Toast';
+import { storageApi } from '../../apis/storage/storageAPIService';
 
 interface ImageUploaderInterface {
 	imageUrl: string;
@@ -22,17 +23,24 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 		event.preventDefault();
 		const formData = new FormData();
 		formData.append('image', event.target.files[0]);
+		console.log(event.target.files[0]);
 
-		fetch(`${process.env.REACT_APP_FILE_API_URL}`, {
-			method: 'POST',
-			body: formData,
-		})
-			.then((res) => {
-				return res.text();
-			})
-			.then((value) => {
-				setImageUrl(value);
-			});
+		try {
+			const data = await storageApi.uploadS3(event.target.files[0].name);
+			if (data.code === 200) {
+				axios({
+					url: data.data.presignedUrl,
+					method: 'put',
+					headers: {
+						'Content-Type': event.target.files[0].type,
+					},
+					data: event.target.files[0],
+				});
+				console.log(data.data.presignedUrl);
+			}
+		} catch (error) {
+			Toast(false, '이미지 업로드에 실패했어요');
+		}
 	};
 
 	return (

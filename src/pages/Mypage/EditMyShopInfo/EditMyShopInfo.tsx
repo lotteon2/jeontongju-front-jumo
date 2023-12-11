@@ -5,9 +5,10 @@ import { EditMyShopInfoFieldType } from '../../../constants/EditMyShopInfoFieldT
 import Button from '../../../components/common/Button';
 import { useEditMyShopInfo } from './EditMyShopInfo.hooks';
 import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
+import ImageUploader from '../../../components/common/ImageUploader';
 
 const EditMyShopInfo = () => {
-	const { form, register, control, handleWithdraw, onSubmit, isAbleToEdit } = useEditMyShopInfo();
+	const { form, register, control, handleWithdraw, onSubmit, isAbleToEdit, handleChangeImageUrl } = useEditMyShopInfo();
 
 	const [storeName, storeImageUrl, storeDescription, storePhoneNumber] = useMyInfoStore((state) => [
 		state.storeName,
@@ -27,6 +28,7 @@ const EditMyShopInfo = () => {
 				onFinish={onSubmit}
 				autoComplete="off"
 			>
+				<ImageUploader imageUrl={storeImageUrl} setImageUrl={handleChangeImageUrl} />
 				<Form.Item<EditMyShopInfoFieldType>
 					label="주모 이름"
 					name="storeName"
