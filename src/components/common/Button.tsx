@@ -23,19 +23,28 @@ const Button: React.FC<ButtonInterface> = ({
 	disabled = false,
 	isfull = false,
 	width,
-}) => (
-	<StyledAntdButton
-		disabled={disabled}
-		key={Key}
-		htmlType={htmlType}
-		onClick={handleClick}
-		loading={loading}
-		width={isfull ? '100%' : width}
-		btntype={btntype}
-	>
-		{content}
-	</StyledAntdButton>
-);
+}) => {
+	const handleButtonClick = () => {
+		if (btntype === 'disabled') {
+			return;
+		}
+		handleClick();
+	};
+
+	return (
+		<StyledAntdButton
+			disabled={disabled}
+			key={Key}
+			htmlType={htmlType}
+			onClick={handleButtonClick}
+			loading={loading}
+			width={isfull ? '100%' : width}
+			btntype={btntype}
+		>
+			{content}
+		</StyledAntdButton>
+	);
+};
 export default Button;
 
 const StyledAntdButton = styled(AntdBtn)<{
