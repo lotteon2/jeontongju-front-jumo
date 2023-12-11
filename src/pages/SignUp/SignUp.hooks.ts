@@ -21,16 +21,18 @@ export const useSignUp = () => {
 	const [impUid, setImpUid] = useState<string>('');
 
 	const handleCheckEmail = async () => {
-		const data = await authApi.emailCheck(email);
-		if (data.code === 200) {
-			if (data.failure) {
-				setIsValidEmail(false);
-				Toast(false, '중복된 이메일이에요.');
-			} else {
-				setIsValidEmail(true);
-				setAuthCode(data.data.authCode);
+		try {
+			const data = await authApi.emailCheck(email);
+			if (data.code === 200) {
+				if (data.failure) {
+					setIsValidEmail(false);
+					Toast(false, '중복된 이메일이에요.');
+				} else {
+					setIsValidEmail(true);
+					setAuthCode(data.data.authCode);
+				}
 			}
-		}
+		} catch (error) {}
 	};
 
 	const handleCheckEmailCode = async () => {
@@ -88,6 +90,11 @@ export const useSignUp = () => {
 		);
 		if (password !== checkPassword) {
 			Toast(false, '비밀번호가 일치하지않아요.');
+			return;
+		}
+
+		if (!isValidEmail) {
+			Toast(false, '이메일 인증을 해주세요.');
 			return;
 		}
 
