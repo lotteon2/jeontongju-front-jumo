@@ -18,7 +18,6 @@ export const useSignUp = () => {
 	const [storeDescription, setStoreDescription] = useState<string>(null);
 	const [storeImageUrl, setStoreImageUrl] = useState<string>('');
 	const [storePhoneNumber, setStorePhoneNumber] = useState<string>(null);
-	const [businessLicenseDocumentsUrl, setBusinessLicenseDocumentsUrl] = useState<string>('');
 	const [impUid, setImpUid] = useState<string>('');
 
 	const handleCheckEmail = async () => {
@@ -78,7 +77,6 @@ export const useSignUp = () => {
 			storeDescription,
 			storeImageUrl,
 			storePhoneNumber,
-			businessLicenseDocumentsUrl,
 			impUid,
 			email,
 			password,
@@ -86,7 +84,6 @@ export const useSignUp = () => {
 			storeDescription,
 			storeImageUrl,
 			storePhoneNumber,
-			businessLicenseDocumentsUrl,
 			impUid,
 		);
 		if (password !== checkPassword) {
@@ -103,7 +100,6 @@ export const useSignUp = () => {
 			storeDescription,
 			storeImageUrl,
 			storePhoneNumber,
-			businessLicenseDocumentsUrl,
 			impUid,
 		});
 		if (data.code === 200) {

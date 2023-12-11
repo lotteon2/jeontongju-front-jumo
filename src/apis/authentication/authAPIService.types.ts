@@ -18,7 +18,6 @@ export interface SignUpParams {
 	storeDescription: string;
 	storeImageUrl: string;
 	storePhoneNumber: string;
-	businessLicenseDocumentsUrl: string;
 	impUid: string;
 }
 
