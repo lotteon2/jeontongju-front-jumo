@@ -65,7 +65,7 @@ const SignUp = () => {
 					<Form.Item<SignUpFieldType>
 						label="이메일 유효코드"
 						name="emailCode"
-						rules={[{ required: true, message: '이메일을 입력해주세요' }]}
+						rules={[{ required: true, message: '유효코드를 입력해주세요' }]}
 					>
 						<StyledInputBtn>
 							<Input

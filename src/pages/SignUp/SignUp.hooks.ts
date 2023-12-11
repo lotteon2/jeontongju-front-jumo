@@ -95,7 +95,7 @@ export const useSignUp = () => {
 			return;
 		}
 
-		if (!isValidEmail) {
+		if (!isValidEmailCode) {
 			Toast(false, '이메일 인증을 해주세요.');
 			return;
 		}
