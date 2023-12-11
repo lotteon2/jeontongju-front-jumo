@@ -26,7 +26,6 @@ export const useLogin = () => {
 			state.dispatchCategory,
 		]);
 
-	console.log(APPROVE.ALLOW);
 	const isAbleToLogin = () => {
 		if (!email || !password) return 'disabled';
 		return 'positive';
