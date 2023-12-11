@@ -7,6 +7,8 @@ export interface MyInfoState {
 	storeName: string;
 	category: categoryType[];
 	products: productsType[];
+	storeDescription: string;
+	storePhoneNumber: string;
 }
 
 export type categoryType = {
@@ -21,8 +23,10 @@ export type productsType = {
 
 export interface MyInfoDispatcher extends MyInfoState {
 	dispatchIsLogin: (value: boolean) => void;
+	dispatchStoreDescription: (value: string) => void;
 	dispatchApprovalState: (value: string) => void;
 	dispatchStoreImageUrl: (value: string) => void;
+	dispatchStorePhoneNumber: (value: string) => void;
 	dispatchStoreName: (value: string) => void;
 	dispatchCategory: (value: categoryType[]) => void;
 	dispatchProducts: (value: productsType[]) => void;

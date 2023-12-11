@@ -24,8 +24,18 @@ export interface GetMyInfoResponseData {
 	category: categoryType[];
 }
 
+export interface GetSellerInfoResponseData {
+	email: string;
+	storeName: string;
+	storeDescription: string;
+	storePhoneNumber: string;
+	storeImageUrl: string;
+}
+
 export type WithDrawResponse = ApiResponse<string>;
 
 export type UpdateMyInfoResponse = ApiResponse<string>;
 
 export type GetMyInfoResponse = ApiResponse<GetMyInfoResponseData>;
+
+export type GetSellerInfoResponse = ApiResponse<GetSellerInfoResponseData>;

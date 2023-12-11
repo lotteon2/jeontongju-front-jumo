@@ -9,10 +9,12 @@ const MyInfoStorageKey = 'myinfo-storage';
 const initialState: MyInfoState = {
 	isLogin: !!localStorage.getItem('accessToken'),
 	approvalState: 'WAIT',
+	storeDescription: '',
 	storeImageUrl: null,
 	storeName: null,
 	category: [],
 	products: [],
+	storePhoneNumber: null,
 };
 
 export const useMyInfoStore = create(
@@ -30,6 +32,12 @@ export const useMyInfoStore = create(
 			},
 			dispatchStoreName: (value: string) => {
 				set({ storeName: value });
+			},
+			dispatchStorePhoneNumber: (value: string) => {
+				set({ storePhoneNumber: value });
+			},
+			dispatchStoreDescription: (value: string) => {
+				set({ storeDescription: value });
 			},
 			dispatchCategory: (value: categoryType[]) => {
 				set({ category: value });

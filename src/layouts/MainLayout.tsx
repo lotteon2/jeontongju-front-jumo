@@ -6,26 +6,53 @@ import Menu from '../components/common/Menu';
 import { useMyInfoStore } from '../stores/MyInfo/MyInfoStore';
 import { useGetMyInfoQuery } from '../queries/useGetMyInfoQuery';
 import { useGetMyProductQuery } from '../queries/useGetMyProductQuery';
+import { sellerApi } from '../apis/seller/sellerAPIService';
 
 const MainLayout = () => {
 	const navigate = useNavigation();
-	const [isLogin, approvalState, setApprovalState, setStoreImageUrl, setStoreName, setCategory, setProducts] =
-		useMyInfoStore((state) => [
-			state.isLogin,
-			state.approvalState,
-			state.dispatchApprovalState,
-			state.dispatchStoreImageUrl,
-			state.dispatchStoreName,
-			state.dispatchCategory,
-			state.dispatchProducts,
-		]);
+	const [
+		isLogin,
+		approvalState,
+		setStoreDescription,
+		setStorePhoneNumber,
+		setApprovalState,
+		setStoreImageUrl,
+		setStoreName,
+		setCategory,
+		setProducts,
+	] = useMyInfoStore((state) => [
+		state.isLogin,
+		state.approvalState,
+		state.dispatchStoreDescription,
+		state.dispatchStorePhoneNumber,
+		state.dispatchApprovalState,
+		state.dispatchStoreImageUrl,
+		state.dispatchStoreName,
+		state.dispatchCategory,
+		state.dispatchProducts,
+	]);
 
 	const { data: myInfo } = useGetMyInfoQuery();
 	const { data: myProduct } = useGetMyProductQuery();
 
+	const getMyShopInfo = async () => {
+		try {
+			const data = await sellerApi.getSellerInfoForEdit();
+			if (data.code === 200) {
+				setStorePhoneNumber(data.data.storePhoneNumber);
+				setStoreDescription(data.data.storeDescription);
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
+	useEffect(() => {
+		getMyShopInfo();
+	}, []);
 	useEffect(() => {
 		if (isLogin) {
-			if (myInfo.data !== undefined) {
+			if (!myInfo) return;
+			if (myInfo.data) {
 				setApprovalState(myInfo.data.approvalState);
 				setStoreImageUrl(myInfo.data.storeImageUrl);
 				setStoreName(myInfo.data.storeName);

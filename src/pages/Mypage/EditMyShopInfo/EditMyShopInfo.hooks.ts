@@ -4,11 +4,19 @@ import { sellerApi } from '../../../apis/seller/sellerAPIService';
 import { Alert } from '../../../components/common/Alert';
 import { Toast } from '../../../components/common/Toast';
 import { EditMyShopInfoFieldType } from '../../../constants/EditMyShopInfoFieldType';
+import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
 
 export const useEditMyShopInfo = () => {
-	const { register, handleSubmit, control } = useForm<EditMyShopInfoFieldType>({
+	const { register, handleSubmit, getValues, control, watch } = useForm<EditMyShopInfoFieldType>({
 		mode: 'onBlur',
 	});
+
+	const [storeName, storeImageUrl, storeDescription, storePhoneNumber] = useMyInfoStore((state) => [
+		state.storeName,
+		state.storeImageUrl,
+		state.storeDescription,
+		state.storePhoneNumber,
+	]);
 
 	const navigate = useNavigate();
 	const handleWithdrawMember = async () => {
@@ -30,7 +38,21 @@ export const useEditMyShopInfo = () => {
 		});
 	};
 
+	const isAbleToEdit = () => {
+		if (
+			getValues('storeDescription') === storeDescription &&
+			getValues('storeName') === storeName &&
+			getValues('storePhoneNumber') === storePhoneNumber
+		)
+			return true;
+		return false;
+	};
+
 	const onSubmit = handleSubmit(async (data: EditMyShopInfoFieldType) => {
+		if (!data.storeDescription || !data.storeImageUrl || !data.storeName || !data.storePhoneNumber) {
+			Toast(false, '수정 정보를 입력해주세요');
+			return;
+		}
 		await sellerApi.updateMyInfo(data).then((res) => {
 			if (res.code === 200) {
 				Toast(true, '주모 정보가 성공적으로 수정되었어요.');
@@ -41,5 +63,6 @@ export const useEditMyShopInfo = () => {
 	return {
 		handleWithdraw,
 		onSubmit,
+		isAbleToEdit,
 	};
 };

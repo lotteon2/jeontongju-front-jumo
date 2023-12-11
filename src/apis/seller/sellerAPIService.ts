@@ -1,6 +1,7 @@
 import APIService from '../../libs/core/api/APIService';
 import {
 	GetMyInfoResponse,
+	GetSellerInfoResponse,
 	UpdateMyInfoParams,
 	UpdateMyInfoResponse,
 	WithDrawResponse,
@@ -26,6 +27,11 @@ class SellerAPIService extends APIService {
 
 	async getMyInfo() {
 		const { data } = await this.get<GetMyInfoResponse>('/sellers/info');
+		return data;
+	}
+
+	async getSellerInfoForEdit() {
+		const { data } = await this.get<GetSellerInfoResponse>('/sellers');
 		return data;
 	}
 }

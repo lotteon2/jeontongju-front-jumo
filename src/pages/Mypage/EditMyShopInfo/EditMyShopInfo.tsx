@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { EditMyShopInfoFieldType } from '../../../constants/EditMyShopInfoFieldType';
 import Button from '../../../components/common/Button';
 import { useEditMyShopInfo } from './EditMyShopInfo.hooks';
+import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
 
 const EditMyShopInfo = () => {
 	const [form] = Form.useForm();
@@ -11,7 +12,14 @@ const EditMyShopInfo = () => {
 		mode: 'onBlur',
 	});
 
-	const { handleWithdraw, onSubmit } = useEditMyShopInfo();
+	const { handleWithdraw, onSubmit, isAbleToEdit } = useEditMyShopInfo();
+
+	const [storeName, storeImageUrl, storeDescription, storePhoneNumber] = useMyInfoStore((state) => [
+		state.storeName,
+		state.storeImageUrl,
+		state.storeDescription,
+		state.storePhoneNumber,
+	]);
 
 	return (
 		<StyledEditMyShopInfoPage>
@@ -32,7 +40,9 @@ const EditMyShopInfo = () => {
 					<Controller
 						name="storeName"
 						control={control}
-						render={({ field }) => <Input {...field} placeholder="고객들에게 보여질 주모 이름을 입력해주세요." />}
+						render={({ field }) => (
+							<Input {...field} defaultValue={storeName} placeholder="고객들에게 보여질 주모 이름을 입력해주세요." />
+						)}
 					/>
 				</Form.Item>
 				<Form.Item<EditMyShopInfoFieldType>
@@ -43,7 +53,13 @@ const EditMyShopInfo = () => {
 					<Controller
 						name="storeDescription"
 						control={control}
-						render={({ field }) => <Input {...field} placeholder="고객들에게 보여질 주모 소개를 입력해주세요." />}
+						render={({ field }) => (
+							<Input
+								{...field}
+								defaultValue={storeDescription}
+								placeholder="고객들에게 보여질 주모 소개를 입력해주세요."
+							/>
+						)}
 					/>
 				</Form.Item>
 				<Form.Item<EditMyShopInfoFieldType>
@@ -54,12 +70,25 @@ const EditMyShopInfo = () => {
 					<Controller
 						name="storePhoneNumber"
 						control={control}
-						render={({ field }) => <Input {...field} placeholder="고객들에게 보여질 대표 번호를 입력해주세요." />}
+						render={({ field }) => (
+							<Input
+								{...field}
+								defaultValue={storePhoneNumber}
+								placeholder="고객들에게 보여질 대표 번호를 입력해주세요."
+							/>
+						)}
 					/>
 				</Form.Item>
 			</Form>
 			<StyledBtnBottom>
-				<Button content="수정하기" width="10rem" Key="editMyShopInfo" handleClick={onSubmit} htmlType="submit" />
+				<Button
+					content="수정하기"
+					width="10rem"
+					Key="editMyShopInfo"
+					disabled={isAbleToEdit()}
+					handleClick={onSubmit}
+					htmlType="submit"
+				/>
 				<Button
 					content="탈퇴하기"
 					width="10rem"
