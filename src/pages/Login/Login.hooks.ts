@@ -14,7 +14,7 @@ export const useLogin = () => {
 	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 
-	const [isLogin, dispatchIsLogin, approvalState, setApprovalState, setStoreImageUrl, setStoreName, setCategory] =
+	const [isLogin, setIsLogin, approvalState, setApprovalState, setStoreImageUrl, setStoreName, setCategory] =
 		useMyInfoStore((state) => [
 			state.isLogin,
 			state.dispatchIsLogin,
@@ -24,7 +24,7 @@ export const useLogin = () => {
 			state.dispatchStoreName,
 			state.dispatchCategory,
 		]);
-	console.log(isLogin);
+
 	const isAbleToLogin = () => {
 		if (!email || !password) return 'disabled';
 		return 'positive';
@@ -34,7 +34,7 @@ export const useLogin = () => {
 		await authApi.login({ email, password }).then((res) => {
 			if (res.code === 200) {
 				Toast(true, '로그인되었어요');
-				dispatchIsLogin(true);
+				setIsLogin(true);
 				localStorage.setItem('accessToken', res.data.accessToken);
 				if (myInfo.data) {
 					setApprovalState(myInfo.data.approvalState);
