@@ -1,6 +1,7 @@
 import { CONCEPT } from '../../constants/ProductType/ConceptType';
 import { RAW_MATERIAL } from '../../constants/ProductType/MaterialType';
 import { SNACK } from '../../constants/ProductType/SnackType';
+import { categoryType } from '../../stores/MyInfo/MyInfoStore.types';
 
 interface ApiResponse<T> {
 	code: number;
@@ -76,6 +77,9 @@ export interface GetShortListResponseData {
 	shortsHits: number;
 	isActivate: boolean;
 }
+export interface GetCategoryResponseData {
+	category: categoryType[];
+}
 
 export type GetMyProductResponse = ApiResponse<GetMyProductResponseData[]>;
 
@@ -90,3 +94,5 @@ export type RegisterShortResponse = ApiResponse<string>;
 export type GetShortListResponse = ApiResponse<GetShortListResponseData[]>;
 
 export type UpdateShortsResponse = ApiResponse<string>;
+
+export type GetCategoryResponse = ApiResponse<GetCategoryResponseData>;

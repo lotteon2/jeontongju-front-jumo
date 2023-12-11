@@ -7,6 +7,7 @@ import { useMyInfoStore } from '../stores/MyInfo/MyInfoStore';
 import { useGetMyInfoQuery } from '../queries/useGetMyInfoQuery';
 import { useGetMyProductQuery } from '../queries/useGetMyProductQuery';
 import { sellerApi } from '../apis/seller/sellerAPIService';
+import { productApi } from '../apis/product/productAPIService';
 
 const MainLayout = () => {
 	const navigate = useNavigation();
@@ -42,6 +43,13 @@ const MainLayout = () => {
 				setStorePhoneNumber(data.data.storePhoneNumber);
 				setStoreDescription(data.data.storeDescription);
 			}
+
+			const categoryData = await productApi.getCategory();
+			if (data.code === 200) {
+				setCategory(categoryData.data.category);
+			} else {
+				console.error('category 조회 오류');
+			}
 		} catch (error) {
 			console.error(error);
 		}
@@ -56,7 +64,6 @@ const MainLayout = () => {
 				setApprovalState(myInfo.data.approvalState);
 				setStoreImageUrl(myInfo.data.storeImageUrl);
 				setStoreName(myInfo.data.storeName);
-				setCategory(myInfo.data.category);
 			}
 		}
 	}, [myInfo]);

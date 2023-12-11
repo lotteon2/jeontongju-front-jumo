@@ -40,7 +40,6 @@ export const useLogin = () => {
 					setApprovalState(myInfo.data.approvalState);
 					setStoreImageUrl(myInfo.data.storeImageUrl);
 					setStoreName(myInfo.data.storeName);
-					setCategory(myInfo.data.category);
 				}
 
 				navigate('/');

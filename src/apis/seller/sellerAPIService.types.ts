@@ -21,7 +21,6 @@ export interface GetMyInfoResponseData {
 	storeName: string;
 	storeImageUrl: string;
 	approvalState: keyof typeof APPROVE;
-	category: categoryType[];
 }
 
 export interface GetSellerInfoResponseData {

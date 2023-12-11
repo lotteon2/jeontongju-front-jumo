@@ -1,6 +1,7 @@
 import APIService from '../../libs/core/api/APIService';
 import {
 	DeleteProductResponse,
+	GetCategoryResponse,
 	GetMyProductResponse,
 	GetShortListResponse,
 	RegisterProductParams,
@@ -19,6 +20,11 @@ class ProductAPIService extends APIService {
 	constructor() {
 		super();
 		this.setBaseUrl(BASE_URL);
+	}
+
+	async getCategory() {
+		const { data } = await this.get<GetCategoryResponse>('/categories');
+		return data;
 	}
 
 	async getMyProduct() {
