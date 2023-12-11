@@ -7,14 +7,14 @@ import { useGetMyInfoQuery } from '../queries/useGetMyInfoQuery';
 
 const Waiting = () => {
 	const navigate = useNavigate();
-	const { dispatchIsApproved } = useMyInfoStore();
+	const { dispatchApprovalState } = useMyInfoStore();
 
 	const { data: myInfo } = useGetMyInfoQuery();
 
 	useEffect(() => {
 		if (!myInfo) return;
 		console.log(myInfo);
-		if (myInfo.data) dispatchIsApproved(myInfo.data.approvalState);
+		if (myInfo.data) dispatchApprovalState(myInfo.data.approvalState);
 	}, [myInfo]);
 	return (
 		<StyledWaiting>

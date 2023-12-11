@@ -1,3 +1,4 @@
+import { APPROVE } from '../../constants/ApproveType';
 import { categoryType } from '../../stores/MyInfo/MyInfoStore.types';
 
 interface ApiResponse<T> {
@@ -19,7 +20,7 @@ export interface GetMyInfoResponseData {
 	sellerId: number;
 	storeName: string;
 	storeImageUrl: string;
-	approvalState: boolean;
+	approvalState: keyof typeof APPROVE;
 	category: categoryType[];
 }
 

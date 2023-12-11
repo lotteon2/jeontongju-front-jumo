@@ -14,12 +14,12 @@ export const useLogin = () => {
 	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 
-	const [isLogin, dispatchIsLogin, isApproved, setIsApproved, setStoreImageUrl, setStoreName, setCategory] =
+	const [isLogin, dispatchIsLogin, approvalState, setApprovalState, setStoreImageUrl, setStoreName, setCategory] =
 		useMyInfoStore((state) => [
 			state.isLogin,
 			state.dispatchIsLogin,
-			state.isApproved,
-			state.dispatchIsApproved,
+			state.approvalState,
+			state.dispatchApprovalState,
 			state.dispatchStoreImageUrl,
 			state.dispatchStoreName,
 			state.dispatchCategory,
@@ -37,7 +37,7 @@ export const useLogin = () => {
 				dispatchIsLogin(true);
 				localStorage.setItem('accessToken', res.data.accessToken);
 				if (myInfo.data) {
-					setIsApproved(myInfo.data.approvalState);
+					setApprovalState(myInfo.data.approvalState);
 					setStoreImageUrl(myInfo.data.storeImageUrl);
 					setStoreName(myInfo.data.storeName);
 					setCategory(myInfo.data.category);

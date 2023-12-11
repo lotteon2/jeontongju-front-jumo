@@ -3,14 +3,15 @@ import { Outlet, useNavigate, useNavigation } from 'react-router-dom';
 import { useEffect } from 'react';
 import wallPaper from '../assets/images/login_paper.png';
 import { useMyInfoStore } from '../stores/MyInfo/MyInfoStore';
+import { APPROVE } from '../constants/ApproveType';
 
 const LoginLayout = () => {
 	const navigation = useNavigation();
 	const navigate = useNavigate();
-	const [isLogin, isApproved] = useMyInfoStore((state) => [state.isLogin, state.isApproved]);
+	const [isLogin, approvalState] = useMyInfoStore((state) => [state.isLogin, state.approvalState]);
 
 	useEffect(() => {
-		if (isLogin && isApproved) navigate('/');
+		if (isLogin && approvalState === APPROVE.ALLOW) navigate('/');
 	});
 
 	return (

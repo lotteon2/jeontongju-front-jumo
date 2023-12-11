@@ -5,14 +5,16 @@ import MainLayout from '../layouts/MainLayout';
 import { useGetMyInfoQuery } from '../queries/useGetMyInfoQuery';
 
 const AuthRoute = () => {
-	const [isLogin, isApproved, setIsApproved, setStoreImageUrl, setStoreName, setCategory] = useMyInfoStore((state) => [
-		state.isLogin,
-		state.isApproved,
-		state.dispatchIsApproved,
-		state.dispatchStoreImageUrl,
-		state.dispatchStoreName,
-		state.dispatchCategory,
-	]);
+	const [isLogin, approvalState, setApprovalState, setStoreImageUrl, setStoreName, setCategory] = useMyInfoStore(
+		(state) => [
+			state.isLogin,
+			state.approvalState,
+			state.dispatchApprovalState,
+			state.dispatchStoreImageUrl,
+			state.dispatchStoreName,
+			state.dispatchCategory,
+		],
+	);
 	const { data: myInfo } = useGetMyInfoQuery();
 
 	// useEffect(() => {
@@ -30,9 +32,9 @@ const AuthRoute = () => {
 	//   }
 	// }, []);
 
-	return isLogin && isApproved ? (
+	return isLogin && approvalState === 'ALLOW' ? (
 		<MainLayout />
-	) : isLogin && !isApproved ? (
+	) : isLogin && approvalState === 'WAIT' ? (
 		<Navigate to="/init/waiting" />
 	) : (
 		<Navigate to="/init/login" />

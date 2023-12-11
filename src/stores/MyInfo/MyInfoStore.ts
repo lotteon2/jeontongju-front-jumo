@@ -2,12 +2,13 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { MyInfoDispatcher, MyInfoState, categoryType, productsType } from './MyInfoStore.types';
+import { APPROVE } from '../../constants/ApproveType';
 
 const MyInfoStorageKey = 'myinfo-storage';
 
 const initialState: MyInfoState = {
 	isLogin: !!localStorage.getItem('accessToken'),
-	isApproved: false,
+	approvalState: 'WAIT',
 	storeImageUrl: null,
 	storeName: null,
 	category: [],
@@ -21,8 +22,8 @@ export const useMyInfoStore = create(
 			dispatchIsLogin: (value: boolean) => {
 				set({ isLogin: value });
 			},
-			dispatchIsApproved: (value: boolean) => {
-				set({ isApproved: value });
+			dispatchApprovalState: (value: keyof typeof APPROVE) => {
+				set({ approvalState: value });
 			},
 			dispatchStoreImageUrl: (value: string) => {
 				set({ storeImageUrl: value });

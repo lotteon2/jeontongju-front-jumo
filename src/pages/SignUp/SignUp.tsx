@@ -49,6 +49,7 @@ const SignUp = () => {
 						placeholder="로그인에 사용할 이메일을 입력해주세요."
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
+						disabled={isValidEmailCode}
 					/>
 					<Button
 						content="인증"

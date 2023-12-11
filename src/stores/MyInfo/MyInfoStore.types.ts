@@ -1,6 +1,8 @@
+import { APPROVE } from '../../constants/ApproveType';
+
 export interface MyInfoState {
 	isLogin: boolean;
-	isApproved: boolean;
+	approvalState: keyof typeof APPROVE;
 	storeImageUrl: string;
 	storeName: string;
 	category: categoryType[];
@@ -19,7 +21,7 @@ export type productsType = {
 
 export interface MyInfoDispatcher extends MyInfoState {
 	dispatchIsLogin: (value: boolean) => void;
-	dispatchIsApproved: (value: boolean) => void;
+	dispatchApprovalState: (value: string) => void;
 	dispatchStoreImageUrl: (value: string) => void;
 	dispatchStoreName: (value: string) => void;
 	dispatchCategory: (value: categoryType[]) => void;

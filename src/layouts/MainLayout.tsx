@@ -9,17 +9,16 @@ import { useGetMyProductQuery } from '../queries/useGetMyProductQuery';
 
 const MainLayout = () => {
 	const navigate = useNavigation();
-	const [isLogin, isApproved, setIsApproved, setStoreImageUrl, setStoreName, setCategory, setProducts] = useMyInfoStore(
-		(state) => [
+	const [isLogin, approvalState, setApprovalState, setStoreImageUrl, setStoreName, setCategory, setProducts] =
+		useMyInfoStore((state) => [
 			state.isLogin,
-			state.isApproved,
-			state.dispatchIsApproved,
+			state.approvalState,
+			state.dispatchApprovalState,
 			state.dispatchStoreImageUrl,
 			state.dispatchStoreName,
 			state.dispatchCategory,
 			state.dispatchProducts,
-		],
-	);
+		]);
 
 	const { data: myInfo } = useGetMyInfoQuery();
 	const { data: myProduct } = useGetMyProductQuery();
@@ -27,7 +26,7 @@ const MainLayout = () => {
 	useEffect(() => {
 		if (isLogin) {
 			if (myInfo.data !== undefined) {
-				setIsApproved(myInfo.data.approvalState);
+				setApprovalState(myInfo.data.approvalState);
 				setStoreImageUrl(myInfo.data.storeImageUrl);
 				setStoreName(myInfo.data.storeName);
 				setCategory(myInfo.data.category);
