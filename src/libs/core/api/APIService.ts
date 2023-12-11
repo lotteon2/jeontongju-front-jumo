@@ -104,6 +104,6 @@ export default APIService;
 /* eslint no-param-reassign: "off" */
 axios.interceptors.request.use((config) => {
 	config.headers['Content-Type'] = 'application/json';
-	config.headers.Authorization = `Bearer ${localStorage.getItem('accessToken')}`;
+	config.headers.Authorization = `${localStorage.getItem('accessToken')}`;
 	return config;
 });
