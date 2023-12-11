@@ -25,7 +25,7 @@ export interface RegisterProductParams {
 	productPrice: number;
 	registeredQuantity: number;
 	productDetailsImageUrl: string;
-	categoryId: number;
+	categoryId: string;
 	taste: {
 		sour: number;
 		sweet: number;

@@ -52,7 +52,7 @@ export const useAddProduct = () => {
 	};
 
 	const onSubmit = handleSubmit(async (data: RegisterProductParams) => {
-		const params = { ...data, breweryAddress, breweryAddressDetail, breweryZonecode };
+		const params = { ...data, breweryAddress, breweryAddressDetail, breweryZonecode, categoryId: selectedCategoryId };
 		await productApi.registerProduct(params).then((res) => {
 			if (res.code === 200) {
 				Toast(true, '상품이 등록되었어요.');
@@ -61,7 +61,7 @@ export const useAddProduct = () => {
 				Toast(false, '??');
 			}
 		});
-		console.log({ ...data, breweryAddress, breweryAddressDetail, breweryZonecode });
+		console.log({ ...data, breweryAddress, breweryAddressDetail, breweryZonecode, categoryId: selectedCategoryId });
 	});
 
 	return {
@@ -70,5 +70,6 @@ export const useAddProduct = () => {
 		onSubmit,
 		handleSubmit,
 		control,
+		register,
 	};
 };

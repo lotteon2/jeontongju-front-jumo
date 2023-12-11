@@ -13,7 +13,7 @@ import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
 
 const AddProduct = () => {
 	const [form] = Form.useForm();
-	const { selectedCategoryId, handleSelectedCategory, control, handleSubmit, onSubmit } = useAddProduct();
+	const { register, selectedCategoryId, handleSelectedCategory, control, handleSubmit, onSubmit } = useAddProduct();
 	const { category } = useMyInfoStore();
 
 	return (
@@ -69,20 +69,21 @@ const AddProduct = () => {
 				}}
 			/>
 
-			<Form.Item<RegisterProductParams>
-				label="술의 종류"
-				rules={[
-					{
-						required: true,
-						message: '술의 종류를 선택해주세요.',
-					},
-				]}
-			>
-				<Controller
-					name="categoryId"
-					control={control}
-					render={({ field }) => {
-						return (
+			<Controller
+				name="categoryId"
+				control={control}
+				render={({ field }) => {
+					return (
+						<Form.Item<RegisterProductParams>
+							label="술의 종류"
+							{...field}
+							rules={[
+								{
+									required: true,
+									message: '술의 종류를 선택해주세요.',
+								},
+							]}
+						>
 							<Select
 								size="middle"
 								placeholder="술의 종류를 선택해주세요."
@@ -91,10 +92,10 @@ const AddProduct = () => {
 								options={category}
 								onChange={handleSelectedCategory}
 							/>
-						);
-					}}
-				/>
-			</Form.Item>
+						</Form.Item>
+					);
+				}}
+			/>
 			<Form.Item<RegisterProductParams>
 				label="정확한 도수"
 				name="productAlcoholDegree"
