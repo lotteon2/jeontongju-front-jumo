@@ -1,9 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import axios, { Axios } from 'axios';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { Avatar, message, Upload } from 'antd';
-import type { UploadChangeParam } from 'antd/es/upload';
-import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import styled from '@emotion/styled';
 import { Toast } from './Toast';
 import { storageApi } from '../../apis/storage/storageAPIService';
@@ -24,12 +20,10 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 		event.preventDefault();
 		const formData = new FormData();
 		formData.append('image', event.target.files[0]);
-		console.log(event.target.files[0]);
 
 		try {
 			const data = await storageApi.uploadS3(event.target.files[0].name);
 			if (data.code === 200) {
-				console.log(event.target.files[0].type);
 				fetch(data.data.presignedUrl, {
 					method: 'PUT',
 					headers: {
@@ -42,7 +36,6 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 						return res.text();
 					})
 					.then((value) => {
-						console.log(value);
 						setImageUrl(data.data.dataUrl);
 					})
 					.catch((err) => {
