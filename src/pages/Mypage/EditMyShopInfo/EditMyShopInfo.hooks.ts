@@ -10,7 +10,7 @@ import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
 
 export const useEditMyShopInfo = () => {
 	const [form] = Form.useForm();
-	const { register, handleSubmit, getValues, control } = useForm<EditMyShopInfoFieldType>({
+	const { register, handleSubmit, getValues, control, watch } = useForm<EditMyShopInfoFieldType>({
 		mode: 'onBlur',
 	});
 
@@ -49,17 +49,12 @@ export const useEditMyShopInfo = () => {
 	};
 
 	const isAbleToEdit = () => {
-		if (!getValues('storeDescription') && !getValues('storeName') && !getValues('storePhoneNumber')) return 'disabled';
+		if (!watch('storeDescription') && !watch('storeName') && !watch('storePhoneNumber')) return 'disabled';
 		return 'positive';
 	};
 
 	const onSubmit = handleSubmit(async (data: EditMyShopInfoFieldType) => {
 		console.log(data);
-
-		if (!data.storeDescription || !data.storeImageUrl || !data.storeName || !data.storePhoneNumber) {
-			Toast(false, '수정할 정보를 모두 입력해주세요.');
-			return;
-		}
 		try {
 			const res = await sellerApi.updateMyInfo({
 				storeDescription,
