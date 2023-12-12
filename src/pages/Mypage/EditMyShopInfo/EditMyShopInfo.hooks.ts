@@ -90,6 +90,7 @@ export const useEditMyShopInfo = () => {
 		form,
 		register,
 		control,
+		imageUrl,
 		handleChangeImageUrl,
 	};
 };
