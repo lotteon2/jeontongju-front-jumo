@@ -57,7 +57,7 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 				onChange={handleChangeFile}
 				style={{ display: 'none' }}
 			/>
-			<Avatar className="w-full h-full rounded-full" src={imageUrl || null} alt="프로필 이미지" />
+			<Avatar style={{ width: '10rem', height: '10rem' }} src={imageUrl || null} alt="프로필 이미지" />
 		</StyledButton>
 	);
 };
