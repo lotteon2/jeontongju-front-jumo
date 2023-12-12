@@ -45,6 +45,7 @@ export const useEditMyShopInfo = () => {
 
 	const handleChangeImageUrl = (E) => {
 		console.log(E);
+		setImageUrl(E);
 		// setImageUrl(e.target.value);
 	};
 
