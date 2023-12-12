@@ -60,7 +60,7 @@ class AuthAPIService extends APIService {
 	}
 
 	async refresh() {
-		const data = await this.put<RefreshResponse>('/access-token');
+		const { data } = await this.put<RefreshResponse>('/access-token');
 		return data;
 	}
 }
