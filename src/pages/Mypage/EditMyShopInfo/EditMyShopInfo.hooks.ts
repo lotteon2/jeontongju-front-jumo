@@ -57,10 +57,10 @@ export const useEditMyShopInfo = () => {
 		console.log(data);
 		try {
 			const res = await sellerApi.updateMyInfo({
-				storeDescription,
+				storeDescription: data.storeDescription ? data.storeDescription : storeDescription,
 				storeImageUrl: imageUrl,
-				storeName,
-				storePhoneNumber,
+				storeName: data.storeName ? data.storeName : storeName,
+				storePhoneNumber: data.storePhoneNumber ? data.storePhoneNumber : storePhoneNumber,
 			});
 			if (res.code === 200) {
 				Toast(true, '주모 정보가 성공적으로 수정되었어요.');
