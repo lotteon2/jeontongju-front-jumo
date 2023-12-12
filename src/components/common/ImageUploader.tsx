@@ -51,7 +51,7 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 				axios
 					.put(data.data.presignedUrl, formData, {
 						headers: {
-							Accept: 'application/json',
+							Accept: 'image/png',
 							Authorization: undefined,
 							'Content-Type': 'image/png',
 						},
