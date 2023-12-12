@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { sellerApi } from '../../../apis/seller/sellerAPIService';
 import { Toast } from '../../../components/common/Toast';
 import { authApi } from '../../../apis/authentication/authAPIService';
 
 export const useEditMyPassword = () => {
+	const navigate = useNavigate();
 	const [originalPassword, setOriginalPassword] = useState<string>(null);
 	const [newPassword, setNewPassword] = useState<string>(null);
 	const [checkPassword, setCheckPassword] = useState<string>(null);
@@ -22,6 +24,7 @@ export const useEditMyPassword = () => {
 			await authApi.updateMyPassword(newPassword).then((res) => {
 				if (res.code === 200) {
 					Toast(true, '비밀번호 수정이 완료되었어요.');
+					navigate('/dashboard');
 				}
 			});
 		}
