@@ -22,6 +22,7 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 		const formData = new FormData();
 		formData.append('image', event.target.files[0]);
 
+		console.log(event.target.files[0]);
 		const contentType = event.target.files[0].mimeType;
 		const binaryString = event.target.files[0].bin; // bin is a binary string
 
