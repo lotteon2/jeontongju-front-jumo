@@ -43,7 +43,8 @@ export const useEditMyShopInfo = () => {
 		});
 	};
 
-	const handleChangeImageUrl = (e) => {
+	const handleChangeImageUrl = (E) => {
+		console.log(E);
 		// setImageUrl(e.target.value);
 	};
 
