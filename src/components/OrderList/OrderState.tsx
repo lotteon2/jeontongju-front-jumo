@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { ORDER_STATE, translateOrderState } from '../../constants/OrderStateType';
 import Button from '../common/Button';
 import { useRegisterDeliveryMutation } from '../../mutations/order/useRegisterDeliveryCode';
-import { useRegisterDeliveryStore } from '../../stores/Cash/Delivery/RegisterDeliveryStore';
 import { useGetMyOrderListQuery } from '../../queries/useGetMyOrderListQuery';
 import { Toast } from '../common/Toast';
 import { useConfirmDeliveryMutation } from '../../mutations/order/useConfirmDeliveryMutation';
@@ -14,11 +13,6 @@ const OrderState = ({ state, deliveryId }: { state: keyof typeof ORDER_STATE; de
 	const { mutateAsync: mutateConfirmAsync } = useConfirmDeliveryMutation();
 	const { refetch } = useGetMyOrderListQuery();
 	const [deliveryCode, setDeliveryCode] = useState<string>();
-	// const [deliveryCode, setDeliveryId, setDeliveryCode] = useRegisterDeliveryStore((states) => [
-	// 	states.deliveryCode,
-	// 	states.dispatchDeliveryId,
-	// 	states.dispatchDeliveryCode,
-	// ]);
 
 	const handleRegisterOrderNumber = async () => {
 		setDeliveryCode(deliveryCode);

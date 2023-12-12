@@ -1,7 +1,6 @@
 import { useIsMutating } from 'react-query';
 import { useMutation } from '../../libs/core/react-query';
 import { orderApi } from '../../apis/order/orderAPIService';
-import { useRegisterDeliveryStore } from '../../stores/Cash/Delivery/RegisterDeliveryStore';
 
 const CONFIRM_DELIVERY_MUTATION_KEY = '@delivery/confirm';
 
