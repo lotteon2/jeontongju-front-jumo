@@ -36,8 +36,9 @@ class AuthAPIService extends APIService {
 		return data;
 	}
 
+	/* 로그인 후 비밀번호 재설정 */
 	async updateMyPassword(password: string) {
-		const { data } = await this.patch<UpdateMyPasswordResponse>('/password', { newPassword: password });
+		const { data } = await this.patch<UpdateMyPasswordResponse>('/password/change', { newPassword: password });
 		return data;
 	}
 
