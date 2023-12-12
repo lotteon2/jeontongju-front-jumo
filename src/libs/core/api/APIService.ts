@@ -110,13 +110,12 @@ axios.interceptors.request.use((config) => {
 });
 
 axios.interceptors.response.use((config) => {
-	console.log(config);
-	if (config.data.code === 401 && config.data.failure === 'EXPIRED_ACCESS_TOKEN') {
+	if (config.status === 418) {
 		try {
 			authApi.refresh().then((res) => {
 				console.log(res);
-				if (res.code === 200) {
-					localStorage.setItem('accessToken', res.data.accessToken);
+				if (res.data.code === 200) {
+					localStorage.setItem('accessToken', res.data.data.accessToken);
 				}
 			});
 		} catch (err) {
