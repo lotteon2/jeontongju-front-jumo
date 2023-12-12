@@ -10,6 +10,7 @@ interface ImageUploaderInterface {
 }
 
 const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl }) => {
+	const [imgSrc, setImgSrc] = useState<string>(imageUrl);
 	const inputRef = useRef<HTMLInputElement | null>(null);
 
 	const uploadImgBtn = useCallback(() => {
@@ -34,6 +35,7 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 				})
 					.then((res) => {
 						console.log(data.data.dataUrl);
+						setImgSrc(data.data.dataUrl);
 						return res.text();
 					})
 					.catch((err) => {
@@ -58,7 +60,7 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 				style={{ display: 'none' }}
 			/>
 			<img src={imageUrl || null} alt="img" width="100%" height="100%" />
-			<Avatar style={{ width: '100%', height: '100%' }} src={imageUrl} alt="프로필 이미지" />
+			<Avatar style={{ width: '100%', height: '100%' }} src={imgSrc} alt="프로필 이미지" />
 		</StyledButton>
 	);
 };
