@@ -1,4 +1,5 @@
 import axios, { HttpStatusCode, AxiosRequestConfig, AxiosResponse, Method } from 'axios';
+import { authApi } from '../../../apis/authentication/authAPIService';
 
 export type Headers = Record<string, string>;
 
@@ -105,5 +106,22 @@ export default APIService;
 axios.interceptors.request.use((config) => {
 	config.headers['Content-Type'] = 'application/json';
 	config.headers.Authorization = `${localStorage.getItem('accessToken')}`;
+	return config;
+});
+
+axios.interceptors.response.use((config) => {
+	console.log(config);
+	if (config.data.code === 401 && config.data.failure === 'EXPIRED_ACCESS_TOKEN') {
+		try {
+			authApi.refresh().then((res) => {
+				console.log(res);
+				if (res.code === 200) {
+					localStorage.setItem('accessToken', res.data.accessToken);
+				}
+			});
+		} catch (err) {
+			console.error(err);
+		}
+	}
 	return config;
 });

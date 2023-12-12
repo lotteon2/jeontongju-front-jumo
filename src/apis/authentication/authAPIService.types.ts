@@ -31,6 +31,10 @@ export type LoginResponseData = {
 	accessToken: string;
 };
 
+export type RefreshResponseData = {
+	accessToken?: string;
+};
+
 export type LoginResponse = ApiResponse<LoginResponseData>;
 export type SignUpResponse = ApiResponse<string>;
 export type EmailCheckResponse = ApiResponse<{ authCode: string }>;
@@ -38,3 +42,4 @@ export type UpdateMyPasswordResponse = ApiResponse<string>;
 export type CheckMyPasswordResponse = ApiResponse<string>;
 export type CheckMyEmailResponse = ApiResponse<{ authCode: string }>;
 export type UpdateMyPasswordBeforeLoginResponse = ApiResponse<string>;
+export type RefreshResponse = ApiResponse<RefreshResponseData>;

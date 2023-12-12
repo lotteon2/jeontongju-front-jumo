@@ -10,6 +10,7 @@ import {
 	UpdateMyPasswordResponse,
 	CheckMyEmailResponse,
 	UpdateMyPasswordBeforeLoginResponse,
+	RefreshResponse,
 } from './authAPIService.types';
 
 const BASE_URL = `${process.env.REACT_APP_API_URL}/authentication-service/api`;
@@ -54,6 +55,11 @@ class AuthAPIService extends APIService {
 	/* 로그인 전 비밀번호 재설정 */
 	async updateMyPasswordBeforeLogin(params: UpdateMyPasswordParams) {
 		const { data } = await this.patch<UpdateMyPasswordBeforeLoginResponse>('/password', params);
+		return data;
+	}
+
+	async refresh() {
+		const { data } = await this.put<RefreshResponse>('/access-token');
 		return data;
 	}
 }
