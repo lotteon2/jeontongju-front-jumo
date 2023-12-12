@@ -6,8 +6,7 @@ import { useRegisterDeliveryStore } from '../../stores/Cash/Delivery/RegisterDel
 const CONFIRM_DELIVERY_MUTATION_KEY = '@delivery/confirm';
 
 export const useConfirmDeliveryMutation = () => {
-	const [deliveryId] = useRegisterDeliveryStore((state) => [state.deliveryId]);
-	const { mutateAsync } = useMutation(() => orderApi.confirmDelivery(deliveryId), {
+	const { mutateAsync } = useMutation((deliveryId: number) => orderApi.confirmDelivery(deliveryId), {
 		mutationKey: [CONFIRM_DELIVERY_MUTATION_KEY],
 	});
 

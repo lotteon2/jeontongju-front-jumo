@@ -35,7 +35,7 @@ const OrderState = ({ state, deliveryId }: { state: keyof typeof ORDER_STATE; de
 
 	const handleConfirmDelivery = async () => {
 		try {
-			const result = await mutateConfirmAsync();
+			const result = await mutateConfirmAsync(deliveryId);
 			if (result.code === 200) {
 				Toast(true, '배송 확정 되었어요.');
 				refetch();
