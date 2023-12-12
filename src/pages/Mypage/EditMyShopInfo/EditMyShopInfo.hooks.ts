@@ -44,7 +44,7 @@ export const useEditMyShopInfo = () => {
 	};
 
 	const handleChangeImageUrl = (e) => {
-		setImageUrl(e.target.value);
+		// setImageUrl(e.target.value);
 	};
 
 	const isAbleToEdit = () => {
