@@ -34,7 +34,6 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 					body: reader.result,
 				})
 					.then((res) => {
-						console.log(data.data.dataUrl);
 						setImgSrc(data.data.dataUrl);
 						return res.text();
 					})
@@ -69,5 +68,4 @@ export default ImageUploader;
 const StyledButton = styled.button`
 	width: 10rem;
 	height: 10rem;
-	border-radius: 50%;
 `;
