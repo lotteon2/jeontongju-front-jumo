@@ -18,6 +18,7 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 
 	const handleChangeFile = async (event: any) => {
 		event.preventDefault();
+		console.log(event.target);
 		const imageData = { image: event.target.files[0] };
 		const formData = new FormData();
 		formData.append('image', event.target.files[0]);
