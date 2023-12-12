@@ -23,6 +23,7 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 		try {
 			const data = await storageApi.uploadS3(event.target.files[0].name);
 			if (data.code === 200) {
+				setImageUrl(data.data.dataUrl);
 				fetch(data.data.presignedUrl, {
 					method: 'PUT',
 					headers: {
