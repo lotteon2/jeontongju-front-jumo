@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Form } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { sellerApi } from '../../../apis/seller/sellerAPIService';
 import { Alert } from '../../../components/common/Alert';
 import { Toast } from '../../../components/common/Toast';
@@ -24,6 +24,11 @@ export const useEditMyShopInfo = () => {
 	const [imageUrl, setImageUrl] = useState<string>(storeImageUrl);
 
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		console.log(imageUrl);
+	}, [imageUrl]);
+
 	const handleWithdrawMember = async () => {
 		await sellerApi.withdraw().then((res) => {
 			if (res.code === 200) navigate('/init/login');
