@@ -110,6 +110,7 @@ axios.interceptors.request.use((config) => {
 });
 
 axios.interceptors.response.use((config) => {
+	console.log(config);
 	if (config.status === 418) {
 		try {
 			authApi.refresh().then((res) => {
