@@ -23,17 +23,17 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 		formData.append('image', event.target.files[0]);
 
 		console.log(event.target.files[0]);
-		const contentType = event.target.files[0].mimeType;
-		const binaryString = event.target.files[0].bin; // bin is a binary string
+		// const contentType = event.target.files[0].mimeType;
+		// const binaryString = event.target.files[0].bin; // bin is a binary string
 
 		// rebuild the file object as a Blob to send to Amazon
-		const bytes = new Uint8Array(binaryString.length);
+		// const bytes = new Uint8Array(binaryString.length);
 
-		for (let i = 0; i < binaryString.length; i += 1) {
-			bytes[i] = binaryString.charCodeAt(i);
-		}
+		// for (let i = 0; i < binaryString.length; i += 1) {
+		// 	bytes[i] = binaryString.charCodeAt(i);
+		// }
 
-		const file = new Blob([bytes], { type: contentType });
+		// const file = new Blob([bytes], { type: contentType });
 
 		try {
 			const data = await storageApi.uploadS3(event.target.files[0].name);
@@ -44,7 +44,7 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 						Accept: 'image/png',
 						'Content-Type': 'image/png',
 					},
-					body: file,
+					body: JSON.stringify(imageData),
 				})
 					.then((res) => {
 						return res.text();
