@@ -30,25 +30,29 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 			const data = await storageApi.uploadS3(event.target.files[0].name);
 			if (data.code === 200) {
 				console.log(event.target.files[0].type);
-				fetch(data.data.presignedUrl, {
-					method: 'PUT',
-					headers: {
-						Accept: 'application/json',
-						Authorization: undefined,
-						'Content-Type': event.target.files[0].type,
-					},
-					body: event.target.files[0],
-				})
-					.then((res) => {
-						return res.text();
-					})
-					.then((value) => {
-						setImageUrl(value);
-					});
+				// fetch(data.data.presignedUrl, {
+				// 	method: 'PUT',
+				// 	headers: {
+				// 		Accept: 'application/json',
+				// 		Authorization: undefined,
+				// 		'Content-Type': event.target.files[0].type,
+				// 	},
+				// 	body: {
+				// 		image: event.target.files[0],
+				// 	},
+				// })
+				// 	.then((res) => {
+				// 		return res.text();
+				// 	})
+				// 	.then((value) => {
+				// 		setImageUrl(value);
+				// 	});
 
 				axios
 					.put(data.data.presignedUrl, formData, {
 						headers: {
+							Accept: 'application/json',
+							Authorization: undefined,
 							'Content-Type': 'image/png',
 						},
 					})
