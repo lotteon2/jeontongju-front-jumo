@@ -43,22 +43,11 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 					})
 					.then((value) => {
 						console.log(value);
-						// setImageUrl(value);
+						setImageUrl(data.data.dataUrl);
 					})
 					.catch((err) => {
 						console.log(err);
 					});
-
-				// axios
-				// 	.put(data.data.presignedUrl, formData, {
-				// 		headers: {
-				// 			Accept: 'image/png',
-				// 			Authorization: undefined,
-				// 			'Content-Type': 'image/png',
-				// 		},
-				// 	})
-				// 	.then((res) => console.log(res));
-				console.log(data.data.presignedUrl);
 			}
 		} catch (error) {
 			Toast(false, '이미지 업로드에 실패했어요');
