@@ -32,11 +32,9 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 					body: reader.result,
 				})
 					.then((res) => {
+						console.log(data.data.dataUrl);
 						setImageUrl(data.data.dataUrl);
 						return res.text();
-					})
-					.then((value) => {
-						setImageUrl(data.data.dataUrl);
 					})
 					.catch((err) => {
 						console.log(err);
