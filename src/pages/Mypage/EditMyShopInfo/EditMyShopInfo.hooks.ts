@@ -49,12 +49,7 @@ export const useEditMyShopInfo = () => {
 	};
 
 	const isAbleToEdit = () => {
-		if (
-			getValues('storeDescription') === storeDescription &&
-			getValues('storeName') === storeName &&
-			getValues('storePhoneNumber') === storePhoneNumber
-		)
-			return 'disabled';
+		if (!getValues('storeDescription') && !getValues('storeName') && !getValues('storePhoneNumber')) return 'disabled';
 		return 'positive';
 	};
 
