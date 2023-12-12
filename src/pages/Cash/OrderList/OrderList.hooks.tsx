@@ -17,7 +17,7 @@ export const useOrderList = () => {
 			dataIndex: 'productName',
 			key: 'productName',
 			align: 'center',
-			render: (text, record) => <a href={`/product/detail/${record.productId}`}>{text}</a>,
+			render: (text, record) => <span>{text}</span>,
 		},
 		{
 			title: '경매 여부',
