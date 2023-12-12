@@ -45,7 +45,7 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 						Accept: 'image/png',
 						'Content-Type': 'image/png',
 					},
-					body: JSON.stringify(imageData),
+					body: formData,
 				})
 					.then((res) => {
 						return res.text();
