@@ -1,9 +1,18 @@
 import { ColumnsType } from 'antd/es/table';
+import { useEffect } from 'react';
 import { OrderListTableDataType } from '../../../constants/TableDataType/OrderListTableDataType';
 import OrderState from '../../../components/OrderList/OrderState';
 import { GetMyOrderListResponseData } from '../../../apis/order/orderAPIService.types';
+import { useRegisterDeliveryStore } from '../../../stores/Cash/Delivery/RegisterDeliveryStore';
 
 export const useOrderList = () => {
+	const [setDeliveryCode] = useRegisterDeliveryStore((states) => [states.dispatchDeliveryCode]);
+	useEffect(() => {
+		return () => {
+			setDeliveryCode('');
+		};
+	}, []);
+
 	const columns: ColumnsType<GetMyOrderListResponseData> = [
 		{
 			title: '주문 번호',
