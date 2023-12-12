@@ -27,6 +27,9 @@ export const useSignUp = () => {
 			Toast(false, '유효한 이메일을 입력해주세요.');
 			return;
 		}
+		if (isValidEmail) {
+			return;
+		}
 		try {
 			const data = await authApi.emailCheck(email);
 			if (data.code === 200) {
