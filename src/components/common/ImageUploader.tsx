@@ -33,6 +33,8 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 				fetch(data.data.presignedUrl, {
 					method: 'PUT',
 					headers: {
+						Accept: 'application/json',
+						Authorization: undefined,
 						'Content-Type': event.target.files[0].type,
 					},
 					body: event.target.files[0],
