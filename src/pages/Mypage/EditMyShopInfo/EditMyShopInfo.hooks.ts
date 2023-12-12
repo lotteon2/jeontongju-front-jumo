@@ -43,11 +43,6 @@ export const useEditMyShopInfo = () => {
 		});
 	};
 
-	const handleChangeImageUrl = (value: string) => {
-		console.log(value);
-		setImageUrl(value);
-	};
-
 	const isAbleToEdit = () => {
 		if (
 			getValues('storeDescription') === storeDescription &&
@@ -91,6 +86,5 @@ export const useEditMyShopInfo = () => {
 		control,
 		imageUrl,
 		setImageUrl,
-		handleChangeImageUrl,
 	};
 };

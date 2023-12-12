@@ -8,17 +8,8 @@ import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
 import ImageUploader from '../../../components/common/ImageUploader';
 
 const EditMyShopInfo = () => {
-	const {
-		form,
-		register,
-		control,
-		handleWithdraw,
-		onSubmit,
-		isAbleToEdit,
-		imageUrl,
-		handleChangeImageUrl,
-		setImageUrl,
-	} = useEditMyShopInfo();
+	const { form, register, control, handleWithdraw, onSubmit, isAbleToEdit, imageUrl, setImageUrl } =
+		useEditMyShopInfo();
 
 	const [storeName, storeImageUrl, storeDescription, storePhoneNumber] = useMyInfoStore((state) => [
 		state.storeName,
