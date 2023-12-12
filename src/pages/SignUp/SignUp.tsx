@@ -28,6 +28,7 @@ const SignUp = () => {
 		handleCheckEmailCode,
 		handleAdultValid,
 		checkRegisterDisabled,
+		isAbleToSendEmail,
 	} = useSignUp();
 
 	return (
@@ -56,7 +57,7 @@ const SignUp = () => {
 						Key="loginAdmin"
 						handleClick={handleCheckEmail}
 						htmlType="button"
-						btntype={!email ? 'disabled' : 'positive'}
+						btntype={isAbleToSendEmail()}
 					/>
 				</StyledInputBtn>
 			</Form.Item>
