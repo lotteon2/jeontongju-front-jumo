@@ -4,6 +4,7 @@ import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { Avatar, message, Upload } from 'antd';
 import type { UploadChangeParam } from 'antd/es/upload';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
+import styled from '@emotion/styled';
 import { Toast } from './Toast';
 import { storageApi } from '../../apis/storage/storageAPIService';
 
@@ -28,7 +29,8 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 		try {
 			const data = await storageApi.uploadS3(event.target.files[0].name);
 			if (data.code === 200) {
-				axios({
+				console.log(event.target.files[0].type);
+				axios.create({
 					url: data.data.presignedUrl,
 					method: 'put',
 					headers: {
@@ -44,7 +46,7 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 	};
 
 	return (
-		<button className="m-auto w-32 h-32 rounded-full" onClick={uploadImgBtn} type="button">
+		<StyledButton onClick={uploadImgBtn} type="button">
 			<input
 				className="w-full h-full"
 				type="file"
@@ -56,8 +58,14 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 				style={{ display: 'none' }}
 			/>
 			<Avatar className="w-full h-full rounded-full" src={imageUrl || null} alt="프로필 이미지" />
-		</button>
+		</StyledButton>
 	);
 };
 
 export default ImageUploader;
+
+const StyledButton = styled.button`
+	width: 10rem;
+	height: 10rem;
+	border-radius: 50%;
+`;

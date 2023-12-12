@@ -24,7 +24,7 @@ const EditMyShopInfo = () => {
 				name="basic"
 				labelCol={{ span: 8 }}
 				wrapperCol={{ span: 16 }}
-				style={{ width: '100%' }}
+				style={{ width: '100%', display: 'flex', alignItems: 'center', flexDirection: 'column', gap: '1rem' }}
 				onFinish={onSubmit}
 				autoComplete="off"
 			>
