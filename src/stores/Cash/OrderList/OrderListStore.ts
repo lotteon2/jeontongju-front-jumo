@@ -28,6 +28,8 @@ export const useMyOrderListStore = create(
 		dispatchSelectedDate: (value: string) => {
 			set({ selectedDate: value });
 		},
-		clear: () => set({}, true),
+		clear: () => {
+			set(initialState);
+		},
 	})),
 );

@@ -4,12 +4,16 @@ import { OrderListTableDataType } from '../../../constants/TableDataType/OrderLi
 import OrderState from '../../../components/OrderList/OrderState';
 import { GetMyOrderListResponseData } from '../../../apis/order/orderAPIService.types';
 import { useRegisterDeliveryStore } from '../../../stores/Cash/Delivery/RegisterDeliveryStore';
+import { useMyOrderListStore } from '../../../stores/Cash/OrderList/OrderListStore';
 
 export const useOrderList = () => {
 	const [setDeliveryCode] = useRegisterDeliveryStore((states) => [states.dispatchDeliveryCode]);
+	const { clear } = useMyOrderListStore();
+
 	useEffect(() => {
 		return () => {
 			setDeliveryCode('');
+			clear();
 		};
 	}, []);
 
