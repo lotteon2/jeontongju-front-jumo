@@ -40,8 +40,8 @@ const EditMyShopInfo = () => {
 						control={control}
 						render={({ field }) => (
 							<Input
-								{...field}
 								{...register('storeName')}
+								{...field}
 								defaultValue={storeName}
 								placeholder="고객들에게 보여질 주모 이름을 입력해주세요."
 							/>
@@ -76,8 +76,8 @@ const EditMyShopInfo = () => {
 						control={control}
 						render={({ field }) => (
 							<Input
-								{...field}
 								{...register('storePhoneNumber')}
+								{...field}
 								defaultValue={storePhoneNumber}
 								placeholder="고객들에게 보여질 대표 번호를 입력해주세요."
 							/>
