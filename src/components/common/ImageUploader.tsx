@@ -34,7 +34,6 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 					method: 'PUT',
 					headers: {
 						Accept: 'image/png',
-						Authorization: undefined,
 						'Content-Type': 'image/png',
 					},
 					body: formData,
