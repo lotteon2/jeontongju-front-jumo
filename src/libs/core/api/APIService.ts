@@ -109,19 +109,29 @@ axios.interceptors.request.use((config) => {
 	return config;
 });
 
-axios.interceptors.response.use((config) => {
-	console.log(config);
-	if (config.status === 418) {
-		try {
-			authApi.refresh().then((res) => {
-				console.log(res);
-				if (res.data.code === 200) {
-					localStorage.setItem('accessToken', res.data.data.accessToken);
-				}
-			});
-		} catch (err) {
-			console.error(err);
+axios.interceptors.response.use(
+	(res) => {
+		return res;
+	},
+	async (error: any) => {
+		const {
+			config,
+			response: { status },
+		} = error;
+		if (status === 418) {
+			const originalRequest = config;
+			try {
+				authApi.refresh().then((res) => {
+					console.log(res);
+					if (res.data.code === 200) {
+						localStorage.setItem('accessToken', res.data.data.accessToken);
+					}
+				});
+				originalRequest.headers.Authorization = `${localStorage.getItem('accessToken')}`;
+			} catch (err) {
+				console.error(err);
+			}
 		}
-	}
-	return config;
-});
+		return config;
+	},
+);
