@@ -34,8 +34,6 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 				})
 					.then((res) => {
 						console.log(data.data.dataUrl);
-						setImageUrl(data.data.dataUrl);
-						console.log(imageUrl);
 						return res.text();
 					})
 					.catch((err) => {
