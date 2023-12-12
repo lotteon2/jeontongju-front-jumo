@@ -38,14 +38,7 @@ const EditMyShopInfo = () => {
 					<Controller
 						name="storeName"
 						control={control}
-						render={({ field }) => (
-							<Input
-								{...register('storeName')}
-								{...field}
-								defaultValue={storeName}
-								placeholder="고객들에게 보여질 주모 이름을 입력해주세요."
-							/>
-						)}
+						render={({ field }) => <Input {...register('storeName')} {...field} placeholder={storeName} />}
 					/>
 				</Form.Item>
 				<Form.Item<EditMyShopInfoFieldType>
@@ -57,12 +50,7 @@ const EditMyShopInfo = () => {
 						name="storeDescription"
 						control={control}
 						render={({ field }) => (
-							<Input
-								{...register('storeDescription')}
-								{...field}
-								defaultValue={storeDescription}
-								placeholder="고객들에게 보여질 주모 소개를 입력해주세요."
-							/>
+							<Input {...register('storeDescription')} {...field} placeholder={storeDescription} />
 						)}
 					/>
 				</Form.Item>
@@ -75,12 +63,7 @@ const EditMyShopInfo = () => {
 						name="storePhoneNumber"
 						control={control}
 						render={({ field }) => (
-							<Input
-								{...register('storePhoneNumber')}
-								{...field}
-								defaultValue={storePhoneNumber}
-								placeholder="고객들에게 보여질 대표 번호를 입력해주세요."
-							/>
+							<Input {...register('storePhoneNumber')} {...field} placeholder={storePhoneNumber} />
 						)}
 					/>
 				</Form.Item>
