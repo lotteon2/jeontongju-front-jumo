@@ -8,8 +8,17 @@ import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
 import ImageUploader from '../../../components/common/ImageUploader';
 
 const EditMyShopInfo = () => {
-	const { form, register, control, handleWithdraw, onSubmit, isAbleToEdit, imageUrl, handleChangeImageUrl } =
-		useEditMyShopInfo();
+	const {
+		form,
+		register,
+		control,
+		handleWithdraw,
+		onSubmit,
+		isAbleToEdit,
+		imageUrl,
+		handleChangeImageUrl,
+		setImageUrl,
+	} = useEditMyShopInfo();
 
 	const [storeName, storeImageUrl, storeDescription, storePhoneNumber] = useMyInfoStore((state) => [
 		state.storeName,
@@ -29,7 +38,7 @@ const EditMyShopInfo = () => {
 				onFinish={onSubmit}
 				autoComplete="off"
 			>
-				<ImageUploader imageUrl={imageUrl} setImageUrl={handleChangeImageUrl} />
+				<ImageUploader imageUrl={imageUrl} setImageUrl={setImageUrl} />
 				<Form.Item<EditMyShopInfoFieldType>
 					label="주모 이름"
 					name="storeName"

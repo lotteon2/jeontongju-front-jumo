@@ -43,10 +43,9 @@ export const useEditMyShopInfo = () => {
 		});
 	};
 
-	const handleChangeImageUrl = (E) => {
-		console.log(E);
-		setImageUrl(E);
-		// setImageUrl(e.target.value);
+	const handleChangeImageUrl = (value: string) => {
+		console.log(value);
+		setImageUrl(value);
 	};
 
 	const isAbleToEdit = () => {
@@ -91,6 +90,7 @@ export const useEditMyShopInfo = () => {
 		register,
 		control,
 		imageUrl,
+		setImageUrl,
 		handleChangeImageUrl,
 	};
 };
