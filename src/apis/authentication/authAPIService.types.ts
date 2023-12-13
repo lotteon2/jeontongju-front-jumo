@@ -32,7 +32,7 @@ export type LoginResponseData = {
 };
 
 export type RefreshResponseData = {
-	accessToken?: string;
+	accessToken: string;
 };
 
 export type LoginResponse = ApiResponse<LoginResponseData>;

@@ -123,8 +123,8 @@ axios.interceptors.response.use(
 			try {
 				authApi.refresh().then((res) => {
 					console.log(res);
-					if (res.data.code === 200) {
-						localStorage.setItem('accessToken', res.data.data.accessToken);
+					if (res.code === 200) {
+						localStorage.setItem('accessToken', res.data.accessToken);
 					}
 				});
 				originalRequest.headers.Authorization = `${localStorage.getItem('accessToken')}`;
