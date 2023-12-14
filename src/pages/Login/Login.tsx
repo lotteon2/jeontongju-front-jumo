@@ -5,7 +5,7 @@ import { useLogin } from './Login.hooks';
 import Button from '../../components/common/Button';
 
 const Login = () => {
-	const { email, setEmail, password, setPassword, onFinish } = useLogin();
+	const { email, setEmail, password, setPassword, onFinish, isAbleToLogin } = useLogin();
 	return (
 		<>
 			<Form name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} onFinish={onFinish} autoComplete="off">
@@ -24,7 +24,14 @@ const Login = () => {
 				>
 					<Input.Password value={password as string} onChange={(e) => setPassword(e.target.value)} />
 				</Form.Item>
-				<Button content="로그인" Key="loginJumo" isfull handleClick={onFinish} htmlType="submit" />
+				<Button
+					content="로그인"
+					Key="loginJumo"
+					isfull
+					handleClick={onFinish}
+					htmlType="submit"
+					btntype={isAbleToLogin()}
+				/>
 			</Form>
 			<StyledLoginFooter>
 				<a href="/init/findMyPassword">비밀번호 찾기</a>

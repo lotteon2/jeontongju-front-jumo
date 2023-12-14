@@ -4,6 +4,8 @@ span,
 applet,
 object,
 iframe,
+h1,
+h2,
 h3,
 h4,
 p,
@@ -26,6 +28,7 @@ s,
 samp,
 small,
 strike,
+strong,
 sub,
 sup,
 tt,
@@ -69,15 +72,10 @@ summary,
 time,
 mark,
 audio,
+input,
 video {
   font-family: "Hahmlet", sans-serif;
   font-weight: bold;
-  margin: 0;
-}
-
-strong {
-  font-family: "Hahmlet", sans-serif;
-  font-weight: 900;
   margin: 0;
 }
 
@@ -87,12 +85,26 @@ code {
     monospace;
 }
 
+strong {
+  font-family: "Hahmlet", sans-serif;
+  font-weight: 900;
+  margin: 0;
+}
+
 html {
   font-size: 62.5%;
 }
 
 body {
   font-size: 1.6rem;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.6rem;
 }
 
 .swal2-icon {
@@ -105,12 +117,13 @@ body {
 }
 .swal2-modal {
   border-radius: 30px;
+  padding: 3rem 0;
 }
 .swal2-confirm {
-  width: 150px;
+  width: 13rem;
 }
 .swal2-cancel {
-  width: 150px;
+  width: 13rem;
 }
 .swal2-title {
   font-size: 25px;
@@ -153,6 +166,14 @@ body {
   text-align: left !important;
 }
 
+/*Modal Custom*/
+.ant-modal .ant-modal-footer {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
 a {
   text-decoration: none;
   outline: none;
@@ -162,6 +183,16 @@ a:hover,
 a:active {
   text-decoration: none;
   color: var(--secondary-violet);
+}
+
+button {
+  border-radius: 1rem;
+  cursor: pointer;
+  border: none;
+}
+
+.ant-input:placeholder-shown {
+  font-family: "Hahmlet", sans-serif;
 }
 
 @font-face {

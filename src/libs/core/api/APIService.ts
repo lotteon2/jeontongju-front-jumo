@@ -1,4 +1,5 @@
 import axios, { HttpStatusCode, AxiosRequestConfig, AxiosResponse, Method } from 'axios';
+import { authApi } from '../../../apis/authentication/authAPIService';
 
 export type Headers = Record<string, string>;
 
@@ -16,12 +17,10 @@ class APIService {
 
 	headers: Headers = {
 		'Content-Type': 'application/json',
-		'Access-Control-Allow-Origin': 'https://bitbox.kro.kr',
+		'Access-Control-Allow-Origin': 'https://jeontongju-dev.shop',
 		Authorization: localStorage.getItem('accessToken') || '',
 		'Access-Control-Allow-Credentials': 'true',
 	};
-
-	withCredentials = true;
 
 	static $instance: APIService;
 
@@ -58,7 +57,7 @@ class APIService {
 			method,
 			headers,
 			url: `${this.baseUrl}/${trimLeftSlash(path)}`,
-			withCredentials: true,
+			withCredentials: false,
 		};
 
 		if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(method)) {
@@ -106,6 +105,33 @@ export default APIService;
 /* eslint no-param-reassign: "off" */
 axios.interceptors.request.use((config) => {
 	config.headers['Content-Type'] = 'application/json';
-	config.headers.Authorization = `Bearer ${localStorage.getItem('accessToken')}`;
+	config.headers.Authorization = `${localStorage.getItem('accessToken')}`;
 	return config;
 });
+
+axios.interceptors.response.use(
+	(res) => {
+		return res;
+	},
+	async (error: any) => {
+		const {
+			config,
+			response: { status },
+		} = error;
+		if (status === 418) {
+			const originalRequest = config;
+			try {
+				authApi.refresh().then((res) => {
+					console.log(res);
+					if (res.code === 200) {
+						localStorage.setItem('accessToken', res.data.accessToken);
+					}
+				});
+				originalRequest.headers.Authorization = `${localStorage.getItem('accessToken')}`;
+			} catch (err) {
+				console.error(err);
+			}
+		}
+		return config;
+	},
+);

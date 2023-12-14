@@ -1,31 +1,82 @@
+import { Form } from 'antd';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { AddProductFieldType } from '../../../constants/AddProductFieldType';
+import { useAddressStore } from '../../../stores/Address/AddressStore';
+import { RegisterProductParams } from '../../../apis/product/productAPIService.types';
+import { productApi } from '../../../apis/product/productAPIService';
+import { Toast } from '../../../components/common/Toast';
 
 export const useAddProduct = () => {
-	const { handleSubmit, control } = useForm<AddProductFieldType>({
+	const [form] = Form.useForm();
+	const [clear, selectedCategoryId, setSelectedCategoryId, breweryAddressDetail, breweryZonecode, breweryAddress] =
+		useAddressStore((state) => [
+			state.clear,
+			state.selectedCategoryId,
+			state.dispatchSelectedCategoryId,
+			state.breweryAddressDetail,
+			state.breweryZonecode,
+			state.breweryAddress,
+		]);
+
+	const { handleSubmit, control, register } = useForm<RegisterProductParams>({
 		mode: 'onBlur',
+		defaultValues: {
+			productName: null,
+			productDescription: null,
+			productThumbnailImageUrl: '',
+			productAlcoholDegree: 0,
+			productCapacity: 0,
+			breweryName: '',
+			breweryZonecode: '',
+			breweryAddress: '',
+			manufacturer: '',
+			productPrice: 0,
+			registeredQuantity: 0,
+			productDetailsImageUrl: '',
+			categoryId: null,
+			rawMaterial: [],
+			food: [],
+			concept: [],
+			taste: {
+				sour: null,
+				sweet: null,
+				scent: null,
+				carbonation: null,
+				body: null,
+			},
+		},
 	});
 
-	const onSubmit = handleSubmit((data: AddProductFieldType) => {
-		console.log(data);
-	});
-
-	const [email, setEmail] = useState<string>('');
-	const [password, setPassword] = useState<string>('');
-
-	const onFinish = async () => {
-		// console.log('name', name);
-		console.log('email', email);
-		console.log('password', password);
+	const handleSelectedCategory = (value: any) => {
+		setSelectedCategoryId(value);
 	};
 
+	const onSubmit = handleSubmit(async (data: RegisterProductParams) => {
+		const params = {
+			...data,
+			breweryAddress,
+			breweryAddressDetails: breweryAddressDetail,
+			breweryZonecode,
+			categoryId: selectedCategoryId,
+		};
+		await productApi.registerProduct(params).then((res) => {
+			if (res.code === 200) {
+				Toast(true, '상품이 등록되었어요.');
+				clear();
+			} else {
+				Toast(false, '??');
+			}
+		});
+		console.log({ ...data, breweryAddress, breweryAddressDetail, breweryZonecode, categoryId: selectedCategoryId });
+	});
+
 	return {
+		selectedCategoryId,
+		handleSelectedCategory,
 		onSubmit,
-		email,
-		setEmail,
-		password,
-		setPassword,
-		onFinish,
+		handleSubmit,
+		control,
+		register,
+		form,
 	};
 };

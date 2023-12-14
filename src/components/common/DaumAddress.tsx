@@ -1,6 +1,7 @@
 import { Input } from 'antd';
 import styled from '@emotion/styled';
 import Button from './Button';
+import { useAddressStore } from '../../stores/Address/AddressStore';
 
 declare global {
 	interface Window {
@@ -14,11 +15,26 @@ interface IAddr {
 }
 
 const DaumAddress = () => {
+	const [
+		breweryAddressDetail,
+		breweryZonecode,
+		breweryAddress,
+		setBreweryAddressDetail,
+		setBreweryZonecode,
+		setBreweryAddress,
+	] = useAddressStore((state) => [
+		state.breweryAddressDetail,
+		state.breweryZonecode,
+		state.breweryAddress,
+		state.dispatchBreweryAddressDetail,
+		state.dispatchBreweryZonecode,
+		state.dispatchBreweryAddresss,
+	]);
 	const onClickAddr = () => {
 		new window.daum.Postcode({
 			oncomplete(data: IAddr) {
-				(document.getElementById('addr') as HTMLInputElement).value = data.address;
-				(document.getElementById('zipNo') as HTMLInputElement).value = data.zonecode;
+				setBreweryZonecode(data.zonecode);
+				setBreweryAddress(data.address);
 				document.getElementById('addrDetail')?.focus();
 			},
 		}).open();
@@ -26,11 +42,18 @@ const DaumAddress = () => {
 	return (
 		<StyledDaumAddress>
 			<StyledAddr>
-				<Input id="addr" type="text" readOnly onClick={onClickAddr} />
-				<Button Key="searchAddrBtn" type="positive" handleClick={onClickAddr} content="검색" />
+				<Input type="text" readOnly onClick={onClickAddr} value={breweryAddress} />
+				<Button Key="searchAddrBtn" btntype="positive" handleClick={onClickAddr} content="검색" />
 			</StyledAddr>
-			<Input id="zipNo" type="text" readOnly />
-			<Input id="addrDetail" type="text" />
+			<Input type="text" readOnly value={breweryZonecode} />
+			<Input
+				id="addrDetail"
+				type="text"
+				value={breweryAddressDetail}
+				onChange={(e) => {
+					setBreweryAddressDetail(e.target.value);
+				}}
+			/>
 		</StyledDaumAddress>
 	);
 };

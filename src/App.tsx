@@ -10,6 +10,7 @@ import 'antd/dist/reset.css';
 
 function App() {
 	const { queryClientRef } = useAppMount();
+
 	return (
 		<QueryClientProvider client={queryClientRef.current}>
 			<RouterProvider router={router} fallbackElement={<Loading />} />

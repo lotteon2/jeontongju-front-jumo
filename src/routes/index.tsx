@@ -8,11 +8,22 @@ import SignUp from '../pages/SignUp/SignUp';
 import Waiting from '../pages/Waiting';
 import FindMyPassword from '../pages/FindMyPassword/FindMyPassword';
 import AddProduct from '../pages/Product/AddProduct/AddProduct';
+import ProductList from '../pages/Product/ProductList/ProductList';
+import CashUp from '../pages/Cash/CashUp/CashUp';
+import OrderList from '../pages/Cash/OrderList/OrderList';
+import LiveList from '../pages/Etc/LiveList/LiveList';
+import LiveRegister from '../pages/Etc/LiveRegister/LiveRegister';
+import EditMyShopInfo from '../pages/Mypage/EditMyShopInfo/EditMyShopInfo';
+import EditMyPassword from '../pages/Mypage/EditMyPassword/EditMyPassword';
+import ShortsList from '../pages/Etc/Shorts/ShortsList/ShortsList';
+import ShortsDetail from '../pages/Etc/Shorts/ShortsDetail/ShortsDetail';
+import ShortsRegister from '../pages/Etc/Shorts/ShortsRegister/ShortsRegister';
+import AuthRoute from './AuthRoute';
 
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <MainLayout />,
+		element: <AuthRoute />,
 		errorElement: <NotFound />,
 		children: [{ index: true, path: '', element: <DashBoard /> }],
 	},
@@ -29,44 +40,48 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '/dashboard',
-		element: <MainLayout />,
+		element: <AuthRoute />,
 		errorElement: <NotFound />,
 		children: [{ index: true, path: 'dashboard', element: <DashBoard /> }],
 	},
 	{
 		path: '/product',
-		element: <MainLayout />,
+		element: <AuthRoute />,
 		errorElement: <NotFound />,
 		children: [
 			{ index: true, path: 'add', element: <AddProduct /> },
-			{ index: true, path: 'list', element: <DashBoard /> },
+			{ path: 'list', element: <ProductList /> },
 		],
 	},
 	{
 		path: '/cash',
-		element: <MainLayout />,
+		element: <AuthRoute />,
 		errorElement: <NotFound />,
 		children: [
-			{ index: true, path: 'up', element: <DashBoard /> },
-			{ index: true, path: 'list', element: <DashBoard /> },
-		],
-	},
-	{
-		path: '/sulbing',
-		element: <MainLayout />,
-		errorElement: <NotFound />,
-		children: [
-			{ index: true, path: 'payfor', element: <DashBoard /> },
-			{ index: true, path: 'list', element: <DashBoard /> },
+			{ index: true, path: 'up', element: <CashUp /> },
+			{ path: 'list', element: <OrderList /> },
 		],
 	},
 	{
 		path: '/etc',
-		element: <MainLayout />,
+		element: <AuthRoute />,
 		errorElement: <NotFound />,
 		children: [
-			{ index: true, path: 'shorts', element: <DashBoard /> },
-			{ index: true, path: 'live', element: <DashBoard /> },
+			{ index: true, path: 'shorts', element: <ShortsList /> },
+			{ path: 'shorts/detail/:id', element: <ShortsDetail /> },
+			{ path: 'shorts/register', element: <ShortsRegister /> },
+			{ path: 'live', element: <LiveList /> },
+			{ path: 'live/register', element: <LiveRegister /> },
+		],
+	},
+	{
+		path: '/edit',
+		element: <AuthRoute />,
+		errorElement: <NotFound />,
+		children: [
+			{ index: true, path: 'myshop', element: <EditMyShopInfo /> },
+			{ path: 'myPassword', element: <EditMyPassword /> },
+			{ path: 'live/register', element: <LiveRegister /> },
 		],
 	},
 ]);
