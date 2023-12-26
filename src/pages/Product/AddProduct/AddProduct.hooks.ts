@@ -1,12 +1,14 @@
 import { Form } from 'antd';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { useAddressStore } from '../../../stores/Address/AddressStore';
 import { RegisterProductParams } from '../../../apis/product/productAPIService.types';
 import { productApi } from '../../../apis/product/productAPIService';
 import { Toast } from '../../../components/common/Toast';
 
 export const useAddProduct = () => {
+	const navigate = useNavigate();
 	const [form] = Form.useForm();
 	const [productDetailsImageUrl, setProductDetailsImageUrl] = useState<string>('');
 	const [productThumbnailImageUrl, setProductThumbnailImageUrl] = useState<string>('');
@@ -20,7 +22,7 @@ export const useAddProduct = () => {
 			state.breweryAddress,
 		]);
 
-	const { handleSubmit, control, register, getValues } = useForm<RegisterProductParams>({
+	const { handleSubmit, control, register, getValues, reset } = useForm<RegisterProductParams>({
 		mode: 'onBlur',
 		defaultValues: {
 			productName: null,
@@ -53,16 +55,7 @@ export const useAddProduct = () => {
 	};
 
 	const checkRegisterDisabled = () => {
-		console.log(getValues('productName'));
 		if (
-			// !getValues('productName') ||
-			// !getValues('productDescription') ||
-			// !getValues('productThumbnailImageUrl') ||
-			// !getValues('productAlcoholDegree') ||
-			// !getValues('productCapacity') ||
-			// !getValues('breweryName') ||
-			// !getValues('productPrice') ||
-			// !getValues('registeredQuantity') ||
 			!productDetailsImageUrl ||
 			!breweryAddress ||
 			!breweryAddressDetail ||
@@ -86,6 +79,8 @@ export const useAddProduct = () => {
 		await productApi.registerProduct(params).then((res) => {
 			if (res.code === 200) {
 				Toast(true, '상품이 등록되었어요.');
+				navigate('/product/list');
+				reset();
 				clear();
 			} else {
 				Toast(false, '??');
