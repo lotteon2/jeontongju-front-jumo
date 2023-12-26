@@ -5,7 +5,7 @@ import { OrderListDispatcher, OrderListStore } from './OrderListStore.types';
 const initialState: OrderListStore = {
 	selectedDate: null,
 	isDeliveryCodeNull: false,
-	page: 0,
+	page: 1,
 	size: 10,
 	productId: null,
 };
