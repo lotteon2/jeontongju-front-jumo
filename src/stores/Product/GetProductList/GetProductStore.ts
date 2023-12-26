@@ -3,7 +3,7 @@ import { immer } from 'zustand/middleware/immer';
 import { GetProductState, GetProductStateDispatcher } from './GetProductStore.types';
 
 const initialState: GetProductState = {
-	page: 0,
+	page: 1,
 	sort: '',
 	size: 10,
 };
