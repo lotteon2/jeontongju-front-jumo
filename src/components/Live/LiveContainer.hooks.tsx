@@ -15,7 +15,6 @@ export const useLiveModal = () => {
 	const handleOk = () => {
 		navigate('/etc/live/register');
 		setIsModalOpen(false);
-		console.log(isModalOpen);
 	};
 	return {
 		isModalOpen,
