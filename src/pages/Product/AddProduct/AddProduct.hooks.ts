@@ -8,6 +8,8 @@ import { Toast } from '../../../components/common/Toast';
 
 export const useAddProduct = () => {
 	const [form] = Form.useForm();
+	const [productDetailsImageUrl, setProductDetailsImageUrl] = useState<string>('');
+	const [productThumbnailImageUrl, setProductThumbnailImageUrl] = useState<string>('');
 	const [clear, selectedCategoryId, setSelectedCategoryId, breweryAddressDetail, breweryZonecode, breweryAddress] =
 		useAddressStore((state) => [
 			state.clear,
@@ -18,7 +20,7 @@ export const useAddProduct = () => {
 			state.breweryAddress,
 		]);
 
-	const { handleSubmit, control, register } = useForm<RegisterProductParams>({
+	const { handleSubmit, control, register, getValues } = useForm<RegisterProductParams>({
 		mode: 'onBlur',
 		defaultValues: {
 			productName: null,
@@ -32,7 +34,6 @@ export const useAddProduct = () => {
 			manufacturer: '',
 			productPrice: 0,
 			registeredQuantity: 0,
-			productDetailsImageUrl: '',
 			categoryId: null,
 			rawMaterial: [],
 			food: [],
@@ -51,12 +52,35 @@ export const useAddProduct = () => {
 		setSelectedCategoryId(value);
 	};
 
+	const checkRegisterDisabled = () => {
+		console.log(getValues('productName'));
+		if (
+			// !getValues('productName') ||
+			// !getValues('productDescription') ||
+			// !getValues('productThumbnailImageUrl') ||
+			// !getValues('productAlcoholDegree') ||
+			// !getValues('productCapacity') ||
+			// !getValues('breweryName') ||
+			// !getValues('productPrice') ||
+			// !getValues('registeredQuantity') ||
+			!productDetailsImageUrl ||
+			!breweryAddress ||
+			!breweryAddressDetail ||
+			!breweryZonecode ||
+			!selectedCategoryId ||
+			!productThumbnailImageUrl
+		)
+			return 'disabled';
+		return 'positive';
+	};
+
 	const onSubmit = handleSubmit(async (data: RegisterProductParams) => {
 		const params = {
 			...data,
 			breweryAddress,
 			breweryAddressDetails: breweryAddressDetail,
 			breweryZonecode,
+			productDetailsImageUrl,
 			categoryId: selectedCategoryId,
 		};
 		await productApi.registerProduct(params).then((res) => {
@@ -78,5 +102,10 @@ export const useAddProduct = () => {
 		control,
 		register,
 		form,
+		checkRegisterDisabled,
+		productDetailsImageUrl,
+		setProductDetailsImageUrl,
+		productThumbnailImageUrl,
+		setProductThumbnailImageUrl,
 	};
 };
