@@ -58,7 +58,7 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 				onChange={handleChangeFile}
 				style={{ display: 'none' }}
 			/>
-			<Avatar style={{ width: '100%', height: '100%' }} src={imgSrc} alt="프로필 이미지" />
+			<Avatar style={{ width: '10rem', height: '10rem' }} src={imgSrc} alt="프로필 이미지" />
 		</StyledButton>
 	);
 };
@@ -66,6 +66,7 @@ const ImageUploader: React.FC<ImageUploaderInterface> = ({ imageUrl, setImageUrl
 export default ImageUploader;
 
 const StyledButton = styled.button`
-	width: 10rem;
+	width: 100%;
 	height: 10rem;
+	background: none;
 `;

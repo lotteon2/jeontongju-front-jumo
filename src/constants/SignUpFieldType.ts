@@ -6,5 +6,6 @@ export type SignUpFieldType = {
 	storeName: string;
 	storeDescription: string;
 	storePhoneNumber: string;
+	storeImageUrl: string;
 	tel?: string;
 };
