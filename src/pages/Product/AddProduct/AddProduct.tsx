@@ -10,10 +10,21 @@ import { RawMaterialOptions } from '../../../constants/ProductType/MaterialType'
 import { RegisterProductParams } from '../../../apis/product/productAPIService.types';
 import { Toast } from '../../../components/common/Toast';
 import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
+import ImageUploader from '../../../components/common/ImageUploader';
 
 const AddProduct = () => {
-	const { form, register, selectedCategoryId, handleSelectedCategory, control, handleSubmit, onSubmit } =
-		useAddProduct();
+	const {
+		setProductDetailsImageUrl,
+		productDetailsImageUrl,
+		setProductThumbnailImageUrl,
+		productThumbnailImageUrl,
+		checkRegisterDisabled,
+		form,
+		selectedCategoryId,
+		handleSelectedCategory,
+		control,
+		onSubmit,
+	} = useAddProduct();
 	const { category } = useMyInfoStore();
 
 	return (
@@ -45,6 +56,20 @@ const AddProduct = () => {
 						);
 					}}
 				/>
+			</Form.Item>
+			<Form.Item<RegisterProductParams>
+				label="상품 대표 이미지"
+				name="productThumbnailImageUrl"
+				rules={[{ required: true, message: '상품 대표 이미지를 입력해주세요.' }]}
+			>
+				<ImageUploader imageUrl={productThumbnailImageUrl} setImageUrl={setProductThumbnailImageUrl} />
+			</Form.Item>
+			<Form.Item<RegisterProductParams>
+				label="상품 상세 이미지"
+				name="productDetailsImageUrl"
+				rules={[{ required: true, message: '상품 상세 이미지를 입력해주세요.' }]}
+			>
+				<ImageUploader imageUrl={productDetailsImageUrl} setImageUrl={setProductDetailsImageUrl} />
 			</Form.Item>
 
 			<Controller
@@ -435,8 +460,14 @@ const AddProduct = () => {
 					);
 				}}
 			/>
-
-			<Button content="상품 등록하기" Key="addProduct" isfull handleClick={onSubmit} htmlType="submit" />
+			<Button
+				btntype={checkRegisterDisabled()}
+				content="상품 등록하기"
+				Key="addProduct"
+				isfull
+				handleClick={onSubmit}
+				htmlType="submit"
+			/>
 		</Form>
 	);
 };
