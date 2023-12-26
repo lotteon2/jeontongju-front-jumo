@@ -10,9 +10,7 @@ export const useLiveModal = () => {
 	};
 
 	const handleCancel = () => {
-		console.log('here');
 		setIsModalOpen(false);
-		console.log(isModalOpen);
 	};
 	const handleOk = () => {
 		navigate('/etc/live/register');
