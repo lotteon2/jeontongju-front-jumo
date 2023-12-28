@@ -3,6 +3,7 @@ import { Avatar, Dropdown } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { useMyInfoStore } from '../../stores/MyInfo/MyInfoStore';
+import Notification from './Notification';
 
 const TopHeader = () => {
 	const navigate = useNavigate();
@@ -16,6 +17,7 @@ const TopHeader = () => {
 
 	return (
 		<StyledTopHeader>
+			<Notification />
 			<div>{storeName} 주모님</div>
 			<Dropdown
 				menu={{
