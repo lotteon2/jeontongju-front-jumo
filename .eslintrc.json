@@ -14,6 +14,7 @@
             "off",
             { "functions": false, "classes": false }
         ],
+        "react/no-array-index-key": "off",
         "no-console": "off",
         "no-unused-vars": "off",
         "global-require": 0,
