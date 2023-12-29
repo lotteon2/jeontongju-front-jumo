@@ -9,6 +9,9 @@ import { Toast } from '../../../../components/common/Toast';
 
 export const useShortsRegister = () => {
 	const [disabled, setDisabled] = useState<boolean>(false);
+	const [imageUrl, setImageUrl] = useState<string>('');
+	const [previewUrl, setPreviewUrl] = useState<string>('');
+	const [videoUrl, setVideoUrl] = useState<string>('');
 
 	const [selectedProductId, setSelectedProductId] = useAddShortsStore((state) => [
 		state.selectedProductId,
@@ -32,12 +35,18 @@ export const useShortsRegister = () => {
 	const handleSelectedProduct = (value: any) => {
 		setSelectedProductId(value);
 	};
-	console.log(getValues('shortsTitle'));
-	// TODO  : image, video 추가
+
 	const onSubmit = handleSubmit(async (data: RegisterShortParams) => {
 		console.log(data);
 		console.log(selectedProductId);
-		const params = { ...data, productId: selectedProductId };
+		const params = {
+			...data,
+			productId: selectedProductId,
+			shortsThumbnailImageUrl: imageUrl,
+			shortsPreviewUrl: previewUrl,
+			shortsVideoUrl: videoUrl,
+		};
+		console.log('PARAMS', params);
 		await productApi
 			.registerShort(params)
 			.then((res) => {
@@ -62,5 +71,11 @@ export const useShortsRegister = () => {
 		control,
 		form,
 		disabled,
+		imageUrl,
+		setImageUrl,
+		videoUrl,
+		setVideoUrl,
+		previewUrl,
+		setPreviewUrl,
 	};
 };
