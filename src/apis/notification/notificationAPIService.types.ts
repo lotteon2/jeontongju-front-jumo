@@ -7,3 +7,5 @@ interface ApiResponse<T> {
 }
 
 export type ReadAllNotiResponse = ApiResponse<string>;
+
+export type ReadNotiByNotiIdResponse = ApiResponse<string>;

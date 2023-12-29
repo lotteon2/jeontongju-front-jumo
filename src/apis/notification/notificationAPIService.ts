@@ -1,5 +1,5 @@
 import APIService from '../../libs/core/api/APIService';
-import { ReadAllNotiResponse } from './notificationAPIService.types';
+import { ReadAllNotiResponse, ReadNotiByNotiIdResponse } from './notificationAPIService.types';
 
 const BASE_URL = `${process.env.REACT_APP_API_URL}/order-service/api`;
 
@@ -11,6 +11,13 @@ class NotificationAPIService extends APIService {
 
 	async readAllNoti() {
 		const { data } = await this.patch<ReadAllNotiResponse>(`/notification-service/api/notifications`);
+		return data;
+	}
+
+	async readNotiByNotiId(notificationId: number) {
+		const { data } = await this.patch<ReadNotiByNotiIdResponse>(
+			`/notification-service/api/consumers/notifications/${notificationId}`,
+		);
 		return data;
 	}
 }

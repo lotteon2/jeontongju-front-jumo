@@ -40,6 +40,7 @@ const Notification = () => {
 				});
 
 				eventSource.addEventListener('happy', (event: any) => {
+					console.log(event);
 					const currNoti = event.data;
 					console.log('HI');
 					setNewNoti((prev) => [...prev, currNoti]);
@@ -80,6 +81,18 @@ const Notification = () => {
 		}
 	};
 
+	const handleReadByNotiId = async () => {
+		try {
+			const data = await notiApi.readNotiByNotiId(1);
+			if (data.code === 200) {
+				Toast(true, '전체 읽음 처리에 성공했어요.');
+				setNewNoti([]);
+			}
+		} catch (error) {
+			Toast(false, '전체 읽음 처리에 실패했어요');
+		}
+	};
+
 	return (
 		<div>
 			<img
@@ -106,7 +119,9 @@ const Notification = () => {
 							전체 읽음
 						</StyledReadButton>
 						{newNoti.map((it, i: number) => (
-							<StyledAlarmDiv key={i}>{it}</StyledAlarmDiv>
+							<StyledAlarmDiv key={i} onClick={() => handleReadByNotiId()}>
+								{it}
+							</StyledAlarmDiv>
 						))}
 					</StyledAlarmBox>
 				))}
