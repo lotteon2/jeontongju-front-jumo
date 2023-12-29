@@ -2,6 +2,7 @@ import { CONCEPT } from '../../constants/ProductType/ConceptType';
 import { RAW_MATERIAL } from '../../constants/ProductType/MaterialType';
 import { SNACK } from '../../constants/ProductType/SnackType';
 import { categoryType } from '../../stores/MyInfo/MyInfoStore.types';
+import { Page } from '../search/searchAPIService.typs';
 
 interface ApiResponse<T> {
 	code: number;
@@ -51,6 +52,7 @@ export interface RegisterShortParams {
 	shortsTitle: string;
 	shortsDescription: string;
 	shortsVideoUrl: string;
+	shortsPreviewUrl: string;
 	shortsThumbnailImageUrl: string;
 	productId?: string; // 보내면 상품에 등록, 안 보내면 주모 사이트로 연결
 	isActivate: boolean;
@@ -88,7 +90,7 @@ export type DeleteProductResponse = ApiResponse<string>;
 
 export type RegisterShortResponse = ApiResponse<string>;
 
-export type GetShortListResponse = ApiResponse<GetShortListResponseData[]>;
+export type GetShortListResponse = ApiResponse<Page<GetShortListResponseData[]>>;
 
 export type UpdateShortsResponse = ApiResponse<string>;
 

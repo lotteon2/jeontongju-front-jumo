@@ -4,31 +4,30 @@ import { RegisterShortParams } from '../../../../apis/product/productAPIService.
 import Button from '../../../../components/common/Button';
 import { useAddShortsStore } from '../../../../stores/Product/AddShorts/AddShortsStore';
 import { useShortsRegister } from './ShortsRegister.hooks';
+import ImageUploader from '../../../../components/common/ImageUploader';
+import VideoUploader from '../../../../components/common/VideoUploader';
 
 const ShortsRegister = () => {
 	const [selectedProductId] = useAddShortsStore((state) => [state.selectedProductId]);
-	const { handleSelectedProduct, products, onSubmit, control, form, disabled } = useShortsRegister();
-	// const [form] = Form.useForm();
-
-	// const { register, handleSubmit, control } = useForm<RegisterShortParams>({
-	// 	mode: 'onBlur',
-	// 	defaultValues: {
-	// 		shortsTitle: null,
-	// 		shortsDescription: null,
-	// 		shortsVideoUrl: null,
-	// 		shortsThumbnailImageUrl: null,
-	// 		productId: null,
-	// 		isActivate: true,
-	// 	},
-	// });
-
-	// const onSubmit = handleSubmit((data: RegisterShortParams) => {
-	// 	console.log(data);
-	// });
+	const {
+		videoUrl,
+		setVideoUrl,
+		previewUrl,
+		setPreviewUrl,
+		imageUrl,
+		setImageUrl,
+		handleSelectedProduct,
+		products,
+		onSubmit,
+		control,
+		form,
+		disabled,
+	} = useShortsRegister();
 
 	return (
 		<div>
 			<h1>쇼츠를 등록해주세요.</h1>
+			<h2>1분 미만의 영상을 올려주세요</h2>
 			<Form
 				form={form}
 				name="basic"
@@ -61,15 +60,23 @@ const ShortsRegister = () => {
 					/>
 				</Form.Item>
 				<Form.Item<RegisterShortParams>
-					label="정확한 도수"
+					label="쇼츠 비디오(1분 미만)"
 					name="shortsVideoUrl"
 					rules={[{ required: true, message: '쇼츠를 업로드해주세요' }]}
 				>
-					<Controller
-						name="shortsVideoUrl"
-						control={control}
-						render={({ field }) => <Input {...field} placeholder="고객들에게 보여질 쇼츠를 입력해주세요." />}
+					<VideoUploader
+						videoUrl={videoUrl}
+						setVideoUrl={setVideoUrl}
+						previewUrl={previewUrl}
+						setPreviewUrl={setPreviewUrl}
 					/>
+				</Form.Item>
+				<Form.Item<RegisterShortParams>
+					label="쇼츠 썸네일"
+					name="shortsThumbnailImageUrl"
+					rules={[{ required: true, message: '쇼츠 썸네일을 업로드해주세요' }]}
+				>
+					<ImageUploader imageUrl={imageUrl} setImageUrl={setImageUrl} />
 				</Form.Item>
 				<h3>상품에 대한 쇼츠라면 아래에서 해당 상품을 선택해주세요.</h3>
 				<h3>상품을 선택하지 않는다면 주모와 연관된 쇼츠로 보여지게 돼요!</h3>
