@@ -87,7 +87,6 @@ export const useAddProduct = () => {
 				Toast(false, '??');
 			}
 		});
-		console.log({ ...data, breweryAddress, breweryAddressDetail, breweryZonecode, categoryId: selectedCategoryId });
 	});
 
 	return {
