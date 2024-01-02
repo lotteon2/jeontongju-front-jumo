@@ -1,9 +1,9 @@
 import { LogoutOutlined, SettingOutlined } from '@ant-design/icons';
-import { LiaWineBottleSolid } from 'react-icons/lia';
 import { Avatar, Dropdown } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { useMyInfoStore } from '../../stores/MyInfo/MyInfoStore';
+import Notification from './Notification';
 
 const TopHeader = () => {
 	const navigate = useNavigate();
@@ -17,6 +17,7 @@ const TopHeader = () => {
 
 	return (
 		<StyledTopHeader>
+			<Notification />
 			<div>{storeName} 주모님</div>
 			<Dropdown
 				menu={{
@@ -25,7 +26,7 @@ const TopHeader = () => {
 							key: 'setMyShopInfo',
 							label: (
 								<button type="button" onClick={() => navigate('/edit/myshop')}>
-									<SettingOutlined />샵 정보 수정하기
+									<SettingOutlined /> 샵 정보 수정하기
 								</button>
 							),
 						},

@@ -1,6 +1,7 @@
 import { DatePicker, DatePickerProps, Form, Input, Select, Tooltip } from 'antd';
 import styled from '@emotion/styled';
 import { InfoCircleOutlined } from '@ant-design/icons';
+import { useEffect } from 'react';
 import Table from '../../../components/common/Table';
 import { useOrderList } from './OrderList.hooks';
 import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
@@ -11,15 +12,20 @@ const OrderList = () => {
 	const { data: orderData } = useGetMyOrderListQuery();
 	const { columns } = useOrderList();
 	const products = useMyInfoStore((state) => state.products);
-	const [setPage, isDeliveryCodeNull, setIsDeliveryCodeNull, setProductId, setSelectedDate] = useMyOrderListStore(
-		(state) => [
+	const [page, setPage, isDeliveryCodeNull, setIsDeliveryCodeNull, setProductId, selectedDate, setSelectedDate] =
+		useMyOrderListStore((state) => [
+			state.page,
 			state.dispatchPage,
 			state.isDeliveryCodeNull,
 			state.dispatchIsDeliveryCodeNull,
 			state.dispatchProductId,
+			state.selectedDate,
 			state.dispatchSelectedDate,
-		],
-	);
+		]);
+
+	useEffect(() => {
+		setPage(1);
+	}, [selectedDate]);
 
 	const onChange: DatePickerProps['onChange'] = (date, dateString) => {
 		setSelectedDate(dateString.replaceAll('-', ''));
@@ -48,7 +54,21 @@ const OrderList = () => {
 					</Form.Item>
 				</div>
 			</StyledCashListHeader>
-			{orderData ? <Table data={orderData.data.content} columns={columns} /> : <div>로딩중</div>}
+			{orderData ? (
+				<Table
+					data={orderData.data.content}
+					columns={columns}
+					pagination={{
+						pageSize: 10,
+						current: page,
+						onChange: setPage,
+						defaultCurrent: 1,
+						total: orderData.data.totalElements,
+					}}
+				/>
+			) : (
+				<div>로딩중</div>
+			)}
 		</div>
 	);
 };

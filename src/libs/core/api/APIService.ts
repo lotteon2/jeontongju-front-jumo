@@ -131,6 +131,9 @@ axios.interceptors.response.use(
 			} catch (err) {
 				console.error(err);
 			}
+		} else if (status === 401) {
+			localStorage.removeItem('accessToken');
+			console.log('로그아웃');
 		}
 		return config;
 	},

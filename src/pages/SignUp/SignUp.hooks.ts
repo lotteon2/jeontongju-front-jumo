@@ -7,7 +7,6 @@ export const useSignUp = () => {
 	const emailRegex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
 	const navigate = useNavigate();
-	// email 인증 눌렀을 때 중복이 아닌 경우에만
 	const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
 	const [isValidEmailCode, setIsValidEmailCode] = useState<boolean>(false);
 	const [authCode, setAuthCode] = useState<string>('');
@@ -81,7 +80,8 @@ export const useSignUp = () => {
 
 	const checkRegisterDisabled = () => {
 		if (password !== checkPassword) return 'disabled';
-		if (!email || !password || !storeName || !storeDescription || !storePhoneNumber || !impUid) return 'disabled';
+		if (!email || !password || !storeName || !storeDescription || !storePhoneNumber || !impUid || !storeImageUrl)
+			return 'disabled';
 		return 'positive';
 	};
 
@@ -152,5 +152,7 @@ export const useSignUp = () => {
 		handleAdultValid,
 		checkRegisterDisabled,
 		isAbleToSendEmail,
+		storeImageUrl,
+		setStoreImageUrl,
 	};
 };

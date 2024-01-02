@@ -12,4 +12,10 @@ export interface UploadS3ResponseData {
 	dataUrl: string;
 }
 
+export interface UploadShortsResponseData {
+	dataUrl: string;
+	previewUrl: string;
+}
+
 export type UploadS3Response = ApiResponse<UploadS3ResponseData>;
+export type UploadShortsResponse = ApiResponse<UploadShortsResponseData>;

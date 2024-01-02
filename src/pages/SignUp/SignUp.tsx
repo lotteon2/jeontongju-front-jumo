@@ -4,6 +4,7 @@ import { useSignUp } from './SignUp.hooks';
 import { SignUpFieldType } from '../../constants/SignUpFieldType';
 import Button from '../../components/common/Button';
 import AdultValid from '../../assets/images/adultValid.png';
+import ImageUploader from '../../components/common/ImageUploader';
 
 const SignUp = () => {
 	const {
@@ -29,6 +30,8 @@ const SignUp = () => {
 		handleAdultValid,
 		checkRegisterDisabled,
 		isAbleToSendEmail,
+		storeImageUrl,
+		setStoreImageUrl,
 	} = useSignUp();
 
 	return (
@@ -36,7 +39,7 @@ const SignUp = () => {
 			name="basic"
 			labelCol={{ span: 8 }}
 			wrapperCol={{ span: 16 }}
-			style={{ maxWidth: 600, width: '100%' }}
+			style={{ maxWidth: 600, width: '100%', display: 'flex', flexDirection: 'column' }}
 			onFinish={onFinish}
 			autoComplete="off"
 		>
@@ -161,6 +164,13 @@ const SignUp = () => {
 					placeholder="고객이 문의할 대표 번호를 입력해주세요.(숫자만)"
 					onChange={(e) => setStorePhoneNumber(e.target.value)}
 				/>
+			</Form.Item>
+			<Form.Item<SignUpFieldType>
+				label="주모 대표 이미지"
+				name="storeImageUrl"
+				rules={[{ required: true, message: '주모 이미지를 입력해주세요.' }]}
+			>
+				<ImageUploader imageUrl={storeImageUrl} setImageUrl={setStoreImageUrl} />
 			</Form.Item>
 			<StyledAdultValidContainer onClick={handleAdultValid} />
 			<Button

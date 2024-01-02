@@ -5,10 +5,13 @@ import Table from '../../../components/common/Table';
 import { useProductListTable, useProductUpdateModal } from './ProductList.hooks';
 import Button from '../../../components/common/Button';
 import { useUpdateProductStore } from '../../../stores/Product/UpdateProduct/UpdateProductStore';
+import { useGetProductStore } from '../../../stores/Product/GetProductList/GetProductStore';
 
 const ProductList = () => {
 	const { isModalOpen, isDisabled, isLoading, handleCancel, handleOk, columns, productListData } =
 		useProductListTable();
+
+	const [page, setPage] = useGetProductStore((state) => [state.page, state.dispatchPage]);
 
 	const [
 		productName,
@@ -36,7 +39,19 @@ const ProductList = () => {
 
 	return (
 		<div>
-			<Table columns={columns} data={productListData ? productListData.data.content : []} />
+			{productListData && (
+				<Table
+					columns={columns}
+					data={productListData.data.content}
+					pagination={{
+						pageSize: 10,
+						current: page,
+						onChange: setPage,
+						defaultCurrent: 1,
+						total: productListData.data.totalElements,
+					}}
+				/>
+			)}
 			<Modal
 				title="상품 수정"
 				open={isModalOpen}

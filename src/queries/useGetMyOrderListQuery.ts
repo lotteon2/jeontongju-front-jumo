@@ -14,7 +14,7 @@ export const useGetMyOrderListQuery = () => {
 
 	return useQuery(
 		[GET_PRODUCT_LIST, page, size, isDeliveryCodeNull, productId, selectedDate],
-		() => orderApi.getMyOrderList(page, size, isDeliveryCodeNull, productId, selectedDate),
+		() => orderApi.getMyOrderList(page - 1, size, isDeliveryCodeNull, productId, selectedDate || null),
 		{
 			enabled: true,
 		},

@@ -16,7 +16,7 @@ const ShortsList = () => {
 				<Button content="등록하기" Key="addShorts" handleClick={() => navigate('/etc/shorts/register')} />
 			</StyledShortsHeader>
 			<StyledShortsContainer>
-				{data?.data?.map((it) => (
+				{data?.data.content?.map((it) => (
 					<ShortsContainer
 						key={it.shortsId}
 						shortsTitle={it.shortsTitle}
