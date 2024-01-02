@@ -74,6 +74,7 @@ export const useAddProduct = () => {
 			breweryAddressDetails: breweryAddressDetail,
 			breweryZonecode,
 			productDetailsImageUrl,
+			productThumbnailImageUrl,
 			categoryId: selectedCategoryId,
 		};
 		await productApi.registerProduct(params).then((res) => {

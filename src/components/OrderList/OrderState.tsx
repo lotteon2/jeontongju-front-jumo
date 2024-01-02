@@ -7,6 +7,7 @@ import { useRegisterDeliveryMutation } from '../../mutations/order/useRegisterDe
 import { useGetMyOrderListQuery } from '../../queries/useGetMyOrderListQuery';
 import { Toast } from '../common/Toast';
 import { useConfirmDeliveryMutation } from '../../mutations/order/useConfirmDeliveryMutation';
+import { useRegisterDeliveryStore } from '../../stores/Cash/Delivery/RegisterDeliveryStore';
 
 const OrderState = ({ state, deliveryId }: { state: keyof typeof ORDER_STATE; deliveryId: number }) => {
 	const { mutateAsync } = useRegisterDeliveryMutation();
@@ -20,6 +21,7 @@ const OrderState = ({ state, deliveryId }: { state: keyof typeof ORDER_STATE; de
 			const result = await mutateAsync({ deliveryCode, deliveryId });
 			if (result.code === 200) {
 				Toast(true, '운송장 등록이 되었어요.');
+				setDeliveryCode('');
 				refetch();
 			}
 		} catch (err) {
