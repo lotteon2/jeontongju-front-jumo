@@ -33,7 +33,7 @@ class OrderAPIService extends APIService {
 	}
 
 	async getMyCashUpImage(year: string, month: string) {
-		const { data } = await this.get<GetMyCashUpImageResponse>(`/settlement/seller/year/${year}/month/${month}}`);
+		const { data } = await this.get<GetMyCashUpImageResponse>(`/settlement/seller/year/${year}/month/${month}`);
 		return data;
 	}
 }

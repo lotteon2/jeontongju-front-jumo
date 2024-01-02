@@ -45,7 +45,7 @@ const CashUp = () => {
 					인쇄하기
 				</button>
 			</StyledCashUpHeader>
-			{data ? (
+			{data?.data ? (
 				<img
 					ref={componentRef}
 					src={data ? data.data.settlementImgUrl : null}
