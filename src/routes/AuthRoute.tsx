@@ -19,7 +19,7 @@ const AuthRoute = () => {
 	const { data: myInfo } = useGetMyInfoQuery();
 
 	useEffect(() => {
-		if (isLogin) {
+		if (localStorage.getItem('accessToken')) {
 			// 첫 진입시 받아와야함
 			console.log('here');
 			console.log(approvalState);
@@ -32,9 +32,9 @@ const AuthRoute = () => {
 		}
 	}, []);
 
-	return isLogin && approvalState === 'ALLOW' ? (
+	return localStorage.getItem('accessToken') && approvalState === 'ALLOW' ? (
 		<MainLayout />
-	) : isLogin && approvalState === 'WAIT' ? (
+	) : localStorage.getItem('accessToken') && approvalState === 'WAIT' ? (
 		<Navigate to="/init/waiting" />
 	) : (
 		<Navigate to="/init/login" />
