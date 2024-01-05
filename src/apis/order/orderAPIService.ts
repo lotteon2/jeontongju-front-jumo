@@ -15,9 +15,17 @@ class OrderAPIService extends APIService {
 		this.setBaseUrl(BASE_URL);
 	}
 
-	async getMyOrderList(page: number, size: number, isDeliveryCodeNull: boolean, productId: string, orderDate: string) {
+	async getMyOrderList(
+		page: number,
+		size: number,
+		isDeliveryCodeNull: boolean,
+		productId: string,
+		startDate: string,
+		endDate: string,
+		orderState: string,
+	) {
 		const { data } = await this.get<GetMyOrderListResponse>(
-			`/order/seller?page=${page}&size=${size}&isDeliveryCodeNull=${isDeliveryCodeNull}&productId=${productId}&orderDate=${orderDate}`,
+			`/order/seller?page=${page}&size=${size}&isDeliveryCodeNull=${isDeliveryCodeNull}&productId=${productId}&startDate=${startDate}&endDate=${endDate}&productStatus=${orderState}`,
 		);
 		return data;
 	}

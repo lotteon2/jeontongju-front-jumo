@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Input } from 'antd';
 import { useState } from 'react';
-import { ORDER_STATE, translateOrderState } from '../../constants/OrderStateType';
+import { ORDER_STATE } from '../../constants/OrderStateType';
 import Button from '../common/Button';
 import { useRegisterDeliveryMutation } from '../../mutations/order/useRegisterDeliveryCode';
 import { useGetMyOrderListQuery } from '../../queries/useGetMyOrderListQuery';
@@ -43,7 +43,7 @@ const OrderState = ({ state, deliveryId }: { state: keyof typeof ORDER_STATE; de
 
 	return (
 		<div>
-			{state === ORDER_STATE.ORDER ? (
+			{state === 'ORDER' ? (
 				<StyledOrderInput>
 					<Input
 						placeholder="운송장 번호를 입력해주세요."
@@ -52,10 +52,10 @@ const OrderState = ({ state, deliveryId }: { state: keyof typeof ORDER_STATE; de
 					/>
 					<Button content="저장" Key="saveOrderNumber" btntype="cancel" handleClick={handleRegisterOrderNumber} />
 				</StyledOrderInput>
-			) : state === ORDER_STATE.SHIPPING ? (
+			) : state === 'SHIPPING' ? (
 				<StyledOrderState onClick={handleConfirmDelivery}>배송 확정하기</StyledOrderState>
 			) : (
-				<StyledOrderState>{translateOrderState(state)}</StyledOrderState>
+				<StyledOrderState>{state}</StyledOrderState>
 			)}
 		</div>
 	);
