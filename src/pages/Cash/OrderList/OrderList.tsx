@@ -67,7 +67,7 @@ const OrderList = () => {
 				<StyledCashListLeftHeader>
 					<RangePicker presets={rangePresets} onChange={onRangeChange} />
 					<Select allowClear options={products} placeholder="전체(기본)" onChange={setProductId} />
-					<Select options={OrderStateOptions} placeholder="전체(기본)" onChange={setOrderState} />
+					<Select allowClear options={OrderStateOptions} placeholder="전체(기본)" onChange={setOrderState} />
 					<Tooltip
 						title="상품별, 기간별, 주문 상태, 운송장 입력 여부별 필터링을 해서 주문 내역을
         확인해보세요."
