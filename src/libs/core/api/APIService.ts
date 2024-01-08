@@ -139,6 +139,7 @@ axios.interceptors.response.use(
 	},
 );
 
+/* eslint-disable no-useless-escape */
 export function getCookieForRefresh() {
 	function escape(s) {
 		return s.replace(/([.*+?\^$(){}|\[\]\/\\])/g, '\\$1');

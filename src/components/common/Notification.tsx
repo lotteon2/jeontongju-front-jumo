@@ -5,9 +5,12 @@ import FiSrBellSVG from '../../assets/images/fi-sr-bell.svg';
 import NewFiSrBellSVG from '../../assets/images/fi-sr-new-bell.svg';
 import { Toast } from './Toast';
 import { notiApi } from '../../apis/notification/notificationAPIService';
+import { NOTI, translateNoti } from '../../constants/NOTIEnum';
 
 const Notification = () => {
-	const [newNoti, setNewNoti] = useState<string[]>([]);
+	const [newNoti, setNewNoti] = useState<{ notificationId: number; data: keyof typeof NOTI; redirectUrl: string }[]>(
+		[],
+	);
 	const [notiOpen, setNotiOpen] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -20,7 +23,7 @@ const Notification = () => {
 				'https://jeontongju-dev.shop/notification-service/api/notifications/connect',
 				{
 					headers: {
-						Authorization: `Bearer ${accessToken}`,
+						Authorization: `${accessToken}`,
 						Connection: 'keep-alive',
 						Accept: 'text/event-stream',
 					},
@@ -42,18 +45,16 @@ const Notification = () => {
 				eventSource.addEventListener('happy', (event: any) => {
 					console.log(event);
 					const currNoti = event.data;
-					console.log('HI');
-					setNewNoti((prev) => [...prev, currNoti]);
+					setNewNoti((prev) => [...prev, JSON.parse(currNoti)]);
 				});
 
 				eventSource.addEventListener('connect', (event: any) => {
-					console.log(event);
-					const { data: receivedConnectData } = event;
-					if (receivedConnectData === 'SSE 연결이 완료되었습니다.') {
-						console.log('SSE CONNECTED');
-					} else {
-						console.log(event);
+					const currNoti = event.data;
+					if (JSON.parse(currNoti).notificationId !== null) {
+						setNewNoti((prev) => [JSON.parse(currNoti)]);
 					}
+					console.log(event);
+					console.log('SSE CONNECTED');
 				});
 			};
 
@@ -81,15 +82,15 @@ const Notification = () => {
 		}
 	};
 
-	const handleReadByNotiId = async () => {
+	const handleReadByNotiId = async (id: number, url: string) => {
 		try {
-			const data = await notiApi.readNotiByNotiId(1);
+			const data = await notiApi.readNotiByNotiId(id);
 			if (data.code === 200) {
-				Toast(true, '전체 읽음 처리에 성공했어요.');
+				Toast(true, '읽음 처리에 성공했어요.');
 				setNewNoti([]);
 			}
 		} catch (error) {
-			Toast(false, '전체 읽음 처리에 실패했어요');
+			Toast(false, '읽음 처리에 실패했어요');
 		}
 	};
 
@@ -119,8 +120,8 @@ const Notification = () => {
 							전체 읽음
 						</StyledReadButton>
 						{newNoti.map((it, i: number) => (
-							<StyledAlarmDiv key={i} onClick={() => handleReadByNotiId()}>
-								{it}
+							<StyledAlarmDiv key={i} onClick={() => handleReadByNotiId(it.notificationId, it.redirectUrl)}>
+								{translateNoti(it.data)}
 							</StyledAlarmDiv>
 						))}
 					</StyledAlarmBox>
