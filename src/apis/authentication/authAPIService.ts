@@ -1,4 +1,4 @@
-import APIService from '../../libs/core/api/APIService';
+import APIService, { getCookieForRefresh } from '../../libs/core/api/APIService';
 import {
 	CheckMyPasswordResponse,
 	EmailCheckResponse,
@@ -60,7 +60,7 @@ class AuthAPIService extends APIService {
 	}
 
 	async refresh() {
-		const { data } = await this.put<RefreshResponse>('/access-token');
+		const { data } = await this.put<RefreshResponse>('/access-token', { cookie: getCookieForRefresh() });
 		return data;
 	}
 }

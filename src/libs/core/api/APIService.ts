@@ -138,3 +138,11 @@ axios.interceptors.response.use(
 		return config;
 	},
 );
+
+export function getCookieForRefresh() {
+	function escape(s) {
+		return s.replace(/([.*+?\^$(){}|\[\]\/\\])/g, '\\$1');
+	}
+	const match = document.cookie.match(RegExp(`(?:^|;\\s*)${escape('refreshToken')}=([^;]*)`));
+	return match ? match[1] : null;
+}
