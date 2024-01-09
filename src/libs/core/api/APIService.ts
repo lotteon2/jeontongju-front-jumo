@@ -57,7 +57,7 @@ class APIService {
 			method,
 			headers,
 			url: `${this.baseUrl}/${trimLeftSlash(path)}`,
-			withCredentials: false,
+			withCredentials: true,
 		};
 
 		if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(method)) {
