@@ -5,7 +5,7 @@ export const CONCEPT = {
 	FISHING: '🎣 낚시',
 	PARTY: '🪩 파티',
 	GATHERING: '👥 모임',
-	YEAR_END: '연말',
+	YEAR_END: '🎉 연말',
 	HIKING: '🧗‍♀️ 등산',
 	OUTING: '🧺 나들이',
 	TRIP: '🚗 여행',

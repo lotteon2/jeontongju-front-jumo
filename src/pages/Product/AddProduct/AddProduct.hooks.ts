@@ -74,6 +74,7 @@ export const useAddProduct = () => {
 			breweryAddressDetails: breweryAddressDetail,
 			breweryZonecode,
 			productDetailsImageUrl,
+			productThumbnailImageUrl,
 			categoryId: selectedCategoryId,
 		};
 		await productApi.registerProduct(params).then((res) => {
@@ -86,7 +87,6 @@ export const useAddProduct = () => {
 				Toast(false, '??');
 			}
 		});
-		console.log({ ...data, breweryAddress, breweryAddressDetail, breweryZonecode, categoryId: selectedCategoryId });
 	});
 
 	return {

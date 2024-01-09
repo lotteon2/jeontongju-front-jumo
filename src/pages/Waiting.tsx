@@ -12,8 +12,10 @@ const Waiting = () => {
 	const { data: myInfo } = useGetMyInfoQuery();
 
 	useEffect(() => {
-		if (!myInfo) return;
-		console.log(myInfo);
+		if (!myInfo) {
+			navigate('/init/login');
+			return;
+		}
 		if (myInfo.data) dispatchApprovalState(myInfo.data.approvalState);
 		if (myInfo.data.approvalState === 'ALLOW') navigate('/');
 	}, [myInfo]);
