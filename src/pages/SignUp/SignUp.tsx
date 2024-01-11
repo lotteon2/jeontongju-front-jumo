@@ -133,7 +133,7 @@ const SignUp = () => {
 			</Form.Item>
 			{password !== checkPassword && <StyledMessage>비밀번호가 일치하지 않아요.</StyledMessage>}
 			<Form.Item<SignUpFieldType>
-				label="주모 이름"
+				label="주모 샵 이름"
 				name="storeName"
 				rules={[{ required: true, message: '주모 이름을 입력해주세요.' }]}
 			>

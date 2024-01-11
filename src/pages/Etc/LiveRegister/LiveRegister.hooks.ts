@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { LiveRegisterFieldType } from '../../../constants/LiveRegisterFieldType';
-import { auctionApi } from '../../../apis/auction/auctionAPIService';
 import { Toast } from '../../../components/common/Toast';
 import { useApplyAuctionMutation } from '../../../mutations/auction/useApplyAuctionMutation';
 import { ERROR, translateErrorEnumToUserMessage } from '../../../constants/ErrorEnum/ErrorType';
@@ -12,6 +11,7 @@ import { Alert } from '../../../components/common/Alert';
 export const useLiveRegister = () => {
 	const { state } = useLocation();
 	const navigate = useNavigate();
+	const [imageUrl, setImageUrl] = useState<string>('');
 	const { mutateAsync } = useApplyAuctionMutation();
 
 	const [disabled, setDisabled] = useState<boolean>(true);
@@ -54,7 +54,8 @@ export const useLiveRegister = () => {
 			watch('auctionProductName') &&
 			watch('capacity') &&
 			watch('description') &&
-			watch('startingPrice')
+			watch('startingPrice') &&
+			watch('thumbnailImageUrl')
 		) {
 			setDisabled(false);
 		} else {
@@ -65,6 +66,7 @@ export const useLiveRegister = () => {
 		watch('auctionProductName'),
 		watch('capacity'),
 		watch('description'),
+		watch('thumbnailImageUrl'),
 		watch('startingPrice'),
 	]);
 
@@ -74,5 +76,7 @@ export const useLiveRegister = () => {
 		onSubmit,
 		title: state.title || '',
 		disabled,
+		imageUrl,
+		setImageUrl,
 	};
 };

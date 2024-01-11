@@ -4,9 +4,10 @@ import styled from '@emotion/styled';
 import { LiveRegisterFieldType } from '../../../constants/LiveRegisterFieldType';
 import Button from '../../../components/common/Button';
 import { useLiveRegister } from './LiveRegister.hooks';
+import ImageUploader from '../../../components/common/ImageUploader';
 
 const LiveRegister = () => {
-	const { form, control, onSubmit, title, disabled } = useLiveRegister();
+	const { form, control, onSubmit, title, disabled, imageUrl, setImageUrl } = useLiveRegister();
 
 	return (
 		<StyledLiveRegisterPage>
@@ -30,6 +31,13 @@ const LiveRegister = () => {
 						control={control}
 						render={({ field }) => <Input {...field} placeholder="고객들에게 보여질 경매 상품 이름을 입력해주세요." />}
 					/>
+				</Form.Item>
+				<Form.Item<LiveRegisterFieldType>
+					label="경매 상품 썸네일"
+					name="thumbnailImageUrl"
+					rules={[{ required: true, message: '경매 상품 썸네일을 업로드해주세요' }]}
+				>
+					<ImageUploader imageUrl={imageUrl} setImageUrl={setImageUrl} />
 				</Form.Item>
 				<Form.Item<LiveRegisterFieldType>
 					label="상품 설명"
