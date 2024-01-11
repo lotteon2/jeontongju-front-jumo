@@ -29,7 +29,7 @@ export const useLiveRegister = () => {
 	});
 
 	const onSubmit = handleSubmit(async (data: LiveRegisterFieldType) => {
-		const params = { ...data, auctionId: state.auctionId };
+		const params = { ...data, thumbnailImageUrl: imageUrl, auctionId: state.auctionId };
 		const result = await mutateAsync(params);
 		if (result.code === 200) {
 			if (result.failure === ERROR.OVER_PARTICIPATION) {
