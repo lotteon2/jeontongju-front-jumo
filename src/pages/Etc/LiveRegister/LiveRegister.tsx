@@ -96,7 +96,7 @@ const LiveRegister = () => {
 					isfull
 					handleClick={onSubmit}
 					htmlType="submit"
-					disabled={disabled}
+					// disabled={disabled}
 				/>
 			</Form>
 		</StyledLiveRegisterPage>
