@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
 
 const TodoBox = ({
 	trackingNumberNotEntered,
@@ -7,11 +8,16 @@ const TodoBox = ({
 	trackingNumberNotEntered: number;
 	stockUnderFive: number;
 }) => {
+	const navigate = useNavigate();
 	return (
 		<StyledTodoBox>
 			<h2>오늘의 할 일</h2>
-			<div>운송장 미입력 {trackingNumberNotEntered}</div>
-			<div>재고 5개 미만 {stockUnderFive}</div>
+			<div role="presentation" onClick={() => navigate(`/cash/list?isDeliveryCodeNull=true`)}>
+				운송장 미입력 {trackingNumberNotEntered}
+			</div>
+			<div role="presentation" onClick={() => navigate('/product/list')}>
+				재고 5개 미만 {stockUnderFive}
+			</div>
 		</StyledTodoBox>
 	);
 };

@@ -14,6 +14,7 @@ import { OrderStateOptions } from '../../../constants/OrderStateType';
 const OrderList = () => {
 	const [params] = useSearchParams();
 	const query = params.get('orderState');
+	const deliveryCodeParam = params.get('isDeliveryCodeNull');
 	const { RangePicker } = DatePicker;
 	const { data: orderData } = useGetMyOrderListQuery();
 	const { columns } = useOrderList();
@@ -52,6 +53,13 @@ const OrderList = () => {
 		console.log(query);
 		setOrderState(query);
 	}, [query]);
+
+	useEffect(() => {
+		console.log(deliveryCodeParam);
+		if (deliveryCodeParam === 'true') {
+			setIsDeliveryCodeNull(true);
+		}
+	}, [deliveryCodeParam]);
 
 	const rangePresets: TimeRangePickerProps['presets'] = [
 		{ label: 'Last 7 Days', value: [dayjs().add(-7, 'd'), dayjs()] },
