@@ -14,6 +14,7 @@ import ImageUploader from '../../../components/common/ImageUploader';
 
 const AddProduct = () => {
 	const {
+		isLoadingUploadProduct,
 		setProductDetailsImageUrl,
 		productDetailsImageUrl,
 		setProductThumbnailImageUrl,
@@ -467,6 +468,7 @@ const AddProduct = () => {
 				isfull
 				handleClick={onSubmit}
 				htmlType="submit"
+				loading={isLoadingUploadProduct}
 			/>
 		</Form>
 	);

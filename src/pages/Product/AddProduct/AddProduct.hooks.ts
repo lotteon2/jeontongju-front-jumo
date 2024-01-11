@@ -12,6 +12,7 @@ export const useAddProduct = () => {
 	const [form] = Form.useForm();
 	const [productDetailsImageUrl, setProductDetailsImageUrl] = useState<string>('');
 	const [productThumbnailImageUrl, setProductThumbnailImageUrl] = useState<string>('');
+	const [isLoadingUploadProduct, setIsLoadingUploadProduct] = useState<boolean>(false);
 	const [clear, selectedCategoryId, setSelectedCategoryId, breweryAddressDetail, breweryZonecode, breweryAddress] =
 		useAddressStore((state) => [
 			state.clear,
@@ -77,16 +78,22 @@ export const useAddProduct = () => {
 			productThumbnailImageUrl,
 			categoryId: selectedCategoryId,
 		};
-		await productApi.registerProduct(params).then((res) => {
-			if (res.code === 200) {
-				Toast(true, '상품이 등록되었어요.');
-				navigate('/product/list');
-				reset();
-				clear();
-			} else {
-				Toast(false, '??');
-			}
-		});
+		try{
+			setIsLoadingUploadProduct(true);
+			const data = productApi.registerProduct(params).then((res) => {
+				if (res.code === 200) {
+					Toast(true, '상품이 등록되었어요.');
+					navigate('/product/list');
+					reset();
+					clear();
+				}
+		}
+	}catch(err){
+			Toast(false, '상품 등록에 실패했어요.');
+		}finally{
+			setIsLoadingUploadProduct(false);
+		}
+
 	});
 
 	return {
@@ -102,5 +109,6 @@ export const useAddProduct = () => {
 		setProductDetailsImageUrl,
 		productThumbnailImageUrl,
 		setProductThumbnailImageUrl,
+		isLoadingUploadProduct
 	};
 };
