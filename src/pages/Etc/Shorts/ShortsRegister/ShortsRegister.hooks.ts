@@ -39,9 +39,6 @@ export const useShortsRegister = () => {
 	};
 
 	const onSubmit = handleSubmit(async (data: RegisterShortParams) => {
-		console.log(data);
-		console.log(selectedProductId);
-		console.log(previewUrl);
 		const params = {
 			...data,
 			productId: selectedProductId,
