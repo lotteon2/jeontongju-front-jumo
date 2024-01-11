@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useMyInfoStore } from '../stores/MyInfo/MyInfoStore';
-import MainLayout from '../layouts/MainLayout';
 import { useGetMyInfoQuery } from '../queries/useGetMyInfoQuery';
-import { APPROVE } from '../constants/ApproveType';
+import MainLayout from '../layouts/MainLayout';
 
 const AuthRoute = () => {
 	const [isLogin, approvalState, setApprovalState, setStoreImageUrl, setStoreName, setCategory] = useMyInfoStore(

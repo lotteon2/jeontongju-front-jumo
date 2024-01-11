@@ -1,5 +1,4 @@
-import axios, { HttpStatusCode, AxiosRequestConfig, AxiosResponse, Method } from 'axios';
-import { authApi } from '../../../apis/authentication/authAPIService';
+import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
 
 export type Headers = Record<string, string>;
 
@@ -120,17 +119,17 @@ axios.interceptors.response.use(
 		} = error;
 		if (status === 418) {
 			const originalRequest = config;
-			try {
-				authApi.refresh().then((res) => {
-					console.log(res);
-					if (res.code === 200) {
-						localStorage.setItem('accessToken', res.data.accessToken);
-					}
-				});
-				originalRequest.headers.Authorization = `${localStorage.getItem('accessToken')}`;
-			} catch (err) {
-				console.error(err);
-			}
+			// try {
+			// 	authApi.refresh().then((res) => {
+			// 		console.log(res);
+			// 		if (res.code === 200) {
+			// 			localStorage.setItem('accessToken', res.data.accessToken);
+			// 		}
+			// 	});
+			// 	originalRequest.headers.Authorization = `${localStorage.getItem('accessToken')}`;
+			// } catch (err) {
+			// 	console.error(err);
+			// }
 		} else if (status === 401) {
 			localStorage.removeItem('accessToken');
 			console.log('로그아웃');
@@ -138,12 +137,3 @@ axios.interceptors.response.use(
 		return config;
 	},
 );
-
-/* eslint-disable no-useless-escape */
-export function getCookieForRefresh() {
-	function escape(s) {
-		return s.replace(/([.*+?\^$(){}|\[\]\/\\])/g, '\\$1');
-	}
-	const match = document.cookie.match(RegExp(`(?:^|;\\s*)${escape('refreshToken')}=([^;]*)`));
-	return match ? match[1] : null;
-}

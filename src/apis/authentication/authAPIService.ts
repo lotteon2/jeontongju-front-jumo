@@ -1,4 +1,4 @@
-import APIService, { getCookieForRefresh } from '../../libs/core/api/APIService';
+import APIService from '../../libs/core/api/APIService';
 import {
 	CheckMyPasswordResponse,
 	EmailCheckResponse,
@@ -14,6 +14,15 @@ import {
 } from './authAPIService.types';
 
 const BASE_URL = `${process.env.REACT_APP_API_URL}/authentication-service/api`;
+
+/* eslint-disable no-useless-escape */
+export function getCookieForRefresh() {
+	function escape(s) {
+		return s.replace(/([.*+?\^$(){}|\[\]\/\\])/g, '\\$1');
+	}
+	const match = document.cookie.match(RegExp(`(?:^|;\\s*)${escape('refreshToken')}=([^;]*)`));
+	return match ? match[1] : null;
+}
 
 class AuthAPIService extends APIService {
 	constructor() {

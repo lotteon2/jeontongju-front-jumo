@@ -53,7 +53,27 @@ export type RegisterDeliveryCodeParams = {
 	deliveryCode: string;
 };
 
+export type GetMyOrderForDashboardResponseData = {
+	order: number;
+	shipping: number;
+	completed: number;
+	confirmed: number;
+	cancel: number;
+	monthSales: number;
+	monthSettlement: number;
+	stockUnderFive: number;
+	trackingNumberNotEntered: number;
+	monday: number;
+	tuesday: number;
+	wednesday: number;
+	thursday: number;
+	friday: number;
+	saturday: number;
+	sunday: number;
+};
+
 export type GetMyOrderListResponse = ApiResponse<Page<GetMyOrderListResponseData[]>>;
 export type RegisterDeliveryCodeResponse = ApiResponse<string>;
 export type ConfirmDeliveryResponse = ApiResponse<string>;
 export type GetMyCashUpImageResponse = ApiResponse<{ settlementImgUrl: string }>;
+export type GetMyOrderForDashboardResponse = ApiResponse<GetMyOrderForDashboardResponseData>;

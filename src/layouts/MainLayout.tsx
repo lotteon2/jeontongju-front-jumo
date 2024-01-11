@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, useNavigation } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { useEffect } from 'react';
 import TopHeader from '../components/common/TopHeader';
@@ -10,7 +10,7 @@ import { sellerApi } from '../apis/seller/sellerAPIService';
 import { productApi } from '../apis/product/productAPIService';
 
 const MainLayout = () => {
-	const navigate = useNavigation();
+	const navigate = useNavigate();
 	const [
 		isLogin,
 		approvalState,
@@ -52,9 +52,11 @@ const MainLayout = () => {
 			console.error(error);
 		}
 	};
+
 	useEffect(() => {
 		getMyShopInfo();
 	}, []);
+
 	useEffect(() => {
 		if (isLogin) {
 			if (!myInfo) return;
@@ -77,7 +79,7 @@ const MainLayout = () => {
 			<Menu />
 			<StyledMainContentLayout>
 				<TopHeader />
-				<StyledOutletContainer state={navigate.state === 'loading' ? 'loading' : ''}>
+				<StyledOutletContainer>
 					<Outlet />
 				</StyledOutletContainer>
 			</StyledMainContentLayout>
@@ -100,7 +102,6 @@ const StyledMainContentLayout = styled.div`
 	flex-direction: column;
 `;
 
-const StyledOutletContainer = styled.div<{ state: string }>`
+const StyledOutletContainer = styled.div`
 	margin-top: 7rem;
-	background-color: ${(props) => (props.state === 'loading' ? 'var(--primary-silver)' : 'none')};
 `;
