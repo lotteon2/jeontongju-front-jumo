@@ -74,19 +74,19 @@ mark,
 audio,
 input,
 video {
-  font-family: "Hahmlet", sans-serif;
+  font-family: "BMDOHYEON", sans-serif;
   font-weight: bold;
   margin: 0;
 }
 
 code {
-  font-family: "Hahmlet", sans-serif;
+  font-family: "BMDOHYEON", sans-serif;
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 strong {
-  font-family: "Hahmlet", sans-serif;
+  font-family: "BMDOHYEON", sans-serif;
   font-weight: 900;
   margin: 0;
 }
@@ -192,12 +192,12 @@ button {
 }
 
 .ant-input:placeholder-shown {
-  font-family: "Hahmlet", sans-serif;
+  font-family: "BMDOHYEON", sans-serif;
 }
 
 @font-face {
   font-family: "thin";
-  src: url("/src/assets/fonts/Hahmlet-Thin.ttf");
+  src: url("/src/assets/fonts/BMDOHYEON_ttf.ttf");
 }
 @font-face {
   font-family: "light";

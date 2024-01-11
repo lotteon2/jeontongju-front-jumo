@@ -97,7 +97,7 @@ const StyledMainLayout = styled.div`
 const StyledMainContentLayout = styled.div`
 	position: relative;
 	width: 100%;
-	padding: 0 5rem;
+	padding: 0 2rem;
 	display: flex;
 	flex-direction: column;
 `;

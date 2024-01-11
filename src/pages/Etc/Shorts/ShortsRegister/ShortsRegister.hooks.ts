@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { Form } from 'antd';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { RegisterShortParams } from '../../../../apis/product/productAPIService.types';
 import { useMyInfoStore } from '../../../../stores/MyInfo/MyInfoStore';
 import { useAddShortsStore } from '../../../../stores/Product/AddShorts/AddShortsStore';
@@ -8,6 +9,7 @@ import { productApi } from '../../../../apis/product/productAPIService';
 import { Toast } from '../../../../components/common/Toast';
 
 export const useShortsRegister = () => {
+	const navigate = useNavigate();
 	const [disabled, setDisabled] = useState<boolean>(false);
 	const [imageUrl, setImageUrl] = useState<string>('');
 	const [previewUrl, setPreviewUrl] = useState<string>('');
@@ -39,6 +41,7 @@ export const useShortsRegister = () => {
 	const onSubmit = handleSubmit(async (data: RegisterShortParams) => {
 		console.log(data);
 		console.log(selectedProductId);
+		console.log(previewUrl);
 		const params = {
 			...data,
 			productId: selectedProductId,
@@ -51,6 +54,7 @@ export const useShortsRegister = () => {
 			.registerShort(params)
 			.then((res) => {
 				Toast(true, '쇼츠 등록이 완료되었어요.');
+				navigate('/etc/shorts');
 			})
 			.catch((err) => {
 				console.log(err);
