@@ -54,20 +54,24 @@ export const useLiveRegister = () => {
 			watch('auctionProductName') &&
 			watch('capacity') &&
 			watch('description') &&
-			watch('startingPrice') &&
-			watch('thumbnailImageUrl')
+			watch('startingPrice')
 		) {
 			setDisabled(false);
 		} else {
 			setDisabled(true);
+		}
+		if (!imageUrl) {
+			setDisabled(true);
+		} else {
+			setDisabled(false);
 		}
 	}, [
 		watch('alcoholDegree'),
 		watch('auctionProductName'),
 		watch('capacity'),
 		watch('description'),
-		watch('thumbnailImageUrl'),
 		watch('startingPrice'),
+		imageUrl
 	]);
 
 	return {
