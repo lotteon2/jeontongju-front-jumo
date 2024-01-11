@@ -2,6 +2,7 @@ import APIService from '../../libs/core/api/APIService';
 import {
 	ConfirmDeliveryResponse,
 	GetMyCashUpImageResponse,
+	GetMyDashBoardResponse,
 	GetMyOrderListResponse,
 	RegisterDeliveryCodeParams,
 	RegisterDeliveryCodeResponse,
@@ -42,6 +43,11 @@ class OrderAPIService extends APIService {
 
 	async getMyCashUpImage(year: string, month: string) {
 		const { data } = await this.get<GetMyCashUpImageResponse>(`/settlement/seller/year/${year}/month/${month}`);
+		return data;
+	}
+
+	async getMyDashBoard(date: string) {
+		const { data } = await this.get<GetMyDashBoardResponse>(`/seller/dashboard?date=${date}`);
 		return data;
 	}
 }
