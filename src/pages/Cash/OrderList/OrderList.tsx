@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { useEffect } from 'react';
 import dayjs from 'dayjs';
+import { useParams, useSearchParams } from 'react-router-dom';
 import Table from '../../../components/common/Table';
 import { useOrderList } from './OrderList.hooks';
 import { useMyInfoStore } from '../../../stores/MyInfo/MyInfoStore';
@@ -11,6 +12,8 @@ import { useGetMyOrderListQuery } from '../../../queries/useGetMyOrderListQuery'
 import { OrderStateOptions } from '../../../constants/OrderStateType';
 
 const OrderList = () => {
+	const [params] = useSearchParams();
+	const query = params.get('orderState');
 	const { RangePicker } = DatePicker;
 	const { data: orderData } = useGetMyOrderListQuery();
 	const { columns } = useOrderList();
@@ -26,6 +29,7 @@ const OrderList = () => {
 		endDate,
 		setEndDate,
 		setOrderState,
+		orderState,
 	] = useMyOrderListStore((state) => [
 		state.page,
 		state.dispatchPage,
@@ -37,15 +41,18 @@ const OrderList = () => {
 		state.endDate,
 		state.dispatchEndDate,
 		state.dispatchOrderState,
+		state.orderState,
 	]);
 
 	useEffect(() => {
 		setPage(1);
 	}, [startDate, endDate]);
 
-	// const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-	// 	setSelectedDate(dateString.replaceAll('-', ''));
-	// };
+	useEffect(() => {
+		console.log(query);
+		setOrderState(query);
+	}, [query]);
+
 	const rangePresets: TimeRangePickerProps['presets'] = [
 		{ label: 'Last 7 Days', value: [dayjs().add(-7, 'd'), dayjs()] },
 		{ label: 'Last 14 Days', value: [dayjs().add(-14, 'd'), dayjs()] },
@@ -67,7 +74,13 @@ const OrderList = () => {
 				<StyledCashListLeftHeader>
 					<RangePicker presets={rangePresets} onChange={onRangeChange} />
 					<Select allowClear options={products} placeholder="전체(기본)" onChange={setProductId} />
-					<Select allowClear options={OrderStateOptions} placeholder="전체(기본)" onChange={setOrderState} />
+					<Select
+						allowClear
+						options={OrderStateOptions}
+						placeholder="전체(기본)"
+						value={orderState}
+						onChange={setOrderState}
+					/>
 					<Tooltip
 						title="상품별, 기간별, 주문 상태, 운송장 입력 여부별 필터링을 해서 주문 내역을
         확인해보세요."

@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
 import { ORDER_STATE, translateOrderState } from '../../constants/OrderStateType';
 
 const OrderBox = ({ orderState, count }: { orderState: keyof typeof ORDER_STATE; count: number }) => {
+	const navigate = useNavigate();
 	return (
-		<StyledOrderBox>
+		<StyledOrderBox onClick={() => navigate(`/cash/list?orderState=${orderState}`)}>
 			<h3>{translateOrderState(orderState)}</h3>
 			<div>{count}</div>
 		</StyledOrderBox>
