@@ -78,22 +78,21 @@ export const useAddProduct = () => {
 			productThumbnailImageUrl,
 			categoryId: selectedCategoryId,
 		};
-		try{
+
+		try {
 			setIsLoadingUploadProduct(true);
-			const data = productApi.registerProduct(params).then((res) => {
-				if (res.code === 200) {
-					Toast(true, '상품이 등록되었어요.');
-					navigate('/product/list');
-					reset();
-					clear();
-				}
-		}
-	}catch(err){
+			const res = await productApi.registerProduct(params);
+			if (res.code === 200) {
+				Toast(true, '상품이 등록되었어요.');
+				navigate('/product/list');
+				reset();
+				clear();
+			}
+		} catch (err) {
 			Toast(false, '상품 등록에 실패했어요.');
-		}finally{
+		} finally {
 			setIsLoadingUploadProduct(false);
 		}
-
 	});
 
 	return {
@@ -109,6 +108,6 @@ export const useAddProduct = () => {
 		setProductDetailsImageUrl,
 		productThumbnailImageUrl,
 		setProductThumbnailImageUrl,
-		isLoadingUploadProduct
+		isLoadingUploadProduct,
 	};
 };
