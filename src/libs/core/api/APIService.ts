@@ -16,7 +16,7 @@ class APIService {
 
 	headers: Headers = {
 		'Content-Type': 'application/json',
-		'Access-Control-Allow-Origin': 'https://jeontongju-dev.shop',
+		'Access-Control-Allow-Origin': 'https://api.jeontongju.shop',
 		Authorization: localStorage.getItem('accessToken') || '',
 		'Access-Control-Allow-Credentials': 'true',
 	};
