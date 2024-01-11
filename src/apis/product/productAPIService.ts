@@ -65,7 +65,7 @@ class ProductAPIService extends APIService {
 	}
 
 	async deleteShort(shortsId: number) {
-		const { data } = await this.delete<UpdateShortsResponse>(`${shortsId}`);
+		const { data } = await this.delete<UpdateShortsResponse>(`/shorts/${shortsId}`);
 		return data;
 	}
 }
