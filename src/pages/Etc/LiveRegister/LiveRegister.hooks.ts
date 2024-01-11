@@ -48,31 +48,31 @@ export const useLiveRegister = () => {
 		}
 	});
 
-	useEffect(() => {
-		if (
-			watch('alcoholDegree') &&
-			watch('auctionProductName') &&
-			watch('capacity') &&
-			watch('description') &&
-			watch('startingPrice')
-		) {
-			setDisabled(false);
-		} else {
-			setDisabled(true);
-		}
-		if (!imageUrl) {
-			setDisabled(true);
-		} else {
-			setDisabled(false);
-		}
-	}, [
-		watch('alcoholDegree'),
-		watch('auctionProductName'),
-		watch('capacity'),
-		watch('description'),
-		watch('startingPrice'),
-		imageUrl
-	]);
+	// useEffect(() => {
+	// 	if (
+	// 		watch('alcoholDegree') &&
+	// 		watch('auctionProductName') &&
+	// 		watch('capacity') &&
+	// 		watch('description') &&
+	// 		watch('startingPrice')
+	// 	) {
+	// 		setDisabled(false);
+	// 	} else {
+	// 		setDisabled(true);
+	// 	}
+	// 	if (!imageUrl) {
+	// 		setDisabled(true);
+	// 	} else {
+	// 		setDisabled(false);
+	// 	}
+	// }, [
+	// 	watch('alcoholDegree'),
+	// 	watch('auctionProductName'),
+	// 	watch('capacity'),
+	// 	watch('description'),
+	// 	watch('startingPrice'),
+	// 	imageUrl
+	// ]);
 
 	return {
 		form,
