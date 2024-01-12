@@ -109,7 +109,7 @@ const Notification = () => {
 	};
 
 	return (
-		<div>
+		<div ref={notiRef}>
 			<img
 				alt="bell"
 				width={0}
