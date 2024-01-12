@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { EventSourcePolyfill, NativeEventSource } from 'event-source-polyfill';
 import styled from '@emotion/styled';
 import FiSrBellSVG from '../../assets/images/fi-sr-bell.svg';
@@ -8,10 +8,24 @@ import { notiApi } from '../../apis/notification/notificationAPIService';
 import { NOTI, translateNoti } from '../../constants/NOTIEnum';
 
 const Notification = () => {
+	const notiRef = useRef(null);
 	const [newNoti, setNewNoti] = useState<{ notificationId: number; data: keyof typeof NOTI; redirectUrl: string }[]>(
 		[],
 	);
 	const [notiOpen, setNotiOpen] = useState<boolean>(false);
+
+	useEffect(() => {
+		const handleClickOutside = (event) => {
+			if (notiRef.current && !notiRef.current.contains(event.target)) {
+				setNotiOpen(false);
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, []);
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
@@ -130,7 +144,7 @@ const Notification = () => {
 	);
 };
 
-export default Notification;
+export default React.memo(Notification);
 
 const StyledAlarmBox = styled.div`
 	border: 1px solid #ccc;
