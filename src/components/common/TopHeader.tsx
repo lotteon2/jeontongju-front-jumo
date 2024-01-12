@@ -18,8 +18,8 @@ const TopHeader = () => {
 
 	return (
 		<StyledTopHeader>
-			<div>
-				<img src={Logo} alt="logo" width="60px" height="60px" />
+			<div role="presentation" onClick={() => navigate('/')}>
+				<img src={Logo} alt="logo" width="60px" height="60px" style={{ cursor: 'pointer' }} />
 			</div>
 			<StyledNotiContainer>
 				<Notification />

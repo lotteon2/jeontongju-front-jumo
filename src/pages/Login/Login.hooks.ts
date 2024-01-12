@@ -36,8 +36,8 @@ export const useLogin = () => {
 			const data = await authApi.login({ email, password });
 			if (data.code === 200) {
 				Toast(true, '로그인되었어요');
-				setIsLogin(true);
 				localStorage.setItem('accessToken', data.data.accessToken);
+				setIsLogin(true);
 				navigate('/');
 			} else {
 				Toast(false, '아이디와 비밀번호를 확인해주세요');

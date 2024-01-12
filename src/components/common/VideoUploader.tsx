@@ -31,7 +31,7 @@ const VideoUploader: React.FC<VideoUploaderInterface> = ({ videoUrl, setVideoUrl
 		reader.readAsArrayBuffer(event.target.files[0]);
 		try {
 			console.log('HERE!');
-			fetch('https://jeontongju-dev.shop/storage-service/api/upload/shorts', {
+			fetch('https://api.jeontongju.shop/storage-service/api/upload/shorts', {
 				method: 'POST',
 				body: formData,
 			})

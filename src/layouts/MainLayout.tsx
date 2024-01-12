@@ -58,13 +58,11 @@ const MainLayout = () => {
 	}, []);
 
 	useEffect(() => {
-		if (isLogin) {
-			if (!myInfo) return;
-			if (myInfo.data) {
-				setApprovalState(myInfo.data.approvalState);
-				setStoreImageUrl(myInfo.data.storeImageUrl);
-				setStoreName(myInfo.data.storeName);
-			}
+		if (!myInfo) return;
+		if (myInfo.data) {
+			setApprovalState(myInfo.data.approvalState);
+			setStoreImageUrl(myInfo.data.storeImageUrl);
+			setStoreName(myInfo.data.storeName);
 		}
 	}, [myInfo]);
 

@@ -20,7 +20,7 @@ const Notification = () => {
 
 			const EventSource = EventSourcePolyfill || NativeEventSource;
 			const eventSource = new EventSource(
-				'https://jeontongju-dev.shop/notification-service/api/notifications/connect',
+				'https://api.jeontongju.shop/notification-service/api/notifications/connect',
 				{
 					headers: {
 						Authorization: `${accessToken}`,

@@ -14,8 +14,8 @@ const initialState: MyInfoState = {
 	storePhoneNumber: null,
 };
 
-export const useMyInfoStore = create(
-	immer<MyInfoDispatcher>((set) => ({
+export const useMyInfoStore = create<MyInfoDispatcher & MyInfoState>()(
+	immer((set) => ({
 		...initialState,
 		dispatchIsLogin: (value: boolean) => {
 			set({ isLogin: value });
