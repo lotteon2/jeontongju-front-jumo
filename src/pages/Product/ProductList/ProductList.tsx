@@ -6,10 +6,22 @@ import { useProductListTable, useProductUpdateModal } from './ProductList.hooks'
 import Button from '../../../components/common/Button';
 import { useUpdateProductStore } from '../../../stores/Product/UpdateProduct/UpdateProductStore';
 import { useGetProductStore } from '../../../stores/Product/GetProductList/GetProductStore';
+import ImageUploader from '../../../components/common/ImageUploader';
 
 const ProductList = () => {
-	const { isModalOpen, isDisabled, isLoading, handleCancel, handleOk, columns, productListData } =
-		useProductListTable();
+	const {
+		updateProductThumbnail,
+		setUpdateProductThumbnail,
+		setUpdateProductDetailImg,
+		updateProductDetailImg,
+		isModalOpen,
+		isDisabled,
+		isLoading,
+		handleCancel,
+		handleOk,
+		columns,
+		productListData,
+	} = useProductListTable();
 
 	const [page, setPage] = useGetProductStore((state) => [state.page, state.dispatchPage]);
 
@@ -47,7 +59,6 @@ const ProductList = () => {
 						pageSize: 10,
 						current: page,
 						onChange: setPage,
-						defaultCurrent: 1,
 						total: productListData.data.totalElements,
 					}}
 				/>
@@ -105,8 +116,8 @@ const ProductList = () => {
 							</Radio>
 						</Radio.Group>
 					</StyledInputContainer>
-					<div>{productThumbnail}</div>
-					<div>{productDetailImg}</div>
+					<ImageUploader imageUrl={updateProductThumbnail} setImageUrl={setUpdateProductThumbnail} />
+					<ImageUploader imageUrl={updateProductDetailImg} setImageUrl={setUpdateProductDetailImg} />
 				</StyledProductModalContainer>
 			</Modal>
 		</div>

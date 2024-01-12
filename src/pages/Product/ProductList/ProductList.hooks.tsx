@@ -15,6 +15,8 @@ export const useProductUpdateModal = () => {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [isDisabled, setIsDisabled] = useState<boolean>(false);
+	const [updateProductThumbnail, setUpdateProductThumbnail] = useState<string>();
+	const [updateProductDetailImg, setUpdateProductDetailImg] = useState<string>();
 	const { mutateAsync } = useUpdateProductMutation();
 	const { refetch } = useGetMyProductListQuery();
 
@@ -41,6 +43,8 @@ export const useProductUpdateModal = () => {
 	const showModal = (row: GetProductListResponseData) => {
 		setIsModalOpen(() => true);
 		setProductId(row.productId);
+		setUpdateProductThumbnail(row.productThumbnailImageUrl);
+		setUpdateProductDetailImg(row.productDetailsImageUrl);
 		setProductDetailImg(row.productDetailsImageUrl);
 		setProductName(row.productName);
 		setProductPrice(row.productPrice);
@@ -55,7 +59,7 @@ export const useProductUpdateModal = () => {
 
 	const handleOk = async () => {
 		setIsLoading(true);
-		mutateAsync()
+		mutateAsync({ updateProductThumbnail, updateProductDetailImg })
 			.then((res) => {
 				Toast(true, '상품 수정이 완료되었어요');
 				refetch();
@@ -77,13 +81,28 @@ export const useProductUpdateModal = () => {
 		setIsLoading,
 		handleCancel,
 		handleOk,
+		updateProductThumbnail,
+		setUpdateProductThumbnail,
+		setUpdateProductDetailImg,
+		updateProductDetailImg,
 	};
 };
 
 export const useProductListTable = () => {
 	const navigate = useNavigate();
 	const LIMIT_LENGTH = 6;
-	const { showModal, isModalOpen, isDisabled, isLoading, handleCancel, handleOk } = useProductUpdateModal();
+	const {
+		showModal,
+		isModalOpen,
+		isDisabled,
+		isLoading,
+		handleCancel,
+		handleOk,
+		updateProductThumbnail,
+		setUpdateProductThumbnail,
+		setUpdateProductDetailImg,
+		updateProductDetailImg,
+	} = useProductUpdateModal();
 
 	const { data: productListData, refetch } = useGetMyProductListQuery();
 
@@ -222,5 +241,9 @@ export const useProductListTable = () => {
 		handleCancel,
 		handleOk,
 		productListData,
+		updateProductThumbnail,
+		setUpdateProductThumbnail,
+		setUpdateProductDetailImg,
+		updateProductDetailImg,
 	};
 };

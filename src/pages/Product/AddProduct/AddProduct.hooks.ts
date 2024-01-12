@@ -86,6 +86,7 @@ export const useAddProduct = () => {
 			const res = await productApi.registerProduct(params);
 			if (res.code === 200) {
 				Toast(true, '상품이 등록되었어요.');
+				refetch();
 				navigate('/product/list');
 				reset();
 				clear();

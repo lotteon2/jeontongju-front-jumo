@@ -14,12 +14,14 @@ export const useUpdateProductMutation = () => {
 		state.productVisibility,
 	]);
 	const { mutateAsync } = useMutation(
-		() =>
+		(params: { updateProductDetailImg: string; updateProductThumbnail: string }) =>
 			productApi.updateProduct(productId, {
 				productName,
 				productPrice,
 				registeredQuantity,
 				isActivate,
+				productDetailsImageUrl: params.updateProductDetailImg,
+				productThumbnailImageUrl: params.updateProductThumbnail,
 			}),
 		{
 			mutationKey: [UPDATE_PRODUCT_MUTATION_KEY],
