@@ -4,9 +4,12 @@ import { useGetMyOrderDashBoardQuery } from '../queries/useGetMyOrderDashBoardQu
 import CashBox from '../components/Dashboard/CashBox';
 import TodoBox from '../components/Dashboard/TodoBox';
 import BarChart from '../components/Dashboard/BarChart';
+import { useGetMyReviewDashBoardQuery } from '../queries/useGetMyReviewDashBoardQuery';
+import ReviewBox from '../components/Dashboard/ReviewBox';
 
 const DashBoard = () => {
 	const { data: orderDashBoard } = useGetMyOrderDashBoardQuery();
+	const { data: reviewDashBoard } = useGetMyReviewDashBoardQuery();
 	return (
 		<StyledDashBoard>
 			<StyledOrderContainer>
@@ -26,6 +29,10 @@ const DashBoard = () => {
 					trackingNumberNotEntered={orderDashBoard ? orderDashBoard?.data.trackingNumberNotEntered : 0}
 				/>
 			</StyledCashTodoContainer>
+			<StyledReviewContainer>
+				{reviewDashBoard?.data?.data?.map((it) => <ReviewBox params={it} key={it.reviewId} />)}
+				{reviewDashBoard?.data?.data.length === 0 && <div>리뷰가 없어요.</div>}
+			</StyledReviewContainer>
 			{/* <BarChart chartName="일주일 주문량"/> */}
 		</StyledDashBoard>
 	);
@@ -38,6 +45,9 @@ const StyledDashBoard = styled.div`
 	gap: 1rem;
 `;
 
+const StyledReviewContainer = styled.div`
+	margin-top: 1rem;
+`;
 const StyledOrderContainer = styled.div`
 	display: flex;
 	gap: 1rem;
