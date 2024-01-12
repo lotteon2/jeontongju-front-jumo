@@ -64,7 +64,7 @@ const ShortsDetail = () => {
 					<StyledImgContainer isActivate={isActive}>
 						<StyledImgItem shortsThumbnailUrl={shortsThumbnail} />
 					</StyledImgContainer>
-					<a href={`https://jeontongju.shop/${shortsId}`}>유저들에게 보이는 페이지 보러가기</a>
+					<a href={`https://jeontongju.shop/shorts/${shortsId}`}>유저들에게 보이는 페이지 보러가기</a>
 				</div>
 				<StyledRightInfoContainer>
 					<StyledShortsInfoContainer>

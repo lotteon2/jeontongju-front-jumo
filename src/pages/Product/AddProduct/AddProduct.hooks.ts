@@ -6,10 +6,12 @@ import { useAddressStore } from '../../../stores/Address/AddressStore';
 import { RegisterProductParams } from '../../../apis/product/productAPIService.types';
 import { productApi } from '../../../apis/product/productAPIService';
 import { Toast } from '../../../components/common/Toast';
+import { useGetMyProductListQuery } from '../../../queries/useGetProductListQuery';
 
 export const useAddProduct = () => {
 	const navigate = useNavigate();
 	const [form] = Form.useForm();
+	const { refetch } = useGetMyProductListQuery();
 	const [productDetailsImageUrl, setProductDetailsImageUrl] = useState<string>('');
 	const [productThumbnailImageUrl, setProductThumbnailImageUrl] = useState<string>('');
 	const [isLoadingUploadProduct, setIsLoadingUploadProduct] = useState<boolean>(false);
