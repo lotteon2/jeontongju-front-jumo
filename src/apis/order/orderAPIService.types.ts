@@ -63,13 +63,7 @@ export type GetMyOrderForDashboardResponseData = {
 	monthSettlement: number;
 	stockUnderFive: number;
 	trackingNumberNotEntered: number;
-	monday: number;
-	tuesday: number;
-	wednesday: number;
-	thursday: number;
-	friday: number;
-	saturday: number;
-	sunday: number;
+	weeklySales: { num: number; name: string }[];
 };
 
 export type GetMyOrderListResponse = ApiResponse<Page<GetMyOrderListResponseData[]>>;

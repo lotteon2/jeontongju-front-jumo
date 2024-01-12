@@ -33,7 +33,7 @@ const DashBoard = () => {
 				{reviewDashBoard?.data?.data?.map((it) => <ReviewBox params={it} key={it.reviewId} />)}
 				{reviewDashBoard?.data?.data.length === 0 && <div>리뷰가 없어요.</div>}
 			</StyledReviewContainer>
-			{/* <BarChart chartName="일주일 주문량"/> */}
+			<BarChart chartName="일주일 주문량" data={orderDashBoard?.data?.weeklySales} />
 		</StyledDashBoard>
 	);
 };
