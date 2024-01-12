@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
 import { Form, Input, Radio } from 'antd';
 import Button from '../../../../components/common/Button';
 import { useUpdateShortsStore } from '../../../../stores/Product/UpdateShorts/UpdateShortsStore';
@@ -7,6 +8,7 @@ import { Toast } from '../../../../components/common/Toast';
 import { useDeleteShortsMutation } from '../../../../mutations/product/useDeleteShortMutation';
 
 const ShortsDetail = () => {
+	const navigate = useNavigate();
 	const [
 		targetId,
 		shortsThumbnail,
@@ -41,6 +43,7 @@ const ShortsDetail = () => {
 		await mutateDeleteShortsAsync()
 			.then((res) => {
 				Toast(true, '쇼츠 삭제가 완료되었어요.');
+				navigate('/etc/shorts');
 			})
 			.catch((err) => Toast(false, '쇼츠 삭제에 실패했어요.'));
 	};
