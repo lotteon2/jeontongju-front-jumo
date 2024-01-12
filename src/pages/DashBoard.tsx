@@ -3,6 +3,7 @@ import OrderBox from '../components/Dashboard/OrderBox';
 import { useGetMyOrderDashBoardQuery } from '../queries/useGetMyOrderDashBoardQuery';
 import CashBox from '../components/Dashboard/CashBox';
 import TodoBox from '../components/Dashboard/TodoBox';
+import BarChart from '../components/Dashboard/BarChart';
 
 const DashBoard = () => {
 	const { data: orderDashBoard } = useGetMyOrderDashBoardQuery();
@@ -25,6 +26,7 @@ const DashBoard = () => {
 					trackingNumberNotEntered={orderDashBoard ? orderDashBoard?.data.trackingNumberNotEntered : 0}
 				/>
 			</StyledCashTodoContainer>
+			{/* <BarChart chartName="일주일 주문량"/> */}
 		</StyledDashBoard>
 	);
 };

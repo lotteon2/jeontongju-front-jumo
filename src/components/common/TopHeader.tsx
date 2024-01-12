@@ -39,8 +39,7 @@ const TopHeader = () => {
 								key: 'setMyPassword',
 								label: (
 									<button type="button" onClick={() => navigate('/edit/myPassword')}>
-										<SettingOutlined />
-										비밀번호 변경하기
+										<SettingOutlined /> 비밀번호 변경하기
 									</button>
 								),
 							},
@@ -48,8 +47,7 @@ const TopHeader = () => {
 								key: 'setLogout',
 								label: (
 									<button type="button" onClick={handleLogout}>
-										<LogoutOutlined />
-										로그아웃
+										<LogoutOutlined /> 로그아웃
 									</button>
 								),
 							},
