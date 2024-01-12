@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
+import { getDashboardCashUpDate } from '../../stores/DashBoard/DashBoardInfoStore';
 
 const CashBox = ({ monthSales, monthSettlement }: { monthSales: number; monthSettlement: number }) => {
 	const navigate = useNavigate();
@@ -7,7 +8,7 @@ const CashBox = ({ monthSales, monthSettlement }: { monthSales: number; monthSet
 		<StyledCashBox>
 			<div role="presentation" onClick={() => navigate('/cash/list')}>
 				<h2>이번달 판매량</h2>
-				<StyledDesc>2023-1-1 ~ 2023-1-5</StyledDesc>
+				<StyledDesc>{getDashboardCashUpDate()}</StyledDesc>
 				<div>{monthSales}원</div>
 			</div>
 			<div role="presentation" onClick={() => navigate('/cash/up')}>
