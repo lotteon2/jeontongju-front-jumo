@@ -45,7 +45,7 @@ const Menu = () => {
 	const items: MenuItem[] = [
 		getItem(
 			<div className="flex align-center">
-				<NavLink to="/dashboard">대시보드</NavLink>
+				<NavLink to="/">대시보드</NavLink>
 			</div>,
 			'1',
 			<DashboardOutlined />,
