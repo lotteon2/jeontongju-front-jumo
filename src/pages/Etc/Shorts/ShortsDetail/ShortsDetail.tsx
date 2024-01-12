@@ -62,7 +62,7 @@ const ShortsDetail = () => {
 					<StyledImgContainer isActivate={isActive}>
 						<StyledImgItem shortsThumbnailUrl={shortsThumbnail} />
 					</StyledImgContainer>
-					<a href={targetId}>유저들에게 보이는 페이지 보러가기</a>
+					<a href={`https://jeontongju.shop/${targetId}`}>유저들에게 보이는 페이지 보러가기</a>
 					<div>해당 쇼츠 보러가기</div>
 				</div>
 				<StyledRightInfoContainer>
@@ -114,6 +114,7 @@ const StyledImgContainer = styled.div<{ isActivate: boolean }>`
 	height: 30rem;
 	background: var(${(props) => (props.isActivate ? '--primary-violet' : '--primary-gray')});
 	border-radius: 12px;
+	margin-bottom: 1rem;
 `;
 
 const StyledImgItem = styled.div<{ shortsThumbnailUrl: string }>`

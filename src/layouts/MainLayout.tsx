@@ -103,5 +103,5 @@ const StyledMainContentLayout = styled.div`
 `;
 
 const StyledOutletContainer = styled.div`
-	margin-top: 7rem;
+	margin-top: 8rem;
 `;

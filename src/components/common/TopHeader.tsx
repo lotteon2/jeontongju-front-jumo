@@ -19,7 +19,7 @@ const TopHeader = () => {
 	return (
 		<StyledTopHeader>
 			<div>
-				<img src={Logo} alt="logo" width="80px" height="80px" />
+				<img src={Logo} alt="logo" width="60px" height="60px" />
 			</div>
 			<StyledNotiContainer>
 				<Notification />

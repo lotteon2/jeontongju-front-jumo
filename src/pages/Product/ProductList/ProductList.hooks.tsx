@@ -2,6 +2,7 @@ import { ColumnProps } from 'antd/es/table';
 import { Avatar, Dropdown } from 'antd';
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Alert } from '../../../components/common/Alert';
 import { Toast } from '../../../components/common/Toast';
 import { useUpdateProductStore } from '../../../stores/Product/UpdateProduct/UpdateProductStore';
@@ -80,6 +81,7 @@ export const useProductUpdateModal = () => {
 };
 
 export const useProductListTable = () => {
+	const navigate = useNavigate();
 	const LIMIT_LENGTH = 6;
 	const { showModal, isModalOpen, isDisabled, isLoading, handleCancel, handleOk } = useProductUpdateModal();
 
@@ -161,6 +163,15 @@ export const useProductListTable = () => {
 			dataIndex: 'shortsId',
 			key: 'shortsId',
 			align: 'center',
+			render: (text) => (
+				<div
+					style={{ color: '#f1bbfb', cursor: 'pointer' }}
+					role="presentation"
+					onClick={() => navigate(`/etc/shorts/detail/${text}`)}
+				>
+					{text}
+				</div>
+			),
 		},
 		{
 			title: '공개 여부',
