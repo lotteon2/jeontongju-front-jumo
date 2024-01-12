@@ -10,6 +10,7 @@ import { useDeleteShortsMutation } from '../../../../mutations/product/useDelete
 const ShortsDetail = () => {
 	const navigate = useNavigate();
 	const [
+		shortsId,
 		targetId,
 		shortsThumbnail,
 		shortsTitle,
@@ -19,6 +20,7 @@ const ShortsDetail = () => {
 		isActive,
 		setIsActive,
 	] = useUpdateShortsStore((state) => [
+		state.selectedShortsId,
 		state.selectedTargetId,
 		state.selectedShortsThumbnail,
 		state.selectedShortsTitle,
@@ -62,8 +64,7 @@ const ShortsDetail = () => {
 					<StyledImgContainer isActivate={isActive}>
 						<StyledImgItem shortsThumbnailUrl={shortsThumbnail} />
 					</StyledImgContainer>
-					<a href={`https://jeontongju.shop/${targetId}`}>유저들에게 보이는 페이지 보러가기</a>
-					<div>해당 쇼츠 보러가기</div>
+					<a href={`https://jeontongju.shop/${shortsId}`}>유저들에게 보이는 페이지 보러가기</a>
 				</div>
 				<StyledRightInfoContainer>
 					<StyledShortsInfoContainer>
