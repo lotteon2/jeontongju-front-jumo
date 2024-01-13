@@ -29,6 +29,16 @@ const ShortsList = () => {
 						shortsLink={it.targetId}
 					/>
 				))}
+				{data?.data.content?.length === 0 && (
+					<StyledNoContentContainer>
+						<div>쇼츠가 없어요.</div>
+						<Button
+							content="쇼츠를 등록해보세요!"
+							handleClick={() => navigate('/etc/shorts/register')}
+							Key="addShorts"
+						/>
+					</StyledNoContentContainer>
+				)}
 			</StyledShortsContainer>
 		</StyledShortsListPage>
 	);
@@ -48,4 +58,13 @@ const StyledShortsContainer = styled.div`
 	align-items: center;
 	flex-wrap: wrap;
 	gap: 2rem;
+`;
+
+const StyledNoContentContainer = styled.div`
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 `;
