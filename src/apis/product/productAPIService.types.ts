@@ -72,12 +72,13 @@ export interface GetMyProductResponseData {
 export interface GetShortListResponseData {
 	shortsId: number;
 	shortsTitle: string;
-	shortsThumbnailUrl: string;
+	shortsThumbnailUrl?: string;
 	shortsDescription: string;
 	shortsVideoUrl: string;
 	targetId: string;
 	shortsHits: number;
 	isActivate: boolean;
+	shortsThumbnailImageUrl?: string;
 }
 
 export type GetMyProductResponse = ApiResponse<GetMyProductResponseData[]>;
@@ -95,3 +96,5 @@ export type GetShortListResponse = ApiResponse<Page<GetShortListResponseData[]>>
 export type UpdateShortsResponse = ApiResponse<string>;
 
 export type GetCategoryResponse = ApiResponse<categoryType[]>;
+
+export type GetShortsDetailResponse = ApiResponse<GetShortListResponseData>;

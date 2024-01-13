@@ -10,6 +10,7 @@ import { useGetMyProductListQuery } from '../../../queries/useGetProductListQuer
 import { GetProductListResponseData } from '../../../apis/search/searchAPIService.typs';
 import { productApi } from '../../../apis/product/productAPIService';
 import { useUpdateProductMutation } from '../../../mutations/product/useUpdateProductMutation';
+import { useUpdateShortsStore } from '../../../stores/Product/UpdateShorts/UpdateShortsStore';
 
 export const useProductUpdateModal = () => {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -91,6 +92,17 @@ export const useProductUpdateModal = () => {
 export const useProductListTable = () => {
 	const navigate = useNavigate();
 	const LIMIT_LENGTH = 6;
+
+	const [setShortsThumbnail, setIsActive, setShortsDescription, setShortTitle, setShortsId, setTargetId] =
+		useUpdateShortsStore((state) => [
+			state.dispatchSelectedShortsThumbnail,
+			state.dispatchSelectedIsActivate,
+			state.dispatchSelectedShortsDescription,
+			state.dispatchSelectedShortsTitle,
+			state.dispatchSelectedShortsId,
+			state.dispatchSelectedTargetId,
+		]);
+
 	const {
 		showModal,
 		isModalOpen,
@@ -131,6 +143,19 @@ export const useProductListTable = () => {
 					});
 			}
 		});
+	};
+
+	const handleClickShorts = async (row) => {
+		const data = await productApi.getShortDetail(row.shortsId);
+
+		console.log('shorts', data.data);
+		setIsActive(data.data.isActivate);
+		setShortTitle(data.data.shortsTitle);
+		setShortsId(data.data.shortsId);
+		setTargetId(data.data.targetId);
+		setShortsDescription(data.data.shortsDescription);
+		setShortsThumbnail(data.data.shortsThumbnailImageUrl);
+		navigate(`/etc/shorts/detail/${row.shortsId}`);
 	};
 
 	const columns: ColumnProps<GetProductListResponseData>[] = [
@@ -182,14 +207,10 @@ export const useProductListTable = () => {
 			dataIndex: 'shortsId',
 			key: 'shortsId',
 			align: 'center',
-			render: (text) => (
-				<div
-					style={{ color: '#f1bbfb', cursor: 'pointer' }}
-					role="presentation"
-					onClick={() => navigate(`/etc/shorts/detail/${text}`)}
-				>
+			render: (text, row) => (
+				<span role="presentation" onClick={() => handleClickShorts(row)}>
 					{text}
-				</div>
+				</span>
 			),
 		},
 		{

@@ -4,6 +4,7 @@ import {
 	GetCategoryResponse,
 	GetMyProductResponse,
 	GetShortListResponse,
+	GetShortsDetailResponse,
 	RegisterProductParams,
 	RegisterProductResponse,
 	RegisterShortParams,
@@ -58,9 +59,14 @@ class ProductAPIService extends APIService {
 		return data;
 	}
 
+	async getShortDetail(shortsId: number) {
+		const { data } = await this.get<GetShortsDetailResponse>(`/shorts/${shortsId}`);
+		return data;
+	}
+
 	// TODO : 배포시 url 바뀜
 	async updateShort(shortsId: number, params: UpdateShortParams) {
-		const { data } = await this.patch<UpdateShortsResponse>(`/sellers/shorts/${shortsId}}`, params);
+		const { data } = await this.patch<UpdateShortsResponse>(`/sellers/shorts/${shortsId}`, params);
 		return data;
 	}
 
