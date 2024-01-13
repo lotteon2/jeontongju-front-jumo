@@ -147,8 +147,6 @@ export const useProductListTable = () => {
 
 	const handleClickShorts = async (row) => {
 		const data = await productApi.getShortDetail(row.shortsId);
-
-		console.log('shorts', data.data);
 		setIsActive(data.data.isActivate);
 		setShortTitle(data.data.shortsTitle);
 		setShortsId(data.data.shortsId);
