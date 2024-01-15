@@ -3,6 +3,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import wallPaper from '../assets/images/login_paper.png';
 import { useMyInfoStore } from '../stores/MyInfo/MyInfoStore';
+import Logo from '../assets/images/logo.png';
 
 export default function LoginLayout() {
 	const navigate = useNavigate();
@@ -15,10 +16,13 @@ export default function LoginLayout() {
 	return (
 		<StyledLoginLayout>
 			<StyledLoginContainer>
-				<StyledLogo onClick={() => navigate('/')}>
+				<div role="presentation" onClick={() => navigate('/')}>
+					<img src={Logo} alt="logo" width="100px" height="100px" style={{ cursor: 'pointer', marginBottom: '10px' }} />
+				</div>
+				{/* <StyledLogo onClick={() => navigate('/')}>
 					<h1 className="main_logo">전통주.</h1>
 					<div className="sub_logo">전통주, 마침표를 찍다.</div>
-				</StyledLogo>
+				</StyledLogo> */}
 				<Outlet />
 			</StyledLoginContainer>
 		</StyledLoginLayout>
@@ -36,13 +40,11 @@ const StyledLoginLayout = styled.div`
 
 const StyledLoginContainer = styled.div`
 	width: 100%;
-	height: 100%;
-	margin: 0 auto;
+	margin: auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-image: url(${wallPaper});
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: 100% 100%;
