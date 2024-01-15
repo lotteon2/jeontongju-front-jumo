@@ -57,7 +57,7 @@ export const useAddProduct = () => {
 		setSelectedCategoryId(value);
 	};
 
-	const checkRegisterDisabled = () => {
+	const checkRegisterDisabled: () => 'disabled' | 'positive' | 'cancel' | 'negative' = () => {
 		if (
 			!productDetailsImageUrl ||
 			!breweryAddress ||
@@ -71,6 +71,7 @@ export const useAddProduct = () => {
 	};
 
 	const onSubmit = handleSubmit(async (data: RegisterProductParams) => {
+		console.log(data);
 		const params = {
 			...data,
 			breweryAddress,
