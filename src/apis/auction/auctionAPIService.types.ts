@@ -13,6 +13,7 @@ export interface ApplyAuctionParams {
 	auctionId: string;
 	auctionProductName: string;
 	startingPrice: number;
+	startingBidPrice?: number;
 	thumbnailImageUrl: string;
 	description: string;
 	capacity: number;
@@ -33,6 +34,7 @@ export interface GetMyApplyAuctionListResponseData {
 	startDate: string;
 	lastBidPrice: number;
 	startingPrice: number;
+	startingBidPrice?: number;
 	totalBid: number;
 	auctionProductStatus: keyof typeof APPROVE;
 }

@@ -37,8 +37,8 @@ export const useLiveTable = () => {
 		},
 		{
 			title: '시작가',
-			dataIndex: 'startingPrice',
-			key: 'startingPrice',
+			dataIndex: 'startingBidPrice',
+			key: 'startingBidPrice',
 			render: (text) => <span>{text}</span>,
 		},
 		{
