@@ -114,7 +114,6 @@ const OrderList = () => {
 						pageSize: 10,
 						current: page,
 						onChange: setPage,
-						defaultCurrent: 1,
 						total: orderData.data.totalElements,
 					}}
 				/>
