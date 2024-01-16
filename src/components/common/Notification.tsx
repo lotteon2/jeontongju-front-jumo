@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { EventSourcePolyfill, NativeEventSource } from 'event-source-polyfill';
 import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
 import FiSrBellSVG from '../../assets/images/fi-sr-bell.svg';
 import NewFiSrBellSVG from '../../assets/images/fi-sr-new-bell.svg';
 import { Toast } from './Toast';
@@ -8,6 +9,7 @@ import { notiApi } from '../../apis/notification/notificationAPIService';
 import { NOTI, translateNoti } from '../../constants/NOTIEnum';
 
 const Notification = () => {
+	const navigate = useNavigate();
 	const notiRef = useRef(null);
 	const [newNoti, setNewNoti] = useState<{ notificationId: number; data: keyof typeof NOTI; redirectUrl: string }[]>(
 		[],
@@ -101,6 +103,7 @@ const Notification = () => {
 			const data = await notiApi.readNotiByNotiId(id);
 			if (data.code === 200) {
 				Toast(true, '읽음 처리에 성공했어요.');
+				navigate(url);
 				setNewNoti([]);
 			}
 		} catch (error) {
