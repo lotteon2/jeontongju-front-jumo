@@ -5,7 +5,8 @@ export const NOTI = {
 	INTERNAL_PRODUCT_SERVER_ERROR: 'INTERNAL_PRODUCT_SERVER_ERROR',
 	INTERNAL_CONSUMER_SERVER_ERROR: 'INTERNAL_CONSUMER_SERVER_ERROR',
 	INTERNAL_COUPON_SERVER_ERROR: 'INTERNAL_COUPON_SERVER_ERROR',
-	LACK_OF_STOCK: 'LACK_OF_STOCK',
+	OUT_OF_STOCK: 'OUT_OF_STOCK',
+	BALANCE_ACCOUNTS: 'BALANCE_ACCOUNTS',
 } as const;
 
 type NOTI = (typeof NOTI)[keyof typeof NOTI];
@@ -35,8 +36,11 @@ export const translateNoti = (status: NOTI) => {
 		case 'INTERNAL_COUPON_SERVER_ERROR':
 			translatedNotiState = '결제 실패 | 쿠폰 서버 오류';
 			break;
-		case 'LACK_OF_STOCK':
+		case 'OUT_OF_STOCK':
 			translatedNotiState = '재고 부족';
+			break;
+		case 'BALANCE_ACCOUNTS':
+			translatedNotiState = '이달의 정산';
 			break;
 		default:
 			translatedNotiState = '';
