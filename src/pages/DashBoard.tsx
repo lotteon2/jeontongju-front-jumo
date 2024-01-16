@@ -30,10 +30,12 @@ const DashBoard = () => {
 				/>
 			</StyledCashTodoContainer>
 			<StyledReviewContainer>
-				{reviewDashBoard?.data?.data?.map((it) => <ReviewBox params={it} key={it.reviewId} />)}
-				{reviewDashBoard?.data?.data.length === 0 && <div>리뷰가 없어요.</div>}
+				<StyledFlexContainer>
+					{reviewDashBoard?.data?.data?.map((it) => <ReviewBox params={it} key={it.reviewId} />)}
+					{reviewDashBoard?.data?.data.length === 0 && <div>리뷰가 없어요.</div>}
+				</StyledFlexContainer>
+				<BarChart chartName="일주일 주문량" data={orderDashBoard?.data?.weeklySales} />
 			</StyledReviewContainer>
-			<BarChart chartName="일주일 주문량" data={orderDashBoard?.data?.weeklySales} />
 		</StyledDashBoard>
 	);
 };
@@ -46,8 +48,17 @@ const StyledDashBoard = styled.div`
 `;
 
 const StyledReviewContainer = styled.div`
+	display: flex;
+	align-items: center;
 	margin-top: 1rem;
+	gap: 1rem;
+	justify-content: space-between;
 `;
+
+const StyledFlexContainer = styled.div`
+	flex: 1;
+`;
+
 const StyledOrderContainer = styled.div`
 	display: flex;
 	gap: 1rem;

@@ -15,7 +15,7 @@ class NotificationAPIService extends APIService {
 	}
 
 	async readNotiByNotiId(notificationId: number) {
-		const { data } = await this.patch<ReadNotiByNotiIdResponse>(
+		const { data } = await this.get<ReadNotiByNotiIdResponse>(
 			`/notification-service/api/notifications/${notificationId}/to`,
 		);
 		return data;

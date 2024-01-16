@@ -15,15 +15,15 @@ const BarChart: React.FC<BarChartInterface> = ({ chartName, data }) => {
 		if (width < 640) {
 			setChartWidth(250);
 		} else if (width < 768) {
-			setChartWidth((width - 150) / 2);
+			setChartWidth((width - 250) / 2);
 		} else if (width < 1024) {
-			setChartWidth((width - 150) / 2);
+			setChartWidth((width - 250) / 2);
 		} else {
-			setChartWidth(700);
+			setChartWidth(500);
 		}
 	}, [width]);
 	return (
-		<div>
+		<div style={{ flex: 1 }}>
 			<div>{chartName}</div>
 			<RechartBarchart width={chartWidth} height={300} data={data}>
 				<Bar dataKey="num" radius={[5, 5, 0, 0]} barSize={25} />

@@ -10,7 +10,8 @@ const ReviewBox = ({ params }: { params: GetReviewsForDashBoardResponseData }) =
 				<div>{params.name}</div>
 			</StyledUserBox>
 			<div>
-				{params.reviewContents.length > 15 ? `${params.reviewContents.slice(0, 14)}...` : params.reviewContents}
+				{params.reviewContents}
+				{params.reviewContents.length > 30 ? `${params.reviewContents.slice(0, 29)}...` : params.reviewContents}
 			</div>
 		</StyledReviewBox>
 	);
