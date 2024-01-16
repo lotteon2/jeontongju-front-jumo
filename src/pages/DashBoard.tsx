@@ -34,7 +34,7 @@ const DashBoard = () => {
 					{reviewDashBoard?.data?.data?.map((it) => <ReviewBox params={it} key={it.reviewId} />)}
 					{reviewDashBoard?.data?.data.length === 0 && <div>리뷰가 없어요.</div>}
 				</StyledFlexContainer>
-				<BarChart chartName="일주일 주문량" data={orderDashBoard?.data?.weeklySales} />
+				<BarChart chartName="오늘 기준 전 7일 주문량" data={orderDashBoard?.data?.weeklySales} />
 			</StyledReviewContainer>
 		</StyledDashBoard>
 	);
