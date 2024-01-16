@@ -103,7 +103,7 @@ const Notification = () => {
 			const data = await notiApi.readNotiByNotiId(id);
 			if (data.code === 200) {
 				Toast(true, '읽음 처리에 성공했어요.');
-				window.href = url;
+				window.location.href = url;
 				setNewNoti([]);
 			}
 		} catch (error) {
