@@ -1,7 +1,7 @@
 import APIService from '../../libs/core/api/APIService';
 import { ReadAllNotiResponse, ReadNotiByNotiIdResponse } from './notificationAPIService.types';
 
-const BASE_URL = `${process.env.REACT_APP_API_URL}/order-service/api`;
+const BASE_URL = `${process.env.REACT_APP_API_URL}`;
 
 class NotificationAPIService extends APIService {
 	constructor() {
