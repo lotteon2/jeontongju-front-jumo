@@ -61,7 +61,6 @@ export const useAddProduct = () => {
 		if (
 			!productDetailsImageUrl ||
 			!breweryAddress ||
-			!breweryAddressDetail ||
 			!breweryZonecode ||
 			!selectedCategoryId ||
 			!productThumbnailImageUrl
