@@ -156,12 +156,16 @@ const StyledAlarmBox = styled.div`
 	position: absolute;
 	z-index: 100;
 	background-color: white;
-	max-height: 10rem;
+	max-height: 20rem;
+	width: 20rem;
 	overflow-y: scroll;
+	min-height: 20rem;
+	height: 20rem;
 `;
 
 const StyledAlarmDiv = styled.div`
 	padding: 0.5rem 0;
+	cursor: pointer;
 `;
 
 const StyledReadButton = styled.div`
