@@ -57,6 +57,7 @@ const StyledReviewContainer = styled.div`
 
 const StyledFlexContainer = styled.div`
 	flex: 1;
+	padding-right: 1rem;
 `;
 
 const StyledOrderContainer = styled.div`
