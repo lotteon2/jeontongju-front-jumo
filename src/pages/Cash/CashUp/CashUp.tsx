@@ -56,7 +56,7 @@ const CashUp = () => {
 					/>
 					<img
 						src="https://jeontongju-dev-bucket2.s3.ap-northeast-2.amazonaws.com/QR/99d6235e-3b4f-4a56-8a74-a1028600rd44.png"
-						width="20%"
+						width="10%"
 						alt="플친 QR"
 					/>
 				</StyledImgWrapper>

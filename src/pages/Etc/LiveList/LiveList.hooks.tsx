@@ -33,13 +33,13 @@ export const useLiveTable = () => {
 			title: '낙찰가격',
 			dataIndex: 'lastBidPrice',
 			key: 'lastBidPrice',
-			render: (text) => <span>{text.toLocaleString()}</span>,
+			render: (text) => <span>{text ? text.toLocaleString() : '-'}</span>,
 		},
 		{
 			title: '시작가',
 			dataIndex: 'startingBidPrice',
 			key: 'startingBidPrice',
-			render: (text) => <span>{text.toLocaleString()}</span>,
+			render: (text) => <span>{text ? text.toLocaleString() : '-'}</span>,
 		},
 		{
 			title: '참여자수',
