@@ -50,17 +50,18 @@ const CashUp = () => {
 					<img
 						ref={componentRef}
 						src={data ? data.data.settlementImgUrl : null}
-						width="100%"
-						height="100%"
+						width="50%"
+						height="50%"
 						alt="정산 이미지"
 					/>
 					<img
 						src="https://jeontongju-dev-bucket2.s3.ap-northeast-2.amazonaws.com/QR/99d6235e-3b4f-4a56-8a74-a1028600rd44.png"
+						width="20%"
 						alt="플친 QR"
 					/>
 				</StyledImgWrapper>
 			) : (
-				<div>정산 내역이 없어요.</div>
+				<StyledImgWrapper>정산 내역이 없어요.</StyledImgWrapper>
 			)}
 		</div>
 	);
@@ -77,4 +78,5 @@ const StyledImgWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	margin-top: 1rem;
 `;

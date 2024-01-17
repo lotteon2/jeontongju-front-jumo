@@ -207,7 +207,7 @@ export const useProductListTable = () => {
 			align: 'center',
 			render: (text, row) => (
 				<span role="presentation" onClick={() => handleClickShorts(row)}>
-					{text}
+					{text || '-'}
 				</span>
 			),
 		},

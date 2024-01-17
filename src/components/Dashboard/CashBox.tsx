@@ -9,12 +9,12 @@ const CashBox = ({ monthSales, monthSettlement }: { monthSales: number; monthSet
 			<div role="presentation" onClick={() => navigate('/cash/list')}>
 				<h2>이번달 판매량</h2>
 				<StyledDesc>{getDashboardCashUpDate()}</StyledDesc>
-				<div>{monthSales}원</div>
+				<div>{monthSales.toLocaleString()}원</div>
 			</div>
 			<div role="presentation" onClick={() => navigate('/cash/up')}>
 				<h2>이번달 정산 금액</h2>
 				<StyledDesc>* 예상 금액으로 바뀔 수 있어요</StyledDesc>
-				<div>{monthSettlement}원</div>
+				<div>{monthSettlement.toLocaleString()}원</div>
 			</div>
 		</StyledCashBox>
 	);
