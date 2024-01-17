@@ -1,13 +1,12 @@
 import styled from '@emotion/styled';
 import { Input } from 'antd';
 import { useState } from 'react';
-import { ORDER_STATE } from '../../constants/OrderStateType';
+import { ORDER_STATE, translateOrderState } from '../../constants/OrderStateType';
 import Button from '../common/Button';
 import { useRegisterDeliveryMutation } from '../../mutations/order/useRegisterDeliveryCode';
 import { useGetMyOrderListQuery } from '../../queries/useGetMyOrderListQuery';
 import { Toast } from '../common/Toast';
 import { useConfirmDeliveryMutation } from '../../mutations/order/useConfirmDeliveryMutation';
-import { useRegisterDeliveryStore } from '../../stores/Cash/Delivery/RegisterDeliveryStore';
 
 const OrderState = ({ state, deliveryId }: { state: keyof typeof ORDER_STATE; deliveryId: number }) => {
 	const { mutateAsync } = useRegisterDeliveryMutation();
@@ -54,8 +53,10 @@ const OrderState = ({ state, deliveryId }: { state: keyof typeof ORDER_STATE; de
 				</StyledOrderInput>
 			) : state === 'SHIPPING' ? (
 				<StyledOrderState onClick={handleConfirmDelivery}>배송 확정하기</StyledOrderState>
+			) : state === 'CANCEL' ? (
+				<StyledOrderCancelState>{translateOrderState(state)}</StyledOrderCancelState>
 			) : (
-				<StyledOrderState>{state}</StyledOrderState>
+				<StyledOrderState>{translateOrderState(state)}</StyledOrderState>
 			)}
 		</div>
 	);
@@ -68,6 +69,18 @@ const StyledOrderState = styled.div`
 	background-color: var(--primary-green);
 	color: white;
 	cursor: pointer;
+	white-space: nowrap;
+	padding: 0.2rem;
+`;
+
+const StyledOrderCancelState = styled.div`
+	border-radius: 8px;
+	text-align: center;
+	background-color: var(--primary-red);
+	color: white;
+	cursor: pointer;
+	white-space: nowrap;
+	padding: 0.2rem;
 `;
 
 const StyledOrderInput = styled.div`
