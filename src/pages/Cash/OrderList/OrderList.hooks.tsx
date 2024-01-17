@@ -22,7 +22,7 @@ export const useOrderList = () => {
 			dataIndex: 'ordersId',
 			key: 'ordersId',
 			align: 'center',
-			render: (text) => <span>{text}</span>,
+			render: (text, row) => <span>{row.isAuction ? `AU_${text}` : `PR_${text}`}</span>,
 		},
 		{
 			title: '상품 이름',
@@ -49,7 +49,7 @@ export const useOrderList = () => {
 			title: '총 결제 금액',
 			dataIndex: 'productTotalAmount',
 			key: 'productTotalAmount',
-			render: (text) => <span>{text}원</span>,
+			render: (text) => <span>{text.toLocaleString()}원</span>,
 		},
 		{
 			title: '주문 시간',
