@@ -51,7 +51,6 @@ const ShortsContainer: React.FC<ShortsContainerProps> = ({
 				{!isActivate && <StyledInvisibleText>비공개</StyledInvisibleText>}
 			</StyledImgContainer>
 			<h3>{shortsTitle.length > LIMIT_LENGTH ? `${shortsTitle.substring(0, LIMIT_LENGTH - 1)}...` : shortsTitle}</h3>
-			<div>조회수 {shortsHits} 회</div>
 		</StyledShortsContainer>
 	);
 };
