@@ -90,14 +90,7 @@ const ShortsRegister = () => {
 						onChange={handleSelectedProduct}
 					/>
 				</Form.Item>
-				<Button
-					content="쇼츠 등록하기"
-					Key="registerShorts"
-					isfull
-					handleClick={onSubmit}
-					htmlType="submit"
-					disabled={disabled}
-				/>
+				<Button content="쇼츠 등록하기" Key="registerShorts" isfull handleClick={onSubmit} htmlType="submit" />
 			</Form>
 		</div>
 	);

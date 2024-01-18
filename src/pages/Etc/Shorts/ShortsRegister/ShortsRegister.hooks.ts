@@ -46,23 +46,14 @@ export const useShortsRegister = () => {
 			shortsPreviewUrl: previewUrl,
 			shortsVideoUrl: videoUrl,
 		};
-		console.log('PARAMS', params);
-		await productApi
-			.registerShort(params)
-			.then((res) => {
-				Toast(true, '쇼츠 등록이 완료되었어요.');
-				navigate('/etc/shorts');
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		const res = await productApi.registerShort(params);
+		if (res.code === 200) {
+			Toast(true, '쇼츠 등록이 완료되었어요.');
+			navigate('/etc/shorts');
+		} else {
+			Toast(false, '쇼츠 필수 값을 입력해주세요');
+		}
 	});
-
-	useEffect(() => {
-		if (getValues('shortsTitle') && getValues('shortsDescription')) {
-			setDisabled(false);
-		} else setDisabled(true);
-	}, [getValues('shortsTitle'), getValues('shortsDescription')]);
 
 	return {
 		handleSelectedProduct,
