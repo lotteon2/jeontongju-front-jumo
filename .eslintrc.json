@@ -10,6 +10,7 @@
       "import/no-extraneous-dependencies": ["off", {"devDependencies": true}],
         "react/jsx-props-no-spreading": "off",
         "no-useless-catch": "off",
+        "consistent-return": "off",
         "no-use-before-define": [
             "off",
             { "functions": false, "classes": false }
