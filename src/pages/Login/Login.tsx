@@ -22,7 +22,7 @@ const Login = () => {
 					name="password"
 					rules={[{ required: true, message: '비밀번호를 입력해주세요' }]}
 				>
-					<Input.Password value={password as string} onChange={(e) => setPassword(e.target.value)} />
+					<Input.Password autoComplete="" value={password as string} onChange={(e) => setPassword(e.target.value)} />
 				</Form.Item>
 				<Button
 					content="로그인"
