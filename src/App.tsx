@@ -13,11 +13,17 @@ import useFcmToken from './libs/core/utils/hooks/useFcmToken';
 import { FirebaseApp } from './firebase';
 
 function App() {
-	const { queryClientRef } = useAppMount();
-	// const { fcmToken, notificationPermissionStatus } = useFcmToken();
-	// // Use the token as needed
-	// /* eslint-disable no-unused-expressions */
-	// fcmToken && console.log('FCM token:', fcmToken);
+	const { queryClientRef, FCM } = useAppMount();
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker
+			.register('./firebase-messaging-sw.js')
+			.then(function (registration) {
+				console.log('Registration successful, scope is:', registration.scope);
+			})
+			.catch(function (err) {
+				console.log('Service worker registration failed, error:', err);
+			});
+	}
 
 	// /* eslint-disabled consistent-return */
 	// useEffect(() => {
