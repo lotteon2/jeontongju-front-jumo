@@ -36,6 +36,10 @@ const StyledLoginLayout = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
+	a {
+		white-space: nowrap;
+	}
 `;
 
 const StyledLoginContainer = styled.div`
