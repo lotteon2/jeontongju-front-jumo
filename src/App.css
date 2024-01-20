@@ -4,10 +4,6 @@ span,
 applet,
 object,
 iframe,
-h1,
-h2,
-h3,
-h4,
 p,
 blockquote,
 pre,
@@ -74,19 +70,17 @@ mark,
 audio,
 input,
 video {
-  font-family: "BMDOHYEON", sans-serif;
+  font-size: 1rem;
   font-weight: bold;
   margin: 0;
 }
 
 code {
-  font-family: "BMDOHYEON", sans-serif;
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 strong {
-  font-family: "BMDOHYEON", sans-serif;
   font-weight: 900;
   margin: 0;
 }
@@ -189,29 +183,4 @@ button {
   border-radius: 1rem;
   cursor: pointer;
   border: none;
-}
-
-.ant-input:placeholder-shown {
-  font-family: "BMDOHYEON", sans-serif;
-}
-
-@font-face {
-  font-family: "thin";
-  src: url("/src/assets/fonts/BMDOHYEON_ttf.ttf");
-}
-@font-face {
-  font-family: "light";
-  src: url("/src/assets/fonts/Hahmlet-Light.ttf");
-}
-@font-face {
-  font-family: "regular";
-  src: url("/src/assets/fonts/Hahmlet-Regular.ttf");
-}
-@font-face {
-  font-family: "bold";
-  src: url("/src/assets/fonts/Hahmlet-Bold.ttf");
-}
-@font-face {
-  font-family: "extrabold";
-  src: url("/src/assets/fonts/Hahmlet-ExtraBold.ttf");
 }
