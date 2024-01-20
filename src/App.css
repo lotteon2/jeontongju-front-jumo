@@ -70,7 +70,7 @@ mark,
 audio,
 input,
 video {
-  font-size: 1rem;
+  font-size: 62.5%;
   font-weight: bold;
   margin: 0;
 }
