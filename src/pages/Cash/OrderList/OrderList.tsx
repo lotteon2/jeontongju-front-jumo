@@ -115,6 +115,7 @@ const OrderList = () => {
 						current: page,
 						onChange: setPage,
 						total: orderData.data.totalElements,
+						showSizeChanger: false,
 					}}
 				/>
 			) : (

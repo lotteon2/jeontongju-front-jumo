@@ -1,11 +1,14 @@
 import styled from '@emotion/styled';
+import { Pagination } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import ShortsContainer from '../../../../components/Shorts/ShortsContainer';
 import { useShortsList } from './ShortsList.hooks';
 import Button from '../../../../components/common/Button';
+import { useGetShortsListStore } from '../../../../stores/Product/GetShortsList/GetShortsListStore';
 
 const ShortsList = () => {
 	const { data } = useShortsList();
+	const [page, setPage] = useGetShortsListStore((state) => [state.page, state.dispatchPage]);
 	const navigate = useNavigate();
 
 	return (
@@ -29,6 +32,15 @@ const ShortsList = () => {
 						shortsLink={it.targetId}
 					/>
 				))}
+				{data?.data.content && (
+					<Pagination
+						onChange={setPage}
+						current={page}
+						total={data?.data?.totalElements}
+						style={{ position: 'absolute', right: 0, bottom: '5rem' }}
+					/>
+				)}
+
 				{data?.data.content?.length === 0 && (
 					<StyledNoContentContainer>
 						<div>쇼츠가 없어요.</div>

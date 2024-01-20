@@ -3,7 +3,7 @@ import { immer } from 'zustand/middleware/immer';
 import { GetShortsListDispatcher, GetShortsListState } from './GetShortsListStore.types';
 
 const initialState: GetShortsListState = {
-	page: 0,
+	page: 1,
 	sort: '',
 	size: 10,
 };

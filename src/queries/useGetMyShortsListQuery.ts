@@ -5,7 +5,7 @@ import { useGetShortsListStore } from '../stores/Product/GetShortsList/GetShorts
 const GET_MY_SHORTS_LIST = '@get/product/shorts';
 export const useGetMyShortsList = () => {
 	const [page, sort, size] = useGetShortsListStore((state) => [state.page, state.sort, state.size]);
-	return useQuery([GET_MY_SHORTS_LIST], () => productApi.getShortList(page, sort, size), {
+	return useQuery([GET_MY_SHORTS_LIST, page], () => productApi.getShortList(page - 1, sort, size), {
 		enabled: true,
 	});
 };

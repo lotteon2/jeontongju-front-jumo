@@ -60,6 +60,7 @@ const ProductList = () => {
 						current: page,
 						onChange: setPage,
 						total: productListData.data.totalElements,
+						showSizeChanger: false,
 					}}
 				/>
 			)}
