@@ -53,6 +53,12 @@ const StyledReviewContainer = styled.div`
 	margin-top: 1rem;
 	gap: 1rem;
 	justify-content: space-between;
+
+	@media only screen and (min-width: 200px) and (max-width: 480px) {
+		flex-direction: row;
+		display: flex;
+		flex-wrap: wrap;
+	}
 `;
 
 const StyledFlexContainer = styled.div`
