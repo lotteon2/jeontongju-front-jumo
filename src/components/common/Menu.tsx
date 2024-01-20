@@ -76,7 +76,7 @@ const Menu = () => {
 			<AntdMenu
 				onClick={onClick}
 				style={{
-					width: collapsed ? '4rem' : '20rem',
+					width: collapsed ? '4rem' : '15rem',
 					zIndex: 10,
 				}}
 				selectedKeys={[current]}
