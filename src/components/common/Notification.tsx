@@ -40,11 +40,12 @@ export default function CustomNotification() {
 				'https://api.jeontongju.shop/notification-service/api/notifications/connect',
 				{
 					headers: {
+						'Content-Type': 'text/event-stream',
 						Authorization: `${accessToken}`,
 						Connection: 'keep-alive',
 						Accept: 'text/event-stream',
 					},
-					heartbeatTimeout: 3000,
+					heartbeatTimeout: 10000,
 					withCredentials: true,
 				},
 			);
