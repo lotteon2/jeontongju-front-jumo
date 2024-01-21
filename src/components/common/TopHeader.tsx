@@ -3,8 +3,8 @@ import { Avatar, Dropdown } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { useMyInfoStore } from '../../stores/MyInfo/MyInfoStore';
-import Notification from './Notification';
 import Logo from '../../assets/images/logo.png';
+import CustomNotification from './Notification';
 
 const TopHeader = () => {
 	const navigate = useNavigate();
@@ -22,7 +22,7 @@ const TopHeader = () => {
 				<img src={Logo} alt="logo" width="60px" height="60px" style={{ cursor: 'pointer' }} />
 			</div>
 			<StyledNotiContainer>
-				<Notification />
+				<CustomNotification />
 				<div>{storeName} 주모님</div>
 				<Dropdown
 					menu={{

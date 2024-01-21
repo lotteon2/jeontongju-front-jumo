@@ -7,8 +7,9 @@ import NewFiSrBellSVG from '../../assets/images/fi-sr-new-bell.svg';
 import { Toast } from './Toast';
 import { notiApi } from '../../apis/notification/notificationAPIService';
 import { NOTI, translateNoti } from '../../constants/NOTIEnum';
+import sound from '../../assets/audio/jum.mp3';
 
-const Notification = () => {
+export default function CustomNotification() {
 	const navigate = useNavigate();
 	const notiRef = useRef(null);
 	const [newNoti, setNewNoti] = useState<{ notificationId: number; data: keyof typeof NOTI; redirectUrl: string }[]>(
@@ -62,6 +63,13 @@ const Notification = () => {
 					console.log(event);
 					const currNoti = event.data;
 					setNewNoti((prev) => [...prev, JSON.parse(currNoti)]);
+					new Notification('전통주점', {
+						badge:
+							'https://github.com/lotteon2/jeontongju-front-consumer/assets/72402747/0c2d1ad9-36bf-4024-93d8-434617c5791e',
+						icon: 'https://github.com/lotteon2/jeontongju-front-consumer/assets/72402747/0c2d1ad9-36bf-4024-93d8-434617c5791e',
+						body: '재고 소진 알림',
+					});
+					new Audio(sound).play();
 				});
 
 				eventSource.addEventListener('connect', (event: any) => {
@@ -98,18 +106,24 @@ const Notification = () => {
 		}
 	};
 
-	const handleReadByNotiId = async (id: number, url: string) => {
+	async function handleReadByNotiId(id: number, url: string) {
 		try {
 			const data = await notiApi.readNotiByNotiId(id);
 			if (data.code === 200) {
 				Toast(true, '읽음 처리에 성공했어요.');
+				new Notification('전통주점', {
+					badge:
+						'https://github.com/lotteon2/jeontongju-front-consumer/assets/72402747/0c2d1ad9-36bf-4024-93d8-434617c5791e',
+					icon: 'https://github.com/lotteon2/jeontongju-front-consumer/assets/72402747/0c2d1ad9-36bf-4024-93d8-434617c5791e',
+					body: '냥',
+				});
 				navigate(url.replace('https://seller.jeontongju.shop', ''));
 				setNewNoti([]);
 			}
 		} catch (error) {
 			Toast(false, '읽음 처리에 실패했어요');
 		}
-	};
+	}
 
 	return (
 		<div ref={notiRef}>
@@ -145,9 +159,9 @@ const Notification = () => {
 				))}
 		</div>
 	);
-};
+}
 
-export default React.memo(Notification);
+// export default React.memo(Notification);
 
 const StyledAlarmBox = styled.div`
 	border: 1px solid #ccc;
