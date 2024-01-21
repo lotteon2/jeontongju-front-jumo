@@ -111,12 +111,6 @@ export default function CustomNotification() {
 			const data = await notiApi.readNotiByNotiId(id);
 			if (data.code === 200) {
 				Toast(true, '읽음 처리에 성공했어요.');
-				new Notification('전통주점', {
-					badge:
-						'https://github.com/lotteon2/jeontongju-front-consumer/assets/72402747/0c2d1ad9-36bf-4024-93d8-434617c5791e',
-					icon: 'https://github.com/lotteon2/jeontongju-front-consumer/assets/72402747/0c2d1ad9-36bf-4024-93d8-434617c5791e',
-					body: '냥',
-				});
 				navigate(url.replace('https://seller.jeontongju.shop', ''));
 				setNewNoti([]);
 			}
