@@ -70,7 +70,8 @@ export default function CustomNotification() {
 						icon: 'https://github.com/lotteon2/jeontongju-front-consumer/assets/72402747/0c2d1ad9-36bf-4024-93d8-434617c5791e',
 						body: '재고 소진 알림',
 					});
-					new Audio(sound).play();
+
+					setTimeout(() => new Audio(sound).play(), 3000);
 				});
 
 				eventSource.addEventListener('connect', (event: any) => {
