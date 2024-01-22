@@ -45,7 +45,7 @@ export default function CustomNotification() {
 						Connection: 'keep-alive',
 						Accept: 'text/event-stream',
 					},
-					heartbeatTimeout: 100000,
+					heartbeatTimeout: 1000,
 					withCredentials: true,
 				},
 			);
