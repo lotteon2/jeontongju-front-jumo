@@ -22,16 +22,6 @@ const useFcmToken = () => {
 					}
 					const messaging = getMessaging(FirebaseApp);
 
-					console.log(messaging);
-					// ((payload) => {
-					//   console.log('백그라운드에서 메시지 수신:', payload);
-					// });
-
-					// // 백그라운드 메시지 수신 이벤트 리스너
-					// messaging.onBackgroundMessage((payload) => {
-					//   console.log('백그라운드에서 메시지 수신:', payload);
-					// });
-
 					const initialPermission = Notification.permission;
 					setNotificationPermissionStatus(initialPermission);
 
@@ -42,7 +32,6 @@ const useFcmToken = () => {
 
 					if (notificationPermissionStatus === 'granted') {
 						if (localStorage.getItem('fcmToken')) {
-							console.log('이미 등록된 FCM 토큰이 있어요');
 							return;
 						}
 						const currentToken = await getToken(messaging, {

@@ -9,7 +9,6 @@ export const useLiveTable = () => {
 	const { data: auctionListData } = useGetMyApplyAuctionListQuery();
 	const { data: availableAuctionData } = useGetAvailableAuctionListQuery();
 
-	console.log(auctionListData);
 	const columns: ColumnsType<GetMyApplyAuctionListResponseData> = [
 		{
 			title: '경매이름',

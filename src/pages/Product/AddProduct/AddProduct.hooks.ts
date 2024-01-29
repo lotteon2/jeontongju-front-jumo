@@ -70,7 +70,6 @@ export const useAddProduct = () => {
 	};
 
 	const onSubmit = handleSubmit(async (data: RegisterProductParams) => {
-		console.log(data);
 		const params = {
 			...data,
 			breweryAddress,

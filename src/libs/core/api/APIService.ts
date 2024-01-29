@@ -107,33 +107,3 @@ axios.interceptors.request.use((config) => {
 	config.headers.Authorization = `${localStorage.getItem('accessToken')}`;
 	return config;
 });
-
-axios.interceptors.response.use(
-	(res) => {
-		return res;
-	},
-	async (error: any) => {
-		const {
-			config,
-			response: { status },
-		} = error;
-		if (status === 418) {
-			const originalRequest = config;
-			// try {
-			// 	authApi.refresh().then((res) => {
-			// 		console.log(res);
-			// 		if (res.code === 200) {
-			// 			localStorage.setItem('accessToken', res.data.accessToken);
-			// 		}
-			// 	});
-			// 	originalRequest.headers.Authorization = `${localStorage.getItem('accessToken')}`;
-			// } catch (err) {
-			// 	console.error(err);
-			// }
-		} else if (status === 401) {
-			localStorage.removeItem('accessToken');
-			console.log('로그아웃');
-		}
-		return config;
-	},
-);

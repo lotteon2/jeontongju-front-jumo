@@ -25,10 +25,6 @@ export const useEditMyShopInfo = () => {
 
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		console.log(imageUrl);
-	}, [imageUrl]);
-
 	const handleWithdrawMember = async () => {
 		await sellerApi.withdraw().then((res) => {
 			if (res.code === 200) navigate('/init/login');
@@ -54,7 +50,6 @@ export const useEditMyShopInfo = () => {
 	};
 
 	const onSubmit = handleSubmit(async (data: EditMyShopInfoFieldType) => {
-		console.log(data);
 		try {
 			const res = await sellerApi.updateMyInfo({
 				storeDescription: data.storeDescription ? data.storeDescription : storeDescription,

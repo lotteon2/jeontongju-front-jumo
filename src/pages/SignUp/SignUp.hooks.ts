@@ -58,7 +58,6 @@ export const useSignUp = () => {
 		const { success, error_msg: errorMsg, imp_uid: responseImpUid } = response;
 
 		if (success) {
-			console.log(response);
 			setImpUid(responseImpUid);
 			Toast(true, '성인인증이 완료되었습니다');
 		} else {
@@ -86,22 +85,6 @@ export const useSignUp = () => {
 	};
 
 	const onFinish = async () => {
-		console.log(
-			email,
-			password,
-			storeName,
-			storeDescription,
-			storeImageUrl,
-			storePhoneNumber,
-			impUid,
-			email,
-			password,
-			storeName,
-			storeDescription,
-			storeImageUrl,
-			storePhoneNumber,
-			impUid,
-		);
 		if (password !== checkPassword) {
 			Toast(false, '비밀번호가 일치하지않아요.');
 			return;

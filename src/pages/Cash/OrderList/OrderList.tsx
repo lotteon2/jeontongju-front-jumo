@@ -50,12 +50,10 @@ const OrderList = () => {
 	}, [startDate, endDate]);
 
 	useEffect(() => {
-		console.log(query);
 		setOrderState(query);
 	}, [query]);
 
 	useEffect(() => {
-		console.log(deliveryCodeParam);
 		if (deliveryCodeParam === 'true') {
 			setIsDeliveryCodeNull(true);
 		}
@@ -71,8 +69,6 @@ const OrderList = () => {
 		if (dates) {
 			setStartDate(dateStrings[0].replaceAll('-', ''));
 			setEndDate(dateStrings[1].replaceAll('-', ''));
-		} else {
-			console.log('Clear');
 		}
 	};
 

@@ -1,9 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { Avatar, message, Upload } from 'antd';
 import styled from '@emotion/styled';
-import { AxiosRequestConfig } from 'axios';
 import { Toast } from './Toast';
-import { UploadShortsResponse, UploadShortsResponseData } from '../../apis/storage/storageAPIService.types';
 
 interface VideoUploaderInterface {
 	videoUrl: string;
@@ -30,7 +27,6 @@ const VideoUploader: React.FC<VideoUploaderInterface> = ({ videoUrl, setVideoUrl
 		const reader = new FileReader();
 		reader.readAsArrayBuffer(event.target.files[0]);
 		try {
-			console.log('HERE!');
 			fetch('https://api.jeontongju.shop/storage-service/api/upload/shorts', {
 				method: 'POST',
 				body: formData,

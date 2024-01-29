@@ -19,10 +19,6 @@ const AuthRoute = () => {
 
 	useEffect(() => {
 		if (localStorage.getItem('accessToken')) {
-			// 첫 진입시 받아와야함
-			console.log('here');
-			console.log(approvalState);
-			console.log(myInfo);
 			if (myInfo) {
 				setApprovalState(myInfo.data.approvalState);
 				setStoreImageUrl(myInfo.data.storeImageUrl);

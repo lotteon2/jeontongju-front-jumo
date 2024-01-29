@@ -37,7 +37,6 @@ export const useEditMyPassword = () => {
 		}
 
 		await authApi.checkMyPassword(originalPassword).then((res) => {
-			console.log(res);
 			if (res.code === 200) {
 				setIsRightPassword(true);
 			}

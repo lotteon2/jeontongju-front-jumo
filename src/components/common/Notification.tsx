@@ -51,8 +51,6 @@ export default function CustomNotification() {
 			);
 
 			eventSource.onopen = () => {
-				console.log('OPEN');
-
 				eventSource.removeEventListener('connect', () => {
 					console.log('remove connect');
 				});
@@ -61,7 +59,6 @@ export default function CustomNotification() {
 				});
 
 				eventSource.addEventListener('happy', (event: any) => {
-					console.log(event);
 					const currNoti = event.data;
 					setNewNoti((prev) => [...prev, JSON.parse(currNoti)]);
 					new Notification('전통주점', {
@@ -79,15 +76,12 @@ export default function CustomNotification() {
 					if (JSON.parse(currNoti).notificationId !== null) {
 						setNewNoti((prev) => [JSON.parse(currNoti)]);
 					}
-					console.log(event);
-					console.log('SSE CONNECTED');
 				});
 			};
 
 			/* eslint-disable consistent-return */
 			return () => {
 				eventSource.close();
-				console.log('SSE CLOSED');
 			};
 		}
 	}, []);
