@@ -7,7 +7,7 @@ const CashBox = ({ monthSales, monthSettlement }: { monthSales: number; monthSet
 	return (
 		<StyledCashBox>
 			<div role="presentation" onClick={() => navigate('/cash/list')}>
-				<h2>이번달 판매량</h2>
+				<h2>이번달 판매 금액</h2>
 				<StyledDesc>{getDashboardCashUpDate()}</StyledDesc>
 				<div>{monthSales.toLocaleString()}원</div>
 			</div>
